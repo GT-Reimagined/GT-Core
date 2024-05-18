@@ -75,6 +75,16 @@ subprojects {
         version minecraft_version
         if (project.name != "common"){
             combineWith(project(":common"), project(":common").sourceSets.main)
+        } else {
+            if (project.name == "common") {
+                mappings {
+                    intermediary()
+                }
+
+                mods.modImplementation {
+                    namespace("intermediary")
+                }
+            }
         }
 
         mods {

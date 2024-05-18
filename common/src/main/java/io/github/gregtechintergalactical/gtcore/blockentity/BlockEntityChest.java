@@ -7,8 +7,6 @@ import muramasa.antimatter.capability.item.TrackedItemHandler;
 import muramasa.antimatter.capability.machine.MachineItemHandler;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.gui.container.ContainerMachine;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -123,7 +121,7 @@ public class BlockEntityChest extends BlockEntityMaterial<BlockEntityChest> impl
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
+    //@Environment(EnvType.CLIENT)
     public float getOpenNess(float partialTicks) {
         return lidController.getOpenness(partialTicks);
         //return Mth.lerp(partialTicks, this.prevLidAngle, this.lidAngle);

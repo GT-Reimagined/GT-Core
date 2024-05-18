@@ -8,8 +8,6 @@ import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.machine.types.Machine;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.Container;
@@ -118,7 +116,7 @@ public class BlockMaterialChest extends BlockMachineMaterial implements SimpleWa
         return tileentity != null && tileentity.triggerEvent(id, param);
     }
 
-    @Environment(EnvType.CLIENT)
+    //@Environment(EnvType.CLIENT)
     public static DoubleBlockCombiner.Combiner<BlockEntityChest, Float2FloatFunction> getLid(final LidBlockEntity p_226917_0_) {
         return new DoubleBlockCombiner.Combiner<BlockEntityChest, Float2FloatFunction>() {
             @Override

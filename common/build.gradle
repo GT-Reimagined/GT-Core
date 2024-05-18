@@ -14,6 +14,7 @@ unimined.minecraft {
 }
 
 dependencies {
+    compileOnly("org.spongepowered:mixin:0.8.5")
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modImplementation("io.github.gregtechintergalactical:antimatter-common:${antimatter_version}"){
         exclude(group: "maven.modrinth")
