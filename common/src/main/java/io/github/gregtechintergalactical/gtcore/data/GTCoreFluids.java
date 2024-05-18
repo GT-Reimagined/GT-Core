@@ -17,7 +17,7 @@ public class GTCoreFluids {
     public static final AntimatterFluid PAHOEHOE_LAVA = AntimatterAPI.register(AntimatterFluid.class, new AntimatterFluid(GTCore.ID,"pahoehoe_lava", prepareLavaAttributes(), prepareLavaProperties()));
     public static final AntimatterFluid FIERY_BLOOD = AntimatterAPI.register(AntimatterFluid.class, new AntimatterFluid(GTCore.ID,"fiery_blood", prepareAttributes("fiery_blood"), prepareProperties()));
     public static final AntimatterFluid FIERY_TEARS = AntimatterAPI.register(AntimatterFluid.class, new AntimatterFluid(GTCore.ID,"fiery_tears", prepareAttributes("fiery_tears"), prepareProperties()));
-
+    public static final AntimatterFluid BEET_JUICE = AntimatterAPI.register(AntimatterFluid.class, new AntimatterFluid(GTCore.ID, "beet_juice", prepareAttributes("beet_juice"), prepareProperties()));
 
     public static void init(){
 
