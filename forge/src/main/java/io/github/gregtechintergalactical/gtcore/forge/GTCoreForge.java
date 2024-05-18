@@ -9,17 +9,25 @@ import muramasa.antimatter.event.forge.AntimatterCraftingEvent;
 import muramasa.antimatter.event.forge.AntimatterLoaderEvent;
 import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.item.ItemEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.ChunkWatchEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.Beeswax;
+import static muramasa.antimatter.data.AntimatterMaterialTypes.DUST;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(GTCore.ID)
@@ -29,6 +37,7 @@ public class GTCoreForge extends GTCore {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCraftingEvent);
         MinecraftForge.EVENT_BUS.<AntimatterLoaderEvent>addListener(GTCoreForge::registerRecipeLoaders);
         MinecraftForge.EVENT_BUS.addListener(this::onChunkWatch);
+        MinecraftForge.EVENT_BUS.addListener(this::onItemUse);
         FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(FoliagePlacerType.class, this::onRegistration);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
@@ -43,6 +52,13 @@ public class GTCoreForge extends GTCore {
                 storage.setSyncSlots(true);
             }
         });*/
+    }
+
+    private void onItemUse(PlayerInteractEvent.RightClickBlock event){
+        if (event.getPlayer().getItemInHand(event.getHand()).is(DUST.getMaterialTag(Beeswax))){
+            event.setCancellationResult(Items.HONEYCOMB.useOn(new UseOnContext(event.getPlayer(), event.getHand(), event.getHitVec())));
+            event.setCanceled(true);
+        }
     }
 
     @OnlyIn(Dist.CLIENT)

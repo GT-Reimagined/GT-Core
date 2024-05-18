@@ -20,10 +20,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.WeatheringCopper;
 
 import java.util.function.Consumer;
 
 import static com.google.common.collect.ImmutableMap.of;
+import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.Beeswax;
 import static muramasa.antimatter.data.AntimatterDefaultTools.*;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
 import static muramasa.antimatter.data.AntimatterMaterials.*;
@@ -50,6 +52,20 @@ public class VanillaRecipes {
         if (GTCoreConfig.DISABLE_CHARCOAL_SMELTING.get()){
             provider.removeRecipe(new ResourceLocation("charcoal"));
             provider.removeRecipe(new ResourceLocation("energizedpower", "smelting/charcoal_from_smelting_sawdust_block"));
+        }
+        if (GTCoreConfig.HONEYCOMB_REPLACEMENT.get()){
+            for (WeatheringCopper.WeatherState weatherState : WeatheringCopper.WeatherState.values()) {
+                String prefix = weatherState == WeatheringCopper.WeatherState.UNAFFECTED ? "" : weatherState.name().toLowerCase() + "_";
+                if (prefix.isEmpty()){
+                    addBeeswaxRecipe(consumer, provider, "copper_block");
+                } else {
+                    addBeeswaxRecipe(consumer, provider, prefix + "copper");
+                }
+                addBeeswaxRecipe(consumer, provider, prefix + "cut_copper");
+                addBeeswaxRecipe(consumer, provider, prefix + "cut_copper_stairs");
+                addBeeswaxRecipe(consumer, provider, prefix + "cut_copper_slab");
+            }
+            provider.addItemRecipe(consumer, "misc", Items.CANDLE, of('S', Items.STRING, 'W', DUST.getMaterialTag(Beeswax)), "S", "W");
         }
         if (!GTCoreConfig.VANILLA_OVERRIDES.get()) return;
         provider.addStackRecipe(consumer, "minecraft", "", "misc", new ItemStack(Items.IRON_BARS, 8), of('R', ROD.getMaterialTag(Iron)), "RRR", "RRR");
@@ -121,6 +137,11 @@ public class VanillaRecipes {
         int amount2 = GTCoreConfig.HARDER_WOOD.get() ? 4 : 6;
         provider.shapeless(consumer, domain, "", "planks", new ItemStack(plank, amount1), log);
         provider.addStackRecipe(consumer, domain, AntimatterPlatformUtils.getIdFromItem(plank).getPath() + "_" + amount2, "planks", new ItemStack(plank, amount2), of('S', SAW.getTag(), 'P', log), "S", "P");
+    }
+
+    static void addBeeswaxRecipe(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider, String id){
+        provider.shapeless(consumer, "minecraft", "waxed_" + id + "_from_honeycomb", "waxed_blocks", new ItemStack(AntimatterPlatformUtils.getItemFromID(new ResourceLocation("waxed_" + id))),
+                AntimatterPlatformUtils.getItemFromID(new ResourceLocation(id)), DUST.getMaterialTag(Beeswax));
     }
 
     private static void loadWood(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {

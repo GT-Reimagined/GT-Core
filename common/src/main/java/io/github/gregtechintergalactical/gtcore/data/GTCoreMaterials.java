@@ -198,6 +198,7 @@ public class GTCoreMaterials {
     public static Material Energium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "energium", 0xe81e21, NONE));
     public static Material Lapotronium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "lapotronium", 0x6464c8, NONE));
     public static Material Fireclay = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "fireclay", 0xada09b, ROUGH));
+    public static Material Beeswax = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "beeswax", 0xfadc6e, TextureSets.FOOD));
 
 
     /**

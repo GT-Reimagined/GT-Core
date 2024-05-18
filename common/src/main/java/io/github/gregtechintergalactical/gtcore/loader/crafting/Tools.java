@@ -34,7 +34,7 @@ public class Tools {
     public static void init(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
         provider.removeRecipe(new ResourceLocation("farmersdelight", "flint_knife"));
         provider.removeRecipe(new ResourceLocation("farmersdelight", "iron_knife"));
-        provider.removeRecipe(new ResourceLocation("farmersdelight", "gold_knife"));
+        provider.removeRecipe(new ResourceLocation("farmersdelight", "golden_knife"));
         provider.removeRecipe(new ResourceLocation("farmersdelight", "diamond_knife"));
 
         toolPartRecipes(consumer, provider);
@@ -250,7 +250,7 @@ public class Tools {
                        }
                    } else if (m.has(GEM)){
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
-                               of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", " R", " R");
+                               of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", " R");
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
                                of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FP", "HR");

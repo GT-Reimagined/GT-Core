@@ -5,6 +5,7 @@ import carbonconfiglib.config.ConfigEntry.BoolValue;
 import carbonconfiglib.config.ConfigEntry.EnumValue;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
+import net.minecraft.world.item.Items;
 
 public class GTCoreConfig {
     public static ConfigHandler CONFIG;
@@ -20,6 +21,7 @@ public class GTCoreConfig {
     public static BoolValue DISABLE_CHARCOAL_SMELTING;
     public static BoolValue VILLAGER_TRADE_REPLACEMENTS;
     public static BoolValue COMPOSTER_OUTPUT_REPLACEMENT;
+    public static BoolValue HONEYCOMB_REPLACEMENT;
     public static EnumValue<CircuitRecipeMode> CIRCUIT_RECIPE_MODE;
 
     public static void createConfig(){
@@ -40,6 +42,7 @@ public class GTCoreConfig {
         DISABLE_CHARCOAL_SMELTING = section.addBool("disable_charcoal_smelting", true, "If true disables log to charcoal recipes in the vanilla furnace - Default: true");
         VILLAGER_TRADE_REPLACEMENTS = section.addBool("villager_trade_replacements", true, "If true replaces emeralds with gt credits in all villager trades - Default: true");
         COMPOSTER_OUTPUT_REPLACEMENT = section.addBool("composter_output_replacement", true, "If true makes the composter make fertilizer instead of bonemeal - Default: true");
+        HONEYCOMB_REPLACEMENT = section.addBool("honeycomb_replacement", true, "If true honeycomb usage for making waxed copper is replaced by beeswax - Default: true");
         CONFIG = AntimatterPlatformUtils.createConfig(GTCore.ID, config);
         CONFIG.register();
     }

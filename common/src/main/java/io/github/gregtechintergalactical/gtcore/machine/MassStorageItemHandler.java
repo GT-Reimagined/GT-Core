@@ -7,6 +7,7 @@ import muramasa.antimatter.capability.item.FakeTrackedItemHandler;
 import muramasa.antimatter.capability.item.SidedCombinedInvWrapper;
 import muramasa.antimatter.capability.machine.MachineItemHandler;
 import muramasa.antimatter.gui.SlotType;
+import muramasa.antimatter.machine.MachineState;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -29,6 +30,11 @@ public class MassStorageItemHandler extends MachineItemHandler<BlockEntityMassSt
 
     @Override
     public boolean allowsInput(Direction side) {
-        return super.allowsInput(side) && (side != Direction.DOWN || !tile.isOutput());
+        return super.allowsInput(side) && tile.getMachineState() != MachineState.ACTIVE && (side != Direction.DOWN || !tile.isOutput());
+    }
+
+    @Override
+    public boolean allowsOutput(Direction side) {
+        return super.allowsOutput(side) && tile.getMachineState() != MachineState.ACTIVE;
     }
 }

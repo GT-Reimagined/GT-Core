@@ -16,6 +16,8 @@ import muramasa.antimatter.pipe.types.Cable;
 import muramasa.antimatter.util.Utils;
 import org.apache.commons.lang3.StringUtils;
 
+import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.Beeswax;
+import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
 import static muramasa.antimatter.util.Utils.lowerUnderscoreToUpperSpaced;
 
 public class GTCoreLang {
@@ -91,6 +93,9 @@ public class GTCoreLang {
                 String type = s.getSize() == PipeSize.TINY ? "Cable" : "Wire";
                 override(Ref.ID, s.getDescriptionId(), StringUtils.join(Utils.getLocalizedType(s.getType().getMaterial()), " ", type));
             });
+            override(Ref.ID, DUST.get(Beeswax).getDescriptionId(), "Beeswax");
+            override(Ref.ID, DUST_SMALL.get(Beeswax).getDescriptionId(), "Small Beeswax");
+            override(Ref.ID, DUST_TINY.get(Beeswax).getDescriptionId(), "Tiny Beeswax");
         }
     }
 }

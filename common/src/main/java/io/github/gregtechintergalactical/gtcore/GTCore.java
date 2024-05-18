@@ -153,6 +153,7 @@ public class GTCore extends AntimatterMod {
     @Override
     public void onMaterialEvent(MaterialEvent event) {
         event.setMaterial(GTCoreMaterials.Rubber).asSolid(295, PLATE, RING);
+        event.setMaterial(Beeswax).asDust();
         event.setMaterial(GTCoreMaterials.FierySteel).asMetal().tool().toolDamage(4).toolSpeed(9).toolDurability(1024).toolQuality(4)
                 .toolEnchantments(ImmutableMap.of(Enchantments.FIRE_ASPECT, 2)).handleMaterial(AntimatterMaterials.Blaze)
                 .blacklistToolTypes(PICKAXE, SWORD).build();
