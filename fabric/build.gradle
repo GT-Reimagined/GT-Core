@@ -45,16 +45,16 @@ task copyAccessWidener(type: Copy) {
     into generatedResources
 }
 
-sourceSets {
+/*sourceSets {
     main {
         resources {
             srcDir copyAccessWidener
         }
     }
-}
+}*/
 
 processResources {
-    dependsOn copyAccessWidener
+    //dependsOn copyAccessWidener
     inputs.property "version", project.mod_version
 
     filesMatching("fabric.mod.json") {
@@ -63,8 +63,5 @@ processResources {
 }
 
 sourcesJar {
-    from(project(':common').sourceSets.main.allSource) {
-        exclude("gtcore.accesswidener") // duplicate on fabric, unneeded on forge
-        exclude("fabric.mod.json")
-    }
+    from(project(':common').sourceSets.main.allSource)
 }

@@ -40,6 +40,6 @@ processResources {
 
 sourcesJar {
     from(project(':common').sourceSets.main.allSource) {
-        exclude("fabric.mod.json")
+        exclude("gtcore.accesswidener")
     }
 }
