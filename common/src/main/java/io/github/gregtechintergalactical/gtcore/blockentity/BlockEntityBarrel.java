@@ -4,8 +4,6 @@ package io.github.gregtechintergalactical.gtcore.blockentity;
 import io.github.gregtechintergalactical.gtcore.machine.MaterialMachine;
 import muramasa.antimatter.gui.container.ContainerMachine;
 import muramasa.antimatter.machine.MachineState;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;

@@ -1,6 +1,5 @@
 package io.github.gregtechintergalactical.gtcore.data;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.block.BlockSapBag;
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntitySapBag;
@@ -98,9 +97,8 @@ public class GTCoreBlocks {
         AntimatterAPI.register(BlockEntityType.class, "sap_bag", GTCore.ID, SAP_BAG_BLOCK_ENTITY);
     }
 
-    @ExpectPlatform
     private static void initTFC(){
-        throw new AssertionError();
+        IGTBlockInit.INSTANCE.init();
     }
 
     public static DrumMachine createDrum(Material material, int maxCapacity){

@@ -4,26 +4,33 @@ version = "${project.mod_version}-${rootProject.minecraft_version}"
 def generatedResources = file("src/generated/resources")
 def accessWidenerFile = project(":common").file("src/main/resources/gtcore.accesswidener")
 
-architectury {
-    platformSetupLoomIde()
-    fabric()
-}
-
-loom {
+/*loom {
     accessWidenerPath = accessWidenerFile
+}*/
+unimined.minecraft {
+    fabric {
+        loader fabric_loader_version
+        accessWidener(accessWidenerFile)
+    }
+
+    defaultRemapJar = true
 }
 
 dependencies {
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
-    modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
-    common(project(path: ":common", configuration: "namedElements"))
-    shadowCommon(project(path: ":common", configuration: "transformProductionFabric"))
+    //modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+    implementation(project(path: ":common"))
+    //shadowCommon(project(path: ":common", configuration: "transformProductionFabric"))
     modImplementation("io.github.gregtechintergalactical:antimatter-fabric:${antimatter_version}"){
         exclude(group: "maven.modrinth")
         exclude(group: "TechReborn")
         exclude(group: "com.github.Trins-mods")
         exclude(group: "com.github.Trinsdar")
     }
+    modCompileOnly("mezz.jei:jei-${rootProject.minecraft_version}-fabric:${rootProject.jei_version}"){
+        exclude(group: "mezz.jei", module: "jei-1.18.2-fabric-api")
+    }
+    modCompileOnly("curse.maven:the-one-probe-fabric-581847:${project.top_fabric_file}")
     modImplementation(include("io.github.fabricators_of_create:Porting-Lib:${rootProject.port_lib_version}-beta+1.18.2-stable")){
         exclude(group: "net.fabricmc.fabric-api")
         exclude(group: "com.github.LlamaLad7")
@@ -38,16 +45,16 @@ task copyAccessWidener(type: Copy) {
     into generatedResources
 }
 
-sourceSets {
+/*sourceSets {
     main {
         resources {
             srcDir copyAccessWidener
         }
     }
-}
+}*/
 
 processResources {
-    dependsOn copyAccessWidener
+    //dependsOn copyAccessWidener
     inputs.property "version", project.mod_version
 
     filesMatching("fabric.mod.json") {
@@ -56,7 +63,5 @@ processResources {
 }
 
 sourcesJar {
-    from(project(':common').sourceSets.main.allSource) {
-        exclude("gtcore.accesswidener") // duplicate on fabric, unneeded on forge
-    }
+    from(project(':common').sourceSets.main.allSource)
 }

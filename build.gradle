@@ -2,13 +2,7 @@ import org.gradle.api.tasks.compile.JavaCompile
 
 plugins {
     id "maven-publish"
-    id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.1-SNAPSHOT" apply(false)
-    id "com.github.johnrengelman.shadow" version "7.0.0" apply(false)
-}
-
-architectury {
-    minecraft = rootProject.minecraft_version
+    id "xyz.wagyourtail.unimined" version "1.2.6-SNAPSHOT" apply false
 }
 
 //Print out JVM information so that we know what version is running. Extreamly useful for people to know when helping you.
@@ -23,11 +17,10 @@ def gitHash() {
     return ""
 }
 
-allprojects {
+subprojects {
+    apply plugin: "xyz.wagyourtail.unimined"
     apply plugin: "maven-publish"
-    apply plugin: "java"
-    apply plugin: "architectury-plugin"
-
+    java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
     group = rootProject.maven_group
 
@@ -35,6 +28,13 @@ allprojects {
 
     java {
         withSourcesJar()
+    }
+
+    configurations {
+        modCompileOnly
+        compileOnly.extendsFrom modCompileOnly
+        modRuntimeOnly
+        runtimeOnly.extendsFrom modRuntimeOnly
     }
 
     tasks.withType(JavaCompile).configureEach {
@@ -47,14 +47,68 @@ allprojects {
         }
         println("In CI mode")
     }
-}
 
-subprojects {
-    apply plugin: "dev.architectury.loom"
-    java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+    repositories {
+        maven {
+            url "https://mcentral.firstdark.dev/releases"
+        }
+    }
 
-    if (!project.path.contains("common")){
-        apply plugin: "com.github.johnrengelman.shadow"
+    jar {
+        manifest {
+            attributes([
+                    'Specification-Title'     : project.archivesBaseName,
+                    'Specification-Vendor'    : "Trinsdar",
+                    'Specification-Version'   : project.version,
+                    'Implementation-Title'    : project.name,
+                    'Implementation-Version'  : project.version,
+                    'Implementation-Vendor'   : "Trinsdar",
+                    'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                    'Timestamp'               : System.currentTimeMillis(),
+                    'Built-On-Java'           : "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
+                    'Built-On-Minecraft'      : minecraft_version
+            ])
+        }
+    }
+
+    unimined.minecraft(sourceSets.main, true) {
+        version minecraft_version
+        if (project.name != "common"){
+            combineWith(project(":common"), project(":common").sourceSets.main)
+        } else {
+            if (project.name == "common") {
+                mappings {
+                    intermediary()
+                }
+
+                mods.modImplementation {
+                    namespace("intermediary")
+                }
+            }
+        }
+
+        mods {
+            remap(configurations.modCompileOnly){
+                catchAWNamespaceAssertion()
+            }
+            remap(configurations.modRuntimeOnly){
+                catchAWNamespaceAssertion()
+            }
+            modImplementation {
+                catchAWNamespaceAssertion()
+            }
+        }
+
+        mappings {
+            mojmap()
+            devFallbackNamespace "official"
+            devNamespace "mojmap"
+            parchment(rootProject.minecraft_version, rootProject.mappings_version)
+        }
+    }
+
+
+    /*if (!project.path.contains("common")){
 
         configurations {
             common
@@ -88,37 +142,13 @@ subprojects {
                 skip()
             }
         }
-    }
-
-    loom {
-        silentMojangMappingsLicense()
-    }
-
-    dependencies {
-        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
-        // The following line declares the mojmap mappings, you may use other mappings as well
-        mappings loom.layered() {
-            officialMojangMappings()
-            parchment("org.parchmentmc.data:parchment-${rootProject.minecraft_version}:${rootProject.mappings_version}@zip")
-        }
-        // The following line declares the yarn mappings you may select this one as well.
-        // mappings "net.fabricmc:yarn:1.17.1+build.32:v2"
-    }
+    }*/
 
     publishing {
         publications {
             mavenJava(org.gradle.api.publish.maven.MavenPublication) {
                 artifactId = "gtcore-" + project.name
-                artifact(sourcesJar) {
-                    builtBy remapSourcesJar
-                }
-
-                afterEvaluate {
-                    artifact remapJar
-                    if (project.name != "common"){
-                        artifact shadowJar
-                    }
-                }
+                from components.java
             }
         }
         repositories {
