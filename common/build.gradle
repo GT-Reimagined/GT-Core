@@ -36,3 +36,7 @@ dependencies {
     modImplementation("curse.maven:the-one-probe-fabric-581847:${project.top_fabric_file}")
     modImplementation "maven.modrinth:carbon-config:${project.carbon_config_fabric_version}"
 }
+
+remapJar {
+    prodNamespace("intermediary")
+}

@@ -148,7 +148,17 @@ subprojects {
         publications {
             mavenJava(org.gradle.api.publish.maven.MavenPublication) {
                 artifactId = "gtcore-" + project.name
-                from components.java
+                //from components.java
+                artifact sourcesJar
+                artifact(jar){
+                    classifier = "dev"
+                }
+                afterEvaluate {
+                    artifact(remapJar){
+                        classifier = null
+                    }
+                }
+
             }
         }
         repositories {
