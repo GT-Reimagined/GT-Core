@@ -165,13 +165,21 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         @Override
         public void onUpdate() {
             super.onUpdate();
-            if (tile.getLevel().getGameTime() % 20 == 0 && output){
+            if (output){
                 Direction dir = FluidPlatformUtils.INSTANCE.getFluidDensity(getTank(0).getStoredFluid().getFluid()) < 0 ? UP : DOWN;
                 if (getTank(0).getStoredFluid().getFluidAmount() > 0){
-                    Optional<PlatformFluidHandler> cap = TesseractCapUtils.INSTANCE.getFluidHandler(tile.getLevel(), tile.getBlockPos().relative(dir), dir.getOpposite());
+                    Optional<PlatformFluidHandler> cap = getFluidHandler(dir);
                     cap.ifPresent(other -> Utils.transferFluids(this, other, 1000));
                 }
             }
+        }
+
+        private Optional<PlatformFluidHandler> getFluidHandler(Direction side){
+            BlockEntity be = tile.getCachedBlockEntity(side);
+            if (be == null){
+                return TesseractCapUtils.INSTANCE.getFluidHandler(tile.getLevel(), tile.getBlockPos().relative(side), side.getOpposite());
+            }
+            return FluidHooks.safeGetBlockFluidManager(be, side.getOpposite());
         }
 
         @Override
