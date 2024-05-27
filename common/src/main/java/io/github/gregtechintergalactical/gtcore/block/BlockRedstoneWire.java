@@ -1,6 +1,6 @@
 package io.github.gregtechintergalactical.gtcore.block;
 
-import io.github.gregtechintergalactical.gtcore.behaviour.BlockEntityRedstoneWire;
+import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityRedstoneWire;
 import muramasa.antimatter.Data;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.blockentity.pipe.BlockEntityPipe;
@@ -9,6 +9,7 @@ import muramasa.antimatter.pipe.BlockPipe;
 import muramasa.antimatter.pipe.PipeSize;
 import muramasa.antimatter.texture.Texture;
 import muramasa.antimatter.tool.AntimatterToolType;
+import muramasa.antimatter.util.CodeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
@@ -33,12 +34,12 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
     }
 
     private static boolean isEmissive(PipeSize size, BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-        return size == PipeSize.VTINY && blockGetter.getBlockEntity(blockPos) instanceof BlockEntityRedstoneWire<?> wire && wire.getState() > 0;
+        return size == PipeSize.VTINY && blockGetter.getBlockEntity(blockPos) instanceof BlockEntityRedstoneWire<?> wire && wire.getRedstoneValue() > 0;
     }
 
     public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
         if (getType().emitsLight && getSize() == PipeSize.VTINY && level.getBlockEntity(pos) instanceof BlockEntityRedstoneWire<?> wire && wire.getState() > 0){
-            return wire.getState() / getType().range;
+            return CodeUtils.bind4(CodeUtils.divup(wire.getRedstoneValue(), getType().range));
         }
         return 0;
     }
@@ -60,9 +61,9 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
         return false;
     }
 
-    protected static BlockEntityPipe<?> getTilePipeRedstone(BlockGetter world, BlockPos pos) {
+    protected static BlockEntityRedstoneWire<?> getTilePipeRedstone(BlockGetter world, BlockPos pos) {
         BlockEntity tile = world.getBlockEntity(pos);
-        return tile instanceof BlockEntityPipe ? (BlockEntityPipe<?>) tile : null;
+        return tile instanceof BlockEntityRedstoneWire<?> wire ? wire : null;
     }
 
     @Override
@@ -75,5 +76,28 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
             }
         }
         return super.getBlockColor(state, world, pos, i);
+    }
+
+    @Override
+    public int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        BlockEntity be = level.getBlockEntity(pos);
+        if (be instanceof BlockEntityRedstoneWire<?> wire){
+            return wire.getWeakPower(direction);
+        }
+        return super.getSignal(state, level, pos, direction);
+    }
+
+    @Override
+    public int getDirectSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        BlockEntity be = level.getBlockEntity(pos);
+        if (be instanceof BlockEntityRedstoneWire<?> wire){
+            return wire.getStrongPower(direction);
+        }
+        return super.getDirectSignal(state, level, pos, direction);
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        return super.getAnalogOutputSignal(state, level, pos);
     }
 }

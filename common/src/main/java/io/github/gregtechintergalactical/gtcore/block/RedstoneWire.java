@@ -1,14 +1,9 @@
 package io.github.gregtechintergalactical.gtcore.block;
 
-import io.github.gregtechintergalactical.gtcore.behaviour.BlockEntityRedstoneWire;
-import muramasa.antimatter.blockentity.BlockEntityBase;
-import muramasa.antimatter.blockentity.pipe.BlockEntityPipe;
+import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityRedstoneWire;
 import muramasa.antimatter.material.Material;
-import muramasa.antimatter.pipe.BlockCable;
 import muramasa.antimatter.pipe.PipeSize;
-import muramasa.antimatter.pipe.types.Cable;
 import muramasa.antimatter.pipe.types.PipeType;
-import muramasa.antimatter.pipe.types.Wire;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Set;
@@ -51,6 +46,10 @@ public class RedstoneWire<T extends RedstoneWire<T>> extends PipeType<T> {
 
     public int getOnColor() {
         return onColor;
+    }
+
+    public int getRange() {
+        return range;
     }
 
     public T range(int range){
