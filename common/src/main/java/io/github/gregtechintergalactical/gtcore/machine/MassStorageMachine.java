@@ -7,6 +7,7 @@ import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.machine.MachineState;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
+import muramasa.antimatter.material.MaterialTags;
 import muramasa.antimatter.texture.Texture;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.nbt.CompoundTag;
@@ -52,7 +53,7 @@ public class MassStorageMachine extends MaterialMachine{
         this.capacity = capacity;
         tesr();
         setClientTicking();
-        String barrel = material.getId().contains("wood") ? "item_storage" : "mass_storage";
+        String barrel = material.has(MaterialTags.WOOD) ?  "item_storage" : material.has(MaterialTags.RUBBERTOOLS) ? "plastic_storage" : "mass_storage";
         baseTexture((m, t, s) -> new Texture[] {
                 new Texture(GTCore.ID, "block/machine/base/" + barrel + "/bottom"),
                 new Texture(GTCore.ID, "block/machine/base/" + barrel + "/top"),
