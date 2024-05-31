@@ -97,6 +97,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
 
     @Override
     public void onPlacedBy(Level world, BlockPos pos, BlockState state, @org.jetbrains.annotations.Nullable LivingEntity placer, ItemStack stack) {
+        super.onPlacedBy(world, pos, state, placer, stack);
         CompoundTag nbt = stack.getTag();
         this.fluidHandler.ifPresent(f -> {
             FluidHolder fluid = nbt != null && nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.safeGetItemFluidManager(stack).map(fi -> fi.getFluidInTank(0)).orElse(FluidHooks.emptyFluid());
