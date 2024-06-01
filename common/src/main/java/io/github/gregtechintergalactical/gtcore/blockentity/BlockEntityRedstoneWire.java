@@ -10,6 +10,7 @@ import muramasa.antimatter.cover.ICover;
 import muramasa.antimatter.util.CodeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,11 +21,14 @@ import java.util.List;
 
 public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEntityPipe<T> {
     int state = 0;
-    byte mReceived = 6, mMode = 0, mVanillaSides[] = {-1,-1,-1,-1,-1,-1,-1};
-    public long mRedstone = 0, mLoss = 1;
+    byte mReceived = 6, mMode = 0;
+    public long mRedstone = 0;
     public boolean mConnectedToNonWire = true;
+    public static final long MAX_RANGE = Integer.MAX_VALUE;
+    public final long mLoss;
     public BlockEntityRedstoneWire(T type, BlockPos pos, BlockState state) {
         super(type, pos, state);
+        mLoss = MAX_RANGE / type.getRange();
     }
 
     @Override
@@ -88,7 +92,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         }
         if (mRedstone <= 0 || !connects(side)) return 0;
         Block block = level.getBlockState(this.getBlockPos().relative(side)).getBlock();
-        return CodeUtils.bind4(CodeUtils.divup(mRedstone, type.getRange())- (block instanceof BlockRedstoneWire<?> ? 1: 0));
+        return CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE)- (block instanceof BlockRedstoneWire<?> ? 1: 0));
     }
 
     public int getStrongPower(Direction side){
@@ -98,11 +102,11 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         }
         if (mRedstone <= 0 || !connects(side)) return 0;
         Block block = level.getBlockState(this.getBlockPos().relative(side)).getBlock();
-        return CodeUtils.bind4(CodeUtils.divup(mRedstone, type.getRange())- (block instanceof BlockRedstoneWire<?> ? 1: 0));
+        return CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE)- (block instanceof BlockRedstoneWire<?> ? 1: 0));
     }
 
     public int getComparatorInputOverride(byte aSide) {
-        return CodeUtils.bind4(mRedstone / type.getRange());
+        return CodeUtils.bind4(mRedstone / MAX_RANGE);
     }
 
     public long getRedstoneLoss() {
@@ -126,13 +130,13 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         if (tDelegator instanceof BlockEntityRedstoneWire<?> wire) return connects(side) && wire.connects(side.getOpposite()) ? wire.getRedstoneMinusLoss() : 0;
         // Do not accept Redstone coming from any Redstone Sink! (Such as Droppers or Dispensers)
         //if (REDSTONE_SINKS.contains(tDelegator.getBlock())) return 0;
-        if (mVanillaSides[aSide] < 0) mVanillaSides[aSide] = CodeUtils.bind4(level.getSignal(this.getBlockPos().relative(side), side.getOpposite()));
-        return (long) type.getRange() * mVanillaSides[aSide] - mLoss;
+        int redstoneLevel = level.getSignal(this.getBlockPos().relative(side), side.getOpposite());
+        return (long) (MAX_RANGE * redstoneLevel) - mLoss;
     }
 
     public boolean updateRedstone() {
 
-        long oRedstone = mRedstone, tRedstone = mMode * type.getRange() - mLoss;
+        long oRedstone = mRedstone, tRedstone = mMode * MAX_RANGE - mLoss;
         byte oReceived = mReceived;
         if ((mRedstone = getRedstoneAtSide(oReceived)) <= tRedstone) {
             mRedstone = tRedstone;
@@ -145,6 +149,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
             }
         }
         if (mRedstone != oRedstone) {
+            sidedSync(true);
             if (mConnectedToNonWire) level.updateNeighborsAt(this.getBlockPos(), this.getBlockState().getBlock());
             return true;
         }
@@ -169,5 +174,37 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
             tSetUpdating.addAll(tSetNext);
             tSetNext.clear();
         }
+    }
+
+    @Override
+    public List<String> getInfo(boolean simple) {
+        List<String> info = super.getInfo(simple);
+        info.add("Redstone level " + mRedstone);
+        return info;
+    }
+
+    @Override
+    public void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+        tag.putLong("mRedstone", mRedstone);
+        tag.putByte("mMode", mMode);
+        tag.putByte("mReceived", mReceived);
+        tag.putBoolean("mConnectedToNonWire", mConnectedToNonWire);
+    }
+
+    @Override
+    public void load(CompoundTag tag) {
+        super.load(tag);
+        mRedstone = tag.getLong("mRedstone");
+        mMode = tag.getByte("mMode");
+        mReceived = tag.getByte("mReceived");
+        mConnectedToNonWire = tag.getBoolean("mConnectedToNonWire");
+    }
+
+    @Override
+    public CompoundTag getUpdateTag() {
+        CompoundTag updateTag = super.getUpdateTag();
+        updateTag.putLong("mRedstone", mRedstone);
+        return updateTag;
     }
 }

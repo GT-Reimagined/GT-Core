@@ -39,7 +39,7 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
 
     public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
         if (getType().emitsLight && getSize() == PipeSize.VTINY && level.getBlockEntity(pos) instanceof BlockEntityRedstoneWire<?> wire && wire.getState() > 0){
-            return CodeUtils.bind4(CodeUtils.divup(wire.getRedstoneValue(), getType().range));
+            return CodeUtils.bind4(CodeUtils.divup(wire.getRedstoneValue(), BlockEntityRedstoneWire.MAX_RANGE));
         }
         return 0;
     }
@@ -70,7 +70,7 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
     public int getBlockColor(BlockState state, @Nullable BlockGetter world, @Nullable BlockPos pos, int i) {
         if (world != null && pos != null){
             if (world.getBlockEntity(pos) instanceof BlockEntityRedstoneWire<?> redstoneWire){
-                if (redstoneWire.getState() > 0){
+                if (redstoneWire.getRedstoneValue() > 0){
                     return getType().getOnColor();
                 }
             }
