@@ -63,7 +63,9 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     @Override
     public void refreshConnection() {
         super.refreshConnection();
+        boolean oldConnectedToNonWire = mConnectedToNonWire;
         updateConnectionStatus();
+        if (mConnectedToNonWire || oldConnectedToNonWire) level.updateNeighborsAt(this.getBlockPos(), this.getBlockState().getBlock());
         if (updateRedstone()) doRedstoneUpdate(this);
     }
 
