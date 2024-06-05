@@ -2,6 +2,7 @@ package io.github.gregtechintergalactical.gtcore.blockentity;
 
 import io.github.gregtechintergalactical.gtcore.block.BlockRedstoneWire;
 import io.github.gregtechintergalactical.gtcore.block.RedstoneWire;
+import muramasa.antimatter.Antimatter;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.blockentity.pipe.BlockEntityPipe;
 import muramasa.antimatter.capability.ICoverHandler;
@@ -61,12 +62,13 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     }
 
     @Override
-    public void refreshConnection() {
-        super.refreshConnection();
+    public void toggleConnection(Direction side) {
+        super.toggleConnection(side);
         boolean oldConnectedToNonWire = mConnectedToNonWire;
         updateConnectionStatus();
-        if (mConnectedToNonWire || oldConnectedToNonWire) level.updateNeighborsAt(this.getBlockPos(), this.getBlockState().getBlock());
         if (updateRedstone()) doRedstoneUpdate(this);
+        if (mConnectedToNonWire || oldConnectedToNonWire) level.updateNeighborsAt(this.getBlockPos(), this.getBlockState().getBlock());
+        //Antimatter.LOGGER.info("refresh connection");
     }
 
     @Override
@@ -92,19 +94,22 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         if (cover.isNode()){
             return cover.getWeakPower();
         }
-        if (mRedstone <= 0 || !connects(side)) return 0;
+        boolean connects = connects(side);
+        if (mRedstone <= 0 || !connects) return 0;
         Block block = level.getBlockState(this.getBlockPos().relative(side)).getBlock();
         return CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE)- (block instanceof BlockRedstoneWire<?> ? 1: 0));
     }
 
     public int getStrongPower(Direction side){
-        ICover cover = coverHandler.map(c -> c.get(side)).orElse(ICover.empty);
+        return 0;
+        /*ICover cover = coverHandler.map(c -> c.get(side)).orElse(ICover.empty);
         if (cover.isNode()){
             return cover.getStrongPower();
         }
-        if (mRedstone <= 0 || !connects(side)) return 0;
+        boolean connects = connects(side);
+        if (mRedstone <= 0 || !connects) return 0;
         Block block = level.getBlockState(this.getBlockPos().relative(side)).getBlock();
-        return CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE)- (block instanceof BlockRedstoneWire<?> ? 1: 0));
+        return CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE)- (block instanceof BlockRedstoneWire<?> ? 1: 0));*/
     }
 
     public int getComparatorInputOverride(byte aSide) {
@@ -207,6 +212,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     public CompoundTag getUpdateTag() {
         CompoundTag updateTag = super.getUpdateTag();
         updateTag.putLong("mRedstone", mRedstone);
+        updateTag.putBoolean("mConnectedToNonWire", mConnectedToNonWire);
         return updateTag;
     }
 }
