@@ -22,6 +22,7 @@ public class MassStorageMachine extends MaterialMachine{
         this.setTile((m, p, s) -> new BlockEntityMassStorage(this, p, s));
         this.setItemBlock(ItemBlockMassStorage::new);
         this.addTooltipInfo((machine, stack, world, tooltip, flag) -> {
+            tooltip.add(Utils.translatable("machine.mass_storage.capacity", capacity));
             CompoundTag nbt = stack.getTag();
             if (nbt != null){
                 if (nbt.contains("inventories")){

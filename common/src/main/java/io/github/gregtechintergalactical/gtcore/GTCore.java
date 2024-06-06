@@ -175,6 +175,7 @@ public class GTCore extends AntimatterMod {
             INGOT.replacement(FierySteel, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "fiery_ingot"));
             BLOCK.replacement(FierySteel, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "fiery_block"));
         }
+        GTCoreBlocks.initItemBarrels();
     }
 
     public static void onCrafting(CraftingEvent event){

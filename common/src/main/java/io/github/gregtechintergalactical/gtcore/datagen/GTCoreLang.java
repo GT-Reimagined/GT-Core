@@ -41,6 +41,7 @@ public class GTCoreLang {
             add("machine.mass_storage.display", "Locked to: %s");
             add("machine.mass_storage.output", "Auto outputs");
             add("machine.mass_storage.output_overflow", "Auto outputs overflow");
+            add("machine.mass_storage.capacity", "Can store items of one Type, Capacity: %s");
             add(GTCoreBlocks.RUBBER_LEAVES, "Rubber Leaves");
             add(GTCoreBlocks.RUBBER_LOG, "Rubber Log");
             add(GTCoreBlocks.STRIPPED_RUBBER_LOG, "Stripped Rubber Log");
