@@ -1,6 +1,7 @@
 package io.github.gregtechintergalactical.gtcore.machine;
 
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityMassStorage;
+import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityPlasticBin;
 import muramasa.antimatter.blockentity.BlockEntityMachine;
 import muramasa.antimatter.capability.IGuiHandler;
 import muramasa.antimatter.capability.item.TrackedItemHandler;
@@ -25,6 +26,14 @@ public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedIt
     @Override
     protected int getStackLimit(int slot, @NotNull ItemStack stack) {
         return getSlotLimit(slot);
+    }
+
+    @Override
+    public int getSlotLimit(int slot) {
+        if (getTile() instanceof BlockEntityPlasticBin bin){
+            return bin.getMaxLimit();
+        }
+        return super.getSlotLimit(slot);
     }
 
     @Override

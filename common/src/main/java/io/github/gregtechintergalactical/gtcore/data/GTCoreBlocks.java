@@ -2,6 +2,7 @@ package io.github.gregtechintergalactical.gtcore.data;
 
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.block.BlockSapBag;
+import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityPlasticBin;
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntitySapBag;
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityTrashCan;
 import io.github.gregtechintergalactical.gtcore.machine.*;
@@ -17,6 +18,7 @@ import muramasa.antimatter.ore.CobbleStoneType;
 import muramasa.antimatter.ore.StoneType;
 import muramasa.antimatter.texture.Texture;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
+import muramasa.antimatter.util.Utils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -65,6 +67,7 @@ public class GTCoreBlocks {
     public static final BlockEntityType<?> SAP_BAG_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntitySapBag::new, SAP_BAG).build(null);
 
     public static MaterialMachine WOOD_ITEM_BARREL;
+    public static MaterialMachine PLASTIC_STORAGE_BOX;
 
     @Nullable
     public static MaterialMachine IRONWOOD_ITEM_BARREL = null;
@@ -96,6 +99,10 @@ public class GTCoreBlocks {
 
     public static void initItemBarrels(){
         WOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, AntimatterMaterials.Wood, "item_storage", 5000).addFlags(MachineFlag.GUI);
+        PLASTIC_STORAGE_BOX = new MassStorageMachine(GTCore.ID, Plastic, "storage_box", 128).setTile((type, pos, state) -> new BlockEntityPlasticBin((MassStorageMachine) type, pos, state)).addTooltipInfo((blockMachine, itemStack, blockGetter, list, tooltipFlag) -> {
+            list.remove(2);
+            list.add(2, Utils.translatable("machine.mass_storage.capacity", "Variable"));
+        });
         if (AntimatterAPI.isModLoaded("twilightforest")){
             IRONWOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, Ironwood, "item_storage", 10000).addFlags(MachineFlag.GUI);
         }
