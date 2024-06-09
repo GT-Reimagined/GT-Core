@@ -6,6 +6,7 @@ import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -13,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockEntityPlasticBin extends BlockEntityMassStorage {
@@ -39,6 +41,7 @@ public class BlockEntityPlasticBin extends BlockEntityMassStorage {
             }
             //TODO: translation component
             player.sendMessage(Utils.literal("Max capacity set to:  " + maxLimit), player.getUUID());
+            this.sidedSync(true);
             Utils.damageStack(player.getItemInHand(hand), hand, player);
             var handler = itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
             int amountToExtract = handler.getItem(0).getCount() - maxLimit;
@@ -67,5 +70,24 @@ public class BlockEntityPlasticBin extends BlockEntityMassStorage {
             return InteractionResult.SUCCESS;
         }
         return super.onInteractServer(state, world, pos, player, hand, hit, type);
+    }
+
+    @Override
+    public @NotNull CompoundTag getUpdateTag() {
+        CompoundTag updateTag = super.getUpdateTag();
+        updateTag.putInt("maxLimit", maxLimit);
+        return updateTag;
+    }
+
+    @Override
+    public void load(CompoundTag tag) {
+        super.load(tag);
+        maxLimit = tag.getInt("maxLimit");
+    }
+
+    @Override
+    public void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+        tag.putInt("maxLimit", maxLimit);
     }
 }
