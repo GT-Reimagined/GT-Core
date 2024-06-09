@@ -2,6 +2,7 @@ package io.github.gregtechintergalactical.gtcore.blockentity;
 
 import io.github.gregtechintergalactical.gtcore.block.BlockRedstoneWire;
 import io.github.gregtechintergalactical.gtcore.block.RedstoneWire;
+import io.github.gregtechintergalactical.gtcore.cover.CoverRedstoneTorch;
 import muramasa.antimatter.Antimatter;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.blockentity.pipe.BlockEntityPipe;
@@ -43,7 +44,8 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     public CoverFactory[] getValidCovers() {
         return AntimatterAPI.all(CoverFactory.class).stream().filter(t -> {
             try {
-                return !t.get().get(ICoverHandler.empty(this), t.getValidTier(), Direction.SOUTH, t).isNode();
+                ICover cover = t.get().get(ICoverHandler.empty(this), t.getValidTier(), Direction.SOUTH, t);
+                return !cover.isNode() || cover instanceof CoverRedstoneTorch;
             } catch (Exception ex) {
                 return false;
             }
@@ -223,6 +225,9 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         mMode = tag.getByte("mMode");
         mReceived = tag.getByte("mReceived");
         mConnectedToNonWire = tag.getBoolean("mConnectedToNonWire");
+        if (this.getLevel() != null && this.isClientSide()){
+            sidedSync(true);
+        }
     }
 
     @Override

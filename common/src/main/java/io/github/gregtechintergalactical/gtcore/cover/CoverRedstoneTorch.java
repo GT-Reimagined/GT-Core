@@ -1,5 +1,6 @@
 package io.github.gregtechintergalactical.gtcore.cover;
 
+import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityRedstoneWire;
 import muramasa.antimatter.capability.ICoverHandler;
 import muramasa.antimatter.cover.BaseCover;
@@ -7,6 +8,7 @@ import muramasa.antimatter.cover.CoverFactory;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.texture.Texture;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -49,5 +51,10 @@ public class CoverRedstoneTorch extends BaseCover {
     public void setTextures(BiConsumer<String, Texture> texer) {
         BlockEntityRedstoneWire<?> wire = (BlockEntityRedstoneWire<?>) source().getTile();
         texer.accept("overlay", factory.getTextures().get(wire.getRedstoneValue() > 0 ? 0 : 1));
+    }
+
+    @Override
+    public ResourceLocation getModel(String type, Direction dir) {
+        return new ResourceLocation(GTCore.ID + ":block/cover/" + this.getRenderId());
     }
 }
