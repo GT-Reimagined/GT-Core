@@ -95,6 +95,7 @@ public class GTCore extends AntimatterMod {
                 SlotTypes.init();
                 MenuHandlers.init();
                 GTCoreData.init();
+                GTCoreCovers.init();
                 GTCoreBlocks.init();
                 GTCoreItems.init();
                 GTCoreFluids.init();

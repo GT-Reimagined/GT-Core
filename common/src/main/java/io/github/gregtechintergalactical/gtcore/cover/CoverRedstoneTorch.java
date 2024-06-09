@@ -5,9 +5,12 @@ import muramasa.antimatter.capability.ICoverHandler;
 import muramasa.antimatter.cover.BaseCover;
 import muramasa.antimatter.cover.CoverFactory;
 import muramasa.antimatter.machine.Tier;
+import muramasa.antimatter.texture.Texture;
 import net.minecraft.core.Direction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.function.BiConsumer;
 
 public class CoverRedstoneTorch extends BaseCover {
     public CoverRedstoneTorch(@NotNull ICoverHandler<?> source, @Nullable Tier tier, Direction side, CoverFactory factory) {
@@ -17,6 +20,12 @@ public class CoverRedstoneTorch extends BaseCover {
     @Override
     public boolean canPlace() {
         return source().getTile() instanceof BlockEntityRedstoneWire<?>;
+    }
+
+    @Override
+    public void onPlace() {
+        BlockEntityRedstoneWire<?> wire = (BlockEntityRedstoneWire<?>) source().getTile();
+        wire.clearConnection(side);
     }
 
     @Override
@@ -34,5 +43,11 @@ public class CoverRedstoneTorch extends BaseCover {
     public int getWeakPower() {
         BlockEntityRedstoneWire<?> wire = (BlockEntityRedstoneWire<?>) source().getTile();
         return wire.getRedstoneValue() > 0 ? 0 : 15;
+    }
+
+    @Override
+    public void setTextures(BiConsumer<String, Texture> texer) {
+        BlockEntityRedstoneWire<?> wire = (BlockEntityRedstoneWire<?>) source().getTile();
+        texer.accept("overlay", factory.getTextures().get(wire.getRedstoneValue() > 0 ? 0 : 1));
     }
 }
