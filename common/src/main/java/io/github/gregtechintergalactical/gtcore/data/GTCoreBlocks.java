@@ -100,8 +100,8 @@ public class GTCoreBlocks {
     public static void initItemBarrels(){
         WOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, AntimatterMaterials.Wood, "item_storage", 5000).addFlags(MachineFlag.GUI);
         PLASTIC_STORAGE_BOX = new MassStorageMachine(GTCore.ID, Plastic, "storage_box", 128).setTile((type, pos, state) -> new BlockEntityPlasticBin((MassStorageMachine) type, pos, state)).addTooltipInfo((blockMachine, itemStack, blockGetter, list, tooltipFlag) -> {
-            list.remove(2);
-            list.add(2, Utils.translatable("machine.mass_storage.capacity", "Variable"));
+            list.remove(1);
+            list.add(1, Utils.translatable("machine.mass_storage.capacity", "Variable"));
         });
         if (AntimatterAPI.isModLoaded("twilightforest")){
             IRONWOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, Ironwood, "item_storage", 10000).addFlags(MachineFlag.GUI);
