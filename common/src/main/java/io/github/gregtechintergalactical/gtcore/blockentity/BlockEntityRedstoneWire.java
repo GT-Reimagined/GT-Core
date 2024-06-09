@@ -8,6 +8,7 @@ import muramasa.antimatter.blockentity.pipe.BlockEntityPipe;
 import muramasa.antimatter.capability.ICoverHandler;
 import muramasa.antimatter.cover.CoverFactory;
 import muramasa.antimatter.cover.ICover;
+import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.CodeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,6 +18,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.redstone.Redstone;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -67,8 +69,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         boolean oldConnectedToNonWire = mConnectedToNonWire;
         updateConnectionStatus();
         if (updateRedstone()) doRedstoneUpdate(this);
-        if (mConnectedToNonWire || oldConnectedToNonWire) level.updateNeighborsAt(this.getBlockPos(), this.getBlockState().getBlock());
-        //Antimatter.LOGGER.info("refresh connection");
+        if (mConnectedToNonWire || oldConnectedToNonWire) updateBlock(side);
     }
 
     @Override
@@ -94,22 +95,23 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         if (cover.isNode()){
             return cover.getWeakPower();
         }
+        Block block = level.getBlockState(this.getBlockPos().relative(side)).getBlock();
+        if (block instanceof BlockRedstoneWire<?>) return 0;
         boolean connects = connects(side);
         if (mRedstone <= 0 || !connects) return 0;
-        Block block = level.getBlockState(this.getBlockPos().relative(side)).getBlock();
-        return CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE)- (block instanceof BlockRedstoneWire<?> ? 1: 0));
+        return CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE)) - 1;
     }
 
     public int getStrongPower(Direction side){
-        return 0;
-        /*ICover cover = coverHandler.map(c -> c.get(side)).orElse(ICover.empty);
+        ICover cover = coverHandler.map(c -> c.get(side)).orElse(ICover.empty);
         if (cover.isNode()){
             return cover.getStrongPower();
         }
+        Block block = level.getBlockState(this.getBlockPos().relative(side)).getBlock();
+        if (block instanceof BlockRedstoneWire<?>) return 0;
         boolean connects = connects(side);
         if (mRedstone <= 0 || !connects) return 0;
-        Block block = level.getBlockState(this.getBlockPos().relative(side)).getBlock();
-        return CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE)- (block instanceof BlockRedstoneWire<?> ? 1: 0));*/
+        return CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE)) - 1;
     }
 
     public int getComparatorInputOverride(byte aSide) {
@@ -141,6 +143,13 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         return (long) (MAX_RANGE * redstoneLevel) - mLoss;
     }
 
+    private void updateBlock(Direction side){
+        AntimatterPlatformUtils.markAndNotifyBlock(getLevel(), getBlockPos(), getLevel().getChunkAt(getBlockPos()), getBlockState(), getBlockState(), 1, 512);
+        BlockPos neighbor = getBlockPos().relative(side);
+        BlockState neighborState = getLevel().getBlockState(neighbor);
+        getLevel().updateNeighborsAtExceptFromFacing(neighbor, neighborState.getBlock(), side.getOpposite());
+    }
+
     public boolean updateRedstone() {
 
         long oRedstone = mRedstone, tRedstone = mMode * MAX_RANGE - mLoss;
@@ -149,7 +158,11 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
             mRedstone = tRedstone;
             mReceived = 6;
         }
+        List<Direction> sidesToUpdate = new ArrayList<>();
         for (Direction tSide : Direction.values()) {
+            if (!(getLevel().getBlockState(getBlockPos().relative(tSide)).getBlock() instanceof BlockRedstoneWire)) {
+                sidesToUpdate.add(tSide);
+            }
             if (tSide.get3DDataValue() == oReceived) continue;
             if ((tRedstone = getRedstoneAtSide(tSide.get3DDataValue())) > mRedstone) {
                 mRedstone = tRedstone; mReceived = (byte) tSide.get3DDataValue();
@@ -157,7 +170,11 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         }
         if (mRedstone != oRedstone) {
             sidedSync(true);
-            if (mConnectedToNonWire) level.updateNeighborsAt(this.getBlockPos(), this.getBlockState().getBlock());
+            if (mConnectedToNonWire) {
+                for (Direction tSide : sidesToUpdate) {
+                    updateBlock(tSide);
+                }
+            }
             return true;
         }
         return false;
