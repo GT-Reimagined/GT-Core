@@ -68,6 +68,7 @@ import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.Steeleaf;
 import static muramasa.antimatter.data.AntimatterDefaultTools.*;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
+import static muramasa.antimatter.material.MaterialTags.RUBBERTOOLS;
 import static muramasa.antimatter.material.MaterialTags.WOOD;
 
 public class GTCore extends AntimatterMod {
@@ -100,7 +101,6 @@ public class GTCore extends AntimatterMod {
                 GTCoreMaterials.init();
                 GTCoreCables.init();
                 GTCoreTools.init(side);
-                Guis.init();
                 RecipeMaps.init();
                 if (side.isClient()) RecipeMaps.clientMaps();
                 RubberTree.init();
@@ -153,6 +153,7 @@ public class GTCore extends AntimatterMod {
     @Override
     public void onMaterialEvent(MaterialEvent event) {
         event.setMaterial(GTCoreMaterials.Rubber).asSolid(295, PLATE, RING);
+        event.setMaterial(Plastic).flags(RUBBERTOOLS);
         event.setMaterial(Beeswax).asDust();
         event.setMaterial(GTCoreMaterials.FierySteel).asMetal().tool().toolDamage(4).toolSpeed(9).toolDurability(1024).toolQuality(4)
                 .toolEnchantments(ImmutableMap.of(Enchantments.FIRE_ASPECT, 2)).handleMaterial(AntimatterMaterials.Blaze)
@@ -176,6 +177,7 @@ public class GTCore extends AntimatterMod {
             BLOCK.replacement(FierySteel, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "fiery_block"));
         }
         GTCoreBlocks.initItemBarrels();
+        Guis.init();
     }
 
     public static void onCrafting(CraftingEvent event){
