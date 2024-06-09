@@ -7,6 +7,7 @@ import com.mojang.math.Matrix4f;
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
 import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityMassStorage;
+import io.github.gregtechintergalactical.gtcore.blockentity.BlockEntityPlasticBin;
 import io.github.gregtechintergalactical.gtcore.data.SlotTypes;
 import io.github.gregtechintergalactical.gtcore.machine.MassStorageMachine;
 import muramasa.antimatter.gui.SlotType;
@@ -75,7 +76,7 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
             ItemStack stack = display.getItem(0);
             if (stack.isEmpty()) stack = storage.getItem(0);
             renderStack(matrix, bufferIn, combinedLightIn, combinedOverlayIn, stack, tile, 0.03f);
-            int max = ((MassStorageMachine)tile.getMachineType()).getCapacity();
+            int max = tile instanceof BlockEntityPlasticBin bin ? bin.getMaxLimit() : ((MassStorageMachine)tile.getMachineType()).getCapacity();
             int count = storage.getItem(0).getCount();
             String text = "" + (count == max ? 100 + "%" : count);
             if (!stack.isEmpty())
