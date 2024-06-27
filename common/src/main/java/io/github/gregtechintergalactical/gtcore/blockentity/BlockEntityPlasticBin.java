@@ -40,7 +40,7 @@ public class BlockEntityPlasticBin extends BlockEntityMassStorage {
                 maxLimit = 64;
             }
             //TODO: translation component
-            player.sendMessage(Utils.literal("Max capacity set to:  " + maxLimit), player.getUUID());
+            player.sendMessage(Utils.literal("Max capacity set to:  " + (maxLimit / 64) + " stacks"), player.getUUID());
             this.sidedSync(true);
             Utils.damageStack(player.getItemInHand(hand), hand, player);
             var handler = itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
