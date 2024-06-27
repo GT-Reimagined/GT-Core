@@ -18,8 +18,8 @@ public class MachineRecipes {
     public static void initRecipes(Consumer<FinishedRecipe> output, AntimatterRecipeProvider provider){
         AntimatterAPI.all(DrumMachine.class).forEach(d -> {
             Material m = d.getMaterial();
-            if (m.has(AntimatterMaterialTypes.PLATE) && m.has(AntimatterMaterialTypes.ROD)){
-                provider.addItemRecipe(output, GTCore.ID, "", "machines", d.getItem(Tier.NONE), of('H', AntimatterDefaultTools.HAMMER.getTag(), 'R', AntimatterMaterialTypes.ROD.getMaterialTag(m), 'P', AntimatterMaterialTypes.PLATE.getMaterialTag(m)), " H ", "PRP", "PRP");
+            if (m.has(AntimatterMaterialTypes.PLATE) && m.has(AntimatterMaterialTypes.ROD_LONG)){
+                provider.addItemRecipe(output, GTCore.ID, "", "machines", d.getItem(Tier.NONE), of('H', AntimatterDefaultTools.HAMMER.getTag(), 'R', AntimatterMaterialTypes.ROD_LONG.getMaterialTag(m), 'P', AntimatterMaterialTypes.PLATE.getMaterialTag(m)), " H ", "PRP", "PRP");
             }
         });
     }
