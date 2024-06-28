@@ -65,6 +65,7 @@ public class GTCoreItems {
 
     public static ItemBasic<?> NandChip = new ItemBasic<>(GTCore.ID, "nand_chip").tip("A very simple circuit");
     public static ItemBasic<?> AdvCircuitParts = new ItemBasic<>(GTCore.ID, "advanced_circuit_parts").tip("Used for making Advanced Circuits");
+    public static ItemBasic<?> ComplexCircuitParts = new ItemBasic<>(GTCore.ID, "complex_circuit_parts").tip("Used for making Complex Circuits");
     public static ItemBasic<?> EtchedWiringMV = new ItemBasic<>(GTCore.ID, "copper_etched_wiring").tip("Circuit board parts");
     public static ItemBasic<?> EtchedWiringHV = new ItemBasic<>(GTCore.ID, "gold_etched_wiring").tip("Circuit board parts");
     public static ItemBasic<?> EtchedWiringEV = new ItemBasic<>(GTCore.ID, "platinum_etched_wiring").tip("Circuit board parts");
@@ -82,6 +83,7 @@ public class GTCoreItems {
 
     public static ItemBasic<?> CircuitBoardBasic = new ItemBasic<>(GTCore.ID, "basic_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardAdvanced = new ItemBasic<>(GTCore.ID, "advanced_circuit_board", "circuits/");
+    public static ItemBasic<?> CircuitBoardComplex = new ItemBasic<>(GTCore.ID, "complex_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardEmpty = new ItemBasic<>(GTCore.ID, "empty_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardProcessor = new ItemBasic<>(GTCore.ID, "processor_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardProcessorEmpty = new ItemBasic<>(GTCore.ID, "empty_processor_circuit_board", "circuits/");
