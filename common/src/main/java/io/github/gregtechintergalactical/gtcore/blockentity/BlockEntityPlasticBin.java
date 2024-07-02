@@ -31,9 +31,8 @@ public class BlockEntityPlasticBin extends BlockEntityMassStorage {
     @Override
     public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable AntimatterToolType type) {
         if (type == AntimatterDefaultTools.WIRE_CUTTER){
-            int addition = player.isCrouching() ? -64 : 64;
-            maxLimit += addition;
-            if (maxLimit == 0) {
+            maxLimit = player.isCrouching() ? maxLimit / 2 : maxLimit * 2;
+            if (maxLimit == 32) {
                 maxLimit = 1024;
             }
             if (maxLimit > 1024) {
