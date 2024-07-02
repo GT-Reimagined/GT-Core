@@ -198,6 +198,14 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
                             if (leftover.getCount() < stack.getCount()) {
                                 handler.insertItem(0, stack.copy(), false);
                                 stack.shrink(stack.getCount() - leftover.getCount());
+                                for (int i = 0; i < player.getInventory().items.size(); i++){
+                                    ItemStack stack1 = player.getInventory().items.get(i);
+                                    if (Utils.equals(stack1, displayed) || Utils.equals(stack1, stored)){
+                                        ItemStack inserted = handler.insertItem(0, stack1.copy(), false);
+                                        stack1.shrink(stack1.getCount() - inserted.getCount());
+                                        if (inserted.getCount() > 0) break;
+                                    }
+                                }
                                 return InteractionResult.SUCCESS;
                             }
                         } else {
@@ -205,7 +213,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
                                 boolean sucess = false;
                                 for (int i = 0; i < player.getInventory().items.size(); i++){
                                     ItemStack stack1 = player.getInventory().items.get(i);
-                                    if (Utils.equals(stack1, displayed)){
+                                    if (Utils.equals(stack1, displayed) || Utils.equals(stack1, stored)){
                                         ItemStack inserted = handler.insertItem(0, stack1.copy(), false);
                                         stack1.shrink(stack1.getCount() - inserted.getCount());
                                         sucess = true;
