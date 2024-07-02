@@ -3,6 +3,7 @@ package io.github.gregtechintergalactical.gtcore.data;
 import io.github.gregtechintergalactical.gtcore.GTCore;
 import io.github.gregtechintergalactical.gtcore.item.ItemFertilizer;
 import io.github.gregtechintergalactical.gtcore.item.ItemHazmatArmor;
+import io.github.gregtechintergalactical.gtcore.item.ItemMagnifyingGlass;
 import io.github.gregtechintergalactical.gtcore.item.ItemMatch;
 import io.github.gregtechintergalactical.gtcore.item.ItemPowerUnit;
 import io.github.gregtechintergalactical.gtcore.item.ItemRadaway;
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
+import static muramasa.antimatter.data.AntimatterMaterials.Diamond;
 
 public class GTCoreItems {
     public static ItemBasic<?> StickyResin = new ItemBasic<>(GTCore.ID, "sticky_resin");
@@ -51,6 +53,8 @@ public class GTCoreItems {
     public static ItemBasic<ItemMatch> Match = new ItemMatch(GTCore.ID, "match", new Item.Properties().tab(Ref.TAB_ITEMS));
     public static ItemBasic<ItemMatch> MatchBook = new ItemMatch(GTCore.ID, "match_book", new Item.Properties().tab(Ref.TAB_ITEMS).defaultDurability(64));
     public static ItemBasic<ItemMatch> Lighter = new ItemMatch(GTCore.ID, "lighter", new Item.Properties().tab(Ref.TAB_ITEMS).defaultDurability(100));
+    public static ItemMagnifyingGlass GlassMagnifyingGlass = new ItemMagnifyingGlass(Glass, 64);
+    public static ItemMagnifyingGlass DiamondMagnifyingGlass = new ItemMagnifyingGlass(Diamond, 1561);
 
     public static ItemBasic<?> TapeEmpty = new ItemTape(GTCore.ID, "tape_empty");
     public static ItemBasic<?> Tape = new ItemTape(GTCore.ID, "tape", 10000);
