@@ -126,6 +126,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
             String addition = AntimatterPlatformUtils.isFabric() && !stack.isEmpty() ? "/" + stack.getFluidAmount() + "droplets" : "";
             list.add("Fluid: " + (stack.isEmpty() ? "Empty" : (stack.getFluidAmount() / TesseractGraphWrappers.dropletMultiplier) + "mb" + addition + " of " + FluidPlatformUtils.INSTANCE.getFluidDisplayName(stack).getString()));
         });
+        list.add("Auto Output: " + isOutput());
         return list;
     }
 

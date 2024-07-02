@@ -17,6 +17,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class BlockEntityPlasticBin extends BlockEntityMassStorage {
     int maxLimit = 128;
     public BlockEntityPlasticBin(MassStorageMachine type, BlockPos pos, BlockState state) {
@@ -88,5 +90,12 @@ public class BlockEntityPlasticBin extends BlockEntityMassStorage {
     public void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.putInt("maxLimit", maxLimit);
+    }
+
+    @Override
+    public List<String> getInfo(boolean simple) {
+        List<String> list = super.getInfo(simple);
+        list.add("Max Capacity: " + (maxLimit / 64) + " stacks");
+        return list;
     }
 }

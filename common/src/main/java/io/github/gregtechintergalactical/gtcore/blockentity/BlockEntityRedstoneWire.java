@@ -205,7 +205,10 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     @Override
     public List<String> getInfo(boolean simple) {
         List<String> info = super.getInfo(simple);
-        info.add("Redstone level " + mRedstone);
+        if (!simple) {
+            info.add("Redstone level " + mRedstone);
+        }
+        info.add("Vanilla redstone power: " + CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE)));
         return info;
     }
 

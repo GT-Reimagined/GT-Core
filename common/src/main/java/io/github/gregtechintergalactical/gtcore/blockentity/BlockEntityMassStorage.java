@@ -1,5 +1,6 @@
 package io.github.gregtechintergalactical.gtcore.blockentity;
 
+import earth.terrarium.botarium.common.fluid.base.FluidHolder;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreTools;
 import io.github.gregtechintergalactical.gtcore.data.SlotTypes;
 import io.github.gregtechintergalactical.gtcore.item.ItemTape;
@@ -14,6 +15,7 @@ import muramasa.antimatter.machine.MachineState;
 import muramasa.antimatter.machine.event.IMachineEvent;
 import muramasa.antimatter.network.AntimatterNetwork;
 import muramasa.antimatter.tool.AntimatterToolType;
+import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -34,7 +36,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tesseract.FluidPlatformUtils;
 import tesseract.TesseractCapUtils;
+import tesseract.TesseractGraphWrappers;
 import tesseract.api.item.ExtendedItemContainer;
 
 import java.util.List;
@@ -372,5 +376,14 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         outputOverflow = tag.getBoolean("outputOverflow");
         output = tag.getBoolean("output");
         keepFilter = !tag.contains("keepFilter") || tag.getBoolean("keepFilter");
+    }
+
+    @Override
+    public List<String> getInfo(boolean simple) {
+        List<String> list = super.getInfo(simple);
+        list.add("Auto Outputs: " + output);
+        list.add("Keeps Filter: " + keepFilter);
+        list.add("Outputs Overflow: " + outputOverflow);
+        return list;
     }
 }
