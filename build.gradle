@@ -2,7 +2,7 @@ import org.gradle.api.tasks.compile.JavaCompile
 
 plugins {
     id "maven-publish"
-    id "xyz.wagyourtail.unimined" version "1.2.7-SNAPSHOT" apply false
+    id "xyz.wagyourtail.unimined" version "1.2.15-SNAPSHOT" apply false
 }
 
 //Print out JVM information so that we know what version is running. Extreamly useful for people to know when helping you.
