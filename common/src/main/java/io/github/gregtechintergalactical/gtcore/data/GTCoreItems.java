@@ -215,7 +215,8 @@ public class GTCoreItems {
                 ingredientBuilder.put(i, RecipeIngredient.of(selectorTag,1).setNoConsume());
                 itemBuilder.put(i, selectorTag);
                 if (i > 15) continue;
-                coverBuilder.put(i, CoverFactory.builder(CoverSelectorTag::new)
+                int finalI = i;
+                coverBuilder.put(i, CoverFactory.builder((source, tier, side, factory) -> new CoverSelectorTag(source, tier, side, factory, finalI))
                         .addTextures(new Texture(GTCore.ID, "block/cover/selector_tags/" + i), new Texture(GTCore.ID, "block/cover/selector_tags/underlay"))
                         .item((c, t) -> selectorTag).build(GTCore.ID, "selector_tag_"+i));
             }

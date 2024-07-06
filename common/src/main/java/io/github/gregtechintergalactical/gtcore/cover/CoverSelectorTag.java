@@ -15,14 +15,24 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.BiConsumer;
 
 public class CoverSelectorTag extends BaseCover {
-    public CoverSelectorTag(@NotNull ICoverHandler<?> source, @Nullable Tier tier, Direction side, CoverFactory factory) {
+    final int mode;
+    public CoverSelectorTag(@NotNull ICoverHandler<?> source, @Nullable Tier tier, Direction side, CoverFactory factory, int mode) {
         super(source, tier, side, factory);
+        this.mode = mode;
     }
 
     @Override
     public void onPlace() {
         if (source().getTile() instanceof BlockEntityRedstoneWire<?> wire) {
+            wire.setMode(mode);
+        }
+    }
 
+    @Override
+    public void onRemove() {
+        super.onRemove();
+        if (source().getTile() instanceof BlockEntityRedstoneWire<?> wire) {
+            wire.setMode(0);
         }
     }
 

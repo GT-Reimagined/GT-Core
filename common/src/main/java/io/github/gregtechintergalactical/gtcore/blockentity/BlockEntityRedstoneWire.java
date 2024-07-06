@@ -202,6 +202,17 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         }
     }
 
+    public void setMode(int mode){
+        int oldMode = mMode;
+        mMode = CodeUtils.bind4(mode);
+        if (oldMode != mMode) {
+            if (updateRedstone()) doRedstoneUpdate(this);
+            for (Direction tSide : Direction.values()) {
+                if (mConnectedToNonWire) updateBlock(tSide);
+            }
+        }
+    }
+
     @Override
     public List<String> getInfo(boolean simple) {
         List<String> info = super.getInfo(simple);
