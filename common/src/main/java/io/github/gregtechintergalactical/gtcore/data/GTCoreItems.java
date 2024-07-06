@@ -1,19 +1,26 @@
 package io.github.gregtechintergalactical.gtcore.data;
 
+import com.google.common.collect.ImmutableMap;
 import io.github.gregtechintergalactical.gtcore.GTCore;
+import io.github.gregtechintergalactical.gtcore.cover.CoverRedstoneTorch;
+import io.github.gregtechintergalactical.gtcore.cover.CoverSelectorTag;
 import io.github.gregtechintergalactical.gtcore.item.ItemFertilizer;
 import io.github.gregtechintergalactical.gtcore.item.ItemHazmatArmor;
 import io.github.gregtechintergalactical.gtcore.item.ItemMagnifyingGlass;
 import io.github.gregtechintergalactical.gtcore.item.ItemMatch;
 import io.github.gregtechintergalactical.gtcore.item.ItemPowerUnit;
 import io.github.gregtechintergalactical.gtcore.item.ItemRadaway;
+import io.github.gregtechintergalactical.gtcore.item.ItemSelectorTag;
 import io.github.gregtechintergalactical.gtcore.item.ItemTape;
 import io.github.gregtechintergalactical.gtcore.tree.item.ItemRubberBoat;
 import muramasa.antimatter.Ref;
+import muramasa.antimatter.cover.CoverFactory;
 import muramasa.antimatter.item.ItemBasic;
 import muramasa.antimatter.item.ItemMultiTextureBattery;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
+import muramasa.antimatter.recipe.ingredient.RecipeIngredient;
+import muramasa.antimatter.texture.Texture;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 
@@ -21,6 +28,11 @@ import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
 import static muramasa.antimatter.data.AntimatterMaterials.Diamond;
 
 public class GTCoreItems {
+
+    public static final ImmutableMap<Integer, RecipeIngredient> SELECTOR_TAG_INGREDIENTS;
+    public static final ImmutableMap<Integer, Item> SELECTOR_TAG_ITEMS;
+    public static final ImmutableMap<Integer, CoverFactory> SELECTOR_TAG_COVERS;
+
     public static ItemBasic<?> StickyResin = new ItemBasic<>(GTCore.ID, "sticky_resin");
     public static ItemRubberBoat RubberBoat = new ItemRubberBoat();
 
@@ -192,6 +204,26 @@ public class GTCoreItems {
     public static ItemBasic<?> ShapeBladeSaw = new ItemBasic<>(GTCore.ID, "saw_blade_shape", "molds/").tip("Shape for making Saw Heads");
     public static ItemBasic<?> ShapeGear = new ItemBasic<>(GTCore.ID, "gear_shape", "molds/").tip("Shape for making Gears");
     public static ItemBasic<?> ShapeGearSmall = new ItemBasic<>(GTCore.ID, "small_gear_shape", "molds/").tip("Shape for making Small Gears");
+
+    static {
+        {
+            ImmutableMap.Builder<Integer, RecipeIngredient> ingredientBuilder = ImmutableMap.builder();
+            ImmutableMap.Builder<Integer, Item> itemBuilder = ImmutableMap.builder();
+            ImmutableMap.Builder<Integer, CoverFactory> coverBuilder = ImmutableMap.builder();
+            for (int i = 0; i <= 24; i++) {
+                ItemSelectorTag selectorTag = new ItemSelectorTag(GTCore.ID, "selector_tag_"+i,i);
+                ingredientBuilder.put(i, RecipeIngredient.of(selectorTag,1).setNoConsume());
+                itemBuilder.put(i, selectorTag);
+                if (i > 15) continue;
+                coverBuilder.put(i, CoverFactory.builder(CoverSelectorTag::new)
+                        .addTextures(new Texture(GTCore.ID, "block/cover/selector_tags/" + i), new Texture(GTCore.ID, "block/cover/selector_tags/underlay"))
+                        .item((c, t) -> selectorTag).build(GTCore.ID, "selector_tag_"+i));
+            }
+            SELECTOR_TAG_INGREDIENTS = ingredientBuilder.build();
+            SELECTOR_TAG_ITEMS = itemBuilder.build();
+            SELECTOR_TAG_COVERS = coverBuilder.build();
+        }
+    }
 
     public static void init(){
 
