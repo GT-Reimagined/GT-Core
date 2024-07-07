@@ -5,6 +5,7 @@ import io.github.gregtechintergalactical.gtcore.block.BlockRedstoneWire;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreBlocks;
 import io.github.gregtechintergalactical.gtcore.data.GTCoreItems;
 import io.github.gregtechintergalactical.gtcore.item.ItemHazmatArmor;
+import io.github.gregtechintergalactical.gtcore.item.ItemSelectorTag;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
@@ -78,6 +79,8 @@ public class GTCoreLang {
             add("tooltip.gtcore.pocket_multitool", "6 useful Tools in one!");
             add("tooltip.gtcore.pocket_multitool.switch_mode", "Sneak Rightclick to switch Mode");
             add("tooltip.gtcore.knife", "Can be used to harvest rubber from spots on rubber trees");
+            add("tooltip.gtcore.selector_tag.0", "Right click to cycle mode forward");
+            add("tooltip.gtcore.selector_tag.1", "Shift right click to cycle mode backward");
             AntimatterAPI.all(ItemBasic.class, domain).forEach(i -> override(i.getDescriptionId(), lowerUnderscoreToUpperSpaced(i.getId())
                     .replace("Lv", "(LV)")
                     .replace("Mv", "(MV)")
@@ -94,6 +97,7 @@ public class GTCoreLang {
                 String type = s.getSize() == PipeSize.TINY ? "Cable" : "Wire";
                 override(Ref.ID, s.getDescriptionId(), StringUtils.join(Utils.getLocalizedType(s.getType().getMaterial()), " ", type));
             });
+            AntimatterAPI.all(ItemSelectorTag.class, GTCore.ID).forEach(i -> override(i.getDescriptionId(), "Selector Tag (" + i.circuitId + ")"));
             override(Ref.ID, DUST.get(Beeswax).getDescriptionId(), "Beeswax");
             override(Ref.ID, DUST_SMALL.get(Beeswax).getDescriptionId(), "Small Beeswax");
             override(Ref.ID, DUST_TINY.get(Beeswax).getDescriptionId(), "Tiny Beeswax");
