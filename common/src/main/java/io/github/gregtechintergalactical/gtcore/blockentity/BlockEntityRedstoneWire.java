@@ -3,6 +3,7 @@ package io.github.gregtechintergalactical.gtcore.blockentity;
 import io.github.gregtechintergalactical.gtcore.block.BlockRedstoneWire;
 import io.github.gregtechintergalactical.gtcore.block.RedstoneWire;
 import io.github.gregtechintergalactical.gtcore.cover.CoverRedstoneTorch;
+import io.github.gregtechintergalactical.gtcore.cover.CoverSelectorTag;
 import muramasa.antimatter.Antimatter;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.blockentity.pipe.BlockEntityPipe;
@@ -45,7 +46,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         return AntimatterAPI.all(CoverFactory.class).stream().filter(t -> {
             try {
                 ICover cover = t.get().get(ICoverHandler.empty(this), t.getValidTier(), Direction.SOUTH, t);
-                return !cover.isNode() || cover instanceof CoverRedstoneTorch;
+                return !cover.isNode() || cover instanceof CoverRedstoneTorch || cover instanceof CoverSelectorTag;
             } catch (Exception ex) {
                 return false;
             }
