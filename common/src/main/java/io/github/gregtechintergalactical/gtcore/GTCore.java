@@ -128,6 +128,9 @@ public class GTCore extends AntimatterMod {
                     if (!GTCoreConfig.VILLAGER_TRADE_REPLACEMENTS.get()){
                         l.add(GTCoreItems.GTCredit);
                     }
+                    for (int i = 1; i < 25; i++) {
+                        l.add(GTCoreItems.SELECTOR_TAG_ITEMS.get(i));
+                    }
                     AntimatterAPI.all(IAntimatterTool.class).stream().filter(t -> {
                         var toolType = t.getAntimatterToolType();
                         return toolType == GTCoreTools.POCKET_MULTITOOL_SCISSORS
