@@ -217,7 +217,7 @@ public class GTCoreItems {
                 if (i > 15) continue;
                 int finalI = i;
                 coverBuilder.put(i, CoverFactory.builder((source, tier, side, factory) -> new CoverSelectorTag(source, tier, side, factory, finalI))
-                        .addTextures(new Texture(GTCore.ID, "block/cover/selector_tags/" + i), new Texture(GTCore.ID, "block/cover/selector_tags/underlay"))
+                        .addTextures(new Texture(GTCore.ID, "block/cover/selector_tag/" + i), new Texture(GTCore.ID, "block/cover/selector_tag/underlay"))
                         .item((c, t) -> selectorTag).build(GTCore.ID, "selector_tag_"+i));
             }
             SELECTOR_TAG_INGREDIENTS = ingredientBuilder.build();
