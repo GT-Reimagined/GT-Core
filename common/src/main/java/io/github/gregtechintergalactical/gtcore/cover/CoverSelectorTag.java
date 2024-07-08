@@ -49,6 +49,7 @@ public class CoverSelectorTag extends BaseCover {
 
     @Override
     public ResourceLocation getModel(String type, Direction dir) {
-        return new ResourceLocation(GTCore.ID + ":block/cover/" + this.getRenderId());
+        String renderId = type.equals("pipe")? this.getRenderId() + "_pipe" : this.getRenderId();
+        return new ResourceLocation(GTCore.ID + ":block/cover/" + renderId);
     }
 }
