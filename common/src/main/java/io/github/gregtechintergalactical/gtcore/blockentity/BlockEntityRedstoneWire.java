@@ -241,7 +241,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         mReceived = tag.getByte("mReceived");
         mConnectedToNonWire = tag.getBoolean("mConnectedToNonWire");
         if (this.getLevel() != null && this.isClientSide()){
-            sidedSync(true);
+            coverHandler.ifPresent(c -> c.coverTexturer.forEach((d, t) -> t.invalidate()));
         }
     }
 
