@@ -78,7 +78,7 @@ public class GTCoreLang {
             add("tooltip.gtcore.tape.remaining_uses", "Remaining Uses: %s");
             add("tooltip.gtcore.pocket_multitool", "6 useful Tools in one!");
             add("tooltip.gtcore.pocket_multitool.switch_mode", "Sneak Rightclick to switch Mode");
-            add("tooltip.gtcore.knife", "Can be used to harvest rubber from spots on rubber trees");
+            add("tooltip.gtcore.knife", "Can be used to harvest sticky resin from spots on rubber trees");
             add("tooltip.gtcore.selector_tag.0", "Right click to cycle mode forward");
             add("tooltip.gtcore.selector_tag.1", "Shift right click to cycle mode backward");
             AntimatterAPI.all(ItemBasic.class, domain).forEach(i -> override(i.getDescriptionId(), lowerUnderscoreToUpperSpaced(i.getId())
