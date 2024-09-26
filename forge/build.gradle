@@ -1,30 +1,32 @@
 archivesBaseName = "${rootProject.archive_base_name}-forge"
 version = "${project.mod_version}-${rootProject.minecraft_version}"
 
-/*loom {
-    accessWidenerPath = project(":common").file("src/main/resources/gtcore.accesswidener")
-}*/
+architectury {
+    platformSetupLoomIde()
+    forge()
+}
 
-unimined.minecraft {
-    minecraftForge {
-        loader forge_version
-        mixinConfig("gtcore.mixins.json")
-        //accessWidener(project(":common").file("src/main/resources/gtcore.accesswidener"))
-        aw2at(project(":common").file("src/main/resources/gtcore.accesswidener"));
+loom {
+    accessWidenerPath = project(":common").file("src/main/resources/gtcore.accesswidener")
+    forge{
+        mixinConfigs = [
+                "gtcore.mixins.json"
+        ]
     }
-    defaultRemapJar = true
 }
 
 dependencies {
+    forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
     modImplementation("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}"){
         //exclude(group: "mezz.jei")
         exclude(group: "com.github.Reforged-Mods.Terraform-Reforged")
     }
-    implementation(project(path: ":common"))
+    common(project(path: ":common", configuration: "namedElements"))
+    shadowCommon(project(path: ":common", configuration: "transformProductionForge"))
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
     modCompileOnly("curse.maven:terrafirmacraft-302973:4723717")
-    modImplementation("io.github.reforgedmods.terraform-api:terraform-wood-api-v1:${project.terraform_version_forge}")
+    modImplementation(include("io.github.reforgedmods.terraform-api:terraform-wood-api-v1:${project.terraform_version_forge}"))
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
     modImplementation("maven.modrinth:carbon-config:${project.carbon_config_forge_version}")
     modRuntimeOnly("curse.maven:the-twilight-forest-227639:4337390")
@@ -35,11 +37,5 @@ processResources {
 
     filesMatching("META-INF/mods.toml") {
         expand "version": project.mod_version
-    }
-}
-
-sourcesJar {
-    from(project(':common').sourceSets.main.allSource) {
-        exclude("gtcore.accesswidener")
     }
 }
