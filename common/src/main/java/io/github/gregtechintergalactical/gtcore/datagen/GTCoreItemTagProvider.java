@@ -27,9 +27,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreItems.*;
+import static io.github.gregtechintergalactical.gtcore.data.GTCoreMaterials.*;
 import static io.github.gregtechintergalactical.gtcore.data.GTCoreTags.*;
-import static muramasa.antimatter.material.MaterialTags.CABLE;
-import static muramasa.antimatter.material.MaterialTags.WIRE;
+import static muramasa.antimatter.material.MaterialTags.*;
 
 public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
     public GTCoreItemTagProvider(String providerDomain, String providerName, boolean replace, AntimatterBlockTagProvider p) {
@@ -100,7 +100,17 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
                 AntimatterAPI.get(IAntimatterTool.class, "drill_hv").getItem(),
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_lv").getItem(),
                 AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_mv").getItem(),
-                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_hv").getItem());
+                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_hv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "chainsaw_lv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "chainsaw_mv").getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "chainsaw_hv").getItem());
+        Material[] materials = new Material[]{IronMagnetic, SteelMagnetic, NeodymiumMagnetic};
+        for (Material material : materials) {
+            if (material.has(TOOLS)){
+                this.tag(MAGNETIC_TOOL).add(AntimatterDefaultTools.PICKAXE.getToolItem(material), AntimatterDefaultTools.WRENCH.getToolItem(material),
+                        AntimatterDefaultTools.WRENCH_ALT.getToolItem(material), AntimatterDefaultTools.SHOVEL.getToolItem(material), AntimatterDefaultTools.AXE.getToolItem(material));
+            }
+        }
     }
 
     protected void processSubtags() {
