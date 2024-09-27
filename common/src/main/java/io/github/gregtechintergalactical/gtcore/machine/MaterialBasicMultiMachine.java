@@ -29,7 +29,8 @@ public class MaterialBasicMultiMachine extends BasicMultiMachine<MaterialBasicMu
     @Override
     public String getLang(String lang) {
         String returnedLang = super.getLang(lang);
-        returnedLang = returnedLang.replace(Utils.lowerUnderscoreToUpperSpaced(material.getId()), material.getDisplayNameString());
+        if (material.getDisplayNameString() != null)
+            returnedLang = returnedLang.replace(Utils.lowerUnderscoreToUpperSpaced(material.getId()), material.getDisplayNameString());
         return returnedLang;
     }
 }
