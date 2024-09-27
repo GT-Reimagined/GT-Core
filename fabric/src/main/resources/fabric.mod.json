@@ -16,6 +16,7 @@
   "accessWidener": "gtcore.accesswidener",
   "mixins": [
     "gtcore.mixins.json",
+    "gtcore.jei.mixins.json",
     "gtcore-fabric.mixins.json"
   ],
   "environment": "*",
