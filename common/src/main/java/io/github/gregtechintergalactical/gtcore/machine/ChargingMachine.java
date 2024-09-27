@@ -9,7 +9,7 @@ import static muramasa.antimatter.machine.MachineFlag.EU;
 
 public class ChargingMachine extends MaterialMachine{
     public ChargingMachine(String domain, Material material, String suffix, boolean charge) {
-        super(domain, (charge ? "charging_" : "") + suffix, material);
+        super(domain, material.getId() + (charge ? "_charging" : "") + "_" + suffix, material);
         if (charge) this.addFlags(EU);
         this.setTiers(charge ? Tier.HV : Tier.NONE);
         this.baseTexture((m, t, s) -> new Texture[] {

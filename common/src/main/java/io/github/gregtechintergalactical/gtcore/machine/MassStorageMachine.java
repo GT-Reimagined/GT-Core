@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
 public class MassStorageMachine extends MaterialMachine{
     final int capacity;
     public MassStorageMachine(String domain, Material material, String suffix, int capacity) {
-        super(domain, suffix, material);
+        super(domain, material.getId() + "_" + suffix, material);
         this.setTiers(Tier.NONE);
         this.setTile((m, p, s) -> new BlockEntityMassStorage(this, p, s));
         this.setItemBlock(ItemBlockMassStorage::new);

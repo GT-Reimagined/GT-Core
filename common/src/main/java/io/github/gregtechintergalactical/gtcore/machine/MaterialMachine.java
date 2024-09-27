@@ -10,11 +10,9 @@ import static muramasa.antimatter.machine.MachineFlag.COVERABLE;
 
 public class MaterialMachine extends Machine<MaterialMachine> {
     Material material;
-    String suffix;
-    public MaterialMachine(String domain, String suffix, Material material) {
-        super(domain, material.getId() + "_" + suffix);
+    public MaterialMachine(String domain, String id, Material material) {
+        super(domain, id);
         this.material = material;
-        this.suffix = suffix;
         setItemBlockClass(() -> BlockMachineMaterial.class);
         setBlock(BlockMachineMaterial::new);
         setTile(BlockEntityMaterial::new);
@@ -31,6 +29,8 @@ public class MaterialMachine extends Machine<MaterialMachine> {
 
     @Override
     public String getLang(String lang) {
-        return material.getDisplayNameString() + " " + Utils.lowerUnderscoreToUpperSpaced(suffix);
+        String returnedLang = super.getLang(lang);
+        returnedLang = returnedLang.replace(Utils.lowerUnderscoreToUpperSpaced(material.getId()), material.getDisplayNameString());
+        return returnedLang;
     }
 }
