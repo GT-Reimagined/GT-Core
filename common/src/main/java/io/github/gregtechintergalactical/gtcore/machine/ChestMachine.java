@@ -15,7 +15,7 @@ import static muramasa.antimatter.machine.MachineFlag.*;
 
 public class ChestMachine extends MaterialMachine {
     public ChestMachine(String domain, Material material, boolean addSlots) {
-        super(domain, material.getId() + "_chest", material);
+        super(domain, "chest", material);
         setBlock(BlockMaterialChest::new);
         setItemBlockClass(() -> BlockMaterialChest.class);
         this.setTile(BlockEntityChest::new);

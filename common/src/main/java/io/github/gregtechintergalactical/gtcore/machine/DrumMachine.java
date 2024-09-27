@@ -22,7 +22,7 @@ public class DrumMachine extends MaterialMachine{
     public final int maxCapacity;
     private boolean acidProof = false;
     public DrumMachine(String domain, Material material, int maxCapacity) {
-        super(domain, material.getId() + "_drum", material);
+        super(domain, "drum", material);
         AntimatterAPI.register(DrumMachine.class, this);
         this.maxCapacity = maxCapacity;
         setTiers(Tier.NONE);

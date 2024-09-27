@@ -13,7 +13,7 @@ import static muramasa.antimatter.machine.MachineFlag.*;
 
 public class BarrelMachine extends MaterialMachine{
     public BarrelMachine(String domain, Material material, boolean addSlots) {
-        super(domain, material.getId() + "_barrel", material);
+        super(domain, "barrel", material);
         this.setTile(BlockEntityBarrel::new);
         this.setTiers(Tier.NONE);
         this.addFlags(ITEM, GUI);
