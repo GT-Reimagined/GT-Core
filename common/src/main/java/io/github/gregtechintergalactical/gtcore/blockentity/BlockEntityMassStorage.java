@@ -23,6 +23,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -288,11 +289,11 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         return nbt;
     }
 
-    public CompoundTag serializeWithEmpty(ExtendedItemContainer container, CompoundTag nbt) {
+    public CompoundTag serializeWithEmpty(Container container, CompoundTag nbt) {
         ListTag nbtTagList = new ListTag();
 
 
-        for(int i = 0; i < container.getSlots(); ++i) {
+        for(int i = 0; i < container.getContainerSize(); ++i) {
             CompoundTag itemTag = new CompoundTag();
             itemTag.putInt("Slot", i);
             container.getItem(i).save(itemTag);
