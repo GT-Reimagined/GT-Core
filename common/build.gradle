@@ -1,11 +1,18 @@
+plugins {
+    id "fabric-loom" version "1.7-SNAPSHOT"
+}
 archivesBaseName = "${rootProject.archive_base_name}-common"
-version = "${project.mod_version}-${rootProject.minecraft_version}"
 
 loom {
     accessWidenerPath = file("src/main/resources/gtcore.accesswidener")
 }
 
 dependencies {
+    minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+    mappings loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${rootProject.minecraft_version}:${rootProject.mappings_version}@zip")
+    }
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modImplementation("io.github.gregtechintergalactical:antimatter-common:${antimatter_version}"){
         exclude(group: "maven.modrinth")
@@ -27,8 +34,4 @@ dependencies {
     }
     modCompileOnly("curse.maven:the-one-probe-fabric-581847:${project.top_fabric_file}")
     modImplementation "maven.modrinth:carbon-config:${project.carbon_config_fabric_version}"
-}
-
-architectury {
-    common("forge", "fabric")
 }

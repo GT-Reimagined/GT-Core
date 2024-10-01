@@ -27,7 +27,6 @@ import net.minecraft.world.phys.AABB;
 import java.util.List;
 
 //TODO needed?
-//@Environment(value = EnvType.CLIENT, _interface = LidBlockEntity.class)
 public class BlockEntityChest extends BlockEntityMaterial<BlockEntityChest> implements LidBlockEntity {
     protected float lidAngle;
     protected float prevLidAngle;
@@ -121,7 +120,6 @@ public class BlockEntityChest extends BlockEntityMaterial<BlockEntityChest> impl
     }
 
     @Override
-    //@Environment(EnvType.CLIENT)
     public float getOpenNess(float partialTicks) {
         return lidController.getOpenness(partialTicks);
         //return Mth.lerp(partialTicks, this.prevLidAngle, this.lidAngle);

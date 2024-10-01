@@ -1,41 +1,103 @@
-archivesBaseName = "${rootProject.archive_base_name}-forge"
-version = "${project.mod_version}-${rootProject.minecraft_version}"
-
-architectury {
-    platformSetupLoomIde()
-    forge()
+plugins {
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
-loom {
-    accessWidenerPath = project(":common").file("src/main/resources/gtcore.accesswidener")
-    forge{
-        mixinConfigs = [
-                "gtcore.mixins.json", "gtcore.jei.mixins.json"
-        ]
+archivesBaseName = "${rootProject.archive_base_name}-forge"
+
+minecraft {
+    // Change to your preferred mappings
+    mappings channel: "parchment", version: "${rootProject.mappings_version}-${rootProject.minecraft_version}"
+    // Add your AccessTransformer
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        // applies to all the run configs below
+        configureEach {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
+            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
+            property 'forge.enabledGameTestNamespaces', mod_id
+
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        client {
+            property 'forge.enabledGameTestNamespaces', mod_id
+        }
+
+        server {
+            workingDirectory project.file('run/server')
+            property 'forge.enabledGameTestNamespaces', mod_id
+            args '--nogui'
+        }
+
+        // This run config launches GameTestServer and runs all registered gametests, then exits.
+        // By default, the server will crash when no gametests are provided.
+        // The gametest system is also enabled by default for other run configs under the /test command.
+        gameTestServer {
+            property 'forge.enabledGameTestNamespaces', mod_id
+        }
+
+        data {
+            // example of overriding the workingDirectory set in configureEach above
+            workingDirectory project.file('run-data')
+
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+        }
     }
+}
+
+mixin {
+    add sourceSets.main, "gtcore.refmap.json"
+    config "gtcore.mixins.json"
+    config "gtcore.jei.mixins.json"
+    debug.verbose = true
+    debug.export = true
 }
 
 dependencies {
-    forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
-    modImplementation("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}"){
+    minecraft "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+    implementation fg.deobf("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}"){
         //exclude(group: "mezz.jei")
         exclude(group: "com.github.Reforged-Mods.Terraform-Reforged")
     }
-    common(project(path: ":common", configuration: "namedElements"))
-    shadowCommon(project(path: ":common", configuration: "transformProductionForge"))
+    compileOnly(project(":common"))
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
-    modCompileOnly("curse.maven:terrafirmacraft-302973:4723717")
-    modImplementation(include("io.github.reforgedmods.terraform-api:terraform-wood-api-v1:${project.terraform_version_forge}"))
+    compileOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
+    compileOnly fg.deobf("curse.maven:terrafirmacraft-302973:4723717")
+    implementation fg.deobf(include("io.github.reforgedmods.terraform-api:terraform-wood-api-v1:${project.terraform_version_forge}"))
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
-    modImplementation("maven.modrinth:carbon-config:${project.carbon_config_forge_version}")
-    modRuntimeOnly("curse.maven:the-twilight-forest-227639:4337390")
+    implementation fg.deobf("maven.modrinth:carbon-config:${project.carbon_config_forge_version}")
+    runtimeOnly fg.deobf("curse.maven:the-twilight-forest-227639:4337390")
+}
+
+
+tasks.withType(JavaCompile) {
+    source(project(":common").sourceSets.main.allSource)
 }
 
 processResources {
+    from project(":common").sourceSets.main.resources
     inputs.property "version", project.mod_version
 
     filesMatching("META-INF/mods.toml") {
         expand "version": project.mod_version
+    }
+}
+
+sourcesJar {
+    from(project(':common').sourceSets.main.allSource) {
+        exclude("gtcore.accesswidener") // duplicate on fabric, unneeded on forge
     }
 }

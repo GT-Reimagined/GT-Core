@@ -1,19 +1,26 @@
+plugins {
+    id "fabric-loom" version "1.7-SNAPSHOT"
+}
 archivesBaseName = "${rootProject.archive_base_name}-fabric"
-version = "${project.mod_version}-${rootProject.minecraft_version}"
+
 
 def generatedResources = file("src/generated/resources")
 def accessWidenerFile = project(":common").file("src/main/resources/gtcore.accesswidener")
 
-architectury {
-    platformSetupLoomIde()
-    fabric()
-}
 
 loom {
     accessWidenerPath = accessWidenerFile
+    mixin {
+        defaultRefmapName = "gtcore.refmap.json"
+    }
 }
 
 dependencies {
+    minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+    mappings loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${rootProject.minecraft_version}:${rootProject.mappings_version}@zip")
+    }
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
     common(project(path: ":common", configuration: "namedElements"))
@@ -47,12 +54,17 @@ sourceSets {
 }
 
 processResources {
+    from project(":common").sourceSets.main.resources
     dependsOn copyAccessWidener
     inputs.property "version", project.mod_version
 
     filesMatching("fabric.mod.json") {
         expand "version": project.mod_version
     }
+}
+
+tasks.withType(JavaCompile) {
+    source(project(":common").sourceSets.main.allSource)
 }
 
 sourcesJar {

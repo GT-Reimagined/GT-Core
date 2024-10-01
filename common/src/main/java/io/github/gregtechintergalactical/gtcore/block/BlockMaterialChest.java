@@ -116,7 +116,6 @@ public class BlockMaterialChest extends BlockMachineMaterial implements SimpleWa
         return tileentity != null && tileentity.triggerEvent(id, param);
     }
 
-    //@Environment(EnvType.CLIENT)
     public static DoubleBlockCombiner.Combiner<BlockEntityChest, Float2FloatFunction> getLid(final LidBlockEntity p_226917_0_) {
         return new DoubleBlockCombiner.Combiner<BlockEntityChest, Float2FloatFunction>() {
             @Override

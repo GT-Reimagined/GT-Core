@@ -21,8 +21,6 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
-//TODO needed?
-//@Environment(value = EnvType.CLIENT, _interface = LidBlockEntity.class)
 public class BlockEntityBarrel extends BlockEntityMaterial<BlockEntityBarrel> {
     protected float lidAngle;
     protected float prevLidAngle;
