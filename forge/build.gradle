@@ -65,6 +65,7 @@ mixin {
     debug.verbose = true
     debug.export = true
 }
+jarJar.enable()
 
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
@@ -76,7 +77,10 @@ dependencies {
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
     compileOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
     compileOnly fg.deobf("curse.maven:terrafirmacraft-302973:4723717")
-    implementation fg.deobf(include("io.github.reforgedmods.terraform-api:terraform-wood-api-v1:${project.terraform_version_forge}"))
+    implementation fg.deobf("io.github.reforgedmods.terraform-api:terraform-wood-api-v1:${project.terraform_version_forge}")
+    jarJar("io.github.reforgedmods.terraform-api:terraform-wood-api-v1:${project.terraform_version_forge}"){
+        jarJar.ranged(it, "[3.1.5,)")
+    }
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
     implementation fg.deobf("maven.modrinth:carbon-config:${project.carbon_config_forge_version}")
     runtimeOnly fg.deobf("curse.maven:the-twilight-forest-227639:4337390")
