@@ -42,7 +42,7 @@ public class RubberTreeFeature extends TreeFeature implements IAntimatterFeature
     }
 
     @Override
-    protected int getMaxFreeTreeHeight(LevelSimulatedReader level, int trunkHeight, BlockPos topPosition, TreeConfiguration config) {
+    public int getMaxFreeTreeHeight(LevelSimulatedReader level, int trunkHeight, BlockPos topPosition, TreeConfiguration config) {
         boolean isFluid = level.isFluidAtPosition(topPosition.above(), state -> state.is(FluidTags.WATER));
         if (isFluid) return 0;
         boolean treeGrows = !AntimatterAPI.isModLoaded("tfc") || level.isStateAtPosition(topPosition.below(), state -> state.is(TagUtils.getBlockTag(new ResourceLocation("tfc", "tree_grows_on"))));

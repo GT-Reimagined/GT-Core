@@ -1,5 +1,5 @@
 plugins {
-    id "fabric-loom" version "1.8.+"
+    id "fabric-loom" version "1.6.+"
 }
 archivesBaseName = "${rootProject.archive_base_name}-common"
 
@@ -13,22 +13,21 @@ dependencies {
         officialMojangMappings()
         parchment("org.parchmentmc.data:parchment-${rootProject.minecraft_version}:${rootProject.mappings_version}@zip")
     }
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
-    modImplementation("io.github.gregtechintergalactical:antimatter-common:${antimatter_version}"){
+    modImplementation("io.github.gregtechintergalactical:antimatter-fabric:${antimatter_version}"){
         exclude(group: "maven.modrinth")
         exclude(group: "com.github.Trins-mods")
     }
-    modImplementation("io.github.gregtechintergalactical:tesseract-common:${tesseract_version}"){
+    modImplementation("io.github.gregtechintergalactical:tesseract-fabric:${tesseract_version}"){
         exclude(group: "maven.modrinth")
         exclude(group: "com.github.Trins-mods")
     }
-    modImplementation("earth.terrarium:botarium-common-1.18.2:${project.botarium_version}")
-    modImplementation("com.gtnewhorizon.structurelib:structurelib-common:${project.structurelib_version}-${project.minecraft_version}")
-    modImplementation "com.teamresourceful.resourcefullib:resourcefullib-common-1.18.2:${project.resourcefullib_version}"
+    modImplementation("earth.terrarium:botarium-fabric-1.18.2:${project.botarium_version}")
+    modImplementation("com.gtnewhorizon.structurelib:structurelib-fabric:${project.structurelib_version}-${project.minecraft_version}")
+    modImplementation "com.teamresourceful.resourcefullib:resourcefullib-fabric-1.18.2:${project.resourcefullib_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rootProject.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin:${rootProject.rei_version}"
-    modCompileOnly("mezz.jei:jei-${rootProject.minecraft_version}-common-api:${rootProject.jei_version}")
-    modCompileOnly("mezz.jei:jei-${rootProject.minecraft_version}-common:${rootProject.jei_version}")
+    modCompileOnlyApi("mezz.jei:jei-${rootProject.minecraft_version}-common-api:${rootProject.jei_version}")
+    modCompileOnly("mezz.jei:jei-${rootProject.minecraft_version}-fabric:${rootProject.jei_version}")
     modImplementation("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version_fabric}"){
         transitive = false
     }

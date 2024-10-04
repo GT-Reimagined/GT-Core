@@ -1,10 +1,9 @@
 plugins {
-    id "fabric-loom" version "1.8.+"
+    id "fabric-loom" version "1.6.+"
 }
 archivesBaseName = "${rootProject.archive_base_name}-fabric"
 
 
-def generatedResources = file("src/generated/resources")
 def accessWidenerFile = project(":common").file("src/main/resources/gtcore.accesswidener")
 
 
@@ -30,31 +29,29 @@ dependencies {
         exclude(group: "com.github.Trins-mods")
         exclude(group: "com.github.Trinsdar")
     }
+    modImplementation("io.github.gregtechintergalactical:tesseract-fabric:${tesseract_version}"){
+        exclude(group: "maven.modrinth")
+        exclude(group: "com.github.Trins-mods")
+    }
+    modImplementation("earth.terrarium:botarium-fabric-1.18.2:${project.botarium_version}")
+    modImplementation("com.gtnewhorizon.structurelib:structurelib-fabric:${project.structurelib_version}-${project.minecraft_version}")
+    modImplementation "com.teamresourceful.resourcefullib:resourcefullib-fabric-1.18.2:${project.resourcefullib_version}"
     modImplementation(include("io.github.fabricators_of_create:Porting-Lib:${rootProject.port_lib_version}-beta+1.18.2-stable")){
         exclude(group: "net.fabricmc.fabric-api")
         exclude(group: "com.github.LlamaLad7")
     }
     modImplementation(include("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version_fabric}"))
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.rei_version}"
+    modCompileOnlyApi("mezz.jei:jei-${rootProject.minecraft_version}-common-api:${rootProject.jei_version}")
+    modCompileOnly("mezz.jei:jei-${rootProject.minecraft_version}-fabric:${rootProject.jei_version}")
+    modCompileOnly("curse.maven:the-one-probe-fabric-581847:${project.top_fabric_file}")
     modImplementation "maven.modrinth:carbon-config:${project.carbon_config_fabric_version}"
-}
-
-task copyAccessWidener(type: Copy) {
-    from accessWidenerFile
-    into generatedResources
-}
-
-sourceSets {
-    main {
-        resources {
-            srcDir copyAccessWidener
-        }
-    }
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rootProject.rei_version}"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin:${rootProject.rei_version}"
 }
 
 processResources {
     from project(":common").sourceSets.main.resources
-    dependsOn copyAccessWidener
     inputs.property "version", project.mod_version
 
     filesMatching("fabric.mod.json") {
@@ -64,10 +61,4 @@ processResources {
 
 tasks.withType(JavaCompile) {
     source(project(":common").sourceSets.main.allSource)
-}
-
-sourcesJar {
-    from(project(':common').sourceSets.main.allSource) {
-        exclude("gtcore.accesswidener") // duplicate on fabric, unneeded on forge
-    }
 }
