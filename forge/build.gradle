@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.bundling.Jar
+
 plugins {
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
@@ -69,6 +71,7 @@ jarJar.enable()
 
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation fg.deobf("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}"){
         //exclude(group: "mezz.jei")
         exclude(group: "com.github.Reforged-Mods.Terraform-Reforged")
@@ -106,13 +109,34 @@ processResources {
     from project(":common").sourceSets.main.resources
     inputs.property "version", project.mod_version
 
+    exclude("gtcore.accesswidener")
     filesMatching("META-INF/mods.toml") {
         expand "version": project.mod_version
     }
 }
 
 sourcesJar {
-    from(project(':common').sourceSets.main.allSource) {
-        exclude("gtcore.accesswidener") // duplicate on fabric, unneeded on forge
+    from(project(':common').sourceSets.main.allSource)
+}
+
+tasks.named('jarJar', Jar).configure {
+    archiveClassifier.set("")
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                'Specification-Title'     : mod_id,
+                'Specification-Vendor'    : "Trinsdar",
+                'Specification-Version'   : '1', // We are version 1 of ourselves
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.jar.archiveVersion,
+                'Implementation-Vendor'   : "Trinsdar",
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
     }
+
+    // This is the preferred method to reobfuscate your jar file
+    finalizedBy 'reobfJar'
+    archiveClassifier.set "thin"
 }
