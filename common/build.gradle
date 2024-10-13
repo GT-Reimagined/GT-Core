@@ -34,3 +34,34 @@ dependencies {
     modCompileOnly("curse.maven:the-one-probe-fabric-581847:${project.top_fabric_file}")
     modImplementation "maven.modrinth:carbon-config:${project.carbon_config_fabric_version}"
 }
+
+publishing {
+    publications {
+        mavenJava(org.gradle.api.publish.maven.MavenPublication) {
+            artifactId = "gtcore-" + project.name
+            //from components.java
+            artifact(sourcesJar) {
+                builtBy remapSourcesJar
+            }
+            artifact jar
+            afterEvaluate {
+                artifact remapJar
+            }
+        }
+    }
+    repositories {
+        def isCI = System.getenv("GITHUB_ACTION")
+        def isRELEASE = System.getenv("GITHUB_RELEASE")
+        if (isCI && isRELEASE) {
+            maven {
+                url = "https://repo.repsy.io/mvn/trinsdar/gregtech-intergalactical/"
+                credentials {
+                    username = System.getenv("MAVEN_USERNAME")
+                    password = System.getenv("MAVEN_PASSWORD")
+                }
+            }
+        } else {
+            mavenLocal()
+        }
+    }
+}
