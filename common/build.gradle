@@ -4,34 +4,22 @@ plugins {
 archivesBaseName = "${rootProject.archive_base_name}-common"
 
 unimined.minecraft {
+    version minecraft_version
     accessWidener {
         accessWidener(file("src/main/resources/gtcore.accesswidener"))
     }
 
     defaultRemapJar = false
 
-    mods.modImplementation {
-        namespace("intermediary")
-    }
-
-    mods {
-        remap(configurations.modCompileOnly){
-            catchAWNamespaceAssertion()
-        }
-        remap(configurations.modRuntimeOnly){
-            catchAWNamespaceAssertion()
-        }
-        modImplementation {
-            catchAWNamespaceAssertion()
-        }
-    }
-
     mappings {
-        intermediary()
         mojmap()
         devFallbackNamespace "official"
         devNamespace "mojmap"
         parchment(rootProject.minecraft_version, rootProject.mappings_version)
+    }
+
+    mods.modImplementation {
+        namespace("intermediary")
     }
 }
 
@@ -43,11 +31,6 @@ configurations {
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
-    mappings loom.layered() {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${rootProject.minecraft_version}:${rootProject.mappings_version}@zip")
-    }
     modImplementation("io.github.gregtechintergalactical:antimatter-fabric:${antimatter_version}"){
         exclude(group: "maven.modrinth")
         exclude(group: "com.github.Trins-mods")
@@ -61,7 +44,7 @@ dependencies {
     modImplementation "com.teamresourceful.resourcefullib:resourcefullib-fabric-1.18.2:${project.resourcefullib_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rootProject.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin:${rootProject.rei_version}"
-    modCompileOnlyApi("mezz.jei:jei-${rootProject.minecraft_version}-common-api:${rootProject.jei_version}")
+    modCompileOnly("mezz.jei:jei-${rootProject.minecraft_version}-common-api:${rootProject.jei_version}")
     modCompileOnly("mezz.jei:jei-${rootProject.minecraft_version}-fabric:${rootProject.jei_version}")
     modImplementation("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version_fabric}"){
         transitive = false
