@@ -140,3 +140,27 @@ tasks.named('jar', Jar).configure {
     finalizedBy 'reobfJar'
     archiveClassifier.set "thin"
 }
+
+publishing {
+    publications {
+        mavenJava(org.gradle.api.publish.maven.MavenPublication) {
+            artifactId = "gtcore-" + project.name
+            from components.java
+        }
+    }
+    repositories {
+        def isCI = System.getenv("GITHUB_ACTION")
+        def isRELEASE = System.getenv("GITHUB_RELEASE")
+        if (isCI && isRELEASE) {
+            maven {
+                url = "https://repo.repsy.io/mvn/trinsdar/gregtech-intergalactical/"
+                credentials {
+                    username = System.getenv("MAVEN_USERNAME")
+                    password = System.getenv("MAVEN_PASSWORD")
+                }
+            }
+        } else {
+            mavenLocal()
+        }
+    }
+}
