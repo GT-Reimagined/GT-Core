@@ -27,11 +27,11 @@ public abstract class AbstractClientPlayerEntityMixin extends Player {
         String playerName = this.getDisplayName().getString();
         if (!AntimatterPlatformUtils.isProduction()) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[3]);
         if (orString(playerName, "GregoriusT", "OvermindDL1", "jihuayu123", "Yuesha_Kev14", "Evanvenir", "Trinsdar")) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[3]);
+        if (GTCoreData.SupporterListGold.contains(playerName)) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[4]);
+        if (GTCoreData.SupporterListSilver.contains(playerName)) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[1]);
         if (playerName.equals("CrazyJ1984")) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[5]);
         if (playerName.equals("Mr_Brain")) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[2]);
         if (playerName.equals("Friedi4321")) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[0]);
-        if (GTCoreData.SupporterListGold.contains(playerName)) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[4]);
-        if (GTCoreData.SupporterListSilver.contains(playerName)) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[1]);
     }
 
     private boolean orString(String compare, String... strings){
