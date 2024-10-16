@@ -41,7 +41,7 @@ dependencies {
         exclude(group: "com.github.Trins-mods")
     }
     modImplementation("earth.terrarium:botarium-common-1.18.2:${project.botarium_version}")
-    modImplementation("com.gtnewhorizon.structurelib:structurelib-common:${project.structurelib_version}-${project.minecraft_version}")
+    implementation("com.gtnewhorizon.structurelib:structurelib-common:${project.structurelib_version}-${project.minecraft_version}")
     modImplementation "com.teamresourceful.resourcefullib:resourcefullib-common-1.18.2:${project.resourcefullib_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rootProject.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin:${rootProject.rei_version}"
