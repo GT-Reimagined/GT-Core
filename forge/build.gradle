@@ -72,15 +72,10 @@ jarJar.enable()
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    implementation fg.deobf("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}"){
-        //exclude(group: "mezz.jei")
-        exclude(group: "com.github.Reforged-Mods.Terraform-Reforged")
-    }
+    implementation fg.deobf("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}")
     implementation fg.deobf("io.github.gregtechintergalactical:tesseract-forge:${tesseract_version}"){
         exclude(group: "maven.modrinth")
-        exclude(group: "com.github.Trins-mods")
     }
-    compileOnly(project(":common"))
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
     compileOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
     compileOnly fg.deobf("curse.maven:terrafirmacraft-302973:4723717")
@@ -146,6 +141,7 @@ publishing {
         mavenJava(org.gradle.api.publish.maven.MavenPublication) {
             artifactId = "gtcore-" + project.name
             from components.java
+            jarJar.component(it)
         }
     }
     repositories {
