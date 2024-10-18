@@ -3,6 +3,13 @@ plugins {
 }
 archivesBaseName = "${rootProject.archive_base_name}-common"
 
+configurations {
+    modCompileOnly
+    compileOnly.extendsFrom modCompileOnly
+    modRuntimeOnly
+    runtimeOnly.extendsFrom modRuntimeOnly
+}
+
 unimined.minecraft {
     version minecraft_version
     accessWidener {
@@ -19,27 +26,35 @@ unimined.minecraft {
         parchment(rootProject.minecraft_version, rootProject.mappings_version)
     }
 
-    mods.modImplementation {
-        namespace("intermediary")
+    mods {
+        remap(configurations.modCompileOnly){
+            catchAWNamespaceAssertion()
+            namespace("intermediary")
+        }
+        remap(configurations.modRuntimeOnly){
+            catchAWNamespaceAssertion()
+            namespace("intermediary")
+        }
+        modImplementation {
+            catchAWNamespaceAssertion()
+            namespace("intermediary")
+        }
     }
 }
 
-configurations {
-    modCompileOnly
-    compileOnly.extendsFrom modCompileOnly
-    modRuntimeOnly
-    runtimeOnly.extendsFrom modRuntimeOnly
-}
+
 
 dependencies {
     modImplementation("io.github.gregtechintergalactical:antimatter-common:${antimatter_version}"){
         exclude(group: "maven.modrinth")
         exclude(group: "com.github.Trins-mods")
+        //exclude(group: "io.github.gregtechintergalactical")
+        exclude(group: "io.github.trinsdar", module: "CT-Fabric-Fluid-Support")
     }
-    modImplementation("io.github.gregtechintergalactical:tesseract-common:${tesseract_version}"){
+    /*modImplementation("io.github.gregtechintergalactical:tesseract-common:${tesseract_version}"){
         exclude(group: "maven.modrinth")
         exclude(group: "com.github.Trins-mods")
-    }
+    }*/
     modImplementation("earth.terrarium:botarium-common-1.18.2:${project.botarium_version}")
     implementation("com.gtnewhorizon.structurelib:structurelib-common:${project.structurelib_version}-${project.minecraft_version}")
     modImplementation "com.teamresourceful.resourcefullib:resourcefullib-common-1.18.2:${project.resourcefullib_version}"
