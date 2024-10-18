@@ -45,6 +45,12 @@ unimined.minecraft {
 
 
 dependencies {
+    implementation "org.ow2.asm:asm:9.7.1"
+    implementation "org.ow2.asm:asm-analysis:9.7.1"
+    implementation "org.ow2.asm:asm-commons:9.7.1"
+    implementation "org.ow2.asm:asm-tree:9.7.1"
+    implementation "org.ow2.asm:asm-util:9.7.1"
+    implementation "net.fabricmc:sponge-mixin:0.15.3+mixin.0.8.7"
     modImplementation("io.github.gregtechintergalactical:antimatter-common:${antimatter_version}"){
         exclude(group: "maven.modrinth")
         exclude(group: "com.github.Trins-mods")
