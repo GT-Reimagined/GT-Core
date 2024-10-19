@@ -114,7 +114,7 @@ public class GTCoreBlocks {
         if (!AntimatterAPI.isModLoaded("tfc")){
             RUBBER_LEAVES = new BlockRubberLeaves();
             RUBBER_SAPLING = new BlockRubberSapling();
-        } else if (AntimatterPlatformUtils.isForge()){
+        } else if (AntimatterPlatformUtils.INSTANCE.isForge()){
             initTFC();
         }
         AntimatterAPI.register(BlockEntityType.class, "sap_bag", GTCore.ID, SAP_BAG_BLOCK_ENTITY);

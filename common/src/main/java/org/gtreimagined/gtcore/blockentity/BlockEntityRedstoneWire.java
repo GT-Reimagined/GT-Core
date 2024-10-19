@@ -147,7 +147,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     }
 
     private void updateBlock(Direction side){
-        AntimatterPlatformUtils.markAndNotifyBlock(getLevel(), getBlockPos(), getLevel().getChunkAt(getBlockPos()), getBlockState(), getBlockState(), 1, 512);
+        AntimatterPlatformUtils.INSTANCE.markAndNotifyBlock(getLevel(), getBlockPos(), getLevel().getChunkAt(getBlockPos()), getBlockState(), getBlockState(), 1, 512);
         BlockPos neighbor = getBlockPos().relative(side);
         BlockState neighborState = getLevel().getBlockState(neighbor);
         getLevel().updateNeighborsAtExceptFromFacing(neighbor, neighborState.getBlock(), side.getOpposite());

@@ -123,7 +123,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         List<String> list = super.getInfo(simple);
         fluidHandler.ifPresent(f -> {
             FluidHolder stack = f.getInputTanks().getFluidInTank(0);
-            String addition = AntimatterPlatformUtils.isFabric() && !stack.isEmpty() ? "/" + stack.getFluidAmount() + "droplets" : "";
+            String addition = AntimatterPlatformUtils.INSTANCE.isFabric() && !stack.isEmpty() ? "/" + stack.getFluidAmount() + "droplets" : "";
             list.add("Fluid: " + (stack.isEmpty() ? "Empty" : (stack.getFluidAmount() / TesseractGraphWrappers.dropletMultiplier) + "mb" + addition + " of " + FluidPlatformUtils.INSTANCE.getFluidDisplayName(stack).getString()));
         });
         list.add("Auto Output: " + isOutput());

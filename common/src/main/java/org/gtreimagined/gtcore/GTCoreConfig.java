@@ -43,7 +43,7 @@ public class GTCoreConfig {
         VILLAGER_TRADE_REPLACEMENTS = section.addBool("villager_trade_replacements", true, "If true replaces emeralds with gt credits in all villager trades - Default: true");
         COMPOSTER_OUTPUT_REPLACEMENT = section.addBool("composter_output_replacement", true, "If true makes the composter make fertilizer instead of bonemeal - Default: true");
         HONEYCOMB_REPLACEMENT = section.addBool("honeycomb_replacement", true, "If true honeycomb usage for making waxed copper is replaced by beeswax - Default: true");
-        CONFIG = AntimatterPlatformUtils.createConfig(GTCore.ID, config);
+        CONFIG = AntimatterPlatformUtils.INSTANCE.createConfig(GTCore.ID, config);
         CONFIG.register();
     }
 

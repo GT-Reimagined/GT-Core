@@ -136,12 +136,12 @@ public class VanillaRecipes {
         int amount1 = GTCoreConfig.HARDER_WOOD.get() ? 2 : 4;
         int amount2 = GTCoreConfig.HARDER_WOOD.get() ? 4 : 6;
         provider.shapeless(consumer, domain, "", "planks", new ItemStack(plank, amount1), log);
-        provider.addStackRecipe(consumer, domain, AntimatterPlatformUtils.getIdFromItem(plank).getPath() + "_" + amount2, "planks", new ItemStack(plank, amount2), of('S', SAW.getTag(), 'P', log), "S", "P");
+        provider.addStackRecipe(consumer, domain, AntimatterPlatformUtils.INSTANCE.getIdFromItem(plank).getPath() + "_" + amount2, "planks", new ItemStack(plank, amount2), of('S', SAW.getTag(), 'P', log), "S", "P");
     }
 
     static void addBeeswaxRecipe(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider, String id){
-        provider.shapeless(consumer, "minecraft", "waxed_" + id + "_from_honeycomb", "waxed_blocks", new ItemStack(AntimatterPlatformUtils.getItemFromID(new ResourceLocation("waxed_" + id))),
-                AntimatterPlatformUtils.getItemFromID(new ResourceLocation(id)), DUST.getMaterialTag(Beeswax));
+        provider.shapeless(consumer, "minecraft", "waxed_" + id + "_from_honeycomb", "waxed_blocks", new ItemStack(AntimatterPlatformUtils.INSTANCE.getItemFromID(new ResourceLocation("waxed_" + id))),
+                AntimatterPlatformUtils.INSTANCE.getItemFromID(new ResourceLocation(id)), DUST.getMaterialTag(Beeswax));
     }
 
     private static void loadWood(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
@@ -161,8 +161,8 @@ public class VanillaRecipes {
 
         String[] stones = {"stone", "smooth_stone", "sandstone", "cut_sandstone", "cobblestone", "red_sandstone", "cut_red_sandstone", "prismarine", "dark_prismarine", "polished_granite", "smooth_red_sandstone", "polished_diorite", "mossy_cobblestone", "smooth_sandstone", "smooth_quartz", "granite", "andesite", "polished_andesite", "diorite", "blackstone", "polished_blackstone", "purpur", "quartz", "brick", "stone_brick", "nether_brick", "prismarine_brick", "mossy_stone_brick", "end_stone_brick", "red_nether_brick", "polished_blackstone_brick"};
         for (String stone : stones) {
-            Item full = AntimatterPlatformUtils.getItemFromID(new ResourceLocation(stone + (stone.equals("purpur") || stone.equals("quartz") ? "_block" : stone.contains("brick") ? "s" : "")));
-            Item slab = AntimatterPlatformUtils.getItemFromID(new ResourceLocation(stone + "_slab"));
+            Item full = AntimatterPlatformUtils.INSTANCE.getItemFromID(new ResourceLocation(stone + (stone.equals("purpur") || stone.equals("quartz") ? "_block" : stone.contains("brick") ? "s" : "")));
+            Item slab = AntimatterPlatformUtils.INSTANCE.getItemFromID(new ResourceLocation(stone + "_slab"));
             String[] pattern = stone.equals("purpur") || stone.equals("quartz") || stone.equals("sandstone") || stone.equals("red_sandstone") || stone.equals("stone_brick") || stone.equals("nether_brick") || stone.equals("polished_blackstone") ? new String[]{"SS"} : new String[]{"S", "S"};
             provider.addItemRecipe(consumer, GTCore.ID, stone + "_slab_to_" + stone, "slabs", full, of('S', slab), pattern);
         }
@@ -170,7 +170,7 @@ public class VanillaRecipes {
         for (String s : wood) {
             ResourceLocation name = new ResourceLocation(s + "_planks");
             ResourceLocation slab = new ResourceLocation(s + "_slab");
-            provider.addItemRecipe(consumer, GTCore.ID, slab.getPath() + "_to_" + name.getPath(), "slabs", AntimatterPlatformUtils.getItemFromID(name), of('S', AntimatterPlatformUtils.getItemFromID(slab)), "S", "S");
+            provider.addItemRecipe(consumer, GTCore.ID, slab.getPath() + "_to_" + name.getPath(), "slabs", AntimatterPlatformUtils.INSTANCE.getItemFromID(name), of('S', AntimatterPlatformUtils.INSTANCE.getItemFromID(slab)), "S", "S");
         }
     }
 }

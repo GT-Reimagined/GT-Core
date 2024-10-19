@@ -203,14 +203,14 @@ public class GTCore extends AntimatterMod {
                 .toolEnchantments(ImmutableMap.of(Enchantments.MOB_LOOTING, 2, Enchantments.BLOCK_FORTUNE, 2))
                 .blacklistToolTypes(AXE, PICKAXE, SHOVEL, SWORD, HOE).build();
         if (AntimatterAPI.isModLoaded("twilightforest")){
-            INGOT.replacement(GTCoreMaterials.Ironwood, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "ironwood_ingot"));
-            BLOCK.replacement(GTCoreMaterials.Ironwood, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "ironwood_block"));
-            INGOT.replacement(GTCoreMaterials.Knightmetal, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "knightmetal_ingot"));
-            BLOCK.replacement(GTCoreMaterials.Knightmetal, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "knightmetal_block"));
-            INGOT.replacement(GTCoreMaterials.Steeleaf, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "steeleaf_ingot"));
-            BLOCK.replacement(GTCoreMaterials.Steeleaf, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "steeleaf_block"));
-            INGOT.replacement(GTCoreMaterials.FierySteel, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "fiery_ingot"));
-            BLOCK.replacement(GTCoreMaterials.FierySteel, () -> AntimatterPlatformUtils.getItemFromID("twilightforest", "fiery_block"));
+            INGOT.replacement(GTCoreMaterials.Ironwood, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "ironwood_ingot"));
+            BLOCK.replacement(GTCoreMaterials.Ironwood, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "ironwood_block"));
+            INGOT.replacement(GTCoreMaterials.Knightmetal, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "knightmetal_ingot"));
+            BLOCK.replacement(GTCoreMaterials.Knightmetal, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "knightmetal_block"));
+            INGOT.replacement(GTCoreMaterials.Steeleaf, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "steeleaf_ingot"));
+            BLOCK.replacement(GTCoreMaterials.Steeleaf, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "steeleaf_block"));
+            INGOT.replacement(GTCoreMaterials.FierySteel, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "fiery_ingot"));
+            BLOCK.replacement(GTCoreMaterials.FierySteel, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "fiery_block"));
         }
         GTCoreBlocks.initItemBarrels();
         Guis.init();
@@ -244,7 +244,7 @@ public class GTCore extends AntimatterMod {
             @Override
             protected void processTags(String domain) {
                 AntimatterTagBuilder<Biome> tags = this.tag(TagUtils.getBiomeTag(new ResourceLocation(ID, "is_invalid_rubber"))).addTag(BiomeTags.IS_TAIGA).addTag(BiomeTags.IS_MOUNTAIN).addTag(BiomeTags.IS_OCEAN).addTag(BiomeTags.IS_DEEP_OCEAN).addTag(BiomeTags.IS_NETHER).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_desert"))).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_plains")));
-                boolean forge = AntimatterPlatformUtils.isForge();
+                boolean forge = AntimatterPlatformUtils.INSTANCE.isForge();
                 String d = forge ? "forge" : "c";
                 String end = forge ? "is_end" : "in_the_end";
                 tags.addTag(TagUtils.getBiomeTag(new ResourceLocation(d, end)));

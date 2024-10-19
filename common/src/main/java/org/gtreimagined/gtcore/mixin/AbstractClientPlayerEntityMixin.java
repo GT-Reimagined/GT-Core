@@ -25,7 +25,7 @@ public abstract class AbstractClientPlayerEntityMixin extends Player {
     @Inject(method = "getCloakTextureLocation", at = @At(value = "HEAD"), cancellable = true)
     private void getLocationGTCape(CallbackInfoReturnable<ResourceLocation> info){
         String playerName = this.getDisplayName().getString();
-        if (!AntimatterPlatformUtils.isProduction()) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[3]);
+        if (!AntimatterPlatformUtils.INSTANCE.isProduction()) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[3]);
         if (orString(playerName, "GregoriusT", "OvermindDL1", "jihuayu123", "Yuesha_Kev14", "Evanvenir", "Trinsdar")) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[3]);
         if (GTCoreData.SupporterListGold.contains(playerName)) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[4]);
         if (GTCoreData.SupporterListSilver.contains(playerName)) info.setReturnValue(GTCoreData.CAPE_LOCATIONS[1]);

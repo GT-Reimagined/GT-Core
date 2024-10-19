@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.proxy;
 
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
+import muramasa.antimatter.client.ClientPlatformHelper;
 import org.gtreimagined.gtcore.block.BlockMaterialChest;
 import org.gtreimagined.gtcore.blockentity.BlockEntityChest;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
@@ -36,24 +37,24 @@ public class ClientHandler {
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new Material(Sheets.SIGN_SHEET, GTCoreBlocks.RUBBER_SIGN.getTexture()));
         AntimatterAPI.all(BlockMachineMaterial.class, b -> {
             if (b.getType() instanceof MassStorageMachine) {
-                muramasa.antimatter.proxy.ClientHandler.registerBlockEntityRenderer((BlockEntityType<BlockEntityMassStorage>) b.getType().getTileType(), c -> new MassStorageRenderer<>());
+                ClientPlatformHelper.INSTANCE.registerBlockEntityRenderer((BlockEntityType<BlockEntityMassStorage>) b.getType().getTileType(), c -> new MassStorageRenderer<>());
             }
         });
 
         AntimatterAPI.all(BlockMaterialChest.class, b -> {
             if (b.getType() instanceof ChestMachine) {
-                muramasa.antimatter.proxy.ClientHandler.registerBlockEntityRenderer((BlockEntityType<BlockEntityChest>) b.getType().getTileType(), MaterialChestRenderer::new);
+                ClientPlatformHelper.INSTANCE.registerBlockEntityRenderer((BlockEntityType<BlockEntityChest>) b.getType().getTileType(), MaterialChestRenderer::new);
             }
         });
         AntimatterAPI.runLaterClient(() -> {
-            AntimatterAPI.all(BlockMachineMaterial.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
-            AntimatterAPI.all(BlockMultiMachineMaterial.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
-            AntimatterAPI.all(BlockMaterialChest.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
-            ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_SAPLING, RenderType.cutout());
-            ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_LEAVES, RenderType.cutout());
-            ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_TRAPDOOR, RenderType.cutout());
-            ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_DOOR, RenderType.cutout());
-            ModelUtils.setRenderLayer(GTCoreBlocks.SAP_BAG, RenderType.cutout());
+            AntimatterAPI.all(BlockMachineMaterial.class, b -> ModelUtils.INSTANCE.setRenderLayer(b, RenderType.cutout()));
+            AntimatterAPI.all(BlockMultiMachineMaterial.class, b -> ModelUtils.INSTANCE.setRenderLayer(b, RenderType.cutout()));
+            AntimatterAPI.all(BlockMaterialChest.class, b -> ModelUtils.INSTANCE.setRenderLayer(b, RenderType.cutout()));
+            ModelUtils.INSTANCE.setRenderLayer(GTCoreBlocks.RUBBER_SAPLING, RenderType.cutout());
+            ModelUtils.INSTANCE.setRenderLayer(GTCoreBlocks.RUBBER_LEAVES, RenderType.cutout());
+            ModelUtils.INSTANCE.setRenderLayer(GTCoreBlocks.RUBBER_TRAPDOOR, RenderType.cutout());
+            ModelUtils.INSTANCE.setRenderLayer(GTCoreBlocks.RUBBER_DOOR, RenderType.cutout());
+            ModelUtils.INSTANCE.setRenderLayer(GTCoreBlocks.SAP_BAG, RenderType.cutout());
         });
     }
 

@@ -11,7 +11,7 @@ import net.minecraft.world.level.material.Fluid;
 import org.gtreimagined.gtcore.GTCore;
 
 public class GTCoreTags {
-    public static final TagKey<Fluid> STEAM =  TagKey.create(Registry.FLUID_REGISTRY, new ResourceLocation((AntimatterPlatformUtils.isForge() ? "forge" : "c"), "steam"));
+    public static final TagKey<Fluid> STEAM =  TagKey.create(Registry.FLUID_REGISTRY, new ResourceLocation((AntimatterPlatformUtils.INSTANCE.isForge() ? "forge" : "c"), "steam"));
     public static TagKey<Item> PLATES_IRON_ALUMINIUM = getTag("plates/ironaluminium");
     public static TagKey<Item> CIRCUITS_BASIC = getTag("circuits/basic");
     public static TagKey<Item> CIRCUITS_GOOD = getTag("circuits/good");
