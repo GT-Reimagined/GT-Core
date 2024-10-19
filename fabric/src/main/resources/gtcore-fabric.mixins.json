@@ -4,6 +4,6 @@
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "mixins": [
-    "BlockRedstoneWireMixin"
+    "org.gtreimagined.gtcore.mixin.fabric.BlockRedstoneWireMixin"
   ]
 }

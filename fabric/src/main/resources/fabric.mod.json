@@ -22,16 +22,16 @@
   "environment": "*",
   "entrypoints": {
     "antimatter": [
-      "io.github.gregtechintergalactical.gtcore.GTCore"
+      "org.gtreimagined.gtcore.GTCore"
     ],
     "antimatter_client": [
-      "io.github.gregtechintergalactical.gtcore.fabric.GTCoreClientInitializer"
+      "org.gtreimagined.gtcore.fabric.GTCoreClientInitializer"
     ],
     "rei_client": [
-      "io.github.gregtechintergalactical.gtcore.integration.rei.GTCoreReiPlugin"
+      "org.gtreimagined.gtcore.integration.rei.GTCoreReiPlugin"
     ],
     "main": [
-      "io.github.gregtechintergalactical.gtcore.fabric.GTCoreFabric"
+      "org.gtreimagined.gtcore.fabric.GTCoreFabric"
     ]
   },
 
