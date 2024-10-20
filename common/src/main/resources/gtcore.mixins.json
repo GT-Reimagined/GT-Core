@@ -1,16 +1,16 @@
 {
   "required": true,
-  "package": "io.github.gregtechintergalactical.gtcore.mixin",
+  "package": "org.gtreimagined.gtcore.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "mixins": [
-    "org.gtreimagined.gtcore.mixin.MixinBlock",
-    "org.gtreimagined.gtcore.mixin.MixinComposterBlock",
-    "org.gtreimagined.gtcore.mixin.MixinHoneycombItem",
-    "org.gtreimagined.gtcore.mixin.MixinMerchantOffer"
+    "MixinBlock",
+    "MixinComposterBlock",
+    "MixinHoneycombItem",
+    "MixinMerchantOffer"
   ],
   "client": [
-    "org.gtreimagined.gtcore.mixin.AbstractClientPlayerEntityMixin"
+    "AbstractClientPlayerEntityMixin"
   ],
   "refmap": "gtcore.refmap.json"
 }
