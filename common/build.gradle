@@ -1,5 +1,5 @@
 plugins {
-    id "xyz.wagyourtail.unimined" version "1.3.9-SNAPSHOT"
+    id "xyz.wagyourtail.unimined" version "1.3.10-SNAPSHOT"
 }
 archivesBaseName = "${rootProject.archive_base_name}-common"
 
@@ -52,15 +52,9 @@ unimined.minecraft {
 }
 
 
+apply from: 'https://raw.githubusercontent.com/GregTech-Intergalactical/GradleSripts/main/common.gradle'
 
 dependencies {
-    implementation("com.google.code.gson:gson:2.11.0")
-    implementation "org.ow2.asm:asm:9.7.1"
-    implementation "org.ow2.asm:asm-analysis:9.7.1"
-    implementation "org.ow2.asm:asm-commons:9.7.1"
-    implementation "org.ow2.asm:asm-tree:9.7.1"
-    implementation "org.ow2.asm:asm-util:9.7.1"
-    implementation "net.fabricmc:sponge-mixin:0.15.3+mixin.0.8.7"
     modImplementation("io.github.gregtechintergalactical:antimatter-common:${antimatter_version}"){
         exclude(group: "maven.modrinth")
         exclude(group: "com.github.Trins-mods")
