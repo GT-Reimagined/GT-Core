@@ -30,14 +30,23 @@ unimined.minecraft {
         remap(configurations.modCompileOnly){
             catchAWNamespaceAssertion()
             namespace("intermediary")
+            mixinRemap {
+                off()
+            }
         }
         remap(configurations.modRuntimeOnly){
             catchAWNamespaceAssertion()
             namespace("intermediary")
+            mixinRemap {
+                off()
+            }
         }
         modImplementation {
             catchAWNamespaceAssertion()
             namespace("intermediary")
+            mixinRemap {
+                off()
+            }
         }
     }
 }
