@@ -8,7 +8,7 @@ pluginManagement {
             name = 'parchment'
             url = 'https://maven.parchmentmc.org'
         }
-        maven { url('https://maven.minecraftforge.net')}
+        //maven { url('https://maven.minecraftforge.net')}
         maven { url "https://maven.neoforged.net/" }
         maven {
             url = "https://maven.wagyourtail.xyz/releases"
