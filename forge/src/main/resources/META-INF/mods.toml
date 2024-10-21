@@ -1,15 +1,15 @@
 modLoader="javafml" #mandatory
 license="LGPLv3"
 loaderVersion="[40,)"
-issueTrackerURL="https://github.com/GregTech-Intergalactical/GT-Utility" #optional
+issueTrackerURL="https://github.com/GT-Reimagined/GT-Core/issues" #optional
 
 [[mods]]
 modId="gtcore" #mandatory
 version="${version}"
 displayName="GT Core" #mandatory
-credits="Thanks for this example mod goes to Java"
+credits="Greg for making Gregtech"
 authors="Trinsdar"
-description='''Core Items and blocks used by both gti and gt4r.'''
+description='''Core Items and blocks used by both gt5r and gt4r.'''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.gtcore]]
     modId="forge"
