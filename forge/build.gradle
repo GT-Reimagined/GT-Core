@@ -42,6 +42,13 @@ neoForge {
 
 dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    for (var module : ["core", "api"]){
+        implementation("org.apache.logging.log4j:log4j-${module}"){
+            version {
+                strictly "2.17.1"
+            }
+        }
+    }
     modImplementation("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}")
     modImplementation("io.github.gregtechintergalactical:tesseract-forge:${tesseract_version}"){
         exclude(group: "maven.modrinth")
