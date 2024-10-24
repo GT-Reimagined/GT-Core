@@ -81,8 +81,8 @@ dependencies {
     compileOnly fg.deobf("curse.maven:terrafirmacraft-302973:4723717")
     implementation fg.deobf("earth.terrarium:botarium-forge-1.18.2:${project.botarium_version}")
     implementation fg.deobf("com.teamresourceful.resourcefullib:resourcefullib-forge-1.18.2:${project.resourcefullib_version}")
-    implementation fg.deobf("io.github.reforgedmods.terraform-api:terraform-wood-api-v1:${project.terraform_version_forge}")
-    jarJar("io.github.reforgedmods.terraform-api:terraform-wood-api-v1:${project.terraform_version_forge}"){
+    implementation fg.deobf("dev.trinsdar:terraform-wood-api-v1:${project.terraform_version_forge}")
+    jarJar("dev.trinsdar:terraform-wood-api-v1:${project.terraform_version_forge}"){
         jarJar.ranged(it, "[3.1.5,)")
     }
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
@@ -159,3 +159,4 @@ publishing {
             mavenLocal()
         }
     }
+}
