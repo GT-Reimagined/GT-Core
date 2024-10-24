@@ -91,7 +91,7 @@ dependencies {
     implementation("mezz.jei:jei-${rootProject.minecraft_version}-common-api:${rootProject.jei_version}")
     implementation fg.deobf("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
     implementation fg.deobf("curse.maven:the-one-probe-245211:3965693")
-    implementation fg.deobf("com.gtnewhorizon.structurelib:structurelib-forge:${project.structurelib_version}-${project.minecraft_version}")
+    implementation fg.deobf("org.gt-reimagined:structurelib-forge:${project.structurelib_version}-${project.minecraft_version}")
     implementation fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
 }
 

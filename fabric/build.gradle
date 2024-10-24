@@ -34,7 +34,7 @@ dependencies {
         exclude(group: "com.github.Trins-mods")
     }
     modImplementation("earth.terrarium:botarium-fabric-1.18.2:${project.botarium_version}")
-    modImplementation("com.gtnewhorizon.structurelib:structurelib-fabric:${project.structurelib_version}-${project.minecraft_version}")
+    modImplementation("org.gt-reimagined:structurelib-fabric:${project.structurelib_version}-${project.minecraft_version}")
     modImplementation "com.teamresourceful.resourcefullib:resourcefullib-fabric-1.18.2:${project.resourcefullib_version}"
     modImplementation(include("io.github.fabricators_of_create:Porting-Lib:${rootProject.port_lib_version}-beta+1.18.2-stable")){
         exclude(group: "net.fabricmc.fabric-api")
