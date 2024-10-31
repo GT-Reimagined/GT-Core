@@ -136,12 +136,22 @@ tasks.named('jar', Jar).configure {
     archiveClassifier.set "thin"
 }
 
+task deobfJar(type: Jar) {
+    archiveClassifier.set "deobf"
+    from sourceSets.main.output
+}
+
+artifacts {
+    archives deobfJar
+}
+
 publishing {
     publications {
         mavenJava(org.gradle.api.publish.maven.MavenPublication) {
             artifactId = "gtcore-" + project.name
             from components.java
             jarJar.component(it)
+            artifact deobfJar
         }
     }
     repositories {
