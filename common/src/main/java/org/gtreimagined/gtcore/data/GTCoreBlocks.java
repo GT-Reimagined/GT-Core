@@ -1,6 +1,10 @@
 package org.gtreimagined.gtcore.data;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.block.BlockCasing;
 import org.gtreimagined.gtcore.block.BlockSapBag;
 import org.gtreimagined.gtcore.blockentity.BlockEntityPlasticBin;
 import org.gtreimagined.gtcore.blockentity.BlockEntitySapBag;
@@ -109,6 +113,13 @@ public class GTCoreBlocks {
     public static StoneType QUARTZITE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "quartzite", Quartzite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(0.75F,7.5F);
     public static StoneType SHALE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "shale", Shale, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(0.75f, 7.5f);
     public static StoneType SLATE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "slate", Slate, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(0.75f, 7.5f);
+
+    public static final BlockCasing REINFORCED_GLASS = new BlockCasing(GTCore.ID, "reinforced_glass", Block.Properties.of(net.minecraft.world.level.material.Material.GLASS).strength(15.0f, 150.0f).sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion().isValidSpawn(((blockState, blockGetter, blockPos, object) -> false)).isRedstoneConductor(GTCoreBlocks::isntSolid).isSuffocating(GTCoreBlocks::isntSolid).isViewBlocking(GTCoreBlocks::isntSolid));
+    public static final BlockCasing REINFORCED_STONE = new BlockCasing(GTCore.ID, "reinforced_stone", Block.Properties.of(net.minecraft.world.level.material.Material.STONE).strength(80.0f, 150.0f).sound(SoundType.STONE).requiresCorrectToolForDrops());
+
+    public static Boolean isntSolid(BlockState state, BlockGetter reader, BlockPos pos) {
+        return false;
+    }
 
     public static void init() {
         if (!AntimatterAPI.isModLoaded("tfc")){
