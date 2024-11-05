@@ -13,7 +13,7 @@ import static org.gtreimagined.gtcore.data.GTCoreBlocks.REINFORCED_GLASS;
 import static org.gtreimagined.gtcore.data.GTCoreItems.AdvancedAlloy;
 
 public class MiscRecipes {
-    public static void loadRecipe(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
+    public static void loadRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
         provider.addStackRecipe(consumer, GTCore.ID, "reinforce_glass_v", "blocks",
                 new ItemStack(REINFORCED_GLASS, 7), of('G', ForgeCTags.GLASS, 'A', AdvancedAlloy), "GAG", "GGG", "GAG");
         provider.addStackRecipe(consumer, GTCore.ID, "reinforce_glass_h", "blocks",
