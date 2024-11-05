@@ -53,6 +53,7 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(ItemTags.WOODEN_SLABS).add(GTCoreBlocks.RUBBER_SLAB.asItem());
         this.tag(ItemTags.WOODEN_STAIRS).add(GTCoreBlocks.RUBBER_STAIRS.asItem());
         this.tag(ItemTags.WOODEN_TRAPDOORS).add(GTCoreBlocks.RUBBER_TRAPDOOR.asItem());
+        this.tag(INGOTS_MIXED_METAL).add(MixedMetalIngot);
         this.tag(AntimatterTags.RADIATION_PROOF).add(UniversalHazardSuitMask, UniversalHazardSuitShirt, UniversalHazardSuitPants, UniversalHazardSuitBoots);
         if (AntimatterAPI.isModLoaded("farmersdelight")) {
             this.tag(TagUtils.getItemTag(new ResourceLocation("farmersdelight:tools/knives"))).addTag(AntimatterDefaultTools.KNIFE.getTag());

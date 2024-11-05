@@ -8,6 +8,7 @@ import org.gtreimagined.gtcore.item.ItemFertilizer;
 import org.gtreimagined.gtcore.item.ItemHazmatArmor;
 import org.gtreimagined.gtcore.item.ItemMagnifyingGlass;
 import org.gtreimagined.gtcore.item.ItemMatch;
+import org.gtreimagined.gtcore.item.ItemMixedMetal;
 import org.gtreimagined.gtcore.item.ItemPowerUnit;
 import org.gtreimagined.gtcore.item.ItemRadaway;
 import org.gtreimagined.gtcore.item.ItemSelectorTag;
@@ -61,6 +62,8 @@ public class GTCoreItems {
     public static ItemBasic<?> DiamondSawBlade = new ItemBasic<>(GTCore.ID, "diamond_saw_blade");
     public static ItemBasic<?> DiamondGrindHead = new ItemBasic<>(GTCore.ID, "diamond_grind_head");
     public static ItemBasic<?> TungstenGrindHead = new ItemBasic<>(GTCore.ID, "tungsten_grind_head");
+    public static ItemMixedMetal MixedMetalIngot = new ItemMixedMetal();
+    public static ItemBasic<?> AdvancedAlloy = new ItemBasic<>(GTCore.ID, "advanced_alloy");
     public static ItemBasic<?> IridiumAlloyIngot = new ItemBasic<>(GTCore.ID, "iridium_alloy_ingot").tip("Used to make Iridium Plates");
     public static ItemBasic<?> IridiumReinforcedPlate = new ItemBasic<>(GTCore.ID, "iridium_reinforced_plate").tip("GT2s Most Expensive Component");
     public static ItemBasic<?> IridiumNeutronReflector = new ItemBasic<>(GTCore.ID, "iridium_neutron_reflector").tip("Indestructible");
