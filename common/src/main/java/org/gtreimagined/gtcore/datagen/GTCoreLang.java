@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.datagen;
 
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.block.BlockCasing;
 import org.gtreimagined.gtcore.block.BlockRedstoneWire;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.data.GTCoreItems;
@@ -87,6 +88,7 @@ public class GTCoreLang {
                     .replace("Hv", "(HV)")
                     .replace("Ev", "(EV)")
                     .replace("Iv", "(IV)")));
+            AntimatterAPI.all(BlockCasing.class).forEach(b -> this.add(b, Utils.lowerUnderscoreToUpperSpaced(b.getId())));
             AntimatterAPI.all(ItemHazmatArmor.class, domain).forEach(i -> this.add(i, Utils.lowerUnderscoreToUpperSpaced(i.getId())));
         }
 
