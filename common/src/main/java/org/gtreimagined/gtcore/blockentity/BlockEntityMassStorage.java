@@ -54,6 +54,10 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         this.itemHandler.set(() -> new MassStorageItemHandler(this));
     }
 
+    public int getMaxLimit(){
+        return ((MassStorageMachine) type).getCapacity();
+    }
+
     @Override
     public void onDrop(BlockState state, LootContext.Builder builder, List<ItemStack> drops) {
         if (!drops.isEmpty() && getMachineState() == MachineState.ACTIVE){

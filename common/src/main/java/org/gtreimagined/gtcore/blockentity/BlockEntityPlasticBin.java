@@ -26,6 +26,7 @@ public class BlockEntityPlasticBin extends BlockEntityMassStorage {
 
     }
 
+    @Override
     public int getMaxLimit() {
         return maxLimit;
     }

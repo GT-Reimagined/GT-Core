@@ -25,6 +25,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
+import org.gtreimagined.gtcore.data.SlotTypes;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -52,6 +54,17 @@ public class BlockMachineMaterial extends BlockMachine implements IColorHandler 
 
     @Override
     public int getBlockColor(BlockState state, @Nullable BlockGetter world, @Nullable BlockPos pos, int i) {
+        if (i == 2 && world != null && pos != null) {
+            BlockEntity be = world.getBlockEntity(pos);
+            if (be instanceof BlockEntityMassStorage massStorage){
+                var storage = massStorage.itemHandler.map(h -> h.getHandler(SlotTypes.UNLIMITED)).orElse(null);
+                if (storage != null){
+                    int max = massStorage.getMaxLimit();
+                    int count = storage.getItem(0).getCount();
+                    if (max == count) return 0xAA0000;
+                }
+            }
+        }
         return i == 0 ? material.getRGB() : -1;
     }
 
