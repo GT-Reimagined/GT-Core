@@ -82,8 +82,8 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
             int max = tile.getMaxLimit();
             int count = storage.getItem(0).getCount();
             String text = "" + (count == max ? 100 + "%" : count);
-            if (!stack.isEmpty())
-                renderText(matrix, bufferIn, combinedOverlayIn, new TextComponent(text).withStyle(count == max ? ChatFormatting.DARK_RED : (tile.getMaterial().has(WOOD) ? ChatFormatting.BLACK : ChatFormatting.WHITE)), Direction.NORTH, 0.03f);
+            //if (!stack.isEmpty())
+                //renderText(matrix, bufferIn, combinedOverlayIn, new TextComponent(text).withStyle(count == max ? ChatFormatting.DARK_RED : (tile.getMaterial().has(WOOD) ? ChatFormatting.BLACK : ChatFormatting.WHITE)), Direction.NORTH, 0.03f);
         }
     }
 

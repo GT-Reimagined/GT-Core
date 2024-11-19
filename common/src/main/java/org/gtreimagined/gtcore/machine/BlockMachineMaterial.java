@@ -1,5 +1,8 @@
 package org.gtreimagined.gtcore.machine;
 
+import com.google.common.collect.ImmutableMap;
+import muramasa.antimatter.datagen.builder.AntimatterBlockModelBuilder;
+import muramasa.antimatter.datagen.json.JLoaderModel;
 import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.blockentity.BlockEntityMachine;
@@ -30,12 +33,13 @@ import org.gtreimagined.gtcore.data.SlotTypes;
 import org.jetbrains.annotations.Nullable;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static muramasa.antimatter.Data.WRENCH_MATERIAL;
 import static muramasa.antimatter.material.Material.NULL;
 
-public class BlockMachineMaterial extends BlockMachine implements IColorHandler {
+public class BlockMachineMaterial extends BlockMachine {
     Material material = NULL;
     public BlockMachineMaterial(Machine<?> type, Tier tier) {
         this(type, tier, Properties.of(WRENCH_MATERIAL).strength(1.0f, 10.0f).sound(SoundType.METAL).requiresCorrectToolForDrops());
@@ -109,5 +113,24 @@ public class BlockMachineMaterial extends BlockMachine implements IColorHandler 
             }
         }
 
+    }
+
+    @Override
+    protected void buildModelsForState(AntimatterBlockModelBuilder builder, MachineState state) {
+        List<JLoaderModel> arr = new ArrayList<>();
+
+        for (Direction dir : Ref.DIRS) {
+            ImmutableMap.Builder<String, String> builder1 = ImmutableMap.builder();
+            builder1.put("base", getType().getBaseTexture(tier, dir, state).toString());
+            for (int i = 0; i < type.getOverlayLayers(); i++) {
+                String suffix = i == 0 ? "" : String.valueOf(i);
+                builder1.put("overlay" + suffix, type.getOverlayTextures(state, tier, i)[dir.get3DDataValue()].toString());
+            }
+            JLoaderModel obj = builder.addModelObject(JLoaderModel.modelKeepElements(), this.getType().getOverlayModel(state, dir).toString(), builder1.build());
+            if (getType() instanceof MassStorageMachine && dir == Direction.SOUTH) obj.loader("gtcore:icon");
+            arr.add(obj);
+        }
+
+        builder.property(state.toString().toLowerCase(), arr);
     }
 }

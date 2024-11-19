@@ -1,4 +1,4 @@
-package org.gtreimagined.gtcore.client;
+package org.gtreimagined.gtcore.client.model;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import muramasa.antimatter.dynamic.DynamicBakedModel;

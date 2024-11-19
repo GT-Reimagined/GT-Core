@@ -15,14 +15,18 @@ import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
+import org.gtreimagined.gtcore.client.model.IconModelLoader;
+import org.gtreimagined.gtcore.client.model.SapBagBakedModel;
 
 import java.util.function.Function;
 
 public class BakedModels {
     public static final ResourceLocation LOADER_SAP_BAG = new ResourceLocation(GTCore.ID, "sap_bag");
+    public static final ResourceLocation LOADER_ICON = new ResourceLocation(GTCore.ID, "icon");
 
     public static void init() {
         AntimatterModelManager.registerStaticConfigMap("sap_bag", () -> SapBagBakedModel.CONFIGS);
+        new IconModelLoader(LOADER_ICON);
         new DynamicModelLoader(LOADER_SAP_BAG) {
             @Override
             public DynamicModel readModel(JsonDeserializationContext context, JsonObject json) {

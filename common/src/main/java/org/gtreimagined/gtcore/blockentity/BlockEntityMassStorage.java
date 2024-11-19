@@ -54,8 +54,16 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         this.itemHandler.set(() -> new MassStorageItemHandler(this));
     }
 
+    public MassStorageMachine getMassStorageMachine() {
+        return (MassStorageMachine) type;
+    }
+
     public int getMaxLimit(){
-        return ((MassStorageMachine) type).getCapacity();
+        return getMassStorageMachine().getCapacity();
+    }
+
+    public int getItemAmount(){
+        return itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED).getItem(0).getCount()).orElse(0);
     }
 
     @Override
