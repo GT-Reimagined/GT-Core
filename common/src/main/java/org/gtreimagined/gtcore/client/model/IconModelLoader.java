@@ -9,16 +9,12 @@ import com.google.gson.stream.JsonReader;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import muramasa.antimatter.client.ModelUtils;
 import muramasa.antimatter.client.model.loader.AntimatterModelLoader;
-import muramasa.antimatter.util.AntimatterPlatformUtils;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.client.renderer.block.model.BlockElement;
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
-import org.gtreimagined.gtcore.mixin.ModelBakeryAccessor;
 
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -36,7 +32,7 @@ public class IconModelLoader extends AntimatterModelLoader<IconModel> {
         ResourceLocation parent = new ResourceLocation(copy.get("parent").getAsString());
         List<BlockElement> blockElements = new ObjectArrayList<>();
         try {
-            Resource resource = ((ModelBakeryAccessor)ModelUtils.INSTANCE.getModelBakery()).getResourceManager().getResource(new ResourceLocation(parent.getNamespace(), "models/" + parent.getPath() + ".json"));
+            Resource resource = ModelUtils.INSTANCE.getModelBakery().resourceManager.getResource(new ResourceLocation(parent.getNamespace(), "models/" + parent.getPath() + ".json"));
             InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8);
             JsonReader jsonReader = new JsonReader(reader);
             JsonElement element = Streams.parse(jsonReader);
@@ -50,7 +46,7 @@ public class IconModelLoader extends AntimatterModelLoader<IconModel> {
                     blockElements.addAll(blockModel.getElements());
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return new IconModel(model, blockElements);

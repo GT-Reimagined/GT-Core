@@ -381,6 +381,9 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         outputOverflow = tag.getBoolean("outputOverflow");
         output = tag.getBoolean("output");
         keepFilter = !tag.contains("keepFilter") || tag.getBoolean("keepFilter");
+        if (level != null && isClientSide()){
+            sidedSync(true);
+        }
     }
 
     @Override

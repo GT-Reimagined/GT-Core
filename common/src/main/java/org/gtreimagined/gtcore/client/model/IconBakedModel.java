@@ -46,7 +46,7 @@ public class IconBakedModel extends AntimatterBakedModel<IconBakedModel> {
             quads.addAll(ModelUtils.INSTANCE.getQuadsFromBaked(baseModel, state, dir, rand, level, pos));
         }
         quads.addAll(ModelUtils.INSTANCE.getQuadsFromBaked(baseModel, state, null, rand, level, pos));
-        if (numberElements.isEmpty()) return quads;
+        if (numberElements.isEmpty() || direction == null) return quads;
         BlockEntity be = level.getBlockEntity(pos);
         if (be instanceof BlockEntityMassStorage massStorage){
             int offset = 0;
@@ -61,7 +61,7 @@ public class IconBakedModel extends AntimatterBakedModel<IconBakedModel> {
                         Direction dir = entry.getKey();
                         BlockElementFace face = entry.getValue();
                         TextureAtlasSprite sprite = ModelUtils.getDefaultTextureGetter().apply(ModelUtils.getBlockMaterial(new Texture(GTCore.ID, "block/characters/" + (c == '%' ? "percent" : c))));
-                        BakedQuad quad = FACE_BAKERY.bakeQuad(element.from, element.to, face, sprite, dir, new SimpleModelState(RenderHelper.faceRotation(state)), element.rotation, element.shade, massStorage.getMassStorageMachine().getLoc());
+                        BakedQuad quad = FACE_BAKERY.bakeQuad(element.from, element.to, face, sprite, dir, new SimpleModelState(RenderHelper.faceRotation(direction)), element.rotation, element.shade, massStorage.getMassStorageMachine().getLoc());
                         quads.add(quad);
                     }
                 }

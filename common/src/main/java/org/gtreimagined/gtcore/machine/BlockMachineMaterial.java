@@ -117,6 +117,10 @@ public class BlockMachineMaterial extends BlockMachine {
 
     @Override
     protected void buildModelsForState(AntimatterBlockModelBuilder builder, MachineState state) {
+        if (!(getType() instanceof MassStorageMachine)){
+            super.buildModelsForState(builder, state);
+            return;
+        }
         List<JLoaderModel> arr = new ArrayList<>();
 
         for (Direction dir : Ref.DIRS) {
@@ -127,7 +131,7 @@ public class BlockMachineMaterial extends BlockMachine {
                 builder1.put("overlay" + suffix, type.getOverlayTextures(state, tier, i)[dir.get3DDataValue()].toString());
             }
             JLoaderModel obj = builder.addModelObject(JLoaderModel.modelKeepElements(), this.getType().getOverlayModel(state, dir).toString(), builder1.build());
-            if (getType() instanceof MassStorageMachine && dir == Direction.SOUTH) obj.loader("gtcore:icon");
+            if (dir == Direction.SOUTH) obj.loader("gtcore:icon");
             arr.add(obj);
         }
 

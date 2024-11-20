@@ -10,8 +10,7 @@
     "MixinMerchantOffer"
   ],
   "client": [
-    "AbstractClientPlayerEntityMixin",
-    "ModelBakeryAccessor"
+    "AbstractClientPlayerEntityMixin"
   ],
   "refmap": "gtcore.refmap.json"
 }
