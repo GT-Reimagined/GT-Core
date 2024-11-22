@@ -14,12 +14,14 @@ import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
+import org.gtreimagined.gtcore.GTCore;
 
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class IconModelLoader extends AntimatterModelLoader<IconModel> {
+    static List<BlockElement> BLOCK_ELEMENTS = null;
     public IconModelLoader(ResourceLocation loc) {
         super(loc);
     }
@@ -29,26 +31,25 @@ public class IconModelLoader extends AntimatterModelLoader<IconModel> {
         JsonObject copy = jsonObject.deepCopy();
         copy.remove("loader");
         UnbakedModel model = jsonDeserializationContext.deserialize(copy, BlockModel.class);
-        ResourceLocation parent = new ResourceLocation(copy.get("parent").getAsString());
-        List<BlockElement> blockElements = new ObjectArrayList<>();
-        try {
-            Resource resource = ModelUtils.INSTANCE.getModelBakery().resourceManager.getResource(new ResourceLocation(parent.getNamespace(), "models/" + parent.getPath() + ".json"));
-            InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8);
-            JsonReader jsonReader = new JsonReader(reader);
-            JsonElement element = Streams.parse(jsonReader);
-            if (element.isJsonObject()) {
-                JsonObject obj = element.getAsJsonObject();
-                JsonArray numberElementJsons = obj.get("numberElements").getAsJsonArray();
-                JsonObject newObj = new JsonObject();
-                newObj.add("elements", numberElementJsons);
-                UnbakedModel numberModel = jsonDeserializationContext.deserialize(newObj, BlockModel.class);
-                if (numberModel instanceof BlockModel blockModel){
-                    blockElements.addAll(blockModel.getElements());
+        if (BLOCK_ELEMENTS == null) {
+            BLOCK_ELEMENTS = new ObjectArrayList<>();
+            try {
+                Resource resource = ModelUtils.INSTANCE.getModelBakery().resourceManager.getResource(new ResourceLocation(GTCore.ID, "models/block/machine/overlay/mass_storage/icons.json"));
+                InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8);
+                JsonReader jsonReader = new JsonReader(reader);
+                JsonElement element = Streams.parse(jsonReader);
+                if (element.isJsonObject()) {
+                    JsonObject obj = element.getAsJsonObject();
+                    UnbakedModel numberModel = jsonDeserializationContext.deserialize(obj, BlockModel.class);
+                    if (numberModel instanceof BlockModel blockModel){
+                        BLOCK_ELEMENTS.addAll(blockModel.getElements());
+                    }
                 }
+            } catch (Exception e) {
+                GTCore.LOGGER.error(e);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        return new IconModel(model, blockElements);
+
+        return new IconModel(model, BLOCK_ELEMENTS);
     }
 }

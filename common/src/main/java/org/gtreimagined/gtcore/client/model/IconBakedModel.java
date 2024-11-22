@@ -29,27 +29,23 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 public class IconBakedModel extends AntimatterBakedModel<IconBakedModel> {
     BakedModel baseModel;
-    List<BlockElement> numberElements;
-    public static final FaceBakery FACE_BAKERY = new FaceBakery();
-    static Cache<String, List<BakedQuad>> MASS_STORAGE_CACHE = CacheBuilder.newBuilder().maximumSize(10000).build();
-    static Cache<String, List<BakedQuad>> ITEM_STORAGE_CACHE = CacheBuilder.newBuilder().maximumSize(1000).build();
 
-    public IconBakedModel(BakedModel baseModel, List<BlockElement> numberElements) {
+    public IconBakedModel(BakedModel baseModel) {
         super(baseModel.getParticleIcon());
         this.baseModel = baseModel;
-        this.numberElements = numberElements;
     }
 
     @Override
     public List<BakedQuad> getBlockQuads(BlockState state, @Nullable Direction direction, @NotNull Random rand, @NotNull BlockAndTintGetter level, @NotNull BlockPos pos) {
         List<BakedQuad> quads = new ObjectArrayList<>();
         quads.addAll(ModelUtils.INSTANCE.getQuadsFromBaked(baseModel, state, direction, rand, level, pos));
-        if (numberElements.isEmpty() || direction == null) return quads;
+        if (direction != Direction.SOUTH) return quads;
         BlockEntity be = level.getBlockEntity(pos);
         if (be instanceof BlockEntityMassStorage massStorage){
             int offset;
@@ -57,29 +53,13 @@ public class IconBakedModel extends AntimatterBakedModel<IconBakedModel> {
             else {
                 offset = 0;
             }
-            Cache<String, List<BakedQuad>> cache = offset == 0 ? MASS_STORAGE_CACHE : ITEM_STORAGE_CACHE;
             int amount = massStorage.getItemAmount();
             if (amount > 0){
                 String number = amount == massStorage.getMaxLimit() ? "100%" : Integer.toString(amount);
-                try {
-                    quads.addAll(cache.get(number, () -> {
-                        List<BakedQuad> bakedQuads = new ObjectArrayList<>();
-                        for (int i = 0; i < number.length(); i++) {
-                            char c = number.charAt(number.length() - (i + 1));
-                            BlockElement element = numberElements.get(i + offset);
-                            for (var entry : element.faces.entrySet()){
-                                Direction dir = entry.getKey();
-                                if (dir != direction) continue;
-                                BlockElementFace face = entry.getValue();
-                                TextureAtlasSprite sprite = ModelUtils.getDefaultTextureGetter().apply(IconModel.TEXTURE_MAP.get(c == '%' ? "percent" : Character.toString(c)));
-                                BakedQuad quad = FACE_BAKERY.bakeQuad(element.from, element.to, face, sprite, dir, new SimpleModelState(RenderHelper.faceRotation(direction)), element.rotation, element.shade, massStorage.getMassStorageMachine().getLoc());
-                                bakedQuads.add(quad);
-                            }
-                        }
-                        return bakedQuads;
-                    }));
-                } catch (ExecutionException e) {
-                    GTCore.LOGGER.error(e);
+                for (int i = 0; i < number.length(); i++) {
+                    char c = number.charAt(number.length() - (i + 1));
+                    Map<String, List<BakedQuad>> map = IconModel.ICON_MODELS.get(i + offset);
+                    quads.addAll(map.get(c == '%' ? "percent" : Character.toString(c)));
                 }
             }
         }

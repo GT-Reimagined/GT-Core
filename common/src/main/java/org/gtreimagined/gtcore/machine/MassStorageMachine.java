@@ -77,7 +77,6 @@ public class MassStorageMachine extends MaterialMachine{
                     new Texture(domain, "block/machine/overlay/" + barrel + "/" + stateDir + "side")
             };
         });
-        custom((a,s,d) -> new ResourceLocation(a.getDomain(), "block/machine/overlay/mass_storage/" + d.getSerializedName()));
         AntimatterAPI.register(MassStorageMachine.class, this);
     }
 
