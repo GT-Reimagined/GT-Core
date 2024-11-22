@@ -65,7 +65,7 @@ public class BlockMachineMaterial extends BlockMachine {
                 if (storage != null){
                     int max = massStorage.getMaxLimit();
                     int count = storage.getItem(0).getCount();
-                    if (max == count) return 0xAA0000;
+                    if (max == count) return 0xFF0000;
                     if (max <= 10000) return 0x000000;
                 }
             }
