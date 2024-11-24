@@ -48,33 +48,12 @@ public class IconModel implements IAntimatterModel {
                 TEXTURE_MAP.put(icon, ModelUtils.getBlockMaterial(new Texture(GTCore.ID, "block/characters/" + icon)));
             }
         }
-        if (ICON_MODELS == null){
-            ICON_MODELS = new ObjectArrayList<>();
-            String[] icons = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "percent"};
-            for (int i = 0; i < blockElements.size(); i++) {
-                BlockElement element = blockElements.get(i);
-                Map<String, List<BakedQuad>> map = new Object2ObjectOpenHashMap<>();
-                for (String icon : icons) {
-                    if (i > 1 && icon.equals("percent")) continue;
-                    List<BakedQuad> bakedQuads = new ArrayList<>();
-                    for (var entry : element.faces.entrySet()){
-                        Direction dir = entry.getKey();
-                        BlockElementFace face = entry.getValue();
-                        TextureAtlasSprite sprite = ModelUtils.getDefaultTextureGetter().apply(IconModel.TEXTURE_MAP.get(icon));
-                        BakedQuad quad = FACE_BAKERY.bakeQuad(element.from, element.to, face, sprite, dir, new SimpleModelState(RenderHelper.faceRotation(Direction.SOUTH)), element.rotation, element.shade, new ResourceLocation(GTCore.ID, "item_storage"));
-                        bakedQuads.add(quad);
-                    }
-                    map.put(icon, bakedQuads);
-                }
-                ICON_MODELS.add(map);
-            }
-        }
     }
 
     @Override
     public BakedModel bakeModel(ModelBakery modelBakery, Function<Material, TextureAtlasSprite> function, ModelState modelState, ResourceLocation resourceLocation) {
         BakedModel base = baseModel.bake(modelBakery, function, modelState, resourceLocation);
-        return new IconBakedModel(Objects.requireNonNull(base));
+        return new IconBakedModel(Objects.requireNonNull(base), function);
     }
 
     @Override
