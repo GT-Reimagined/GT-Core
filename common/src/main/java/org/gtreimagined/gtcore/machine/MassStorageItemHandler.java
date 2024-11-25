@@ -38,4 +38,9 @@ public class MassStorageItemHandler extends MachineItemHandler<BlockEntityMassSt
     public boolean allowsOutput(Direction side) {
         return super.allowsOutput(side) && tile.getMachineState() != MachineState.ACTIVE;
     }
+
+    @Override
+    public Optional<? extends ExtendedItemContainer> forNullSide() {
+        return Optional.empty();
+    }
 }

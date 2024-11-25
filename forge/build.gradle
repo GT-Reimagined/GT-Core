@@ -93,6 +93,7 @@ dependencies {
     implementation fg.deobf("curse.maven:the-one-probe-245211:3965693")
     implementation fg.deobf("org.gt-reimagined:structurelib-forge:${project.structurelib_version}-${project.minecraft_version}")
     implementation fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
+    implementation fg.deobf("curse.maven:jade-324717:5079263")
 }
 
 

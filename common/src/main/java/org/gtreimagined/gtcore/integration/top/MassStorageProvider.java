@@ -53,7 +53,6 @@ public class MassStorageProvider implements IProbeInfoProvider {
                 return h;
             }).orElse(null);
             if (handler != null){
-                iProbeInfo.getElements().removeIf(iElement -> iElement instanceof ElementVertical);
                 IProbeInfo vertical = iProbeInfo.vertical(iProbeInfo.defaultLayoutStyle().borderColor(Config.chestContentsBorderColor).spacing(0));
                 IProbeInfo horizontal = vertical.horizontal((new LayoutStyle()).spacing(10).alignment(ElementAlignment.ALIGN_CENTER));
                 ItemStack stack = handler.getItem(0);
