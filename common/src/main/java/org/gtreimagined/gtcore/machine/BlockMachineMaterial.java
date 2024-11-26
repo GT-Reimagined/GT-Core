@@ -3,6 +3,7 @@ package org.gtreimagined.gtcore.machine;
 import com.google.common.collect.ImmutableMap;
 import muramasa.antimatter.datagen.builder.AntimatterBlockModelBuilder;
 import muramasa.antimatter.datagen.json.JLoaderModel;
+import muramasa.antimatter.material.MaterialTags;
 import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.blockentity.BlockEntityMachine;
@@ -66,7 +67,7 @@ public class BlockMachineMaterial extends BlockMachine {
                     int max = massStorage.getMaxLimit();
                     int count = storage.getItem(0).getCount();
                     if (max == count) return 0xFF0000;
-                    if (max <= 10000) return 0x000000;
+                    if (massStorage.getMassStorageMachine().getMaterial().has(MaterialTags.WOOD)) return 0x000000;
                 }
             }
         }
