@@ -9,6 +9,7 @@ import muramasa.antimatter.client.ModelUtils;
 import muramasa.antimatter.client.RenderHelper;
 import muramasa.antimatter.client.SimpleModelState;
 import muramasa.antimatter.client.baked.AntimatterBakedModel;
+import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.texture.Texture;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockElement;
@@ -22,6 +23,7 @@ import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -82,7 +84,8 @@ public class IconBakedModel extends AntimatterBakedModel<IconBakedModel> {
                 offset = 0;
             }
             int amount = massStorage.getItemAmount();
-            if (amount > 0){
+            ItemStack display = massStorage.itemHandler.map(i -> i.getHandler(SlotType.DISPLAY).getItem(0)).orElse(ItemStack.EMPTY);
+            if (amount > 0 || !display.isEmpty()) {
                 String number = amount == massStorage.getMaxLimit() ? "100%" : Integer.toString(amount);
                 for (int i = 0; i < number.length(); i++) {
                     char c = number.charAt(number.length() - (i + 1));
