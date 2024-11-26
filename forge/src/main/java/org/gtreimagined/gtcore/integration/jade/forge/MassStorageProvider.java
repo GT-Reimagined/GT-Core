@@ -4,9 +4,11 @@ import mcp.mobius.waila.api.BlockAccessor;
 import mcp.mobius.waila.api.IComponentProvider;
 import mcp.mobius.waila.api.ITooltip;
 import mcp.mobius.waila.api.config.IPluginConfig;
+import muramasa.antimatter.util.Utils;
 import net.minecraft.world.item.ItemStack;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
 import org.gtreimagined.gtcore.data.SlotTypes;
+import snownee.jade.Jade;
 import snownee.jade.VanillaPlugin;
 
 public class MassStorageProvider implements IComponentProvider {
@@ -20,6 +22,7 @@ public class MassStorageProvider implements IComponentProvider {
                 ItemStack stack = handler.getItem(0);
                 if (!stack.isEmpty()){
                     iTooltip.add(iTooltip.getElementHelper().item(stack, 1.0f, (stack.getCount() < 10000 ? String.valueOf(stack.getCount()) : VanillaPlugin.getDisplayHelper().humanReadableNumber(stack.getCount(), "", false))).tag(JadePlugin.MASS_STORAGE));
+                    iTooltip.add(iTooltip.getElementHelper().text(stack.getHoverName()).tag(VanillaPlugin.INVENTORY).message(null));
                 }
             }
         }
