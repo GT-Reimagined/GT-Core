@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.compile.JavaCompile
+
 plugins {
     id "fabric-loom" version "1.6.+"
 }
@@ -59,7 +61,7 @@ processResources {
     }
 }
 
-tasks.withType(JavaCompile) {
+tasks.named('compileJava', JavaCompile) {
     source(project(":common").sourceSets.main.allSource)
 }
 
