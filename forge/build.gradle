@@ -69,7 +69,7 @@ dependencies {
 }
 
 
-tasks.withType(JavaCompile) {
+tasks.named('compileJava', JavaCompile) {
     source(project(":common").sourceSets.main.allSource)
 }
 
