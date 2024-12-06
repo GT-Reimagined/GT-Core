@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.data;
 
 import com.google.common.collect.ImmutableMap;
+import net.minecraft.tags.BlockTags;
 import org.gtreimagined.gtcore.behaviour.BehaviourElectricWrenchSwitching;
 import org.gtreimagined.gtcore.behaviour.BehaviourKnifeTooltip;
 import org.gtreimagined.gtcore.behaviour.BehaviourMultitoolSwitching;
@@ -73,7 +74,7 @@ public class GTCoreTools {
     public static final AntimatterToolType ELECTRIC_WRENCH_ALT = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "electric_wrench_alt", WRENCH).setTag(WRENCH_ALT).setPowered(100000, 1, 2, 3)).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseSound(Ref.WRENCH).addEffectiveBlocks(Blocks.HOPPER).setType(WRENCH).setMaterialTypeItem(WRENCHBIT).addBlacklistedEnchantments(Enchantments.BLOCK_EFFICIENCY).setCustomName("Electric Wrench (Alt)");
     public static final AntimatterToolType CHAINSAW = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "chainsaw", 1, 1, 5, 6.0F, -2.0F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseAction(UseAnim.BLOCK).setPowered(100000, 1, 2, 3).setMaterialTypeItem(CHAINSAWBIT).addEffectiveMaterials(WOOD, PLANT, REPLACEABLE_PLANT, BAMBOO, LEAVES).addEffectiveBlocks(Blocks.COBWEB).setType(AXE).addTags("saw");
 
-    public static final AntimatterToolType JACKHAMMER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "jackhammer", 1, 2, 10, 1.0F, -3.2F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setPowered(100000, 3).setToolSpeedMultiplier(2.0f).setUseSound(Ref.DRILL).addEffectiveBlockTags(TagUtils.getForgelikeBlockTag("stone"), TagUtils.getForgelikeBlockTag("cobblestone")).addEffectiveBlocks(Blocks.BASALT, Blocks.NETHERRACK, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN, Blocks.DRIPSTONE_BLOCK);
+    public static final AntimatterToolType JACKHAMMER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "jackhammer", 1, 2, 10, 1.0F, -3.2F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setPowered(100000, 3).setToolSpeedMultiplier(2.0f).setUseSound(Ref.DRILL).addEffectiveBlockTags(TagUtils.getForgelikeBlockTag("stone"), TagUtils.getForgelikeBlockTag("cobblestone"), BlockTags.NYLIUM).addEffectiveBlocks(Blocks.BASALT, Blocks.NETHERRACK, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN, Blocks.DRIPSTONE_BLOCK, Blocks.END_STONE);
 
     public static final AntimatterToolType POCKET_MULTITOOL = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool", 1, 2, 2, 1.0f, -1.5f, false)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setMaterialTypeItem(RING);
     public static final AntimatterToolType POCKET_MULTITOOL_KNIFE = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.ID, "pocket_multitool_knife", KNIFE)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Knife)").setTag(new ResourceLocation(Ref.ID, "knives")).setType(KNIFE);
