@@ -1,9 +1,6 @@
 import org.gradle.api.tasks.bundling.Jar
 
 plugins {
-    //id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-    //id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-    //id 'org.spongepowered.mixin' version '0.7.+'
     id "net.neoforged.moddev.legacyforge" version "2.0.55-beta"
 }
 
@@ -92,10 +89,6 @@ mixin {
     config "gtcore.jei.mixins.json"
 }
 
-/*tasks.named('jarJar', Jar).configure {
-    archiveClassifier.set("")
-}*/
-
 tasks.named('jar', Jar).configure {
     manifest {
         attributes([
@@ -109,10 +102,6 @@ tasks.named('jar', Jar).configure {
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
-
-    // This is the preferred method to reobfuscate your jar file
-    //finalizedBy 'reobfJar'
-    //archiveClassifier.set "thin"
 }
 
 task deobfJar(type: Jar) {
@@ -129,7 +118,6 @@ publishing {
         mavenJava(org.gradle.api.publish.maven.MavenPublication) {
             artifactId = "gtcore-" + project.name
             from components.java
-            //jarJar.component(it)
             artifact deobfJar
         }
     }
