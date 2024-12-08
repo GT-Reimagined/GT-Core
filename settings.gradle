@@ -18,16 +18,6 @@ pluginManagement {
         }
         gradlePluginPortal()
         mavenCentral()
-        maven {
-            name 'Maven for PR #189' // https://github.com/neoforged/ModDevGradle/pull/189
-            url 'https://prmaven.neoforged.net/ModDevGradle/pr189'
-            content {
-                includeModule('net.neoforged.moddev', 'net.neoforged.moddev.gradle.plugin')
-                includeModule('net.neoforged', 'moddev-gradle')
-                includeModule('net.neoforged.moddev.repositories', 'net.neoforged.moddev.repositories.gradle.plugin')
-                includeModule('net.neoforged.moddev.legacyforge', 'net.neoforged.moddev.legacyforge.gradle.plugin')
-            }
-        }
     }
 }
 
