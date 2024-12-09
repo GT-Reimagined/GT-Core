@@ -31,7 +31,7 @@ dependencies {
         exclude(group: "com.github.Trins-mods")
         exclude(group: "com.github.Trinsdar")
     }
-    modImplementation("io.github.gregtechintergalactical:tesseract-fabric:${tesseract_version}"){
+    modImplementation("org.gt-reimagined:tesseract-fabric:${tesseract_version}"){
         exclude(group: "maven.modrinth")
         exclude(group: "com.github.Trins-mods")
     }
