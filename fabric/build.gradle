@@ -1,7 +1,7 @@
 import org.gradle.api.tasks.compile.JavaCompile
 
 plugins {
-    id "fabric-loom" version "1.6.+"
+    id "fabric-loom" version "1.7.+"
 }
 archivesBaseName = "${rootProject.archive_base_name}-fabric"
 
