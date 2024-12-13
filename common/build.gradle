@@ -55,11 +55,8 @@ unimined.minecraft {
 apply from: 'https://raw.githubusercontent.com/GregTech-Intergalactical/GradleSripts/main/common.gradle'
 
 dependencies {
-    modImplementation("io.github.gregtechintergalactical:antimatter-common:${antimatter_version}"){
+    modImplementation("org.gt-reimagined:antimatter-common:${antimatter_version}"){
         exclude(group: "maven.modrinth")
-        exclude(group: "com.github.Trins-mods")
-        //exclude(group: "io.github.gregtechintergalactical")
-        exclude(group: "io.github.trinsdar", module: "CT-Fabric-Fluid-Support")
     }
     /*modImplementation("io.github.gregtechintergalactical:tesseract-common:${tesseract_version}"){
         exclude(group: "maven.modrinth")

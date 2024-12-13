@@ -40,7 +40,7 @@ neoForge {
 dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation("org.jetbrains:annotations:26.0.1")
-    modImplementation("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}")
+    modImplementation("org.gt-reimagined:antimatter-forge:${antimatter_version}")
     modImplementation("org.gt-reimagined:tesseract-forge:${tesseract_version}")
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
     modCompileOnly("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
