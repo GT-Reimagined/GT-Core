@@ -83,36 +83,6 @@ public class VanillaRecipes {
                 of('I', PLATE.getMaterialTag(Gold), 'H', HAMMER.getTag()), "IIH");
         provider.addStackRecipe(consumer, "minecraft", "", "misc", new ItemStack(Items.HEAVY_WEIGHTED_PRESSURE_PLATE),
                 of('I', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag()), "IIH");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.IRON_AXE,
-                of('P', PLATE.getMaterialTag(Iron), 'I', INGOT.getMaterialTag(Iron), 'F', FILE.getTag(), 'H', HAMMER.getTag(), 'R', ROD.getMaterialTag(Wood)), "PIH", "PR ", "FR ");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.IRON_PICKAXE,
-                of('P', PLATE.getMaterialTag(Iron), 'I', INGOT.getMaterialTag(Iron), 'F', FILE.getTag(), 'H', HAMMER.getTag(), 'R', ROD.getMaterialTag(Wood)), "PII", "FRH", " R ");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.IRON_SWORD,
-                of('P', PLATE.getMaterialTag(Iron), 'F', FILE.getTag(), 'H', HAMMER.getTag(), 'R', ROD.getMaterialTag(Wood)), "FPH", " P ", " R ");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.IRON_SHOVEL,
-                of('P', PLATE.getMaterialTag(Iron), 'F', FILE.getTag(), 'H', HAMMER.getTag(), 'R', ROD.getMaterialTag(Wood)), "FPH", " R ", " R ");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.IRON_HOE,
-                of('P', PLATE.getMaterialTag(Iron), 'I', INGOT.getMaterialTag(Iron), 'F', FILE.getTag(), 'H', HAMMER.getTag(), 'R', ROD.getMaterialTag(Wood)), "PIH", "FR ", " R ");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.GOLDEN_AXE,
-                of('P', PLATE.getMaterialTag(Gold), 'I', INGOT.getMaterialTag(Gold), 'F', FILE.getTag(), 'H', HAMMER.getTag(), 'R', ROD.getMaterialTag(Wood)), "PIH", "PR ", "FR ");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.GOLDEN_PICKAXE,
-                of('P', PLATE.getMaterialTag(Gold), 'I', INGOT.getMaterialTag(Gold), 'F', FILE.getTag(), 'H', HAMMER.getTag(), 'R', ROD.getMaterialTag(Wood)), "PII", "FRH", " R ");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.GOLDEN_SWORD,
-                of('P', PLATE.getMaterialTag(Gold), 'F', FILE.getTag(), 'H', HAMMER.getTag(), 'R', ROD.getMaterialTag(Wood)), "FPH", " P ", " R ");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.GOLDEN_SHOVEL,
-                of('P', PLATE.getMaterialTag(Gold), 'F', FILE.getTag(), 'H', HAMMER.getTag(), 'R', ROD.getMaterialTag(Wood)), "FPH", " R ", " R ");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.GOLDEN_HOE,
-                of('P', PLATE.getMaterialTag(Gold), 'I', INGOT.getMaterialTag(Gold), 'F', FILE.getTag(), 'H', HAMMER.getTag(), 'R', ROD.getMaterialTag(Wood)), "PIH", "FR ", " R ");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.DIAMOND_AXE,
-                of('G', GEM.getMaterialTag(Diamond), 'F', FILE.getTag(), 'R', ROD.getMaterialTag(Wood)), "GG", "GR", "FR");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.DIAMOND_PICKAXE,
-                of('G', GEM.getMaterialTag(Diamond), 'F', FILE.getTag(), 'R', ROD.getMaterialTag(Wood)), "GGG", "FR ", " R ");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.DIAMOND_SWORD,
-                of('G', GEM.getMaterialTag(Diamond), 'F', FILE.getTag(), 'R', ROD.getMaterialTag(Wood)), "FG", " G", " R");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.DIAMOND_SHOVEL,
-                of('G', GEM.getMaterialTag(Diamond), 'F', FILE.getTag(), 'R', ROD.getMaterialTag(Wood)), "FG", " R", " R");
-        provider.addItemRecipe(consumer, "vanilla_tools", Items.DIAMOND_HOE,
-                of('G', GEM.getMaterialTag(Diamond), 'F', FILE.getTag(), 'R', ROD.getMaterialTag(Wood)), "GG", "FR", " R");
 
         provider.addItemRecipe(consumer, "vanilla_armor", Items.IRON_HELMET,
                 of('I', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag()), "III", "IHI");

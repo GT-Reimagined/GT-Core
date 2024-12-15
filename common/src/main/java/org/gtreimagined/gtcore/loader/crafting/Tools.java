@@ -1,7 +1,9 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
 import com.google.common.collect.ImmutableMap;
+import muramasa.antimatter.data.AntimatterMaterials;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.GTCoreConfig;
 import org.gtreimagined.gtcore.data.GTCoreTools;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
@@ -76,6 +78,7 @@ public class Tools {
                    }
                }
            });
+           boolean replaceVanilla = (m != Iron && m != Gold && m != Diamond) || GTCoreConfig.VANILLA_OVERRIDES.get();
            if (m.has(INGOT) || m.has(GEM) || m == Wood){
                TagKey<Item> plateGem = m.has(GEM) ? GEM.getMaterialTag(m) : m.has(PLATE) ? PLATE.getMaterialTag(m) : INGOT.getMaterialTag(m);
                TagKey<Item> ingotGem = m.has(GEM) ? GEM.getMaterialTag(m) : INGOT.getMaterialTag(m);
@@ -133,7 +136,7 @@ public class Tools {
                                of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPR", "FH ");
                    }
                }
-               if (t.toolTypes().contains(SCYTHE)){
+               if (t.toolTypes().contains(SCYTHE) && (!AntimatterAPI.isModLoaded("gtsp") || AntimatterPlatformUtils.INSTANCE.isFabric())){
                    if (m.has(FLINT)){
                        if (!AntimatterAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", SCYTHE.getToolStack(m),
@@ -167,7 +170,7 @@ public class Tools {
                    provider.addToolRecipe(CROWBAR_BUILDER.get(m.getId() + "_" + CROWBAR.getId()), consumer, GTCore.ID, "", "antimatter_crowbars", CROWBAR.getToolStack(m), of('H', AntimatterDefaultTools.HAMMER.getTag(), 'C', PropertyIngredient.builder("secondary").itemTags(TagUtils.getForgelikeItemTag("dyes")).build(), 'R', ROD.getMaterialTag(m), 'F', AntimatterDefaultTools.FILE.getTag()), "HCR", "CRC", "RCF");
                }
 
-               if (t.toolTypes().contains(PICKAXE)){
+               if (t.toolTypes().contains(PICKAXE) && replaceVanilla){
                    if (m.has(FLINT)){
                        if (!AntimatterAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", PICKAXE.getToolStack(m),
@@ -182,7 +185,7 @@ public class Tools {
                    }
                }
 
-               if (t.toolTypes().contains(AXE)){
+               if (t.toolTypes().contains(AXE) && replaceVanilla){
                    if (m.has(FLINT)){
                        if (!AntimatterAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", AXE.getToolStack(m),
@@ -197,7 +200,7 @@ public class Tools {
                    }
                }
 
-               if (t.toolTypes().contains(SHOVEL)){
+               if (t.toolTypes().contains(SHOVEL) && replaceVanilla){
                    if (m.has(FLINT)){
                        if (!AntimatterAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", SHOVEL.getToolStack(m),
@@ -212,7 +215,7 @@ public class Tools {
                    }
                }
 
-               if (t.toolTypes().contains(SWORD)){
+               if (t.toolTypes().contains(SWORD) && replaceVanilla){
                    if (m.has(FLINT)){
                        if (!AntimatterAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", SWORD.getToolStack(m),
@@ -227,7 +230,7 @@ public class Tools {
                    }
                }
 
-               if (t.toolTypes().contains(HOE)){
+               if (t.toolTypes().contains(HOE) && replaceVanilla){
                    if (m.has(FLINT)){
                        if (!AntimatterAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", HOE.getToolStack(m),
@@ -267,21 +270,6 @@ public class Tools {
         provider.addItemRecipe(consumer, GTCore.ID, "stone_shovel", "tools", Items.STONE_SHOVEL, of('R', ROCK.getTag(), 'S', Items.STICK), "R", "S");
         provider.addItemRecipe(consumer, GTCore.ID, "stone_hoe", "tools", Items.STONE_HOE, of('R', ROCK.getTag(), 'S', Items.STICK), "RR", " S");
         provider.addItemRecipe(consumer, GTCore.ID, "stone_sword", "tools", Items.STONE_SWORD, of('R', ROCK.getTag(), 'S', Items.STICK), "R", "R", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "diamond_pickaxe", "tools", Items.DIAMOND_PICKAXE, of('P', PICKAXE_HEAD.get(Diamond), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "diamond_axe", "tools", Items.DIAMOND_AXE, of('P', AXE_HEAD.get(Diamond), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "diamond_hoe", "tools", Items.DIAMOND_HOE, of('P', HOE_HEAD.get(Diamond), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "diamond_shovel", "tools", Items.DIAMOND_SHOVEL, of('P', SHOVEL_HEAD.get(Diamond), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "diamond_sword", "tools", Items.DIAMOND_SWORD, of('P', SWORD_BLADE.get(Diamond), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "iron_pickaxe", "tools", Items.IRON_PICKAXE, of('P', PICKAXE_HEAD.get(Iron), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "iron_axe", "tools", Items.IRON_AXE, of('P', AXE_HEAD.get(Iron), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "iron_hoe", "tools", Items.IRON_HOE, of('P', HOE_HEAD.get(Iron), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "iron_shovel", "tools", Items.IRON_SHOVEL, of('P', SHOVEL_HEAD.get(Iron), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "iron_sword", "tools", Items.IRON_SWORD, of('P', SWORD_BLADE.get(Iron), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "golden_pickaxe", "tools", Items.GOLDEN_PICKAXE, of('P', PICKAXE_HEAD.get(Gold), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "golden_axe", "tools", Items.GOLDEN_AXE, of('P', AXE_HEAD.get(Gold), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "golden_hoe", "tools", Items.GOLDEN_HOE, of('P', HOE_HEAD.get(Gold), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "golden_shovel", "tools", Items.GOLDEN_SHOVEL, of('P', SHOVEL_HEAD.get(Gold), 'S', ROD.getMaterialTag(Wood)), "P", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "golden_sword", "tools", Items.GOLDEN_SWORD, of('P', SWORD_BLADE.get(Gold), 'S', ROD.getMaterialTag(Wood)), "P", "S");
     }
 
     private static void toolPartRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
@@ -364,15 +352,17 @@ public class Tools {
             provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCREWDRIVER_TIP.get(m),
                     of('R', ROD.getMaterialTag(m), 'F', FILE.getTag(), 'H', HAMMER.getTag()), "HR", "RF");
         });
-        SCYTHE_BLADE.all().forEach(m -> {
-            if (m.has(GEM)){
-                provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCYTHE_BLADE.get(m),
-                        of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "GGG", " F ");
-            } else if (m.has(INGOT)){
-                TagKey<Item> plate = m.has(PLATE) ? PLATE.getMaterialTag(m) : INGOT.getMaterialTag(m);
-                provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCYTHE_BLADE.get(m),
-                        of('P', plate, 'I', INGOT.getMaterialTag(m), 'H', HAMMER.getTag(), 'F', FILE.getTag()), "PPI", "HF ");
-            }
-        });
+        if (!AntimatterAPI.isModLoaded("gtsp") || AntimatterPlatformUtils.INSTANCE.isFabric()) {
+            SCYTHE_BLADE.all().forEach(m -> {
+                if (m.has(GEM)){
+                    provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCYTHE_BLADE.get(m),
+                            of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "GGG", " F ");
+                } else if (m.has(INGOT)){
+                    TagKey<Item> plate = m.has(PLATE) ? PLATE.getMaterialTag(m) : INGOT.getMaterialTag(m);
+                    provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCYTHE_BLADE.get(m),
+                            of('P', plate, 'I', INGOT.getMaterialTag(m), 'H', HAMMER.getTag(), 'F', FILE.getTag()), "PPI", "HF ");
+                }
+            });
+        }
     }
 }
