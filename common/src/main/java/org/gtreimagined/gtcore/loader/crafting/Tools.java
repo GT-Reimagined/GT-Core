@@ -71,6 +71,7 @@ public class Tools {
            TagKey<Item> rod = t.handleMaterial().has(ROD) ? ROD.getMaterialTag(t.handleMaterial()) : ROD.getMaterialTag(Wood);
            AntimatterToolType[] toolHeadTypes = new AntimatterToolType[]{PICKAXE, AXE, SWORD, SHOVEL, HOE, FILE, SAW, HAMMER, SCREWDRIVER, SCYTHE};
            Arrays.stream(toolHeadTypes).forEach(type -> {
+               if (type == SCYTHE && AntimatterAPI.isModLoaded("gtsp")) return;
                if (t.toolTypes().contains(type)){
                    if (type.getMaterialTypeItem() == null) return;
                    if (m.has(type.getMaterialTypeItem())){
