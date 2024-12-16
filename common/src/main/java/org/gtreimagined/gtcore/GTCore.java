@@ -170,7 +170,7 @@ public class GTCore extends AntimatterMod {
         event.setMaterial(GTCoreMaterials.FierySteel).asMetal().tool().toolDamage(4).toolSpeed(9).toolDurability(1024).toolQuality(4)
                 .toolEnchantments(ImmutableMap.of(Enchantments.FIRE_ASPECT, 2)).handleMaterial(AntimatterMaterials.Blaze)
                 .blacklistToolTypes(PICKAXE, SWORD).build();
-        event.setMaterial(GTCoreMaterials.Knightmetal).asMetal(GEAR).tool().toolDamage(3).toolSpeed(8).toolDurability(512).toolQuality(3)
+        event.setMaterial(GTCoreMaterials.Knightmetal).asMetal().tool().toolDamage(3).toolSpeed(8).toolDurability(512).toolQuality(3)
                 .blacklistToolTypes(AXE, PICKAXE, SWORD).build();
         event.setMaterial(GTCoreMaterials.Ironwood).asMetal(WOOD).tool().toolDamage(2).toolSpeed(6.5f).toolDurability(512).toolQuality(2)
                 .toolEnchantments(ImmutableMap.of(Enchantments.KNOCKBACK, 1))
