@@ -1,5 +1,6 @@
 package org.gtreimagined.gtcore.data;
 
+import muramasa.antimatter.cover.CoverReplacements;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.cover.CoverRedstoneTorch;
 import muramasa.antimatter.cover.CoverFactory;
@@ -12,7 +13,9 @@ public class GTCoreCovers {
 
     public static CoverFactory REDSTONE_TORCH = CoverFactory.builder(CoverRedstoneTorch::new)
             .addTextures(new Texture(GTCore.ID, "block/cover/redstone_torch_off"), new Texture(GTCore.ID, "block/cover/redstone_torch_on"))
-            .item((f, t) -> new ItemCover(GTCore.ID, "redstone_torch")).build(GTCore.ID, "redstone_torch");
+            .item((f, t) -> Items.REDSTONE_TORCH).build(GTCore.ID, "redstone_torch");
 
-    public static void init(){}
+    public static void init(){
+        CoverReplacements.addReplacement(Items.REDSTONE_TORCH, REDSTONE_TORCH);
+    }
 }
