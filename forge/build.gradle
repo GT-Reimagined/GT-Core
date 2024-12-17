@@ -59,7 +59,7 @@ dependencies {
     modRuntimeOnly("curse.maven:the-twilight-forest-227639:4337390")
     implementation("mezz.jei:jei-${rootProject.minecraft_version}-common-api:${rootProject.jei_version}")
     modImplementation("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
-    modImplementation("curse.maven:the-one-probe-245211:3965693")
+    modImplementation("curse.maven:the-one-probe-245211:3965688")
     modImplementation("org.gt-reimagined:structurelib-forge:${project.structurelib_version}-${project.minecraft_version}")
     modImplementation("curse.maven:jade-324717:5079263")
 }
