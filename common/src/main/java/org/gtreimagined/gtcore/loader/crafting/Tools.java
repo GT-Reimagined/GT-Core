@@ -124,7 +124,7 @@ public class Tools {
                if (t.toolTypes().contains(PLUNGER) && m.has(ROD)){
                    RUBBERTOOLS.all().stream().filter(r -> r.has(PLATE) && r != Wood).forEach(r -> {
                        provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_plunger_with_" + r.getId(), "", PLUNGER.getToolStack(m),
-                               of('P', rod, 'R', PLATE.getMaterialTag(r),'F', AntimatterDefaultTools.FILE.getTag(), 'W', WIRE_CUTTER.getTag()), "WRR", " PR", "P F");
+                               of('P', ROD.getMaterialTag(m), 'R', PLATE.getMaterialTag(r),'F', AntimatterDefaultTools.FILE.getTag(), 'W', WIRE_CUTTER.getTag()), "WRR", " PR", "P F");
                    });
 
                }
