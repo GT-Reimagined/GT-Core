@@ -50,8 +50,9 @@ public class CoverRepeater extends BaseCover {
     @Override
     public void setTextures(BiConsumer<String, Texture> texer) {
         BlockEntityRedstoneWire<?> wire = (BlockEntityRedstoneWire<?>) source().getTile();
-        texer.accept("overlay", factory.getTextures().get(wire.getRedstoneValue() > 0 ? 0 : 1));
-        texer.accept("overlay2", factory.getTextures().get(wire.getRedstoneValue() > 0 ? 1 : 0));
+        texer.accept("bottom", factory.getTextures().get(wire.getRedstoneValue() > 0 ? 0 : 1));
+        texer.accept("top", factory.getTextures().get(wire.getRedstoneValue() > 0 ? 1 : 0));
+        texer.accept("middle", factory.getTextures().get(1));
     }
 
     @Override
