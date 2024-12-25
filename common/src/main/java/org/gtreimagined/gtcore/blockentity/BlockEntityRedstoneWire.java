@@ -68,11 +68,23 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
 
     @Override
     public void toggleConnection(Direction side) {
-        super.toggleConnection(side);
         boolean oldConnectedToNonWire = mConnectedToNonWire;
+        super.toggleConnection(side);
+        if (mConnectedToNonWire || oldConnectedToNonWire) updateBlock(side);
+    }
+
+    @Override
+    public void setConnection(Direction side) {
+        super.setConnection(side);
         updateConnectionStatus();
         if (updateRedstone()) doRedstoneUpdate(this);
-        if (mConnectedToNonWire || oldConnectedToNonWire) updateBlock(side);
+    }
+
+    @Override
+    public void clearConnection(Direction side) {
+        super.clearConnection(side);
+        updateConnectionStatus();
+        if (updateRedstone()) doRedstoneUpdate(this);
     }
 
     @Override
