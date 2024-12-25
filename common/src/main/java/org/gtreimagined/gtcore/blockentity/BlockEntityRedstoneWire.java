@@ -42,18 +42,6 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     }
 
     @Override
-    public CoverFactory[] getValidCovers() {
-        return AntimatterAPI.all(CoverFactory.class).stream().filter(t -> {
-            try {
-                ICover cover = t.get().get(ICoverHandler.empty(this), t.getValidTier(), Direction.SOUTH, t);
-                return !cover.isNode() || cover instanceof CoverRedstoneTorch || cover instanceof CoverSelectorTag;
-            } catch (Exception ex) {
-                return false;
-            }
-        }).toArray(CoverFactory[]::new);
-    }
-
-    @Override
     public void onFirstTick() {
         super.onFirstTick();
         updateConnectionStatus();
@@ -85,6 +73,16 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         super.clearConnection(side);
         updateConnectionStatus();
         if (updateRedstone()) doRedstoneUpdate(this);
+    }
+
+    @Override
+    public boolean onCoverUpdate(boolean remove, boolean hasNonEmpty, Direction side, ICover old, ICover stack) {
+        boolean oldConnectedToNonWire = mConnectedToNonWire;
+        boolean update = super.onCoverUpdate(remove, hasNonEmpty, side, old, stack);
+        updateConnectionStatus();
+        if (updateRedstone()) doRedstoneUpdate(this);
+        if (mConnectedToNonWire || oldConnectedToNonWire) updateBlock(side);
+        return update;
     }
 
     @Override
@@ -142,7 +140,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     public void updateConnectionStatus() {
         mConnectedToNonWire = false;
         for (Direction tSide : Direction.values()) {
-            if (connects(tSide) && !(getCachedBlockEntity(tSide) instanceof BlockEntityRedstoneWire<?>)) mConnectedToNonWire = true;
+            if ((connects(tSide) || coverHandler.map(c -> c.get(tSide).getWeakPower() >= 0).orElse(false)) && !(getCachedBlockEntity(tSide) instanceof BlockEntityRedstoneWire<?>)) mConnectedToNonWire = true;
         }
     }
 
