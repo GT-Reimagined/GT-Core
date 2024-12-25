@@ -8,14 +8,19 @@ import muramasa.antimatter.item.ItemCover;
 import muramasa.antimatter.texture.Texture;
 import net.minecraft.world.item.Items;
 import org.gtreimagined.gtcore.cover.CoverRedstoneTorch;
+import org.gtreimagined.gtcore.cover.CoverRepeater;
 
 public class GTCoreCovers {
 
     public static CoverFactory REDSTONE_TORCH = CoverFactory.builder(CoverRedstoneTorch::new)
             .addTextures(new Texture(GTCore.ID, "block/cover/redstone_torch_off"), new Texture(GTCore.ID, "block/cover/redstone_torch_on"))
             .item((f, t) -> Items.REDSTONE_TORCH).build(GTCore.ID, "redstone_torch");
+    public static CoverFactory REDSTONE_REPEATER = CoverFactory.builder(CoverRepeater::new)
+            .addTextures(new Texture(GTCore.ID, "block/cover/redstone_torch_off"), new Texture(GTCore.ID, "block/cover/redstone_torch_on"))
+            .item((f, t) -> Items.REPEATER).build(GTCore.ID, "redstone_repeater");
 
     public static void init(){
         CoverReplacements.addReplacement(Items.REDSTONE_TORCH, REDSTONE_TORCH);
+        CoverReplacements.addReplacement(Items.REPEATER, REDSTONE_REPEATER);
     }
 }
