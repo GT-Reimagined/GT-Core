@@ -17,6 +17,7 @@ import org.gtreimagined.gtcore.datagen.GTCoreItemTagProvider;
 import org.gtreimagined.gtcore.datagen.GTCoreLang;
 import org.gtreimagined.gtcore.events.GTCommonEvents;
 import org.gtreimagined.gtcore.integration.top.MassStorageProvider;
+import org.gtreimagined.gtcore.integration.top.RedstoneWireProvider;
 import org.gtreimagined.gtcore.loader.crafting.MachineRecipes;
 import org.gtreimagined.gtcore.loader.crafting.MaterialRecipes;
 import org.gtreimagined.gtcore.loader.crafting.MiscRecipes;
@@ -116,6 +117,7 @@ public class GTCore extends AntimatterMod {
                 RubberTreeWorldGen.init();
                 if (AntimatterAPI.isModLoaded(Ref.MOD_TOP)){
                     MassStorageProvider.createTopProvider();
+                    RedstoneWireProvider.createTopProvider();
                 }
                 CommonEvents.addPlayerTickCallback(GTCommonEvents::onPlayerTick);
                 AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, SYNC_ID, MessageCraftingSync.HANDLER, MessageCraftingSync.class);
