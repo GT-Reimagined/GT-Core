@@ -38,6 +38,7 @@ neoForge {
 
 
 dependencies {
+    compileOnly(project(":common"))
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation("org.jetbrains:annotations:26.0.1")
     modImplementation("org.gt-reimagined:antimatter-forge:${antimatter_version}")
