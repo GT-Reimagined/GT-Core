@@ -155,6 +155,7 @@ public class GTCoreMaterials {
     public static Material Invar = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "invar", 0xb4b478, METALLIC));
     public static Material IronMagnetic = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "magnetic_iron", 0xc8c8c8, MAGNETIC)).setMassMultiplierAndDivider(51, 50);
     public static Material Kanthal = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "kanthal", 0xc2d2df, METALLIC));
+    public static Material LeadedRedstone = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "leaded_redstone", 0x9a0000, DULL)).setMassMultiplierAndDivider(5, 4);
     public static Material Magnalium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "magnalium", 0xc8beff, DULL));
     public static Material Naquadah = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "naquadah", 0x323232, METALLIC, Naq));
     public static Material NaquadahAlloy = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "naquadah_alloy", 0x282828, METALLIC));
