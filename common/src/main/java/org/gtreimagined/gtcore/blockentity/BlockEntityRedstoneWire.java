@@ -50,6 +50,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     @Override
     public void onBlockUpdate(BlockPos neighbor) {
         super.onBlockUpdate(neighbor);
+        if (level.getBlockState(neighbor).getBlock() instanceof BlockRedstoneWire<?>) return;
         updateConnectionStatus();
         if (updateRedstone()) doRedstoneUpdate(this);
     }
