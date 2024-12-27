@@ -144,13 +144,19 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         Vec3 vec = hit.getLocation();
         var handler = itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
         ItemStack stack = player.getItemInHand(hand);
-        if (stack.getItem() instanceof ItemTape tape && stack.isDamageableItem() && handler.getItem(0).getCount() <= stack.getMaxDamage() - stack.getDamageValue()){
-            this.setMachineState(MachineState.ACTIVE);
-            if (!player.isCreative()){
-                stack.hurtAndBreak(handler.getItem(0).getCount(), player, (player2) -> {
-                    player2.broadcastBreakEvent(hand);
-                    if (!player2.addItem(new ItemStack(tape.getEmpty()))) player2.drop(new ItemStack(tape.getEmpty()), true);
-                });
+        if (stack.getItem() instanceof ItemTape tape && stack.isDamageableItem()) {
+            int count = handler.getItem(0).getCount();
+            if (count == 0 || count <= stack.getMaxDamage() - stack.getDamageValue()){
+                int damage = count == 0 ? 1 : count;
+                this.setMachineState(MachineState.ACTIVE);
+                if (!player.isCreative()) {
+                    stack.hurtAndBreak(damage, player, (player2) -> {
+                        player2.broadcastBreakEvent(hand);
+                        if (!player2.addItem(new ItemStack(tape.getEmpty())))
+                            player2.drop(new ItemStack(tape.getEmpty()), true);
+                    });
+                }
+                return InteractionResult.SUCCESS;
             }
         }
         if (type == AntimatterDefaultTools.WIRE_CUTTER){
