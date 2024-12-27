@@ -35,7 +35,7 @@ public class GTCoreConfig {
         CIRCUIT_RECIPE_MODE = section.addEnum("circuit_recipe_mode", recipeMode, CircuitRecipeMode.class, "Determines the various recipes for circuits.", "GT4 is circuits recipes based off gt4, GT5 is circuits recipes based off mostly GT5 but with slight modifications,", "PUP is harder circuit recipes but not crazy like gt5u, and GT%U is exactly what it sounds like: the absurdly grindy circuit recipes from GT5U 09.31 but with slight modifications.");
         LOSSY_PART_CRAFTING = section.addBool("lossy_part_crafting", true, "Enable crating recipes for things like rods and plates being lossy - Default: true",
                 "Note: make sure to run /reload after changing this.");
-        HARDER_WOOD = section.addBool("harder_wood", AntimatterAPI.isModLoaded("gti"),"If true logs to planks and planks to sticks give half of vanilla amounts - Default: true with gti, false otherwise");
+        HARDER_WOOD = section.addBool("harder_wood", true,"If true logs to planks and planks to sticks give half of vanilla amounts - Default: true");
         HARDER_LAPOTRON_CRYSTALS = section.addBool("harder_lapotron_crystals", false, "If true lapotron crystals will require assembling with raw lapotron crystals, which are made with lapotronium dust - Default: false");
         VANILLA_OVERRIDES = section.addBool("vanilla_overrides", true, "If true enables gregified recipes of some vanilla blocks and items - Default: true");
         DISABLE_WOOD_TOOLS = section.addBool("disable_wood_tools", true, "If true disables crafting recipes for wood tools(except wood shovels) and hides them in jei/rei - Default: true");
