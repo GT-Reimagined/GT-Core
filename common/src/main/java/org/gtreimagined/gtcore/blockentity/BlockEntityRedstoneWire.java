@@ -191,6 +191,12 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         }
         if (mRedstone != oRedstone) {
             sidedSync(true);
+            if (type.isEmitsLight() && level != null && size == PipeSize.VTINY){
+                int lightLevel = getBlockState().getValue(BlockRedstoneWire.LIGHT);
+                if (getVanillaRedstonePower() != lightLevel){
+                    level.setBlock(this.getBlockPos(), this.getBlockState().setValue(BlockRedstoneWire.LIGHT, getVanillaRedstonePower()), 0);
+                }
+            }
             if (mConnectedToNonWire) {
                 for (Direction tSide : sidesToUpdate) {
                     updateBlock(tSide);

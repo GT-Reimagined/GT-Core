@@ -1,5 +1,10 @@
 package org.gtreimagined.gtcore.block;
 
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.StateDefinition.Builder;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
 import muramasa.antimatter.Data;
 import muramasa.antimatter.Ref;
@@ -20,8 +25,10 @@ import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
+    public static final IntegerProperty LIGHT = IntegerProperty.create("light", 0, 15);
+    protected final StateDefinition<Block, BlockState> stateContainer;
     public BlockRedstoneWire(T type, PipeSize size) {
-        super(type.getId(), type, size, 2, Properties.of(Data.WRENCH_MATERIAL).strength(1.0f, 3.0f).requiresCorrectToolForDrops().emissiveRendering(((blockState, blockGetter, pos) -> isEmissive(size, blockState, blockGetter, pos))));
+        super(type.getId(), type, size, 2, Properties.of(Data.WRENCH_MATERIAL).strength(1.0f, 3.0f).requiresCorrectToolForDrops().lightLevel(BlockRedstoneWire::getLightEmission));
         String prefix = size == PipeSize.TINY ? "cable" : "wire";
         this.side = new Texture(Ref.ID, "block/pipe/" + prefix + "_side");
         this.faces = new Texture[]{
@@ -32,16 +39,37 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
                 new Texture(Ref.ID, "block/pipe/" + prefix + "_large"),
                 new Texture(Ref.ID, "block/pipe/" + prefix + "_huge")
         };
-    }
-
-    private static boolean isEmissive(PipeSize size, BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-        return size == PipeSize.VTINY && blockGetter.getBlockEntity(blockPos) instanceof BlockEntityRedstoneWire<?> wire && wire.getRedstoneValue() > 0;
-    }
-
-    public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
-        if (getType().emitsLight && getSize() == PipeSize.VTINY && level.getBlockEntity(pos) instanceof BlockEntityRedstoneWire<?> wire && wire.getRedstoneValue() > 0){
-            return CodeUtils.bind4(CodeUtils.divup(wire.getRedstoneValue(), BlockEntityRedstoneWire.MAX_RANGE));
+        StateDefinition.Builder<Block, BlockState> builder = new StateDefinition.Builder<>(this);
+        this.createBlockStateDefinition(builder);
+        this.stateContainer = builder.create(Block::defaultBlockState, BlockState::new);
+        if (type.emitsLight && size == PipeSize.VTINY){
+            this.registerDefaultState(this.getStateDefinition().any().setValue(BlockStateProperties.WATERLOGGED, false).setValue(TICKING, false).setValue(LIGHT, 0));
+        } else {
+            this.registerDefaultState(this.getStateDefinition().any().setValue(BlockStateProperties.WATERLOGGED, false).setValue(TICKING, false));
         }
+    }
+
+    @Override
+    public StateDefinition<Block, BlockState> getStateDefinition() {
+        if (this.stateContainer != null) return stateContainer;
+        return super.getStateDefinition();
+    }
+
+    @Override
+    protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        if (this.type == null) return;
+        if (type.emitsLight && size == PipeSize.VTINY) {
+            builder.add(LIGHT);
+        }
+    }
+
+    /*private static boolean isEmissive(PipeSize size, BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+        return size == PipeSize.VTINY && blockGetter.getBlockEntity(blockPos) instanceof BlockEntityRedstoneWire<?> wire && wire.getRedstoneValue() > 0;
+    }*/
+
+    public static int getLightEmission(BlockState state) {
+        if (state.hasProperty(LIGHT)) return state.getValue(LIGHT);
         return 0;
     }
 

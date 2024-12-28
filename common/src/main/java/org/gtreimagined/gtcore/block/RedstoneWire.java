@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class RedstoneWire<T extends RedstoneWire<T>> extends PipeType<T> {
     int onColor;
     int range;
-    boolean initializing = false;
+    boolean initializing;
     boolean emitsLight = false;
 
     public RedstoneWire(String domain, Material material, int onColor) {
@@ -61,5 +61,9 @@ public class RedstoneWire<T extends RedstoneWire<T>> extends PipeType<T> {
     public T emitsLight(){
         emitsLight = true;
         return (T) this;
+    }
+
+    public boolean isEmitsLight() {
+        return emitsLight;
     }
 }
