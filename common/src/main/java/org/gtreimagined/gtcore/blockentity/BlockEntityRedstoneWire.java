@@ -1,5 +1,7 @@
 package org.gtreimagined.gtcore.blockentity;
 
+import muramasa.antimatter.pipe.PipeSize;
+import net.minecraft.world.level.block.Blocks;
 import org.gtreimagined.gtcore.block.BlockRedstoneWire;
 import org.gtreimagined.gtcore.block.RedstoneWire;
 import org.gtreimagined.gtcore.cover.CoverRedstoneTorch;
@@ -113,7 +115,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         if (block instanceof BlockRedstoneWire<?>) return 0;
         boolean connects = connects(side);
         if (mRedstone <= 0 || !connects) return 0;
-        return CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE)) - 1;
+        return getVanillaRedstonePower() - 1;
     }
 
     public int getStrongPower(Direction side){
@@ -125,7 +127,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         if (block instanceof BlockRedstoneWire<?>) return 0;
         boolean connects = connects(side);
         if (mRedstone <= 0 || !connects) return 0;
-        return CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE)) - 1;
+        return getVanillaRedstonePower() - 1;
     }
 
     public int getComparatorInputOverride(byte aSide) {
@@ -137,6 +139,10 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     }
     public long getRedstoneValue() {return mRedstone;}
     public long getRedstoneMinusLoss() {return mRedstone - mLoss;}
+
+    public int getVanillaRedstonePower(){
+        return CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE));
+    }
 
     public void updateConnectionStatus() {
         mConnectedToNonWire = false;
@@ -230,9 +236,9 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     public List<String> getInfo(boolean simple) {
         List<String> info = super.getInfo(simple);
         if (!simple) {
-            info.add("Redstone level " + mRedstone);
+            info.add("Internal redstone value " + mRedstone);
         }
-        info.add("Vanilla redstone power: " + CodeUtils.bind4(CodeUtils.divup(mRedstone, MAX_RANGE)));
+        info.add("Redstone power: " + getVanillaRedstonePower());
         return info;
     }
 

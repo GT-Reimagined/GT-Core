@@ -33,7 +33,7 @@ public class RedstoneWireProvider implements IProbeInfoProvider {
     public void addProbeInfo(ProbeMode probeMode, IProbeInfo probeInfo, Player player, Level level, BlockState blockState, IProbeHitData iProbeHitData) {
         BlockEntity blockEntity = level.getBlockEntity(iProbeHitData.getPos());
         if (blockEntity instanceof BlockEntityRedstoneWire<?> wire){
-            int redstone = CodeUtils.bind4(CodeUtils.divup(wire.mRedstone, BlockEntityRedstoneWire.MAX_RANGE));
+            int redstone = wire.getVanillaRedstonePower();
             if (redstone > 0 && Tools.show(probeMode, Config.getRealConfig().getShowRedstone())) {
                 probeInfo.horizontal().item(new ItemStack(Items.REDSTONE), probeInfo.defaultItemStyle().width(14).height(14)).text(CompoundText.createLabelInfo("Power: ", redstone));
             }
