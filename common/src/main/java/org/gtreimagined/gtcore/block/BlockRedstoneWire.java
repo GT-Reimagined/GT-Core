@@ -97,13 +97,13 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
 
     @Override
     public int getBlockColor(BlockState state, @Nullable BlockGetter world, @Nullable BlockPos pos, int i) {
-        if (world != null && pos != null){
+        /*if (world != null && pos != null){
             if (world.getBlockEntity(pos) instanceof BlockEntityRedstoneWire<?> redstoneWire){
                 if (redstoneWire.getRedstoneValue() > 0){
                     return getType().getOnColor();
                 }
             }
-        }
+        }*/
         return super.getBlockColor(state, world, pos, i);
     }
 
