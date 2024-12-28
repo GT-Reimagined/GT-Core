@@ -151,10 +151,11 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         if (!connects(side)) return 0;
         BlockEntity tDelegator = getCachedBlockEntity(side);
         if (tDelegator instanceof BlockEntityRedstoneWire<?> wire) return connects(side) && wire.connects(side.getOpposite()) ? wire.getRedstoneMinusLoss() : 0;
+        BlockState state = level.getBlockState(getBlockPos().relative(side));
         // Do not accept Redstone coming from any Redstone Sink! (Such as Droppers or Dispensers)
         //if (REDSTONE_SINKS.contains(tDelegator.getBlock())) return 0;
         int redstoneLevel = level.getSignal(this.getBlockPos().relative(side), side);
-        return (MAX_RANGE * redstoneLevel) - (getPipeType().getRange() == 1 ? 0 : mLoss);
+        return (MAX_RANGE * redstoneLevel) - (getPipeType().getRange() == 1 && state.getBlock() != Blocks.REDSTONE_WIRE ? 0 : mLoss);
     }
 
     private void updateBlock(Direction side){
