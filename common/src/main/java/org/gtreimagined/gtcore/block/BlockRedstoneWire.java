@@ -1,5 +1,6 @@
 package org.gtreimagined.gtcore.block;
 
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
@@ -25,6 +26,7 @@ import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
+    public static final int INSULATION_COLOR = 0x604040;
     public static final IntegerProperty LIGHT = IntegerProperty.create("light", 0, 15);
     protected final StateDefinition<Block, BlockState> stateContainer;
     public BlockRedstoneWire(T type, PipeSize size) {
@@ -104,7 +106,19 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
                 }
             }
         }*/
-        return super.getBlockColor(state, world, pos, i);
+        if (world == null || pos == null) return -1;
+        BlockEntityPipe<?> pipe = getTilePipe(world, pos);
+        if (size == PipeSize.TINY && pipe != null && pipe.getPipeColor() != -1 && i == 0) return pipe.getPipeColor();
+        if (size == PipeSize.TINY) return i == 1 ? getRGB() : i == 0 ? INSULATION_COLOR : -1;
+        return i == 0 || i == 1 ? getRGB() : -1;
+    }
+
+    @Override
+    public int getItemColor(ItemStack stack, @Nullable Block block, int i) {
+        if (size == PipeSize.TINY && stack.getTag() != null && stack.getTag().contains(Ref.KEY_PIPE_TILE_COLOR) && i == 0){
+            return stack.getTag().getInt(Ref.KEY_PIPE_TILE_COLOR);
+        }
+        return size == PipeSize.TINY ? i == 1 ? getRGB() : i == 0 ? INSULATION_COLOR : -1 : getRGB();
     }
 
     @Override
