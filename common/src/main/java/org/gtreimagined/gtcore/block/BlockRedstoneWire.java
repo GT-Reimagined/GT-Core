@@ -34,12 +34,12 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
         String prefix = size == PipeSize.TINY ? "cable" : "wire";
         this.side = new Texture(Ref.ID, "block/pipe/" + prefix + "_side");
         this.faces = new Texture[]{
-                new Texture(Ref.ID, "block/pipe/" + prefix + "_vtiny"),
-                new Texture(Ref.ID, "block/pipe/" + prefix + "_tiny"),
-                new Texture(Ref.ID, "block/pipe/" + prefix + "_small"),
-                new Texture(Ref.ID, "block/pipe/" + prefix + "_normal"),
-                new Texture(Ref.ID, "block/pipe/" + prefix + "_large"),
-                new Texture(Ref.ID, "block/pipe/" + prefix + "_huge")
+                new Texture(Ref.ID, "block/pipe/" + "wire_vtiny"),
+                new Texture(Ref.ID, "block/pipe/" + "wire_tiny"),
+                new Texture(Ref.ID, "block/pipe/" + "wire_small"),
+                new Texture(Ref.ID, "block/pipe/" + "wire_normal"),
+                new Texture(Ref.ID, "block/pipe/" + "wire_large"),
+                new Texture(Ref.ID, "block/pipe/" + "wire_huge")
         };
         StateDefinition.Builder<Block, BlockState> builder = new StateDefinition.Builder<>(this);
         this.createBlockStateDefinition(builder);
