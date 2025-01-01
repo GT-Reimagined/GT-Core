@@ -30,7 +30,7 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
     public static final IntegerProperty LIGHT = IntegerProperty.create("light", 0, 15);
     protected final StateDefinition<Block, BlockState> stateContainer;
     public BlockRedstoneWire(T type, PipeSize size) {
-        super(type.getId(), type, size, 2, Properties.of(Data.WRENCH_MATERIAL).strength(1.0f, 3.0f).requiresCorrectToolForDrops().lightLevel(BlockRedstoneWire::getLightEmission));
+        super(type.getId(), type, size, 2, Properties.of(Data.WRENCH_MATERIAL).strength(1.0f, 3.0f).requiresCorrectToolForDrops().emissiveRendering(((blockState, blockGetter, blockPos) -> isEmissive(size, blockState, blockGetter, blockPos))).lightLevel(BlockRedstoneWire::getLightEmission));
         String prefix = size == PipeSize.TINY ? "cable" : "wire";
         this.side = new Texture(Ref.ID, "block/pipe/" + prefix + "_side");
         this.faces = new Texture[]{
@@ -66,9 +66,9 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
         }
     }
 
-    /*private static boolean isEmissive(PipeSize size, BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+    private static boolean isEmissive(PipeSize size, BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
         return size == PipeSize.VTINY && blockGetter.getBlockEntity(blockPos) instanceof BlockEntityRedstoneWire<?> wire && wire.getRedstoneValue() > 0;
-    }*/
+    }
 
     public static int getLightEmission(BlockState state) {
         if (state.hasProperty(LIGHT)) return state.getValue(LIGHT);
