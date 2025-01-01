@@ -1,5 +1,8 @@
 package org.gtreimagined.gtcore.cover;
 
+import muramasa.antimatter.pipe.BlockPipe;
+import muramasa.antimatter.pipe.PipeSize;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
 import muramasa.antimatter.capability.ICoverHandler;
@@ -10,9 +13,11 @@ import muramasa.antimatter.texture.Texture;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
+import org.gtreimagined.gtcore.data.GTCoreCables;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.ExecutionException;
 import java.util.function.BiConsumer;
 
 public class CoverRedstoneTorch extends BaseCover {
@@ -57,5 +62,17 @@ public class CoverRedstoneTorch extends BaseCover {
     @Override
     public ResourceLocation getModel(String type, Direction dir) {
         return new ResourceLocation(GTCore.ID + ":block/cover/" + this.getRenderId());
+    }
+
+    @Override
+    public VoxelShape getShape(Direction side) throws ExecutionException {
+        int config = 1 << side.get3DDataValue();
+        BlockPipe<?> pipe = (BlockPipe<?>) GTCoreCables.WIRE_RED_ALLOY.getBlock(PipeSize.VTINY);
+        return pipe.getPipeShapes().get(config, () -> pipe.makeShapes((short) config));
+    }
+
+    @Override
+    public ResourceLocation getIdForCache() {
+        return new ResourceLocation(GTCore.ID, "torches");
     }
 }
