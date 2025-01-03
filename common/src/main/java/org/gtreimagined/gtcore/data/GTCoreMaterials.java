@@ -185,9 +185,9 @@ public class GTCoreMaterials {
     public static Material WroughtIron = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "wrought_iron", 0xc8b4b4, METALLIC));
     public static Material YttriumBariumCuprate = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "yttrium_barium_cuprate", 0x504046, METALLIC));
 
-    public static Material Signalum = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "signalum", 0xFF4000, SHINY));
-    public static Material Lumium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "lumium", 0xffff50, SHINY));
-    public static Material Enderium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "enderium", 0x3c7d73, SHINY));
+    public static Material Signalum = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "signalum", 0xFF4000, SHINY, "thermal"));
+    public static Material Lumium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "lumium", 0xffff50, SHINY, "thermal"));
+    public static Material Enderium = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "enderium", 0x3c7d73, SHINY, "thermal"));
 
     public static Material Ironwood = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "ironwood", 0x968C6E, WOOD, "twilightforest"));
     public static Material Steeleaf = AntimatterAPI.register(Material.class, new Material(GTCore.ID, "steeleaf", 0x327F32, TextureSets.LEAF, "twilightforest"));

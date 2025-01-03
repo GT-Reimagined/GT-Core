@@ -75,10 +75,13 @@ import org.gtreimagined.gtcore.data.RecipeMaps;
 import java.util.Arrays;
 import java.util.function.BiConsumer;
 
+import static com.google.common.collect.ImmutableMap.of;
 import static muramasa.antimatter.data.AntimatterDefaultTools.*;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
+import static muramasa.antimatter.data.AntimatterMaterials.*;
 import static muramasa.antimatter.material.MaterialTags.RUBBERTOOLS;
 import static muramasa.antimatter.material.MaterialTags.WOOD;
+import static org.gtreimagined.gtcore.data.GTCoreMaterials.*;
 
 public class GTCore extends AntimatterMod {
 
@@ -189,6 +192,29 @@ public class GTCore extends AntimatterMod {
             BLOCK.replacement(GTCoreMaterials.Steeleaf, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "steeleaf_block"));
             INGOT.replacement(GTCoreMaterials.FierySteel, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "fiery_ingot"));
             BLOCK.replacement(GTCoreMaterials.FierySteel, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "fiery_block"));
+        }
+        event.setMaterial(GTCoreMaterials.Signalum).asMetal(1353).mats(of(Copper, 1, Silver, 2, RedAlloy, 5));
+        event.setMaterial(GTCoreMaterials.Lumium).asMetal(593).mats(of(Tin, 3, Silver, 1, Glowstone, 4));
+        event.setMaterial(GTCoreMaterials.Enderium).asMetal(1071).mats(of(Tin, 2, Silver, 1, Platinum, 1, EnderPearl, 4));
+        if (AntimatterAPI.isModLoaded("thermal")){
+            INGOT.replacement(GTCoreMaterials.Signalum, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "signalum_ingot"));
+            DUST.replacement(GTCoreMaterials.Signalum, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "signalum_dust"));
+            NUGGET.replacement(GTCoreMaterials.Signalum, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "signalum_nugget"));
+            BLOCK.replacement(GTCoreMaterials.Signalum, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "signalum_block"));
+            GEAR.replacement(GTCoreMaterials.Signalum, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "signalum_gear"));
+            PLATE.replacement(GTCoreMaterials.Signalum, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "signalum_plate"));
+            INGOT.replacement(Lumium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "lumium_ingot"));
+            DUST.replacement(Lumium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "lumium_dust"));
+            NUGGET.replacement(Lumium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "lumium_nugget"));
+            BLOCK.replacement(Lumium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "lumium_block"));
+            GEAR.replacement(Lumium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "lumium_gear"));
+            PLATE.replacement(Lumium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "lumium_plate"));
+            INGOT.replacement(GTCoreMaterials.Enderium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "enderium_ingot"));
+            DUST.replacement(GTCoreMaterials.Enderium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "enderium_dust"));
+            NUGGET.replacement(GTCoreMaterials.Enderium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "enderium_nugget"));
+            BLOCK.replacement(GTCoreMaterials.Enderium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "enderium_block"));
+            GEAR.replacement(GTCoreMaterials.Enderium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "enderium_gear"));
+            PLATE.replacement(GTCoreMaterials.Enderium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "enderium_plate"));
         }
         GTCoreBlocks.initItemBarrels();
         Guis.init();
