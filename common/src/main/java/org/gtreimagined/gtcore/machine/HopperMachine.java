@@ -1,5 +1,6 @@
 package org.gtreimagined.gtcore.machine;
 
+import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.machine.MachineFlag;
 import muramasa.antimatter.machine.Tier;
@@ -21,6 +22,7 @@ public class HopperMachine extends MaterialMachine{
         addFlags(ITEM, GUI);
         removeFlags(MachineFlag.COVERABLE);
         if (slots <= 0) throw new IllegalArgumentException("slots cannot be <= 0!");
+        AntimatterAPI.register(HopperMachine.class, this);
         int startY;
         int rows;
         if (slots > 27 || slots == 16 || slots == 20){

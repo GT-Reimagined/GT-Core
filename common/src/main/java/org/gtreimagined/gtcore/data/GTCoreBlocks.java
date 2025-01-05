@@ -204,4 +204,12 @@ public class GTCoreBlocks {
         }
         return new BarrelMachine(GTCore.ID, material, addSlots);
     }
+
+    public static HopperMachine createHopper(Material material, int slots){
+        HopperMachine machine = AntimatterAPI.get(HopperMachine.class, material.getId() + "_hopper", GTCore.ID);
+        if (machine != null){
+            return machine;
+        }
+        return new HopperMachine(GTCore.ID, material, false, slots);
+    }
 }
