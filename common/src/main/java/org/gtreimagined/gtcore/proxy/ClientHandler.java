@@ -3,6 +3,7 @@ package org.gtreimagined.gtcore.proxy;
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import muramasa.antimatter.client.ClientPlatformHelper;
 import org.gtreimagined.gtcore.block.BlockCasing;
+import org.gtreimagined.gtcore.block.BlockGTHopper;
 import org.gtreimagined.gtcore.block.BlockMaterialChest;
 import org.gtreimagined.gtcore.blockentity.BlockEntityChest;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
@@ -51,6 +52,7 @@ public class ClientHandler {
             AntimatterAPI.all(BlockMachineMaterial.class, b -> ModelUtils.INSTANCE.setRenderLayer(b, RenderType.cutout()));
             AntimatterAPI.all(BlockMultiMachineMaterial.class, b -> ModelUtils.INSTANCE.setRenderLayer(b, RenderType.cutout()));
             AntimatterAPI.all(BlockMaterialChest.class, b -> ModelUtils.INSTANCE.setRenderLayer(b, RenderType.cutout()));
+            AntimatterAPI.all(BlockGTHopper.class, b -> ModelUtils.INSTANCE.setRenderLayer(b, RenderType.cutout()));
             AntimatterAPI.all(BlockCasing.class, b -> ModelUtils.INSTANCE.setRenderLayer(b, RenderType.cutout()));
             ModelUtils.INSTANCE.setRenderLayer(GTCoreBlocks.RUBBER_SAPLING, RenderType.cutout());
             ModelUtils.INSTANCE.setRenderLayer(GTCoreBlocks.RUBBER_LEAVES, RenderType.cutout());

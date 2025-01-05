@@ -34,6 +34,7 @@ import org.gtreimagined.gtcore.blockentity.BlockEntityTrashCan;
 import org.gtreimagined.gtcore.machine.BarrelMachine;
 import org.gtreimagined.gtcore.machine.ChestMachine;
 import org.gtreimagined.gtcore.machine.DrumMachine;
+import org.gtreimagined.gtcore.machine.HopperMachine;
 import org.gtreimagined.gtcore.machine.LockerMachine;
 import org.gtreimagined.gtcore.machine.MassStorageMachine;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
@@ -100,6 +101,8 @@ public class GTCoreBlocks {
     public static MaterialMachine IRONWOOD_ITEM_BARREL = null;
 
     public static BasicMachine ENDER_GARBAGE_BIN = new BasicMachine(GTCore.ID, "ender_garbage_bin").baseTexture(new Texture(GTCore.ID, "block/machine/base/ender_garbage_bin")).setTiers(Tier.NONE).custom().itemModelParent(new ResourceLocation(GTCore.ID, "block/ender_garbage_bin_base")).addFlags(MachineFlag.ITEM, MachineFlag.FLUID, MachineFlag.UNCULLED, MachineFlag.GUI).removeFlags(MachineFlag.COVERABLE, MachineFlag.EU).allowFrontIO().noCovers().setTile(BlockEntityTrashCan::new);
+
+    public static HopperMachine LEAD_HOPPER = new HopperMachine(GTCore.ID, "lead_hopper", Lead);
 
     public static StoneType RED_GRANITE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "red_granite", RedGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
     public static StoneType BLACK_GRANITE = AntimatterAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "black_granite", BlackGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
