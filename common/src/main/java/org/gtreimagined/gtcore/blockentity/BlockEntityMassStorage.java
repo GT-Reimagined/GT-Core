@@ -336,7 +336,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
 
     public void processItemOutput(ItemStack itemStack, boolean simulate) {
         Direction outputDir = Direction.DOWN;
-        BlockEntity adjTile = Utils.getTile(this.getLevel(), this.getBlockPos().relative(outputDir));
+        BlockEntity adjTile = getCachedBlockEntity(outputDir);
         if (adjTile == null) return;
         if (!itemStack.isEmpty()) {
             TesseractCapUtils.INSTANCE.getItemHandler(adjTile, outputDir.getOpposite()).ifPresent(adjHandler -> {
