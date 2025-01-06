@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.behaviour;
 
 import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.Ref;
 import muramasa.antimatter.behaviour.IItemRightClick;
 import muramasa.antimatter.tool.IAntimatterTool;
 import muramasa.antimatter.tool.IBasicAntimatterTool;
@@ -30,7 +31,7 @@ public class BehaviourMultitoolSwitching implements IItemRightClick<IBasicAntima
             if (toolType == POCKET_MULTITOOL_SCREWDRIVER) id = id.replace("screwdriver", "wire_cutter");
             if (toolType == POCKET_MULTITOOL_WIRE_CUTTER) id = id.replace("wire_cutter", "scissors");
             if (toolType == POCKET_MULTITOOL_SCISSORS) id = id.replace("_scissors", "");
-            Item newWrench = AntimatterAPI.get(IAntimatterTool.class, id).getItem();
+            Item newWrench = AntimatterAPI.get(IAntimatterTool.class, id, Ref.SHARED_ID).getItem();
             ItemStack newStack = new ItemStack(newWrench);
             newStack.setTag(stack.getTag());
             player.setItemSlot(usedHand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND, newStack);

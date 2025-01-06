@@ -1,5 +1,6 @@
 package org.gtreimagined.gtcore;
 
+import muramasa.antimatter.machine.Tier;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.machine.DrumMachine;
 import org.gtreimagined.gtcore.machine.LockerMachine;
@@ -44,5 +45,15 @@ public class GTCoreRemapping {
         }
         AntimatterRemapping.remap(GTCore.ID, "sword_head_shape", "sword_blade_shape");
         AntimatterRemapping.remap(GTCore.ID, "saw_head_shape", "saw_blade_shape");
+        Tier[] tiers = new Tier[] {Tier.LV, Tier.MV, Tier.HV};
+        for (Tier tier : tiers) {
+            AntimatterRemapping.remap(new ResourceLocation("antimatter_shared", "drill_" + tier.getId()), new ResourceLocation(GTCore.ID, "drill_" + tier.getId()));
+            AntimatterRemapping.remap(new ResourceLocation("antimatter_shared", "buzzsaw_" + tier.getId()), new ResourceLocation(GTCore.ID, "buzzsaw_" + tier.getId()));
+            AntimatterRemapping.remap(new ResourceLocation("antimatter_shared", "electric_screwdriver_" + tier.getId()), new ResourceLocation(GTCore.ID, "electric_screwdriver_" + tier.getId()));
+            AntimatterRemapping.remap(new ResourceLocation("antimatter_shared", "electric_wrench_" + tier.getId()), new ResourceLocation(GTCore.ID, "electric_wrench_" + tier.getId()));
+            AntimatterRemapping.remap(new ResourceLocation("antimatter_shared", "electric_wrench_alt_" + tier.getId()), new ResourceLocation(GTCore.ID, "electric_wrench_alt_" + tier.getId()));
+            AntimatterRemapping.remap(new ResourceLocation("antimatter_shared", "chainsaw_" + tier.getId()), new ResourceLocation(GTCore.ID, "chainsaw_" + tier.getId()));
+        }
+        AntimatterRemapping.remap(new ResourceLocation("antimatter_shared", "jackhammer_hv"), new ResourceLocation(GTCore.ID, "jackhammer_hv"));
     }
 }

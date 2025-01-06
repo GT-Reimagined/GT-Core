@@ -93,18 +93,18 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(FIRESTARTER).add(Items.FLINT_AND_STEEL, Match, Lighter, MatchBook);
         this.tag(TagUtils.getItemTag(new ResourceLocation(Ref.MOD_TWILIGHT, "banned_uncraftables"))).add(AntimatterAPI.all(Item.class).toArray(Item[]::new));
         this.tag(MAGNETIC_TOOL).add(
-                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_lv").getItem(),
-                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_mv").getItem(),
-                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_hv").getItem(),
-                AntimatterAPI.get(IAntimatterTool.class, "drill_lv").getItem(),
-                AntimatterAPI.get(IAntimatterTool.class, "drill_mv").getItem(),
-                AntimatterAPI.get(IAntimatterTool.class, "drill_hv").getItem(),
-                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_lv").getItem(),
-                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_mv").getItem(),
-                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_hv").getItem(),
-                AntimatterAPI.get(IAntimatterTool.class, "chainsaw_lv").getItem(),
-                AntimatterAPI.get(IAntimatterTool.class, "chainsaw_mv").getItem(),
-                AntimatterAPI.get(IAntimatterTool.class, "chainsaw_hv").getItem());
+                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_lv", GTCore.ID).getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_mv", GTCore.ID).getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_hv", GTCore.ID).getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "drill_lv", GTCore.ID).getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "drill_mv", GTCore.ID).getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "drill_hv", GTCore.ID).getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_lv", GTCore.ID).getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_mv", GTCore.ID).getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_hv", GTCore.ID).getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "chainsaw_lv", GTCore.ID).getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "chainsaw_mv", GTCore.ID).getItem(),
+                AntimatterAPI.get(IAntimatterTool.class, "chainsaw_hv", GTCore.ID).getItem());
         Material[] materials = new Material[]{IronMagnetic, SteelMagnetic, NeodymiumMagnetic};
         for (Material material : materials) {
             if (material.has(TOOLS)){
