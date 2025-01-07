@@ -71,7 +71,7 @@ public class Tools {
            TagKey<Item> rod = t.handleMaterial().has(ROD) ? ROD.getMaterialTag(t.handleMaterial()) : ROD.getMaterialTag(Wood);
            AntimatterToolType[] toolHeadTypes = new AntimatterToolType[]{PICKAXE, AXE, SWORD, SHOVEL, HOE, FILE, SAW, HAMMER, SCREWDRIVER, SCYTHE};
            Arrays.stream(toolHeadTypes).forEach(type -> {
-               if (type == SCYTHE && AntimatterAPI.isModLoaded("gtsp")) return;
+               if (type == SCYTHE && AntimatterAPI.isModLoaded("gtspartan")) return;
                if (t.toolTypes().contains(type)){
                    if (type.getMaterialTypeItem() == null) return;
                    if (m.has(type.getMaterialTypeItem())){
@@ -137,7 +137,7 @@ public class Tools {
                                of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPR", "FH ");
                    }
                }
-               if (t.toolTypes().contains(SCYTHE) && (!AntimatterAPI.isModLoaded("gtsp") || AntimatterPlatformUtils.INSTANCE.isFabric())){
+               if (t.toolTypes().contains(SCYTHE) && (!AntimatterAPI.isModLoaded("gtspartan") || AntimatterPlatformUtils.INSTANCE.isFabric())){
                    if (m.has(FLINT)){
                        if (!AntimatterAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", SCYTHE.getToolStack(m),
@@ -353,7 +353,7 @@ public class Tools {
             provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCREWDRIVER_TIP.get(m),
                     of('R', ROD.getMaterialTag(m), 'F', FILE.getTag(), 'H', HAMMER.getTag()), "HR", "RF");
         });
-        if (!AntimatterAPI.isModLoaded("gtsp") || AntimatterPlatformUtils.INSTANCE.isFabric()) {
+        if (!AntimatterAPI.isModLoaded("gtspartan") || AntimatterPlatformUtils.INSTANCE.isFabric()) {
             SCYTHE_BLADE.all().forEach(m -> {
                 if (m.has(GEM)){
                     provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCYTHE_BLADE.get(m),
