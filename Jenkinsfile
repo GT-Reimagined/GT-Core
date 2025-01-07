@@ -21,7 +21,7 @@ pipeline {
     post {
         always {
             discordSend(
-                webhookURL: "https://discord.com/api/webhooks/1313642177083216073/H8EnQ65JusCjpqGTqLXDZI1BYBe4ArLJn3xSjEOWthg4Nwa7ZFSHu1SYag8fU4v4DB8k",
+                webhookURL: credentials('gt-discord-webhook'),
                 thumbnail: "https://raw.githubusercontent.com/GT-Reimagined/gt-reimagined.github.io/refs/heads/main/icon.png",
                 title: "GTCore ${TAG_NAME} #${BUILD_NUMBER}",
                 link: env.BUILD_URL,
