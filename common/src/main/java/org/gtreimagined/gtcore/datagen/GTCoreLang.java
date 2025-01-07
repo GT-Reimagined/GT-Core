@@ -44,6 +44,8 @@ public class GTCoreLang {
             add("machine.mass_storage.output", "Auto outputs");
             add("machine.mass_storage.output_overflow", "Auto outputs overflow");
             add("machine.mass_storage.capacity", "Can store items of one Type, Capacity: %s");
+            add("machine.gtcore.stack_limit", "Outputs exactly %s items");
+            add("machine.gtcore.no_stack_limit", "Outputs up to a full stack");
             add(GTCoreBlocks.RUBBER_LEAVES, "Rubber Leaves");
             add(GTCoreBlocks.RUBBER_LOG, "Rubber Log");
             add(GTCoreBlocks.STRIPPED_RUBBER_LOG, "Stripped Rubber Log");

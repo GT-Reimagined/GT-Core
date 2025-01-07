@@ -11,18 +11,15 @@ import org.jetbrains.annotations.NotNull;
 public class HopperItemHandler extends MachineItemHandler<BlockEntityGTHopper> {
     public HopperItemHandler(BlockEntityGTHopper tile) {
         super(tile);
-        int count = tile.getMachineType().getCount(tile.getMachineTier(), SlotType.STORAGE);
-        this.inventories.put(SlotType.STORAGE, new TrackedItemHandler<>(tile, SlotType.STORAGE, count, true, true, (t, s) -> true){
-            @NotNull
-            @Override
-            public ItemStack extractItem(int slot, int amount, boolean simulate) {
-                int stackLimit = 1;
-                //if (!tile.observeStackLimit) return super.extractItem(slot, amount, simulate);
-                if (amount < stackLimit) return ItemStack.EMPTY;
-                amount = stackLimit;
-                return super.extractItem(slot, amount, simulate);
-            }
-        });
+    }
+
+    @Override
+    protected TrackedItemHandler<BlockEntityGTHopper> createTrackedHandler(SlotType<?> type, BlockEntityGTHopper tile) {
+        if (type == SlotType.STORAGE) {
+            int count = tile.getMachineType().getCount(tile.getMachineTier(), SlotType.STORAGE);
+            return new LimitedOutputTrackedHandler<>(tile, SlotType.STORAGE, count, type.output, type.input, type.tester);
+        }
+        return super.createTrackedHandler(type, tile);
     }
 
     @Override
