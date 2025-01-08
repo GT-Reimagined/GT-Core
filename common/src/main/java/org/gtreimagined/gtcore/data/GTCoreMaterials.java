@@ -1,10 +1,10 @@
 package org.gtreimagined.gtcore.data;
 
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.material.TextureSet;
+import org.gtreimagined.gtcore.GTCore;
 
 import static muramasa.antimatter.material.Element.*;
 import static muramasa.antimatter.material.TextureSet.*;

@@ -1,12 +1,11 @@
 package org.gtreimagined.gtcore.data;
 
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.gui.GuiData;
 import muramasa.antimatter.gui.slot.ISlotProvider;
 import net.minecraft.resources.ResourceLocation;
+import org.gtreimagined.gtcore.GTCore;
 
 import static muramasa.antimatter.gui.SlotType.*;
-import static muramasa.antimatter.gui.SlotType.FL_OUT;
 
 public class Guis {
     public static GuiData MULTI_DISPLAY = new GuiData(GTCore.ID, "multi_display").setSlots(ISlotProvider.DEFAULT()

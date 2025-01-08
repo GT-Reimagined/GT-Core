@@ -1,5 +1,13 @@
 package org.gtreimagined.gtcore.datagen;
 
+import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.Ref;
+import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
+import muramasa.antimatter.item.ItemBasic;
+import muramasa.antimatter.pipe.BlockPipe;
+import muramasa.antimatter.pipe.PipeSize;
+import muramasa.antimatter.util.Utils;
+import org.apache.commons.lang3.StringUtils;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.BlockCasing;
 import org.gtreimagined.gtcore.block.BlockRedstoneWire;
@@ -7,20 +15,10 @@ import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.gtreimagined.gtcore.item.ItemHazmatArmor;
 import org.gtreimagined.gtcore.item.ItemSelectorTag;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
-import muramasa.antimatter.item.ItemBasic;
-import muramasa.antimatter.pipe.BlockItemPipe;
-import muramasa.antimatter.pipe.BlockPipe;
-import muramasa.antimatter.pipe.PipeSize;
-import muramasa.antimatter.pipe.types.Cable;
-import muramasa.antimatter.util.Utils;
-import org.apache.commons.lang3.StringUtils;
 
-import static org.gtreimagined.gtcore.data.GTCoreMaterials.Beeswax;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
 import static muramasa.antimatter.util.Utils.lowerUnderscoreToUpperSpaced;
+import static org.gtreimagined.gtcore.data.GTCoreMaterials.Beeswax;
 
 public class GTCoreLang {
     public static class en_US extends AntimatterLanguageProvider {

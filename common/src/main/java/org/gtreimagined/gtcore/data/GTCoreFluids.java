@@ -1,14 +1,13 @@
 package org.gtreimagined.gtcore.data;
 
 import earth.terrarium.botarium.common.registry.fluid.FluidProperties;
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.fluid.AntimatterFluid;
-import muramasa.antimatter.fluid.AntimatterMaterialFluid;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Material;
+import org.gtreimagined.gtcore.GTCore;
 
 import static muramasa.antimatter.fluid.AntimatterFluid.OVERLAY_TEXTURE;
 

@@ -1,14 +1,12 @@
 package org.gtreimagined.gtcore.machine;
 
 
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.block.BlockMaterialChest;
-import org.gtreimagined.gtcore.blockentity.BlockEntityChest;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
-import muramasa.antimatter.texture.ITextureHandler;
 import muramasa.antimatter.texture.Texture;
+import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.block.BlockMaterialChest;
 import org.gtreimagined.gtcore.blockentity.BlockEntityChest;
 
 import static muramasa.antimatter.gui.SlotType.STORAGE;

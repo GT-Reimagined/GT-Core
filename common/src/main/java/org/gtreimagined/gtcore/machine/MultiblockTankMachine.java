@@ -13,10 +13,7 @@ import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityLargeTank;
 
-
 import java.util.function.Supplier;
-
-import static muramasa.antimatter.data.AntimatterMaterials.Wood;
 
 public class MultiblockTankMachine extends MaterialBasicMultiMachine {
     final int capacity;

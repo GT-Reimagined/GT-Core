@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.block;
 
-import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.pipe.PipeSize;
 import muramasa.antimatter.pipe.types.PipeType;

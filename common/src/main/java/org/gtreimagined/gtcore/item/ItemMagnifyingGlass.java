@@ -1,8 +1,6 @@
 package org.gtreimagined.gtcore.item;
 
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.Ref;
-import muramasa.antimatter.item.ItemBasic;
 import muramasa.antimatter.item.ScannerItem;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.registration.IColorHandler;
@@ -12,6 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
+import org.gtreimagined.gtcore.GTCore;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

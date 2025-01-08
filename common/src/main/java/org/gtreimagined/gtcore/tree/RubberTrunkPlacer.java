@@ -3,7 +3,6 @@ package org.gtreimagined.gtcore.tree;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.core.BlockPos;

@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.data;
 
-import org.gtreimagined.gtcore.GTCore;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.integration.jeirei.renderer.InfoRenderers;
@@ -18,6 +17,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.ShapedRecipe;
+import org.gtreimagined.gtcore.GTCore;
 
 import java.util.List;
 import java.util.function.BiFunction;

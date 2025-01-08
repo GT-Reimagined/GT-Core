@@ -4,9 +4,7 @@ import muramasa.antimatter.capability.item.TrackedItemHandler;
 import muramasa.antimatter.capability.machine.MachineItemHandler;
 import muramasa.antimatter.gui.SlotType;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.ItemStack;
 import org.gtreimagined.gtcore.blockentity.BlockEntityGTHopper;
-import org.jetbrains.annotations.NotNull;
 
 public class HopperItemHandler extends MachineItemHandler<BlockEntityGTHopper> {
     public HopperItemHandler(BlockEntityGTHopper tile) {

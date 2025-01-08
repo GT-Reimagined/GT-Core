@@ -1,7 +1,5 @@
 package org.gtreimagined.gtcore.cover;
 
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
 import muramasa.antimatter.capability.ICoverHandler;
 import muramasa.antimatter.cover.BaseCover;
 import muramasa.antimatter.cover.CoverFactory;
@@ -9,6 +7,7 @@ import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.texture.Texture;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

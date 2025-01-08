@@ -1,10 +1,8 @@
 package org.gtreimagined.gtcore.gui.screen;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import org.gtreimagined.gtcore.blockentity.BlockEntityMaterial;
 import muramasa.antimatter.gui.container.ContainerMachine;
 import muramasa.antimatter.gui.screen.ScreenMachine;
-import muramasa.antimatter.machine.MachineFlag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMaterial;

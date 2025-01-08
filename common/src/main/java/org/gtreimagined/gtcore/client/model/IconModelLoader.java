@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.client.model;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

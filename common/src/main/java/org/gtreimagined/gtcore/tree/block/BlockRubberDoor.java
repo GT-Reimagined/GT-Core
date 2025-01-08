@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.tree.block;
 
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
@@ -13,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
+import org.gtreimagined.gtcore.GTCore;
 
 public class BlockRubberDoor extends DoorBlock implements IAntimatterObject, IModelProvider {
     public BlockRubberDoor() {

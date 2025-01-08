@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.item;
 
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.datagen.builder.AntimatterItemModelBuilder;
 import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
 import muramasa.antimatter.item.ItemBasic;
@@ -21,6 +20,7 @@ import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import org.gtreimagined.gtcore.GTCore;
 
 import static org.gtreimagined.gtcore.data.GTCoreItems.*;
 

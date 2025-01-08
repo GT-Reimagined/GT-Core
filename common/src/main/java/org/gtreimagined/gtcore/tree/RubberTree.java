@@ -1,7 +1,5 @@
 package org.gtreimagined.gtcore.tree;
 
-import org.gtreimagined.gtcore.data.GTCoreBlocks;
-import org.gtreimagined.gtcore.tree.block.BlockRubberLog;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.worldgen.feature.IAntimatterFeature;
 import net.minecraft.core.BlockPos;

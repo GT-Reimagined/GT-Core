@@ -1,10 +1,6 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
 import com.google.common.collect.ImmutableMap;
-import muramasa.antimatter.data.AntimatterMaterials;
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.GTCoreConfig;
-import org.gtreimagined.gtcore.data.GTCoreTools;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterDefaultTools;
@@ -13,13 +9,15 @@ import muramasa.antimatter.recipe.ingredient.PropertyIngredient;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.TagUtils;
-import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.GTCoreConfig;
+import org.gtreimagined.gtcore.data.GTCoreTools;
 
 import java.util.Arrays;
 import java.util.function.Consumer;

@@ -1,8 +1,6 @@
 package org.gtreimagined.gtcore.tree.block;
 
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.registration.IAntimatterObject;
 import muramasa.antimatter.registration.IItemBlockProvider;
@@ -10,6 +8,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
+import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.data.GTCoreBlocks;
 
 public class BlockRubberWallSign extends TerraformWallSignBlock implements IAntimatterObject, IItemBlockProvider {
     public BlockRubberWallSign() {

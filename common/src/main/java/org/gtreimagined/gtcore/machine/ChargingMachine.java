@@ -1,9 +1,9 @@
 package org.gtreimagined.gtcore.machine;
 
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.texture.Texture;
+import org.gtreimagined.gtcore.GTCore;
 
 import static muramasa.antimatter.machine.MachineFlag.EU;
 

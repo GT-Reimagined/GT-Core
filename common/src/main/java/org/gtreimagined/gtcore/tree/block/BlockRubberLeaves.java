@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.tree.block;
 
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.block.BlockPropertiesHelper;
 import muramasa.antimatter.registration.IAntimatterObject;
@@ -8,6 +7,7 @@ import muramasa.antimatter.registration.IModelProvider;
 import muramasa.antimatter.registration.ITextureProvider;
 import muramasa.antimatter.texture.Texture;
 import net.minecraft.world.level.block.LeavesBlock;
+import org.gtreimagined.gtcore.GTCore;
 
 public class BlockRubberLeaves extends LeavesBlock implements IAntimatterObject, IModelProvider, ITextureProvider {
 

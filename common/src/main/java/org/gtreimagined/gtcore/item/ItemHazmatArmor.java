@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.item;
 
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.registration.IAntimatterObject;
@@ -14,9 +13,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import org.gtreimagined.gtcore.GTCore;
 import org.jetbrains.annotations.Nullable;
 
 public class ItemHazmatArmor extends ArmorItem implements IAntimatterObject, ITextureProvider, IModelProvider {

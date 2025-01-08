@@ -1,10 +1,5 @@
 package org.gtreimagined.gtcore.datagen;
 
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.data.GTCoreBlocks;
-import org.gtreimagined.gtcore.data.GTCoreCables;
-import org.gtreimagined.gtcore.data.GTCoreItems;
-import org.gtreimagined.gtcore.data.GTCoreTags;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterDefaultTools;
@@ -12,7 +7,6 @@ import muramasa.antimatter.data.AntimatterTags;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemTagProvider;
 import muramasa.antimatter.material.Material;
-import muramasa.antimatter.material.SubTag;
 import muramasa.antimatter.pipe.PipeSize;
 import muramasa.antimatter.pipe.types.Cable;
 import muramasa.antimatter.pipe.types.Wire;
@@ -22,14 +16,18 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.data.GTCoreBlocks;
+import org.gtreimagined.gtcore.data.GTCoreCables;
+import org.gtreimagined.gtcore.data.GTCoreTags;
 
 import java.util.Objects;
 import java.util.Set;
 
+import static muramasa.antimatter.material.MaterialTags.*;
 import static org.gtreimagined.gtcore.data.GTCoreItems.*;
 import static org.gtreimagined.gtcore.data.GTCoreMaterials.*;
 import static org.gtreimagined.gtcore.data.GTCoreTags.*;
-import static muramasa.antimatter.material.MaterialTags.*;
 
 public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
     public GTCoreItemTagProvider(String providerDomain, String providerName, boolean replace, AntimatterBlockTagProvider p) {

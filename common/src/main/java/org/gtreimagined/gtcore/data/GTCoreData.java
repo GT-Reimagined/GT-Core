@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.data;
 
-import org.gtreimagined.gtcore.GTCore;
 import net.minecraft.resources.ResourceLocation;
 import org.gtreimagined.gtcore.GTCore;
 

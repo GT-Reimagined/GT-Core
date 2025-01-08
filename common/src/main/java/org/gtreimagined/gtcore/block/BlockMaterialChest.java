@@ -1,8 +1,5 @@
 package org.gtreimagined.gtcore.block;
 
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.blockentity.BlockEntityChest;
-import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
 import muramasa.antimatter.gui.SlotType;
@@ -33,6 +30,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityChest;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 

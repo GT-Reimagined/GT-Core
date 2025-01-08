@@ -1,10 +1,5 @@
 package org.gtreimagined.gtcore.datagen;
 
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.block.BlockMaterialChest;
-import org.gtreimagined.gtcore.data.GTCoreBlocks;
-import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
-import org.gtreimagined.gtcore.machine.BlockMultiMachineMaterial;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
@@ -12,6 +7,11 @@ import muramasa.antimatter.util.TagUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
+import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.block.BlockMaterialChest;
+import org.gtreimagined.gtcore.data.GTCoreBlocks;
+import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
+import org.gtreimagined.gtcore.machine.BlockMultiMachineMaterial;
 
 import static muramasa.antimatter.material.MaterialTags.WOOD;
 

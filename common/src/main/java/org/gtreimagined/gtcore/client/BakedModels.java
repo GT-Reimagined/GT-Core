@@ -2,7 +2,6 @@ package org.gtreimagined.gtcore.client;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.client.AntimatterModelManager;
 import muramasa.antimatter.client.model.IModelConfiguration;
 import muramasa.antimatter.client.model.loader.DynamicModelLoader;
@@ -15,6 +14,7 @@ import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
+import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.client.model.IconModelLoader;
 import org.gtreimagined.gtcore.client.model.SapBagBakedModel;
 

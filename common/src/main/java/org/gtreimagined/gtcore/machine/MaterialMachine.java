@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.machine;
 
-import org.gtreimagined.gtcore.blockentity.BlockEntityMaterial;
 import muramasa.antimatter.Data;
 import muramasa.antimatter.machine.types.Machine;
 import muramasa.antimatter.material.Material;

@@ -1,17 +1,16 @@
 package org.gtreimagined.gtcore.cover;
 
-import muramasa.antimatter.pipe.BlockPipe;
-import muramasa.antimatter.pipe.PipeSize;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
 import muramasa.antimatter.capability.ICoverHandler;
 import muramasa.antimatter.cover.BaseCover;
 import muramasa.antimatter.cover.CoverFactory;
 import muramasa.antimatter.machine.Tier;
+import muramasa.antimatter.pipe.BlockPipe;
+import muramasa.antimatter.pipe.PipeSize;
 import muramasa.antimatter.texture.Texture;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
 import org.gtreimagined.gtcore.data.GTCoreCables;
 import org.jetbrains.annotations.NotNull;

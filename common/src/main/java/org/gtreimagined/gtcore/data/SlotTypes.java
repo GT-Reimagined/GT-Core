@@ -1,8 +1,5 @@
 package org.gtreimagined.gtcore.data;
 
-import org.gtreimagined.gtcore.gui.slots.SlotCrafting;
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.gui.slots.SlotUnlimited;
 import muramasa.antimatter.capability.item.EmptyContainer;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.gui.slot.AbstractSlot;
@@ -10,6 +7,8 @@ import muramasa.antimatter.tool.IAntimatterTool;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.gui.slots.SlotCrafting;
+import org.gtreimagined.gtcore.gui.slots.SlotUnlimited;
 import tesseract.TesseractCapUtils;
 
 public class SlotTypes {

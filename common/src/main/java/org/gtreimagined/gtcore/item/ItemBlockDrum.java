@@ -1,7 +1,6 @@
 package org.gtreimagined.gtcore.item;
 
 import earth.terrarium.botarium.common.fluid.base.FluidHolder;
-import org.gtreimagined.gtcore.machine.DrumMachine;
 import muramasa.antimatter.block.AntimatterItemBlock;
 import muramasa.antimatter.data.AntimatterTags;
 import muramasa.antimatter.item.IFluidItem;

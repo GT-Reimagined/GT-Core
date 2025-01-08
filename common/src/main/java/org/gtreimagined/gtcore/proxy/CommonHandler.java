@@ -1,7 +1,7 @@
 package org.gtreimagined.gtcore.proxy;
 
-import org.gtreimagined.gtcore.GTCore;
 import net.minecraft.core.NonNullList;
+import org.gtreimagined.gtcore.GTCore;
 
 import java.net.URL;
 import java.util.List;

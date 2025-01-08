@@ -1,7 +1,5 @@
 package org.gtreimagined.gtcore.events;
 
-import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
-import org.gtreimagined.gtcore.machine.BlockMultiMachineMaterial;
 import muramasa.antimatter.block.BlockStorage;
 import muramasa.antimatter.data.AntimatterMaterialTypes;
 import muramasa.antimatter.material.Material;

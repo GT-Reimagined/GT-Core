@@ -5,7 +5,6 @@ import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.machine.MachineFlag;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
-import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.BlockGTHopper;
 import org.gtreimagined.gtcore.blockentity.BlockEntityGTHopper;
 

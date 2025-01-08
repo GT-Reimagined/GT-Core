@@ -1,9 +1,9 @@
 package org.gtreimagined.gtcore.mixin;
 
-import org.gtreimagined.gtcore.GTCoreConfig;
-import org.gtreimagined.gtcore.data.GTCoreItems;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.ComposterBlock;
+import org.gtreimagined.gtcore.GTCoreConfig;
+import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;

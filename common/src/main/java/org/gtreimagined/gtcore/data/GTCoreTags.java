@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.data;
 
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.core.Registry;

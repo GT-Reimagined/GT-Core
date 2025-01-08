@@ -1,7 +1,5 @@
 package org.gtreimagined.gtcore.mixin.jei;
 
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.util.AntimatterPreLaunchUtil;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;

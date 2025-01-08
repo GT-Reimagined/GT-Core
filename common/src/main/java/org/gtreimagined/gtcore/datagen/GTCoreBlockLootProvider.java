@@ -1,14 +1,14 @@
 package org.gtreimagined.gtcore.datagen;
 
+import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.datagen.providers.AntimatterBlockLootProvider;
+import net.minecraft.data.loot.BlockLoot;
+import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.BlockMaterialChest;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 import org.gtreimagined.gtcore.machine.BlockMultiMachineMaterial;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.datagen.providers.AntimatterBlockLootProvider;
-import net.minecraft.data.loot.BlockLoot;
-import net.minecraft.world.level.block.Block;
 
 
 public class GTCoreBlockLootProvider extends AntimatterBlockLootProvider {

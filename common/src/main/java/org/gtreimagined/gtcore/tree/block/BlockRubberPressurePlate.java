@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.tree.block;
 
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
 import muramasa.antimatter.registration.IAntimatterObject;
@@ -10,6 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
+import org.gtreimagined.gtcore.GTCore;
 
 public class BlockRubberPressurePlate extends PressurePlateBlock implements IAntimatterObject, IModelProvider {
     public BlockRubberPressurePlate() {

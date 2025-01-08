@@ -1,38 +1,23 @@
 package org.gtreimagined.gtcore.client;
 
-import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Matrix3f;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
-import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
-import org.gtreimagined.gtcore.blockentity.BlockEntityPlasticBin;
-import org.gtreimagined.gtcore.data.SlotTypes;
-import org.gtreimagined.gtcore.machine.MassStorageMachine;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.machine.MachineState;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
-import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
-import org.gtreimagined.gtcore.blockentity.BlockEntityPlasticBin;
-import org.gtreimagined.gtcore.machine.MassStorageMachine;
-
-import static muramasa.antimatter.material.MaterialTags.WOOD;
+import org.gtreimagined.gtcore.data.SlotTypes;
 
 
 public class MassStorageRenderer<T extends BlockEntityMassStorage> implements BlockEntityRenderer<T> {

@@ -1,13 +1,13 @@
 package org.gtreimagined.gtcore.mixin;
 
 import com.mojang.authlib.GameProfile;
-import org.gtreimagined.gtcore.data.GTCoreData;
 import muramasa.antimatter.util.AntimatterPlatformUtils;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import org.gtreimagined.gtcore.data.GTCoreData;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

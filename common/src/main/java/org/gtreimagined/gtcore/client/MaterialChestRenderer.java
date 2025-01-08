@@ -3,9 +3,6 @@ package org.gtreimagined.gtcore.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.block.BlockMaterialChest;
-import org.gtreimagined.gtcore.blockentity.BlockEntityChest;
 import muramasa.antimatter.machine.Tier;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
@@ -22,12 +19,13 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoubleBlockCombiner;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.block.BlockMaterialChest;
 import org.gtreimagined.gtcore.blockentity.BlockEntityChest;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class MaterialChestRenderer<T extends BlockEntityChest> implements BlockEntityRenderer<T> {
     public static final ResourceLocation MATERIAL_CHEST_BASE = new ResourceLocation(GTCore.ID, "model/material_chest_base");

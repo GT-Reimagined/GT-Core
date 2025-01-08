@@ -1,17 +1,15 @@
 package org.gtreimagined.gtcore.machine;
 
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.blockentity.BlockEntityWorkbench;
-import org.gtreimagined.gtcore.data.MenuHandlers;
-import org.gtreimagined.gtcore.data.SlotTypes;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.gui.ButtonOverlay;
 import muramasa.antimatter.gui.SlotData;
 import muramasa.antimatter.gui.widget.SlotWidget;
-import muramasa.antimatter.machine.MachineFlag;
 import muramasa.antimatter.material.Material;
 import net.minecraft.resources.ResourceLocation;
+import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityWorkbench;
+import org.gtreimagined.gtcore.data.MenuHandlers;
+import org.gtreimagined.gtcore.data.SlotTypes;
 
 import static muramasa.antimatter.gui.SlotType.STORAGE;
 import static muramasa.antimatter.machine.MachineFlag.*;

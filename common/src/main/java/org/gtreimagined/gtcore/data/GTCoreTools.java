@@ -1,15 +1,8 @@
 package org.gtreimagined.gtcore.data;
 
 import com.google.common.collect.ImmutableMap;
-import net.minecraft.tags.BlockTags;
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.behaviour.BehaviourElectricWrenchSwitching;
-import org.gtreimagined.gtcore.behaviour.BehaviourKnifeTooltip;
-import org.gtreimagined.gtcore.behaviour.BehaviourMultitoolSwitching;
 import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.Data;
 import muramasa.antimatter.Ref;
-import muramasa.antimatter.capability.energy.ItemEnergyHandler;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.item.ItemBattery;
 import muramasa.antimatter.machine.BlockMachine;
@@ -18,27 +11,31 @@ import muramasa.antimatter.registration.Side;
 import muramasa.antimatter.tool.AntimatterItemTier;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
-import muramasa.antimatter.tool.MaterialSword;
 import muramasa.antimatter.tool.MaterialTool;
-import muramasa.antimatter.tool.behaviour.*;
+import muramasa.antimatter.tool.behaviour.BehaviourAOEBreak;
+import muramasa.antimatter.tool.behaviour.BehaviourExtendedHighlight;
+import muramasa.antimatter.tool.behaviour.BehaviourLogStripping;
+import muramasa.antimatter.tool.behaviour.BehaviourShearing;
+import muramasa.antimatter.tool.behaviour.BehaviourTorchPlacing;
+import muramasa.antimatter.tool.behaviour.BehaviourTreeFelling;
 import muramasa.antimatter.util.TagUtils;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.behaviour.BehaviourElectricWrenchSwitching;
 import org.gtreimagined.gtcore.behaviour.BehaviourKnifeTooltip;
 import org.gtreimagined.gtcore.behaviour.BehaviourMultitoolSwitching;
@@ -48,13 +45,10 @@ import tesseract.api.gt.IEnergyHandlerItem;
 import tesseract.api.gt.IGTNode;
 
 import java.util.List;
-import java.util.Map;
 
-import static org.gtreimagined.gtcore.data.GTCoreItems.*;
 import static muramasa.antimatter.data.AntimatterDefaultTools.*;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
 import static net.minecraft.world.level.material.Material.*;
-import static net.minecraft.world.level.material.Material.LEAVES;
 
 public class GTCoreTools {
     private static final AntimatterToolType.IToolSupplier POWERED_TOOL_SUPPLIER = new AntimatterToolType.IToolSupplier() {

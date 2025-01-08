@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.tree.block;
 
-import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.registration.IAntimatterObject;
 import muramasa.antimatter.registration.IModelProvider;
@@ -20,6 +19,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
+import org.gtreimagined.gtcore.data.GTCoreBlocks;
 
 public class BlockRubberWood extends RotatedPillarBlock implements IModelProvider, IAntimatterObject, ITextureProvider {
     protected final String domain, id;

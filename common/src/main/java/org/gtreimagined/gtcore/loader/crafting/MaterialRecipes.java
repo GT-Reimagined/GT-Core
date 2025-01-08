@@ -1,8 +1,6 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
 import com.google.common.collect.ImmutableMap;
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.GTCoreConfig;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterDefaultTools;
@@ -14,16 +12,18 @@ import muramasa.antimatter.material.MaterialTags;
 import muramasa.antimatter.material.MaterialType;
 import muramasa.antimatter.material.MaterialTypeItem;
 import muramasa.antimatter.recipe.ingredient.RecipeIngredient;
-import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
+import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.GTCoreConfig;
 
 import java.util.function.Consumer;
 
 import static com.google.common.collect.ImmutableMap.of;
 import static muramasa.antimatter.data.AntimatterDefaultTools.*;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
-import static muramasa.antimatter.material.MaterialTags.*;
+import static muramasa.antimatter.material.MaterialTags.NOSMASH;
+import static muramasa.antimatter.material.MaterialTags.RUBBERTOOLS;
 
 public class MaterialRecipes {
 

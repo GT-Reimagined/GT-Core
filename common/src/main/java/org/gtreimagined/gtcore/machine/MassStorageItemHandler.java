@@ -1,17 +1,13 @@
 package org.gtreimagined.gtcore.machine;
 
 
-import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
-import org.gtreimagined.gtcore.data.SlotTypes;
 import muramasa.antimatter.capability.item.FakeTrackedItemHandler;
-import muramasa.antimatter.capability.item.SidedCombinedInvWrapper;
 import muramasa.antimatter.capability.machine.MachineItemHandler;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.machine.MachineState;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.ItemStack;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
-import org.jetbrains.annotations.NotNull;
+import org.gtreimagined.gtcore.data.SlotTypes;
 import tesseract.api.item.ExtendedItemContainer;
 
 import java.util.Optional;

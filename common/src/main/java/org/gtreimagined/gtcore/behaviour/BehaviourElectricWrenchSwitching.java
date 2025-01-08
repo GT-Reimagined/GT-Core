@@ -2,10 +2,7 @@ package org.gtreimagined.gtcore.behaviour;
 
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.behaviour.IItemRightClick;
-import muramasa.antimatter.tool.AntimatterToolType;
-import muramasa.antimatter.tool.IAntimatterTool;
 import muramasa.antimatter.tool.IBasicAntimatterTool;
-import muramasa.antimatter.tool.behaviour.BehaviourWrenchSwitching;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -14,10 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-import static org.gtreimagined.gtcore.data.GTCoreTools.ELECTRIC_WRENCH;
 import static org.gtreimagined.gtcore.data.GTCoreTools.ELECTRIC_WRENCH_ALT;
-import static muramasa.antimatter.data.AntimatterDefaultTools.WRENCH;
-import static muramasa.antimatter.data.AntimatterDefaultTools.WRENCH_ALT;
 
 public class BehaviourElectricWrenchSwitching implements IItemRightClick<IBasicAntimatterTool> {
 

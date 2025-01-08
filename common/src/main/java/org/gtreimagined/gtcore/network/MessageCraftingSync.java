@@ -3,10 +3,10 @@ package org.gtreimagined.gtcore.network;
 import com.teamresourceful.resourcefullib.common.networking.base.Packet;
 import com.teamresourceful.resourcefullib.common.networking.base.PacketContext;
 import com.teamresourceful.resourcefullib.common.networking.base.PacketHandler;
-import org.gtreimagined.gtcore.GTCore;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import org.gtreimagined.gtcore.GTCore;
 
 public class MessageCraftingSync implements Packet<MessageCraftingSync> {
     public static final PacketHandler<MessageCraftingSync> HANDLER = new Handler();

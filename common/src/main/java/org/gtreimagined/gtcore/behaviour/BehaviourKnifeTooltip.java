@@ -1,7 +1,6 @@
 package org.gtreimagined.gtcore.behaviour;
 
 import muramasa.antimatter.behaviour.IAddInformation;
-import muramasa.antimatter.tool.IAntimatterTool;
 import muramasa.antimatter.tool.IBasicAntimatterTool;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.network.chat.Component;

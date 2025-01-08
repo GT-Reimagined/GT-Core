@@ -2,9 +2,6 @@ package org.gtreimagined.gtcore.machine;
 
 import earth.terrarium.botarium.common.fluid.base.FluidHolder;
 import earth.terrarium.botarium.common.fluid.utils.FluidHooks;
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.blockentity.BlockEntityDrum;
-import org.gtreimagined.gtcore.item.ItemBlockDrum;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
@@ -13,7 +10,9 @@ import muramasa.antimatter.util.Utils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityDrum;
+import org.gtreimagined.gtcore.item.ItemBlockDrum;
 import tesseract.FluidPlatformUtils;
 import tesseract.TesseractGraphWrappers;
 

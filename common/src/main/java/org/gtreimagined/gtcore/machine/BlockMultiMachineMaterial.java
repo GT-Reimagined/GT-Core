@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-
 import static muramasa.antimatter.material.Material.NULL;
 
 public class BlockMultiMachineMaterial extends BlockMultiMachine implements IColorHandler {

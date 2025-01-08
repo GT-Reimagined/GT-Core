@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.item;
 
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.entity.IRadiationEntity;
 import muramasa.antimatter.item.ItemBasic;
@@ -8,6 +7,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.gtreimagined.gtcore.GTCore;
 
 public class ItemRadaway extends ItemBasic<ItemRadaway>  {
     public ItemRadaway() {

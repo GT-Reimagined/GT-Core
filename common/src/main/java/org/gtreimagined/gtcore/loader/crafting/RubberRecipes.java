@@ -1,11 +1,6 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
 import com.google.common.collect.ImmutableMap;
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.data.GTCoreBlocks;
-import org.gtreimagined.gtcore.data.GTCoreItems;
-import org.gtreimagined.gtcore.data.GTCoreTags;
-import org.gtreimagined.gtcore.data.GTCoreMaterials;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.data.ForgeCTags;
 import muramasa.antimatter.datagen.builder.AntimatterCookingRecipeBuilder;
@@ -17,14 +12,19 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.data.GTCoreBlocks;
+import org.gtreimagined.gtcore.data.GTCoreItems;
+import org.gtreimagined.gtcore.data.GTCoreMaterials;
+import org.gtreimagined.gtcore.data.GTCoreTags;
 
 import java.util.function.Consumer;
 
 import static com.google.common.collect.ImmutableMap.of;
-import static org.gtreimagined.gtcore.data.GTCoreBlocks.SAP_BAG;
-import static org.gtreimagined.gtcore.loader.crafting.VanillaRecipes.addWoodRecipe;
 import static muramasa.antimatter.data.AntimatterDefaultTools.SAW;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.DUST;
+import static org.gtreimagined.gtcore.data.GTCoreBlocks.SAP_BAG;
+import static org.gtreimagined.gtcore.loader.crafting.VanillaRecipes.addWoodRecipe;
 
 public class RubberRecipes {
 

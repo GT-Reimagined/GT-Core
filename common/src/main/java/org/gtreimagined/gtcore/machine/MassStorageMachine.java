@@ -1,9 +1,5 @@
 package org.gtreimagined.gtcore.machine;
 
-import net.minecraft.resources.ResourceLocation;
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
-import org.gtreimagined.gtcore.item.ItemBlockMassStorage;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.machine.MachineState;
 import muramasa.antimatter.machine.Tier;
@@ -14,7 +10,9 @@ import muramasa.antimatter.util.Utils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.ItemStack;
+import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
+import org.gtreimagined.gtcore.item.ItemBlockMassStorage;
 
 public class MassStorageMachine extends MaterialMachine{
     final int capacity;

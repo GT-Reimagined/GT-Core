@@ -1,9 +1,5 @@
 package org.gtreimagined.gtcore.block;
 
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.blockentity.BlockEntitySapBag;
-import org.gtreimagined.gtcore.client.BakedModels;
-import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import muramasa.antimatter.datagen.builder.AntimatterBlockModelBuilder;
 import muramasa.antimatter.datagen.builder.DynamicConfigBuilder;
 import muramasa.antimatter.datagen.builder.VariantBlockStateBuilder;
@@ -42,7 +38,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntitySapBag;
+import org.gtreimagined.gtcore.client.BakedModels;
+import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;

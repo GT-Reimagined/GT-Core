@@ -1,7 +1,5 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.machine.DrumMachine;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.data.AntimatterMaterialTypes;
@@ -9,6 +7,8 @@ import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
 import net.minecraft.data.recipes.FinishedRecipe;
+import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.machine.DrumMachine;
 
 import java.util.function.Consumer;
 

@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.machine;
 
-import org.gtreimagined.gtcore.blockentity.BlockEntityLocker;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.machine.MachineFlag;
 import muramasa.antimatter.material.Material;

@@ -1,7 +1,5 @@
 package org.gtreimagined.gtcore.data;
 
-import tesseract.TesseractCapUtils;
-
 import java.util.ServiceLoader;
 
 public interface IGTBlockInit {

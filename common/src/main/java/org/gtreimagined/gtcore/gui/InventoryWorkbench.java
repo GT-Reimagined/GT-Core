@@ -1,7 +1,5 @@
 package org.gtreimagined.gtcore.gui;
 
-import org.gtreimagined.gtcore.data.SlotTypes;
-import org.gtreimagined.gtcore.network.MessageCraftingSync;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.capability.machine.MachineItemHandler;
 import muramasa.antimatter.network.AntimatterNetwork;

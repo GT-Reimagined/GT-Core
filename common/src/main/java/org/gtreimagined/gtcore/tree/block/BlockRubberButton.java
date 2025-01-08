@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.tree.block;
 
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
@@ -12,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.WoodButtonBlock;
 import net.minecraft.world.level.material.Material;
+import org.gtreimagined.gtcore.GTCore;
 
 public class BlockRubberButton extends WoodButtonBlock implements IAntimatterObject, IModelProvider {
     public BlockRubberButton() {

@@ -1,19 +1,6 @@
 package org.gtreimagined.gtcore.data;
 
 import com.google.common.collect.ImmutableMap;
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.cover.CoverRedstoneTorch;
-import org.gtreimagined.gtcore.cover.CoverSelectorTag;
-import org.gtreimagined.gtcore.item.ItemFertilizer;
-import org.gtreimagined.gtcore.item.ItemHazmatArmor;
-import org.gtreimagined.gtcore.item.ItemMagnifyingGlass;
-import org.gtreimagined.gtcore.item.ItemMatch;
-import org.gtreimagined.gtcore.item.ItemMixedMetal;
-import org.gtreimagined.gtcore.item.ItemPowerUnit;
-import org.gtreimagined.gtcore.item.ItemRadaway;
-import org.gtreimagined.gtcore.item.ItemSelectorTag;
-import org.gtreimagined.gtcore.item.ItemTape;
-import org.gtreimagined.gtcore.tree.item.ItemRubberBoat;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.cover.CoverFactory;
 import muramasa.antimatter.item.ItemBasic;
@@ -30,13 +17,13 @@ import org.gtreimagined.gtcore.item.ItemFertilizer;
 import org.gtreimagined.gtcore.item.ItemHazmatArmor;
 import org.gtreimagined.gtcore.item.ItemMagnifyingGlass;
 import org.gtreimagined.gtcore.item.ItemMatch;
+import org.gtreimagined.gtcore.item.ItemMixedMetal;
 import org.gtreimagined.gtcore.item.ItemPowerUnit;
 import org.gtreimagined.gtcore.item.ItemRadaway;
 import org.gtreimagined.gtcore.item.ItemSelectorTag;
 import org.gtreimagined.gtcore.item.ItemTape;
 import org.gtreimagined.gtcore.tree.item.ItemRubberBoat;
 
-import static org.gtreimagined.gtcore.data.GTCoreMaterials.*;
 import static muramasa.antimatter.data.AntimatterMaterials.Diamond;
 
 public class GTCoreItems {

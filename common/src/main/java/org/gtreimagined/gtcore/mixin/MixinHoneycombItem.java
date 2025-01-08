@@ -1,10 +1,10 @@
 package org.gtreimagined.gtcore.mixin;
 
-import org.gtreimagined.gtcore.GTCoreConfig;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
+import org.gtreimagined.gtcore.GTCoreConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

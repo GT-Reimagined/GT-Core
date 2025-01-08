@@ -1,18 +1,10 @@
 package org.gtreimagined.gtcore.data;
 
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.block.RedstoneWire;
 import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.data.AntimatterMaterials;
-import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.SubTag;
-import muramasa.antimatter.pipe.types.Cable;
-import muramasa.antimatter.pipe.types.Wire;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.RedstoneWire;
-import org.jetbrains.annotations.Nullable;
 
-import static org.gtreimagined.gtcore.data.GTCoreMaterials.*;
 import static muramasa.antimatter.material.MaterialTags.CABLE;
 import static muramasa.antimatter.material.MaterialTags.WIRE;
 

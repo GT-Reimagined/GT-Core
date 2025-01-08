@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.item;
 
-import org.gtreimagined.gtcore.GTCore;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.registration.IAntimatterObject;
@@ -9,6 +8,7 @@ import muramasa.antimatter.registration.ITextureProvider;
 import muramasa.antimatter.texture.Texture;
 import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.Item;
+import org.gtreimagined.gtcore.GTCore;
 
 public class ItemFertilizer extends BoneMealItem implements IAntimatterObject, ITextureProvider, IModelProvider {
     public ItemFertilizer() {
