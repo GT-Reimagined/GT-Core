@@ -204,6 +204,6 @@ public class GTCoreBlocks {
         if (machine != null){
             return machine;
         }
-        return new HopperMachine(GTCore.ID, material, false, slots);
+        return new HopperMachine(GTCore.ID, material, slots);
     }
 }

@@ -12,8 +12,8 @@ import static muramasa.antimatter.machine.MachineFlag.GUI;
 import static muramasa.antimatter.machine.MachineFlag.ITEM;
 
 public class HopperMachine extends MaterialMachine{
-    public HopperMachine(String domain, Material material, boolean queue, int slots) {
-        super(domain, material.getId() + (queue ? "_queue" : "") + "_hopper", material);
+    public HopperMachine(String domain, Material material, int slots) {
+        super(domain, material.getId() + "_hopper", material);
         this.setTiers(Tier.NONE);
         setItemBlockClass(() -> BlockGTHopper.class);
         this.setBlock((type, tier) -> new BlockGTHopper(this, tier));
