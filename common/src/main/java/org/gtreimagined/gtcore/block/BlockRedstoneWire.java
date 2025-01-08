@@ -1,6 +1,9 @@
 package org.gtreimagined.gtcore.block;
 
+import muramasa.antimatter.util.Utils;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
@@ -24,6 +27,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
     public static final int INSULATION_COLOR = 0x604040;
@@ -73,6 +78,15 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
     public static int getLightEmission(BlockState state) {
         if (state.hasProperty(LIGHT)) return state.getValue(LIGHT);
         return 0;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
+        tooltip.add(Utils.translatable("tooltip.gtcore.redstone_wire_range", type.getRange()));
+        if (type.isEmitsLight() && size == PipeSize.VTINY) {
+            tooltip.add(Utils.translatable("tooltip.gtcore.redstone_wire_light"));
+        }
     }
 
     @Override
