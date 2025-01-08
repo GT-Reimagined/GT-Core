@@ -3,6 +3,9 @@ pipeline {
     tools {
         jdk "jdk-21" // valid options are: "jdk-8", "jdk-16", "jdk-17" or "jdk-21", choose which one you need
     }
+    environment {
+        discord_webhook = credentials('gt-discord-webhook')
+    }
     stages {
         stage('Clean') {
             steps {
@@ -21,7 +24,7 @@ pipeline {
     post {
         always {
             discordSend(
-                webhookURL: credentials('gt-discord-webhook'),
+                webhookURL: env.discord_webhook,
                 thumbnail: "https://raw.githubusercontent.com/GT-Reimagined/gt-reimagined.github.io/refs/heads/main/icon.png",
                 title: "GTCore ${TAG_NAME} #${BUILD_NUMBER}",
                 link: env.BUILD_URL,
