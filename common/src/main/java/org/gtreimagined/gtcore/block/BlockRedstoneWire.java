@@ -99,16 +99,13 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
 
     @Override
     public int getBlockColor(BlockState state, @Nullable BlockGetter world, @Nullable BlockPos pos, int i) {
-        /*if (world != null && pos != null){
-            if (world.getBlockEntity(pos) instanceof BlockEntityRedstoneWire<?> redstoneWire){
-                if (redstoneWire.getRedstoneValue() > 0){
-                    return getType().getOnColor();
-                }
-            }
-        }*/
         if (world == null || pos == null) return -1;
         BlockEntityPipe<?> pipe = getTilePipe(world, pos);
-        if (size == PipeSize.TINY && pipe != null && pipe.getPipeColor() != -1 && i == 0) return pipe.getPipeColor();
+        if (!(pipe instanceof BlockEntityRedstoneWire<?> redstoneWire)) return -1;
+        if (size == PipeSize.TINY && pipe.getPipeColor() != -1 && i == 0) return pipe.getPipeColor();
+        if (i == 1 && redstoneWire.getRedstoneValue() > 0){
+            return getType().getOnColor();
+        }
         if (size == PipeSize.TINY) return i == 1 ? getRGB() : i == 0 ? INSULATION_COLOR : -1;
         return i == 0 || i == 1 ? getRGB() : -1;
     }
