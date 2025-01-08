@@ -5,6 +5,7 @@ import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.machine.MachineFlag;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
+import muramasa.antimatter.util.Utils;
 import org.gtreimagined.gtcore.block.BlockGTHopper;
 import org.gtreimagined.gtcore.blockentity.BlockEntityGTHopper;
 
@@ -20,6 +21,7 @@ public class HopperMachine extends MaterialMachine{
         setTile(BlockEntityGTHopper::new);
         addFlags(ITEM, GUI);
         removeFlags(MachineFlag.COVERABLE);
+        addTooltipInfo(Utils.translatable("machine.gtcore.hopper.slots", slots));
         if (slots <= 0) throw new IllegalArgumentException("slots cannot be <= 0!");
         AntimatterAPI.register(HopperMachine.class, this);
         int startY;
