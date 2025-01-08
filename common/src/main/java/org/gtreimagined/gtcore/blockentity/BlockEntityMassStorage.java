@@ -178,6 +178,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
             //TODO: translation component
             player.sendMessage(Utils.literal("Filter " + (keepFilter ? "Stays" : "Resets") + " when empty"), player.getUUID());
             Utils.damageStack(player.getItemInHand(hand), hand, player);
+            if (!keepFilter) itemHandler.ifPresent(i -> i.getHandler(SlotType.DISPLAY).setItem(0, ItemStack.EMPTY));
             return InteractionResult.SUCCESS;
         }
         if (hit.getDirection().getAxis().isHorizontal() && hit.getDirection() == this.getFacing() && handler != null){
