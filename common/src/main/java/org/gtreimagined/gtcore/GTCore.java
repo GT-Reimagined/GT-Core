@@ -221,7 +221,6 @@ public class GTCore extends AntimatterMod {
     }
 
     public static void onCrafting(CraftingEvent event){
-        //event.addLoader(CircuitRecipes::initRecipes);
         event.addLoader(MachineRecipes::initRecipes);
         event.addLoader(RubberRecipes::addRecipes);
         event.addLoader(MaterialRecipes::loadMaterialRecipes);
