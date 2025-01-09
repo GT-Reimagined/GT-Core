@@ -27,39 +27,53 @@ public class HopperMachine extends MaterialMachine{
         int startY;
         int rows;
         if (slots > 27 || slots == 16 || slots == 20){
-            startY = 12;
+            startY = 8;
             rows = 4;
         } else if (slots > 18 || slots == 9 || slots == 15){
-            startY = 21;
+            startY = 17;
             rows = 3;
         } else if (slots > 9 || slots == 8 || slots == 6 || slots == 4){
-            startY = 30;
+            startY = 26;
             rows = 2;
         } else {
-            startY = 39;
+            startY = 35;
             rows = 1;
         }
         int startX = 8;
-        if (slots % 8 == 0){
+        int columns = 9;
+        if (slots == 32){
+            startX = 17;
+            columns = 8;
+        } else if (slots % 8 == 0){
             startX = 53;
+            columns = 4;
         } else if (slots % 12 == 0){
             startX = 35;
+            columns = 6;
         } else if (slots % 5 == 0 && slots <= 20){
             startX = 44;
+            columns = 5;
         } else if (slots % 7 == 0){
             startX = 26;
+            columns = 7;
         } else if (slots == 9 || slots == 6 || slots == 3){
             startX = 62;
+            columns = 3;
         } else if (slots == 4 || slots == 2){
             startX = 71;
+            columns = 2;
         } else if (slots == 1){
             startX = 80;
+            columns = 1;
         }
-        int columns = slots / rows;
-        for (int i = 0; i < slots; i++) {
-            int currentRow = i / rows;
-            int currentColumn = i % columns;
-            add(SlotType.STORAGE, startX + (18 * currentColumn), startY + (18 * currentRow));
+        int i = 0;
+        outer:
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < columns; x++) {
+                if (i == slots) break outer;
+                add(SlotType.STORAGE, startX + (18 * x), startY + (18 * y));
+                i++;
+            }
         }
     }
 }
