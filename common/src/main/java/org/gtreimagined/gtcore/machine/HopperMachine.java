@@ -23,6 +23,7 @@ public class HopperMachine extends MaterialMachine{
         removeFlags(MachineFlag.COVERABLE);
         addTooltipInfo(Utils.translatable("machine.gtcore.hopper.slots", slots));
         if (slots <= 0) throw new IllegalArgumentException("slots cannot be <= 0!");
+        if (slots > 36) throw new IllegalArgumentException("slots cannot be > 36!");
         AntimatterAPI.register(HopperMachine.class, this);
         int startY;
         int rows;
