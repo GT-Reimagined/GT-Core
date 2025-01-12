@@ -2,6 +2,7 @@ package org.gtreimagined.gtcore.datagen;
 
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.data.AntimatterDefaultTools;
+import muramasa.antimatter.data.AntimatterStoneTypes;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.resources.ResourceLocation;
@@ -14,6 +15,7 @@ import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 import org.gtreimagined.gtcore.machine.BlockMultiMachineMaterial;
 
 import static muramasa.antimatter.material.MaterialTags.WOOD;
+import static org.gtreimagined.gtcore.data.GTCoreBlocks.*;
 
 
 public class GTCoreBlockTagProvider extends AntimatterBlockTagProvider {
@@ -25,6 +27,8 @@ public class GTCoreBlockTagProvider extends AntimatterBlockTagProvider {
     @Override
     public void processTags(String domain) {
         super.processTags(domain);
+        this.tag(TagUtils.getForgelikeBlockTag("wg_stone")).add(BLACK_GRANITE.getState().getBlock(), RED_GRANITE.getState().getBlock(), MARBLE.getState().getBlock(), AntimatterStoneTypes.BASALT.getState().getBlock(), KOMATIITE.getState().getBlock(), LIMESTONE.getState().getBlock(), GREEN_SCHIST.getState().getBlock(), BLUE_SCHIST.getState().getBlock(), KIMBERLITE.getState().getBlock(), QUARTZITE.getState().getBlock(), SLATE.getState().getBlock(), SHALE.getState().getBlock());
+        this.tag(TagUtils.getBlockTag(new ResourceLocation("minecraft","base_stone_overworld"))).add(BLACK_GRANITE.getState().getBlock(), RED_GRANITE.getState().getBlock(), MARBLE.getState().getBlock(), AntimatterStoneTypes.BASALT.getState().getBlock(), KOMATIITE.getState().getBlock(), LIMESTONE.getState().getBlock(), GREEN_SCHIST.getState().getBlock(), BLUE_SCHIST.getState().getBlock(), KIMBERLITE.getState().getBlock(), QUARTZITE.getState().getBlock(), SLATE.getState().getBlock(), SHALE.getState().getBlock());
         AntimatterAPI.all(BlockMachineMaterial.class, cas -> {
             if (cas.getMaterial().has(WOOD)){
                 this.tag(AntimatterDefaultTools.AXE.getToolType()).add(cas);
