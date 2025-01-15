@@ -45,6 +45,7 @@ public class GTCoreLang {
             add("machine.gtcore.stack_limit", "Outputs exactly %s items");
             add("machine.gtcore.no_stack_limit", "Outputs up to a full stack");
             add("machine.gtcore.hopper.slots", "Slots: %s");
+            add("machine.gtcore.hopper.screwdriver", "Use screwdriver to configure output amount");
             add("tooltip.gtcore.redstone_wire_range", "Range: %s");
             add("tooltip.gtcore.redstone_wire_light", "Emits light");
             add(GTCoreBlocks.RUBBER_LEAVES, "Rubber Leaves");
