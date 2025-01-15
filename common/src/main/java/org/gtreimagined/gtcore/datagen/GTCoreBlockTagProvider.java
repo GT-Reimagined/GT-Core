@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.block.BlockGTHopper;
 import org.gtreimagined.gtcore.block.BlockMaterialChest;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
@@ -48,6 +49,13 @@ public class GTCoreBlockTagProvider extends AntimatterBlockTagProvider {
                 this.tag(AntimatterDefaultTools.AXE.getToolType()).add(cas);
             } else {
                 this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
+            }
+        });
+        AntimatterAPI.all(BlockGTHopper.class, h -> {
+            if (h.getMaterial().has(WOOD)){
+                this.tag(AntimatterDefaultTools.AXE.getToolType()).add(h);
+            } else {
+                this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(h);
             }
         });
         /*AntimatterAPI.all(BlockNonSolidMachine.class, Ref.ID, cas -> {
