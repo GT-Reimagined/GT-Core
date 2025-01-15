@@ -94,28 +94,26 @@ public class BlockEntityGTHopper extends BlockEntityMaterial<BlockEntityGTHopper
     public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable AntimatterToolType type) {
         ItemStack stack = player.getItemInHand(hand);
         if (stack.is(AntimatterDefaultTools.SCREWDRIVER.getTag())){
-            if (Utils.getInteractSide(hit) == getFacing().getOpposite() || hit.getDirection() == getFacing().getOpposite()){
-                if (!observeStackLimit){
-                    if (stackLimit > 0 && stackLimit < 65){
-                        observeStackLimit = true;
-                    } else {
-                        stackLimit = player.isCrouching() ? 65 : 0;
-                    }
-                }
-                if (player.isCrouching()){
-                    stackLimit--;
+            if (!observeStackLimit){
+                if (stackLimit > 0 && stackLimit < 65){
+                    observeStackLimit = true;
                 } else {
-                    stackLimit++;
+                    stackLimit = player.isCrouching() ? 65 : 0;
                 }
-                if (stackLimit == 65 || stackLimit == 0){
-                    observeStackLimit = false;
-                    player.sendMessage(Utils.translatable("machine.gtcore.no_stack_limit"), player.getUUID());
-                } else {
-                    player.sendMessage(Utils.translatable("machine.gtcore.stack_limit", stackLimit), player.getUUID());
-                }
-                stack.hurt(1, world.random, (ServerPlayer) player);
-                return InteractionResult.SUCCESS;
             }
+            if (player.isCrouching()){
+                stackLimit--;
+            } else {
+                stackLimit++;
+            }
+            if (stackLimit == 65 || stackLimit == 0){
+                observeStackLimit = false;
+                player.sendMessage(Utils.translatable("machine.gtcore.no_stack_limit"), player.getUUID());
+            } else {
+                player.sendMessage(Utils.translatable("machine.gtcore.stack_limit", stackLimit), player.getUUID());
+            }
+            stack.hurt(1, world.random, (ServerPlayer) player);
+            return InteractionResult.SUCCESS;
         }
         return super.onInteractServer(state, world, pos, player, hand, hit, type);
     }
