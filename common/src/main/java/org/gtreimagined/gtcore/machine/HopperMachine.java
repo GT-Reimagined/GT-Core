@@ -48,7 +48,7 @@ public class HopperMachine extends MaterialMachine{
         } else if (slots % 8 == 0){
             startX = 53;
             columns = 4;
-        } else if (slots % 12 == 0){
+        } else if (slots != 36 && slots % 12 == 0){
             startX = 35;
             columns = 6;
         } else if (slots % 5 == 0 && slots <= 20){
