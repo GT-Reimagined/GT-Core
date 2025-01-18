@@ -34,10 +34,6 @@ public class GTCoreTags {
     public static TagKey<Item> POWER_UNIT_HV = getTag("power_units/hv");
     public static TagKey<Item> POWER_UNIT_SMALL = getTag("power_units/small");
     public static TagKey<Item> POWER_UNIT_JACKHAMMER = getTag("power_units/jackhammer");
-    public static TagKey<Item> RESISTORS = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "resistors"));
-    public static TagKey<Item> CAPACITORS = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "capacitors"));
-    public static TagKey<Item> TRANSISTORS = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "transistors"));
-    public static TagKey<Item> DIODES = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "diodes"));
     public static TagKey<Item> FIRESTARTER = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "firestarter"));
     public static TagKey<Item> MAGNETIC_TOOL = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "magnetic_tool"));
     public static TagKey<Item> INGOTS_MIXED_METAL = getTag("ingots/mixed_metal");
