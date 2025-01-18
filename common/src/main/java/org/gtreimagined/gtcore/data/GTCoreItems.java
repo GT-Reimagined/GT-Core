@@ -76,10 +76,6 @@ public class GTCoreItems {
     public static ItemBasic<?> FALDuctTapeEmpty = new ItemTape(GTCore.ID, "fal_duct_tape_empty");
     public static ItemBasic<?> FALDuctTape = new ItemTape(GTCore.ID, "fal_duct_tape", 10000000);
 
-    public static ItemBasic<?> GlassTube = new ItemBasic<>(GTCore.ID, "glass_tube", "circuits/");
-
-    public static ItemBasic<?> VacuumTube = new ItemBasic<>(GTCore.ID, "vacuum_tube", "circuits/");
-
     public static ItemBasic<?> NandChip = new ItemBasic<>(GTCore.ID, "nand_chip").tip("A very simple circuit");
     public static ItemBasic<?> AdvCircuitParts = new ItemBasic<>(GTCore.ID, "advanced_circuit_parts").tip("Used for making Advanced Circuits");
     public static ItemBasic<?> ComplexCircuitParts = new ItemBasic<>(GTCore.ID, "complex_circuit_parts").tip("Used for making Complex Circuits");
@@ -89,29 +85,12 @@ public class GTCoreItems {
     public static ItemBasic<?> EngravedCrystalChip = new ItemBasic<>(GTCore.ID, "engraved_crystal_chip").tip("Needed for Circuits");
     public static ItemBasic<?> EngravedLapotronChip = new ItemBasic<>(GTCore.ID, "engraved_lapotron_chip").tip("Needed for Circuits");
 
-    public static ItemBasic<?> Transistor = new ItemBasic<>(GTCore.ID, "transistor").tip("An integral part to Circuitry");
-    public static ItemBasic<?> SMDTransistor = new ItemBasic<>(GTCore.ID, "smd_transistor").tip("An integral part to Circuitry");
-    public static ItemBasic<?> Resistor = new ItemBasic<>(GTCore.ID, "resistor").tip("An integral part to Circuitry");
-    public static ItemBasic<?> SMDResistor = new ItemBasic<>(GTCore.ID, "smd_resistor").tip("An integral part to Circuitry");
-    public static ItemBasic<?> Diode = new ItemBasic<>(GTCore.ID, "diode").tip("An integral part to Circuitry");
-    public static ItemBasic<?> SMDDiode = new ItemBasic<>(GTCore.ID, "smd_diode").tip("An integral part to Circuitry");
-    public static ItemBasic<?> Capacitor = new ItemBasic<>(GTCore.ID, "capacitor").tip("An integral part to Circuitry");
-    public static ItemBasic<?> SMDCapacitor = new ItemBasic<>(GTCore.ID, "smd_capacitor").tip("An integral part to Circuitry");
-
     public static ItemBasic<?> CircuitBoardBasic = new ItemBasic<>(GTCore.ID, "basic_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardAdvanced = new ItemBasic<>(GTCore.ID, "advanced_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardComplex = new ItemBasic<>(GTCore.ID, "complex_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardEmpty = new ItemBasic<>(GTCore.ID, "empty_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardProcessor = new ItemBasic<>(GTCore.ID, "processor_circuit_board", "circuits/");
     public static ItemBasic<?> CircuitBoardProcessorEmpty = new ItemBasic<>(GTCore.ID, "empty_processor_circuit_board", "circuits/");
-
-    public static ItemBasic<?> CircuitBoardCoated = new ItemBasic<>(GTCore.ID, "coated_circuit_board", "circuits/").tip("The most basic Board");
-    public static ItemBasic<?> CircuitBoardPhenolic = new ItemBasic<>(GTCore.ID, "phenolic_circuit_board", "circuits/").tip("A basic Board");
-    public static ItemBasic<?> CircuitBoardPlastic = new ItemBasic<>(GTCore.ID, "plastic_circuit_board", "circuits/").tip("An advanced Board");
-    public static ItemBasic<?> CircuitBoardEpoxy = new ItemBasic<>(GTCore.ID, "epoxy_circuit_board", "circuits/").tip("4th Tier Board");
-    public static ItemBasic<?> CircuitBoardFiber = new ItemBasic<>(GTCore.ID, "fiber_reinforced_circuit_board", "circuits/").tip("5th Tier Board");
-    public static ItemBasic<?> CircuitBoardMultiFiber = new ItemBasic<>(GTCore.ID, "multilayer_fiber_reinforced_circuit_board", "circuits/").tip("6th Tier Board");
-    public static ItemBasic<?> CircuitBoardWetware = new ItemBasic<>(GTCore.ID, "wetware_circuit_board", "circuits/").tip("7th Tier Board");
 
     public static ItemBasic<?> CircuitBasic = new ItemBasic<>(GTCore.ID, "basic_circuit", "circuits/").tip("A Basic Circuit");
     public static ItemBasic<?> CircuitGood = new ItemBasic<>(GTCore.ID, "good_circuit", "circuits/").tip("A Good Circuit");
@@ -120,7 +99,6 @@ public class GTCoreItems {
     public static ItemBasic<?> CircuitDataStorage = new ItemBasic<>(GTCore.ID, "data_storage_circuit", "circuits/");
     public static ItemBasic<?> CircuitDataControl = new ItemBasic<>(GTCore.ID, "data_control_circuit", "circuits/").tip("An Elite Circuit"); //could be considered BIO
     public static ItemBasic<?> CircuitEnergyFlow = new ItemBasic<>(GTCore.ID, "energy_flow_circuit", "circuits/").tip("A Master Circuit"); //maybe name futuristic
-    //public static ItemBasic<?> CircuitElite = new ItemBasic<>(GTCore.ID, "elite_circuit", "circuits/").tip("A Elite Circuit");
     public static ItemBasic<?> CircuitFuturistic = new ItemBasic<>(GTCore.ID, "futuristic_circuit", "circuits/").tip("A Futuristic Circuit");
     public static ItemBasic<?> Circuit3D = new ItemBasic<>(GTCore.ID, "3d_circuit", "circuits/").tip("A 3-Dimensional Circuit");
     public static ItemBasic<?> CircuitInfinite = new ItemBasic<>(GTCore.ID, "infinite_circuit", "circuits/").tip("A Circuit with Infinite Power Throughput");
