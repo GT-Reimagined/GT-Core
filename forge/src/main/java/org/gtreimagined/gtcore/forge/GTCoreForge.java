@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.forge;
 
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
+import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.event.forge.AntimatterCraftingEvent;
 import muramasa.antimatter.event.forge.AntimatterLoaderEvent;
 import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
@@ -20,6 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.integration.curio.forge.CurioPlugin;
 import org.gtreimagined.gtcore.proxy.ClientHandler;
 import org.gtreimagined.gtcore.tree.RubberFoliagePlacer;
 
@@ -30,17 +32,19 @@ import static org.gtreimagined.gtcore.data.GTCoreMaterials.Beeswax;
 @Mod(GTCore.ID)
 public class GTCoreForge extends GTCore {
     public GTCoreForge(){
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onProvidersEvent);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCraftingEvent);
+        var eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        eventBus.addListener(this::onProvidersEvent);
+        eventBus.addListener(this::onCraftingEvent);
         MinecraftForge.EVENT_BUS.<AntimatterLoaderEvent>addListener(GTCoreForge::registerRecipeLoaders);
         MinecraftForge.EVENT_BUS.addListener(this::onChunkWatch);
         MinecraftForge.EVENT_BUS.addListener(this::onItemUse);
-        FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(FoliagePlacerType.class, this::onRegistration);
+        eventBus.addGenericListener(FoliagePlacerType.class, this::onRegistration);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-            FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
-            FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onStitch);
+            eventBus.addListener(this::clientSetup);
+            eventBus.addListener(this::onStitch);
             TerraformBoatClientHelper.registerModelLayer(new ResourceLocation(GTCore.ID, "rubber"));
         });
+        if (AntimatterAPI.isModLoaded("curios")) eventBus.addListener(CurioPlugin::loadIMC);
     }
 
     private void onChunkWatch(ChunkWatchEvent.Watch event){
