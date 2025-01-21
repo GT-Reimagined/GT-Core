@@ -7,6 +7,7 @@ import muramasa.antimatter.client.RenderHelper;
 import muramasa.antimatter.client.SimpleModelState;
 import muramasa.antimatter.client.baked.AntimatterBakedModel;
 import muramasa.antimatter.gui.SlotType;
+import muramasa.antimatter.machine.MachineState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockElement;
 import net.minecraft.client.renderer.block.model.BlockElementFace;
@@ -70,7 +71,7 @@ public class IconBakedModel extends AntimatterBakedModel<IconBakedModel> {
         quads.addAll(ModelUtils.INSTANCE.getQuadsFromBaked(baseModel, state, direction, rand, level, pos));
         if (direction != Direction.SOUTH) return quads;
         BlockEntity be = level.getBlockEntity(pos);
-        if (be instanceof BlockEntityMassStorage massStorage){
+        if (be instanceof BlockEntityMassStorage massStorage && massStorage.getMachineState() != MachineState.ACTIVE){
             int offset;
             if (massStorage.getMaxLimit() <= 10000) offset = 1;
             else {
