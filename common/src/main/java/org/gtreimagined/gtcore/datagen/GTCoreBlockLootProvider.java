@@ -5,6 +5,7 @@ import muramasa.antimatter.datagen.providers.AntimatterBlockLootProvider;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.block.BlockGTHopper;
 import org.gtreimagined.gtcore.block.BlockMaterialChest;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
@@ -22,6 +23,7 @@ public class GTCoreBlockLootProvider extends AntimatterBlockLootProvider {
         AntimatterAPI.all(BlockMachineMaterial.class, this::add);
         AntimatterAPI.all(BlockMultiMachineMaterial.class, this::add);
         AntimatterAPI.all(BlockMaterialChest.class, this::add);
+        AntimatterAPI.all(BlockGTHopper.class, this::add);
         tables.put(GTCoreBlocks.RUBBER_LEAVES, b -> createLeavesDrops(GTCoreBlocks.RUBBER_LEAVES, GTCoreBlocks.RUBBER_SAPLING, 0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F));
         this.add(GTCoreBlocks.RUBBER_LOG);
         this.add(GTCoreBlocks.RUBBER_SAPLING);
