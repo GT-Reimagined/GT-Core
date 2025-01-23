@@ -29,7 +29,7 @@ public class BlockEntityTrashCan extends BlockEntityMachine<BlockEntityTrashCan>
                 return Optional.of(new TrashCanCombinedHandler(side, tile.coverHandler.map(c -> c).orElse(null), this.inventories.values().stream().filter(t -> !(t instanceof FakeTrackedItemHandler)).toArray(ExtendedItemContainer[]::new)));
             }
         });
-        this.fluidHandler.set(() -> new MachineFluidHandler<>(this, 1000, 1000, 1, 0){
+        this.fluidHandler.set(() -> new MachineFluidHandler<>(this, 1000, 1, 0){
             @Override
             public long insertFluid(FluidHolder fluid, boolean simulate) {
                 return fluid.getFluidAmount();

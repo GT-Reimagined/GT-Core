@@ -29,7 +29,7 @@ public class DrumMachine extends MaterialMachine{
         this.setTile(((materialMachine, blockPos, blockState) -> new BlockEntityDrum(this, blockPos, blockState)));
         setBlock((type, tier) -> new BlockMachineMaterial(type, tier, BlockBehaviour.Properties.of(WRENCH_MATERIAL).strength(1.0f, 10.0f)));
         setItemBlock(ItemBlockDrum::new);
-        setTooltipInfo((machine, stack, world, tooltip, flag) -> {
+        addTooltipInfo((machine, stack, world, tooltip, flag) -> {
             tooltip.add(Utils.translatable("machine.drum.capacity", maxCapacity).withStyle(ChatFormatting.AQUA));
             if (acidProof){
                 tooltip.add(Utils.translatable("antimatter.tooltip.acid_proof"));
