@@ -33,11 +33,13 @@ public class WorkbenchMachine extends ChargingMachine{
         for (int x = 0; x < 5; x++){
             this.add(charge ? SlotTypes.TOOL_CHARGE : SlotTypes.TOOLS, 82 + (x * 18), 8);
         }
-        this.add(SlotTypes.PARK, 154, 46);
+        this.add(SlotTypes.BLUEPRINT, 136, 28);
+        this.add(SlotTypes.EXPORT, 154, 28);
+        this.add(SlotTypes.PARK, 154, 64);
         this.addGuiCallback(t -> {
-            t.addButton(136, 28, new ButtonOverlay(GTCore.ID, "to_inv", 18, 18));
-            t.addButton(154, 28, new ButtonOverlay(GTCore.ID, "to_player", 18, 18));
-            t.addWidget(SlotWidget.build(new SlotData<>(STORAGE, 136, 46, new ResourceLocation(GTCore.ID, "textures/gui/slots/crafting_output.png"))));
+            t.addButton(136, 46, new ButtonOverlay(GTCore.ID, "to_inv", 18, 18));
+            t.addButton(154, 46, new ButtonOverlay(GTCore.ID, "to_player", 18, 18));
+            t.addWidget(SlotWidget.build(new SlotData<>(STORAGE, 136, 64, new ResourceLocation(GTCore.ID, "textures/gui/slots/crafting_output.png"))));
         });
         this.removeFlags(COVERABLE);
         AntimatterAPI.register(WorkbenchMachine.class, this);

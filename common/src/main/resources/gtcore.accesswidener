@@ -13,3 +13,4 @@ accessible method net/minecraft/data/loot/BlockLoot createLeavesDrops (Lnet/mine
 accessible method net/minecraft/data/loot/BlockLoot createSlabItemTable (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 accessible method net/minecraft/data/loot/BlockLoot createSingleItemTable (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 accessible field net/minecraft/client/resources/model/ModelBakery resourceManager Lnet/minecraft/server/packs/resources/ResourceManager;
+accessible method net/minecraft/world/inventory/AbstractContainerMenu doClick (IILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V

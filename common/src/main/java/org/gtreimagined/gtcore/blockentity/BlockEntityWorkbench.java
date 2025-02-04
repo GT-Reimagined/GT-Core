@@ -1,5 +1,10 @@
 package org.gtreimagined.gtcore.blockentity;
 
+import muramasa.antimatter.capability.item.FakeTrackedItemHandler;
+import muramasa.antimatter.capability.item.TrackedItemHandler;
+import muramasa.antimatter.capability.machine.MachineItemHandler;
+import muramasa.antimatter.gui.SlotType;
+import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.gui.ContainerWorkbench;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
 import muramasa.antimatter.capability.machine.MachineCoverHandler;
@@ -18,6 +23,13 @@ import tesseract.api.item.ExtendedItemContainer;
 public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkbench>{
     public BlockEntityWorkbench(MaterialMachine type, BlockPos pos, BlockState state) {
         super(type, pos, state);
+        this.itemHandler.set(() -> new MachineItemHandler<>(this){
+            @Override
+            protected TrackedItemHandler<BlockEntityWorkbench> createTrackedHandler(SlotType<?> type, BlockEntityWorkbench tile) {
+                int count = tile.getMachineType().getCount(tile.getMachineTier(), type);
+                return type != SlotType.DISPLAY_SETTABLE && type != SlotType.DISPLAY && type != SlotType.FLUID_DISPLAY_SETTABLE ? new TrackedItemHandler<>(tile, type, count, type == SlotTypes.EXPORT, false, type.tester) : new FakeTrackedItemHandler<>(tile, type, count, type.output, type.input, type.tester);
+            }
+        });
     }
 
     @Override
@@ -44,10 +56,5 @@ public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkben
                 });
             }
         }
-    }
-
-    @Override
-    public <V> boolean blocksCapability(@NotNull Class<V> cap, Direction side) {
-        return super.blocksCapability(cap, side) || cap == ExtendedItemContainer.class;
     }
 }

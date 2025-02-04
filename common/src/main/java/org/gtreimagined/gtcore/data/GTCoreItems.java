@@ -57,6 +57,8 @@ public class GTCoreItems {
     public static ItemBasic<?> Radaway = new ItemRadaway().tip("Pill that cures Effects of Radiation");
     public static ItemBasic<?> EmptyWaxPill = new ItemBasic<>(GTCore.ID, "empty_wax_pill").tip("Placebo");
     public static ItemBasic<?> GTCredit = new ItemBasic<>(GTCore.ID, "gt_credit");
+    public static ItemBasic<?> EmptyBlueprint = new ItemBasic<>(GTCore.ID, "empty_blueprint");
+    public static ItemBasic<?> Blueprint = new ItemBasic<>(GTCore.ID, "blueprint");
     public static ItemHazmatArmor UniversalHazardSuitMask = new ItemHazmatArmor(EquipmentSlot.HEAD, "universal_hazard_suit_mask");
     public static ItemHazmatArmor UniversalHazardSuitShirt = new ItemHazmatArmor(EquipmentSlot.CHEST, "universal_hazard_suit_shirt");
     public static ItemHazmatArmor UniversalHazardSuitPants = new ItemHazmatArmor(EquipmentSlot.LEGS, "universal_hazard_suit_pants");

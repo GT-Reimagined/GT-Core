@@ -7,6 +7,7 @@ import muramasa.antimatter.tool.IAntimatterTool;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.gui.slots.SlotBlueprint;
 import org.gtreimagined.gtcore.gui.slots.SlotCrafting;
 import org.gtreimagined.gtcore.gui.slots.SlotUnlimited;
 import tesseract.TesseractCapUtils;
@@ -20,7 +21,9 @@ public class SlotTypes {
         return true;
     }, true, true, new ResourceLocation(GTCore.ID, "electric_tool"));
     public static SlotType<SlotCrafting> CRAFTING = new SlotType<>("crafting", (type, gui, item, i, d) -> new SlotCrafting(type, gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> true, false, true);
-    public static SlotType<AbstractSlot<?>> PARK = new SlotType<>("park", (type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> true, true, true, new ResourceLocation(GTCore.ID, "park"));
+    public static SlotType<AbstractSlot<?>> PARK = new SlotType<>("park", (type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> true, false, false, new ResourceLocation(GTCore.ID, "park"));
+    public static SlotType<SlotBlueprint> BLUEPRINT = new SlotType<>("blueprint", (type, gui, item, i, d) -> new SlotBlueprint(type, gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> i.getItem() == GTCoreItems.Blueprint || i.getItem() == GTCoreItems.EmptyBlueprint, false, false, new ResourceLocation(GTCore.ID, "blueprint"));
+    public static SlotType<AbstractSlot<?>> EXPORT = new SlotType<>("export", (type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> true, true, true, new ResourceLocation(GTCore.ID, "export"));
 
     public static SlotType<SlotUnlimited> UNLIMITED = new SlotType<>("unlimited", (type, gui, item, i, d) -> new SlotUnlimited(type, gui, item.getOrDefault(type, new EmptyContainer()), i, d.getX(), d.getY()), (t, i) -> true);
     public static void init(){
