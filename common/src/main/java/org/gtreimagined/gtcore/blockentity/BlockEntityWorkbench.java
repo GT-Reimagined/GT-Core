@@ -27,7 +27,7 @@ public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkben
             @Override
             protected TrackedItemHandler<BlockEntityWorkbench> createTrackedHandler(SlotType<?> type, BlockEntityWorkbench tile) {
                 int count = tile.getMachineType().getCount(tile.getMachineTier(), type);
-                return type != SlotType.DISPLAY_SETTABLE && type != SlotType.DISPLAY && type != SlotType.FLUID_DISPLAY_SETTABLE ? new TrackedItemHandler<>(tile, type, count, type == SlotTypes.EXPORT, false, type.tester) : new FakeTrackedItemHandler<>(tile, type, count, type.output, type.input, type.tester);
+                return type != SlotType.DISPLAY_SETTABLE && type != SlotType.DISPLAY && type != SlotType.FLUID_DISPLAY_SETTABLE ? new TrackedItemHandler<>(tile, type, count, type == SlotTypes.EXPORT, type.input, type.tester) : new FakeTrackedItemHandler<>(tile, type, count, type.output, type.input, type.tester);
             }
         });
     }

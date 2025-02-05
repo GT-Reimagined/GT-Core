@@ -126,6 +126,7 @@ public class GTCoreBlocks {
             initTFC();
         }
         AntimatterAPI.register(BlockEntityType.class, "sap_bag", GTCore.ID, SAP_BAG_BLOCK_ENTITY);
+        createWorkbench(AntimatterMaterials.Iron, false);
     }
 
     public static void initItemBarrels(){
