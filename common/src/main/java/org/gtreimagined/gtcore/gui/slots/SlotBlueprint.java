@@ -44,11 +44,7 @@ public class SlotBlueprint extends AbstractSlot<SlotBlueprint> implements IClick
                     CraftingRecipe recipe = optional.get();
                     ItemStack result = recipe.assemble(craftingGrid);
                     if (!result.isEmpty()) {
-                        ItemStack blueprint = new ItemStack(GTCoreItems.Blueprint, item.getCount());
-                        StringTag name = StringTag.valueOf(Component.Serializer.toJson(result.getHoverName()));
-                        CompoundTag display = new CompoundTag();
-                        display.put("Name", name);
-                        blueprint.getOrCreateTag().put("display", display);
+                        ItemStack blueprint = new ItemStack(GTCoreItems.Blueprint, item.getCount()).setHoverName(result.getHoverName());
                         blueprint.getOrCreateTag().putString("recipeId", recipe.getId().toString());
                         this.set(blueprint);
                         serverPlayer.connection.send(new ClientboundContainerSetSlotPacket(abstractContainerMenu.containerId, abstractContainerMenu.getStateId(), 31, blueprint));
