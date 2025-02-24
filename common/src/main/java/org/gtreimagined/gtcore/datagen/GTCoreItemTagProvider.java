@@ -3,6 +3,7 @@ package org.gtreimagined.gtcore.datagen;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterDefaultTools;
+import muramasa.antimatter.data.AntimatterMaterials;
 import muramasa.antimatter.data.AntimatterTags;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemTagProvider;
@@ -24,6 +25,7 @@ import org.gtreimagined.gtcore.data.GTCoreTags;
 import java.util.Objects;
 import java.util.Set;
 
+import static muramasa.antimatter.data.AntimatterMaterialTypes.PLATE;
 import static muramasa.antimatter.material.MaterialTags.*;
 import static org.gtreimagined.gtcore.data.GTCoreItems.*;
 import static org.gtreimagined.gtcore.data.GTCoreMaterials.*;
@@ -40,7 +42,7 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         processSubtags();
         this.copy(TagUtils.getBlockTag(new ResourceLocation(GTCore.ID, "rubber_logs")), GTCoreTags.RUBBER_LOGS);
         this.tag(ItemTags.LEAVES).add(GTCoreBlocks.RUBBER_LEAVES.asItem());
-        this.tag(ItemTags.PLANKS).add(GTCoreBlocks.RUBBER_PLANKS.asItem());
+        this.tag(ItemTags.PLANKS).add(GTCoreBlocks.RUBBER_PLANKS.asItem(), PLATE.get(AntimatterMaterials.Wood));
         this.tag(ItemTags.SLABS).add(GTCoreBlocks.RUBBER_SLAB.asItem());
         this.tag(ItemTags.STAIRS).add(GTCoreBlocks.RUBBER_STAIRS.asItem());
         this.tag(ItemTags.SIGNS).add(GTCoreBlocks.RUBBER_SIGN.asItem());
