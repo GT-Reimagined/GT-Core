@@ -22,6 +22,13 @@ public class CoverSelectorTag extends BaseCover {
     }
 
     @Override
+    public void onFirstTick() {
+        if (source().getTile() instanceof BlockEntityRedstoneWire<?> wire) {
+            wire.setMode(mode);
+        }
+    }
+
+    @Override
     public void onPlace() {
         if (source().getTile() instanceof BlockEntityRedstoneWire<?> wire) {
             wire.setMode(mode);
@@ -31,7 +38,7 @@ public class CoverSelectorTag extends BaseCover {
     @Override
     public void onRemove() {
         super.onRemove();
-        if (source().getTile() instanceof BlockEntityRedstoneWire<?> wire) {
+        if (source().getTile() instanceof BlockEntityRedstoneWire<?> wire && !wire.isRemoved()) {
             wire.setMode(0);
         }
     }

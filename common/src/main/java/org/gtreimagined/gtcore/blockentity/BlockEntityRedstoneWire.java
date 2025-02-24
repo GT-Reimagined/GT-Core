@@ -47,6 +47,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     public void onFirstTick() {
         super.onFirstTick();
         updateConnectionStatus();
+        if (updateRedstone()) doRedstoneUpdate(this);
     }
 
     @Override
@@ -231,11 +232,9 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         int oldMode = mMode;
         mMode = CodeUtils.bind4(mode);
         if (oldMode != mMode) {
-            if (updateRedstone()) doRedstoneUpdate(this);
-            for (Direction tSide : Direction.values()) {
-                if (mConnectedToNonWire) updateBlock(tSide);
-            }
+            updateConnectionStatus();
         }
+        if (updateRedstone()) doRedstoneUpdate(this);
     }
 
     @Override
