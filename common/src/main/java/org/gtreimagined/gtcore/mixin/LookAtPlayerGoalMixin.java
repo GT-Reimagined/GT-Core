@@ -39,7 +39,7 @@ public class LookAtPlayerGoalMixin {
     @Unique
     private TargetingConditions gtcore$bearLookAtContext;
 
-    @Inject(method = "<init>(Lnet/minecraft/world/entity/Mob;Ljava/lang/Class;FFZ)V", at = @At("TAIL"))
+    /*@Inject(method = "<init>(Lnet/minecraft/world/entity/Mob;Ljava/lang/Class;FFZ)V", at = @At("TAIL"))
     private void gtcore$injectInit(Mob mob, Class lookAtType, float lookDistance, float probability, boolean onlyHorizontal, CallbackInfo ci){
         if (mob.getClass() == Creeper.class){
             gtcore$bearLookDistance = lookDistance * 8;
@@ -75,5 +75,5 @@ public class LookAtPlayerGoalMixin {
                 cir.setReturnValue(look);
             }
         }
-    }
+    }*/
 }

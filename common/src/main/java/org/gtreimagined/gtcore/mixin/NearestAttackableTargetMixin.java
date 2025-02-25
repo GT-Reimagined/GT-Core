@@ -36,7 +36,7 @@ public abstract class NearestAttackableTargetMixin<T extends LivingEntity> exten
 
     }
 
-    @Inject(method = "<init>(Lnet/minecraft/world/entity/Mob;Ljava/lang/Class;IZZLjava/util/function/Predicate;)V", at = @At("TAIL"))
+    /*@Inject(method = "<init>(Lnet/minecraft/world/entity/Mob;Ljava/lang/Class;IZZLjava/util/function/Predicate;)V", at = @At("TAIL"))
     private void gtcore$injectInit(Mob mob, Class targetType, int randomInterval, boolean mustSee, boolean mustReach, Predicate<LivingEntity> targetPredicate, CallbackInfo ci){
         if (mob instanceof Creeper) {
             gtcore$bearTargetConditions = TargetingConditions.forCombat().range(this.getFollowDistance() * 8).selector(targetPredicate);
@@ -56,5 +56,5 @@ public abstract class NearestAttackableTargetMixin<T extends LivingEntity> exten
                 }
             }
         }
-    }
+    }*/
 }
