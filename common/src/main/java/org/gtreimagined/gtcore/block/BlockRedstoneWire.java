@@ -134,7 +134,7 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
     public int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
         BlockEntity be = level.getBlockEntity(pos);
         if (be instanceof BlockEntityRedstoneWire<?> wire){
-            return wire.getWeakPower(direction == null ? null : direction.getOpposite());
+            return wire.getWeakPower(direction.getOpposite());
         }
         return super.getSignal(state, level, pos, direction);
     }
@@ -143,7 +143,7 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
     public int getDirectSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
         BlockEntity be = level.getBlockEntity(pos);
         if (be instanceof BlockEntityRedstoneWire<?> wire){
-            return wire.getStrongPower(direction == null ? null : direction.getOpposite());
+            return wire.getStrongPower(direction.getOpposite());
         }
         return super.getDirectSignal(state, level, pos, direction);
     }
@@ -151,5 +151,10 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
     @Override
     public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
         return super.getAnalogOutputSignal(state, level, pos);
+    }
+
+    @Override
+    public boolean isSignalSource(BlockState state) {
+        return true;
     }
 }

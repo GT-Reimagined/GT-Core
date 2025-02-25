@@ -119,11 +119,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         if (cover.isNode()){
             return cover.getWeakPower();
         }
-        Block block = level.getBlockState(this.getBlockPos().relative(side)).getBlock();
-        if (block instanceof BlockRedstoneWire<?>) return 0;
-        boolean connects = connects(side);
-        if (mRedstone <= 0 || !connects) return 0;
-        return getVanillaRedstonePower() - 1;
+        return getPower(side);
     }
 
     public int getStrongPower(Direction side){
@@ -131,11 +127,17 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
         if (cover.isNode()){
             return cover.getStrongPower();
         }
-        Block block = level.getBlockState(this.getBlockPos().relative(side)).getBlock();
+        return getPower(side);
+    }
+
+    private int getPower(Direction side) {
+        if (side.get3DDataValue() == mReceived) return 0;
+        BlockState blockState = level.getBlockState(this.getBlockPos().relative(side));
+        Block block = blockState.getBlock();
         if (block instanceof BlockRedstoneWire<?>) return 0;
         boolean connects = connects(side);
         if (mRedstone <= 0 || !connects) return 0;
-        return getVanillaRedstonePower() - 1;
+        return getVanillaRedstonePower() - (blockState.is(Blocks.REDSTONE_WIRE) || blockState.isCollisionShapeFullBlock(level, this.getBlockPos().relative(side)) ? 1 : 0);
     }
 
     public int getComparatorInputOverride(byte aSide) {
