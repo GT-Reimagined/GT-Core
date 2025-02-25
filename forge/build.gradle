@@ -1,12 +1,12 @@
 import org.gradle.api.tasks.bundling.Jar
 
 plugins {
-    id "net.neoforged.moddev.legacyforge" version "2.0.55-beta"
+    id "net.neoforged.moddev.legacyforge" version "2.0.72"
 }
 
 archivesBaseName = "${rootProject.archive_base_name}-forge"
 
-neoForge {
+legacyForge {
     version = "${project.minecraft_version}-${project.forge_version}"
     def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
