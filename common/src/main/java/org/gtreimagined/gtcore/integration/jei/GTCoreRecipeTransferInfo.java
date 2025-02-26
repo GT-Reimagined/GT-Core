@@ -43,7 +43,7 @@ public class GTCoreRecipeTransferInfo implements IRecipeTransferInfo<ContainerWo
         for (int i = 1; i < 17; i++) {
             slots.add(containerWorkbench.getSlot(i));
         }
-        for (int i = 26; i < 68; i++) {
+        for (int i = 26; i < 70; i++) {
             slots.add(containerWorkbench.getSlot(i));
         }
         return slots;
