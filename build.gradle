@@ -1,10 +1,25 @@
+import org.gradle.api.tasks.bundling.Jar
+import org.gradle.api.tasks.compile.JavaCompile
+import org.gradle.jvm.toolchain.JavaLanguageVersion
+
 plugins {
     id "maven-publish"
     id "idea"
+    id "net.neoforged.moddev.legacyforge" version "2.0.72"
 }
+apply plugin: "maven-publish"
+apply plugin: "java"
+apply plugin: "idea"
 
 //Print out JVM information so that we know what version is running. Extreamly useful for people to know when helping you.
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+
+group = project.maven_group
+version = "${project.mod_version}-${project.minecraft_version}"
+archivesBaseName = "${project.archive_base_name}"
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+apply from: 'https://raw.githubusercontent.com/GregTech-Intergalactical/GradleSripts/main/repositories.gradle'
 
 def isCI = System.getenv("GITHUB_ACTION")
 def isRELEASE = System.getenv("GITHUB_RELEASE")
@@ -15,25 +30,120 @@ static def gitHash() {
     return ""
 }
 
-subprojects {
-    apply plugin: "maven-publish"
-    apply plugin: "java"
-    apply plugin: "idea"
-    group = rootProject.maven_group
-    version = "${project.mod_version}-${rootProject.minecraft_version}"
-
-    java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-    apply from: 'https://raw.githubusercontent.com/GregTech-Intergalactical/GradleSripts/main/repositories.gradle'
-
-    java {
-        withSourcesJar()
+if (isCI) {
+    if (!isRELEASE){
+        version = version + "-" + gitHash()
+        println("Not in CI Release mode")
     }
-    if (isCI) {
-        if (!isRELEASE){
-            version = version + "-" + gitHash()
-            println("Not in CI Release mode")
+    println("In CI mode")
+}
+
+legacyForge {
+    version = "${project.minecraft_version}-${project.forge_version}"
+    parchment {
+        minecraftVersion = rootProject.minecraft_version
+        mappingsVersion = rootProject.mappings_version
+    }
+    runs {
+        client {
+            client()
         }
-        println("In CI mode")
+        clientAuth {
+            client()
+            devLogin = true
+            gameDirectory = project.file('run/auth')
+        }
+        data {
+            data()
+        }
+        server {
+            server()
+        }
     }
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
 
+dependencies {
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    implementation("org.jetbrains:annotations:26.0.1")
+    modImplementation("org.gt-reimagined:antimatter-forge:${antimatter_version}")
+    modImplementation("org.gt-reimagined:tesseract-forge:${tesseract_version}")
+    //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
+    modCompileOnly("curse.maven:terrafirmacraft-302973:4723717")
+    modImplementation("earth.terrarium:botarium-forge-1.18.2:${project.botarium_version}")
+    modImplementation("curse.maven:curios-309927:4985315")
+    modImplementation("com.teamresourceful.resourcefullib:resourcefullib-forge-1.18.2:${project.resourcefullib_version}")
+    modImplementation("dev.trinsdar:terraform-wood-api-v1:${project.terraform_version_forge}")
+    jarJar("dev.trinsdar:terraform-wood-api-v1:${project.terraform_version_forge}"){
+        version{
+            strictly("[3.1.5,)")
+            prefer(project.terraform_version_forge)
+        }
+    }
+    //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
+    modImplementation("maven.modrinth:carbon-config:${project.carbon_config_forge_version}")
+    modRuntimeOnly("curse.maven:the-twilight-forest-227639:4337390")
+    implementation("mezz.jei:jei-${rootProject.minecraft_version}-common-api:${rootProject.jei_version}")
+    modImplementation("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
+    modImplementation("curse.maven:the-one-probe-245211:3965688")
+    modImplementation("org.gt-reimagined:structurelib-forge:${project.structurelib_version}-${project.minecraft_version}")
+    modImplementation("curse.maven:jade-324717:5079263")
+}
+
+
+processResources {
+    inputs.property "version", project.mod_version
+
+    filesMatching("META-INF/mods.toml") {
+        expand "version": project.mod_version
+    }
+}
+
+mixin {
+    add sourceSets.main, "gtcore.refmap.json"
+    config "gtcore.mixins.json"
+    config "gtcore.jei.mixins.json"
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                "MixinConfigs"            : "gtcore.mixins.json",
+                'Specification-Title'     : mod_id,
+                'Specification-Vendor'    : "Trinsdar",
+                'Specification-Version'   : '1', // We are version 1 of ourselves
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.jar.archiveVersion,
+                'Implementation-Vendor'   : "Trinsdar",
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(org.gradle.api.publish.maven.MavenPublication) {
+            artifactId = "gtcore"
+            from components.java
+        }
+    }
+    repositories {
+        def isCI2 = System.getenv("CI")
+        if (isCI2) {
+            maven {
+                url System.getenv("local_maven_url")
+            }
+        } else {
+            mavenLocal()
+        }
+    }
+}
+
+java {
+    withSourcesJar()
 }

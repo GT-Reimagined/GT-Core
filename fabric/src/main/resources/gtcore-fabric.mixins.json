@@ -1,9 +1,0 @@
-{
-  "required": true,
-  "package": "io.github.gregtechintergalactical.gtcore.mixin.fabric",
-  "compatibilityLevel": "JAVA_17",
-  "minVersion": "0.8",
-  "mixins": [
-    "org.gtreimagined.gtcore.mixin.fabric.BlockRedstoneWireMixin"
-  ]
-}
