@@ -33,7 +33,6 @@ import org.gtreimagined.gtcore.datagen.GTCoreBlockTagProvider;
 import org.gtreimagined.gtcore.datagen.GTCoreItemTagProvider;
 import org.gtreimagined.gtcore.datagen.GTCoreLang;
 import org.gtreimagined.gtcore.events.GTCommonEvents;
-import org.gtreimagined.gtcore.forge.GTCoreForge;
 import org.gtreimagined.gtcore.integration.curio.CurioPlugin;
 import org.gtreimagined.gtcore.integration.top.MassStorageProvider;
 import org.gtreimagined.gtcore.integration.top.RedstoneWireProvider;
@@ -114,7 +113,7 @@ public class GTCore extends AntimatterMod {
         var eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::onProvidersEvent);
         eventBus.addListener(this::onCraftingEvent);
-        MinecraftForge.EVENT_BUS.<AntimatterLoaderEvent>addListener(GTCoreForge::registerRecipeLoaders);
+        MinecraftForge.EVENT_BUS.addListener(GTCore::registerRecipeLoaders);
         MinecraftForge.EVENT_BUS.addListener(this::onChunkWatch);
         MinecraftForge.EVENT_BUS.addListener(this::onItemUse);
         eventBus.addGenericListener(FoliagePlacerType.class, this::onRegistration);
