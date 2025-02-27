@@ -27,6 +27,7 @@ import org.gtreimagined.gtcore.block.BlockSapBag;
 import org.gtreimagined.gtcore.blockentity.BlockEntityPlasticBin;
 import org.gtreimagined.gtcore.blockentity.BlockEntitySapBag;
 import org.gtreimagined.gtcore.blockentity.BlockEntityTrashCan;
+import org.gtreimagined.gtcore.integration.tfc.TFCRubberData;
 import org.gtreimagined.gtcore.machine.BarrelMachine;
 import org.gtreimagined.gtcore.machine.ChestMachine;
 import org.gtreimagined.gtcore.machine.DrumMachine;
@@ -122,7 +123,7 @@ public class GTCoreBlocks {
         if (!AntimatterAPI.isModLoaded("tfc")){
             RUBBER_LEAVES = new BlockRubberLeaves();
             RUBBER_SAPLING = new BlockRubberSapling();
-        } else if (AntimatterPlatformUtils.INSTANCE.isForge()){
+        } else {
             initTFC();
         }
         AntimatterAPI.register(BlockEntityType.class, "sap_bag", GTCore.ID, SAP_BAG_BLOCK_ENTITY);
@@ -140,7 +141,7 @@ public class GTCoreBlocks {
     }
 
     private static void initTFC(){
-        IGTBlockInit.INSTANCE.init();
+        TFCRubberData.init();
     }
 
     public static DrumMachine createDrum(Material material, int maxCapacity){

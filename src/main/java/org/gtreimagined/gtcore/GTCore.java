@@ -4,6 +4,23 @@ import com.google.common.collect.ImmutableMap;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.teamresourceful.resourcefullib.common.networking.base.NetworkDirection;
+import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
+import muramasa.antimatter.event.forge.AntimatterCraftingEvent;
+import muramasa.antimatter.event.forge.AntimatterLoaderEvent;
+import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.ChunkWatchEvent;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.gtreimagined.gtcore.client.BakedModels;
 import org.gtreimagined.gtcore.data.GTCoreCables;
 import org.gtreimagined.gtcore.data.GTCoreData;
@@ -16,6 +33,8 @@ import org.gtreimagined.gtcore.datagen.GTCoreBlockTagProvider;
 import org.gtreimagined.gtcore.datagen.GTCoreItemTagProvider;
 import org.gtreimagined.gtcore.datagen.GTCoreLang;
 import org.gtreimagined.gtcore.events.GTCommonEvents;
+import org.gtreimagined.gtcore.forge.GTCoreForge;
+import org.gtreimagined.gtcore.integration.curio.forge.CurioPlugin;
 import org.gtreimagined.gtcore.integration.top.MassStorageProvider;
 import org.gtreimagined.gtcore.integration.top.RedstoneWireProvider;
 import org.gtreimagined.gtcore.loader.crafting.MachineRecipes;
@@ -29,7 +48,9 @@ import org.gtreimagined.gtcore.loader.machines.AssemblyLoader;
 import org.gtreimagined.gtcore.network.MessageCraftingSync;
 import org.gtreimagined.gtcore.network.MessageInventorySync;
 import org.gtreimagined.gtcore.network.MessageTriggerInventorySync;
+import org.gtreimagined.gtcore.proxy.ClientHandler;
 import org.gtreimagined.gtcore.proxy.CommonHandler;
+import org.gtreimagined.gtcore.tree.RubberFoliagePlacer;
 import org.gtreimagined.gtcore.tree.RubberTree;
 import org.gtreimagined.gtcore.tree.RubberTreeWorldGen;
 import muramasa.antimatter.AntimatterAPI;
@@ -83,6 +104,7 @@ import static muramasa.antimatter.material.MaterialTags.RUBBERTOOLS;
 import static muramasa.antimatter.material.MaterialTags.WOOD;
 import static org.gtreimagined.gtcore.data.GTCoreMaterials.*;
 
+@Mod(GTCore.ID)
 public class GTCore extends AntimatterMod {
 
     public static final Logger LOGGER = LogManager.getLogger(); // Directly reference a log4j logger.
@@ -91,13 +113,144 @@ public class GTCore extends AntimatterMod {
     public static final ResourceLocation INV_SYNC_ID = new ResourceLocation(GTCore.ID, "inventory_sync");
     public static final ResourceLocation TRIGGER_SYNC_ID = new ResourceLocation(GTCore.ID, "trigger_sync");
 
-    @Override
-    public void onRegistrarInit() {
-        super.onRegistrarInit();
+    public GTCore(){
+        var eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        eventBus.addListener(this::onProvidersEvent);
+        eventBus.addListener(this::onCraftingEvent);
+        MinecraftForge.EVENT_BUS.<AntimatterLoaderEvent>addListener(GTCoreForge::registerRecipeLoaders);
+        MinecraftForge.EVENT_BUS.addListener(this::onChunkWatch);
+        MinecraftForge.EVENT_BUS.addListener(this::onItemUse);
+        eventBus.addGenericListener(FoliagePlacerType.class, this::onRegistration);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            eventBus.addListener(this::clientSetup);
+            eventBus.addListener(this::onStitch);
+            TerraformBoatClientHelper.registerModelLayer(new ResourceLocation(GTCore.ID, "rubber"));
+        });
+        if (AntimatterAPI.isModLoaded("curios")) eventBus.addListener(CurioPlugin::loadIMC);
         AntimatterDynamics.clientProvider(ID, () -> new AntimatterBlockStateProvider(ID, NAME + " BlockStates"));
         AntimatterDynamics.clientProvider(ID, () -> new AntimatterItemModelProvider(ID, NAME + " Item Models"));
         AntimatterDynamics.clientProvider(ID, GTCoreLang.en_US::new);
         GTCoreConfig.createConfig();
+    }
+
+    private void onChunkWatch(ChunkWatchEvent.Watch event){
+        /*event.getWorld().getChunk(event.getPos().x, event.getPos().z).getBlockEntities().values().forEach(b -> {
+            if (b instanceof BlockEntityMassStorage storage && storage.isServerSide() && !storage.isRemoved()){
+                storage.setSyncSlots(true);
+            }
+        });*/
+    }
+
+    private void onItemUse(PlayerInteractEvent.RightClickBlock event){
+        if (event.getPlayer().getItemInHand(event.getHand()).is(DUST.getMaterialTag(Beeswax))){
+            event.setCancellationResult(Items.HONEYCOMB.useOn(new UseOnContext(event.getPlayer(), event.getHand(), event.getHitVec())));
+            event.setCanceled(true);
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    private void clientSetup(FMLClientSetupEvent event){
+        ClientHandler.init();
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    private void onStitch(TextureStitchEvent.Pre event) {
+        ClientHandler.onStitch(event.getAtlas(), event::addSprite);
+    }
+
+    private void onProvidersEvent(AntimatterProvidersEvent event){
+        final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
+        event.addProvider(ID, () -> {
+            p[0] = new GTCoreBlockTagProvider(ID, NAME.concat(" Block Tags"), false);
+            return p[0];
+        });
+        event.addProvider(ID, () -> new GTCoreItemTagProvider(ID, NAME.concat(" Item Tags"), false, p[0]));
+
+        event.addProvider(ID, () -> new GTCoreBlockLootProvider(ID, NAME.concat(" Loot generator")));
+        event.addProvider(ID, () -> new AntimatterTagProvider<>(BuiltinRegistries.BIOME, ID, NAME.concat(" Biome Tags"), "worldgen/biome") {
+            @Override
+            protected void processTags(String domain) {
+                AntimatterTagBuilder<Biome> tags = this.tag(TagUtils.getBiomeTag(new ResourceLocation(ID, "is_invalid_rubber"))).addTag(BiomeTags.IS_TAIGA).addTag(BiomeTags.IS_MOUNTAIN).addTag(BiomeTags.IS_OCEAN).addTag(BiomeTags.IS_DEEP_OCEAN).addTag(BiomeTags.IS_NETHER).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_desert"))).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_plains")));
+                boolean forge = AntimatterPlatformUtils.INSTANCE.isForge();
+                String d = forge ? "forge" : "c";
+                String end = forge ? "is_end" : "in_the_end";
+                tags.addTag(TagUtils.getBiomeTag(new ResourceLocation(d, end)));
+                tags.addTag(TagUtils.getBiomeTag(new ResourceLocation(d, forge ? "is_snowy" : "snowy")));
+            }
+        });
+        event.addProvider(ID, () -> new AntimatterTagProvider<>(BuiltinRegistries.CONFIGURED_FEATURE, ID, NAME.concat(" Configured Feature Tags"), "worldgen/configured_feature") {
+            @Override
+            protected void processTags(String domain) {
+                if (AntimatterAPI.isModLoaded("tfc")){
+                    this.tag(TagKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, new ResourceLocation("tfc", "forest_trees"))).add(ResourceKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, new ResourceLocation(GTCore.ID, "tree/rubber_entry")));
+                }
+            }
+        });
+        event.addProvider(ID, () -> new AntimatterWorldgenProvider(ID, NAME.concat(" Configured Features"), "configured_feature"){
+            @Override
+            public void run() {
+                if (!AntimatterAPI.isModLoaded("tfc")) return;
+                JsonObject object = new JsonObject();
+                object.addProperty("type", "tfc:random_tree");
+                JsonObject config = new JsonObject();
+                JsonArray structures = new JsonArray();
+                structures.add("gtcore:rubber_dead/1");
+                structures.add("gtcore:rubber_dead/2");
+                structures.add("gtcore:rubber_dead/3");
+                structures.add("gtcore:rubber_dead/4");
+                config.add("structures", structures);
+                config.addProperty("radius", 1);
+                JsonObject placement = new JsonObject();
+                placement.addProperty("width", 1);
+                placement.addProperty("height", 9);
+                placement.addProperty("allow_submerged", true);
+                placement.addProperty("allow_deeply_submerged", false);
+                config.add("placement", placement);
+                object.add("config", config);
+                addJsonObject(new ResourceLocation(ID, "tree/rubber_dead"), object);
+
+                object = new JsonObject();
+                object.addProperty("type", "tfc:forest_entry");
+                config = new JsonObject();
+                config.addProperty("min_rain", 250);
+                config.addProperty("max_rain", 400);
+                config.addProperty("min_temp", 15.0);
+                config.addProperty("max_temp", 40.0);
+                JsonArray groundCover = new JsonArray();
+                JsonObject block = new JsonObject();
+                block.addProperty("block", "gtcore:rubber_twig");
+                groundCover.add(block);
+                block = new JsonObject();
+                block.addProperty("block", "gtcore:rubber_fallen_leaves");
+                groundCover.add(block);
+                config.add("groundcover", groundCover);
+                config.addProperty("normal_tree", "gtcore:rubber_tree_normal");
+                config.addProperty("dead_tree", "gtcore:tree/rubber_dead");
+                config.addProperty("fallen_log", "gtcore:rubber_log");
+                object.add("config", config);
+                addJsonObject(new ResourceLocation(ID, "tree/rubber_entry"), object);
+
+            }
+        });
+    }
+
+    private void onCraftingEvent(AntimatterCraftingEvent event){
+        event.addLoader(MachineRecipes::initRecipes);
+        event.addLoader(RubberRecipes::addRecipes);
+        event.addLoader(MaterialRecipes::loadMaterialRecipes);
+        event.addLoader(Pipes::loadRecipes);
+        event.addLoader(Tools::init);
+        event.addLoader(VanillaRecipes::loadRecipes);
+        event.addLoader(MiscRecipes::loadRecipes);
+    }
+
+    public static void registerRecipeLoaders(AntimatterLoaderEvent event) {
+        BiConsumer<String, IRecipeRegistrate.IRecipeLoader> loader = (a, b) -> event.registrat.add(GTCore.ID, a, b);
+        loader.accept("assembling", AssemblyLoader::init);
+    }
+
+    private void onRegistration(final RegistryEvent.Register<FoliagePlacerType<?>> e){
+        e.getRegistry().register(RubberFoliagePlacer.RUBBER.setRegistryName(GTCore.ID, "rubber_foilage_placer"));
     }
 
     @Override
@@ -218,96 +371,5 @@ public class GTCore extends AntimatterMod {
         }
         GTCoreBlocks.initItemBarrels();
         Guis.init();
-    }
-
-    public static void onCrafting(CraftingEvent event){
-        event.addLoader(MachineRecipes::initRecipes);
-        event.addLoader(RubberRecipes::addRecipes);
-        event.addLoader(MaterialRecipes::loadMaterialRecipes);
-        event.addLoader(Pipes::loadRecipes);
-        event.addLoader(Tools::init);
-        event.addLoader(VanillaRecipes::loadRecipes);
-        event.addLoader(MiscRecipes::loadRecipes);
-    }
-
-    public static void registerRecipeLoaders(IAntimatterRegistrar registrar, IRecipeRegistrate reg) {
-        BiConsumer<String, IRecipeRegistrate.IRecipeLoader> loader = (a, b) -> reg.add(GTCore.ID, a, b);
-        loader.accept("assembling", AssemblyLoader::init);
-    }
-
-    public static void onProviders(ProvidersEvent ev) {
-        final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
-        ev.addProvider(ID, () -> {
-            p[0] = new GTCoreBlockTagProvider(ID, NAME.concat(" Block Tags"), false);
-            return p[0];
-        });
-        ev.addProvider(ID, () -> new GTCoreItemTagProvider(ID, NAME.concat(" Item Tags"), false, p[0]));
-
-        ev.addProvider(ID, () -> new GTCoreBlockLootProvider(ID, NAME.concat(" Loot generator")));
-        ev.addProvider(ID, () -> new AntimatterTagProvider<>(BuiltinRegistries.BIOME, ID, NAME.concat(" Biome Tags"), "worldgen/biome") {
-            @Override
-            protected void processTags(String domain) {
-                AntimatterTagBuilder<Biome> tags = this.tag(TagUtils.getBiomeTag(new ResourceLocation(ID, "is_invalid_rubber"))).addTag(BiomeTags.IS_TAIGA).addTag(BiomeTags.IS_MOUNTAIN).addTag(BiomeTags.IS_OCEAN).addTag(BiomeTags.IS_DEEP_OCEAN).addTag(BiomeTags.IS_NETHER).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_desert"))).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_plains")));
-                boolean forge = AntimatterPlatformUtils.INSTANCE.isForge();
-                String d = forge ? "forge" : "c";
-                String end = forge ? "is_end" : "in_the_end";
-                tags.addTag(TagUtils.getBiomeTag(new ResourceLocation(d, end)));
-                tags.addTag(TagUtils.getBiomeTag(new ResourceLocation(d, forge ? "is_snowy" : "snowy")));
-            }
-        });
-        ev.addProvider(ID, () -> new AntimatterTagProvider<>(BuiltinRegistries.CONFIGURED_FEATURE, ID, NAME.concat(" Configured Feature Tags"), "worldgen/configured_feature") {
-            @Override
-            protected void processTags(String domain) {
-                if (AntimatterAPI.isModLoaded("tfc")){
-                    this.tag(TagKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, new ResourceLocation("tfc", "forest_trees"))).add(ResourceKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, new ResourceLocation(GTCore.ID, "tree/rubber_entry")));
-                }
-            }
-        });
-        ev.addProvider(ID, () -> new AntimatterWorldgenProvider(ID, NAME.concat(" Configured Features"), "configured_feature"){
-            @Override
-            public void run() {
-                if (!AntimatterAPI.isModLoaded("tfc")) return;
-                JsonObject object = new JsonObject();
-                object.addProperty("type", "tfc:random_tree");
-                JsonObject config = new JsonObject();
-                JsonArray structures = new JsonArray();
-                structures.add("gtcore:rubber_dead/1");
-                structures.add("gtcore:rubber_dead/2");
-                structures.add("gtcore:rubber_dead/3");
-                structures.add("gtcore:rubber_dead/4");
-                config.add("structures", structures);
-                config.addProperty("radius", 1);
-                JsonObject placement = new JsonObject();
-                placement.addProperty("width", 1);
-                placement.addProperty("height", 9);
-                placement.addProperty("allow_submerged", true);
-                placement.addProperty("allow_deeply_submerged", false);
-                config.add("placement", placement);
-                object.add("config", config);
-                addJsonObject(new ResourceLocation(ID, "tree/rubber_dead"), object);
-
-                object = new JsonObject();
-                object.addProperty("type", "tfc:forest_entry");
-                config = new JsonObject();
-                config.addProperty("min_rain", 250);
-                config.addProperty("max_rain", 400);
-                config.addProperty("min_temp", 15.0);
-                config.addProperty("max_temp", 40.0);
-                JsonArray groundCover = new JsonArray();
-                JsonObject block = new JsonObject();
-                block.addProperty("block", "gtcore:rubber_twig");
-                groundCover.add(block);
-                block = new JsonObject();
-                block.addProperty("block", "gtcore:rubber_fallen_leaves");
-                groundCover.add(block);
-                config.add("groundcover", groundCover);
-                config.addProperty("normal_tree", "gtcore:rubber_tree_normal");
-                config.addProperty("dead_tree", "gtcore:tree/rubber_dead");
-                config.addProperty("fallen_log", "gtcore:rubber_log");
-                object.add("config", config);
-                addJsonObject(new ResourceLocation(ID, "tree/rubber_entry"), object);
-
-            }
-        });
     }
 }
