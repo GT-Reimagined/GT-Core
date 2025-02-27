@@ -1,5 +1,6 @@
 package org.gtreimagined.gtcore.integration.rei;
 
+import me.shedaniel.rei.forge.REIPluginClient;
 import org.gtreimagined.gtcore.gui.ContainerWorkbench;
 import org.gtreimagined.gtcore.machine.WorkbenchMachine;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
@@ -17,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
+@REIPluginClient
 public class GTCoreReiPlugin implements REIClientPlugin {
 
     @Override

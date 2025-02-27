@@ -1,4 +1,4 @@
-package org.gtreimagined.gtcore.integration.jade.forge;
+package org.gtreimagined.gtcore.integration.jade;
 
 import mcp.mobius.waila.api.BlockAccessor;
 import mcp.mobius.waila.api.IComponentProvider;
@@ -7,8 +7,6 @@ import mcp.mobius.waila.api.config.IPluginConfig;
 import mcp.mobius.waila.api.ui.IElement;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.util.Utils;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.item.ItemStack;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
 import org.gtreimagined.gtcore.data.SlotTypes;

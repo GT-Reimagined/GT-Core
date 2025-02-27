@@ -1,4 +1,4 @@
-package org.gtreimagined.gtcore.integration.jade.forge;
+package org.gtreimagined.gtcore.integration.jade;
 
 import mcp.mobius.waila.api.BlockAccessor;
 import mcp.mobius.waila.api.IComponentProvider;

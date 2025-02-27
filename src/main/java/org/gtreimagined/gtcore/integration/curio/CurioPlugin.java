@@ -1,4 +1,4 @@
-package org.gtreimagined.gtcore.integration.curio.forge;
+package org.gtreimagined.gtcore.integration.curio;
 
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
