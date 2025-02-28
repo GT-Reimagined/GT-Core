@@ -23,7 +23,7 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
     - name: Setup Gradle Dependencies Cache
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: |
             ~/.gradle/caches
@@ -33,23 +33,14 @@ jobs:
       run: ./gradlew build --stacktrace
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
-    - name: Upload Forge Artifact
+    - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: GTCore-forge-nightly-${{ steps.vars.outputs.sha_short }}
-        path: forge/build/libs
+        name: GTCore-nightly-${{ steps.vars.outputs.sha_short }}
+        path: build/libs
       env:
         USERNAME: ${{ github.actor }}
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Upload Fabric Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: GTCore-fabric-nightly-${{ steps.vars.outputs.sha_short }}
-        path: fabric/build/libs
-      env:
-        USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Cleanup Gradle Cache
       # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
       # Restoring these files from a GitHub Actions cache might cause problems for future builds.
