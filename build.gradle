@@ -5,7 +5,7 @@ import org.gradle.jvm.toolchain.JavaLanguageVersion
 plugins {
     id "maven-publish"
     id "idea"
-    id "net.neoforged.moddev.legacyforge" version "2.0.72"
+    id "net.neoforged.moddev.legacyforge" version "2.0.78"
 }
 apply plugin: "maven-publish"
 apply plugin: "java"
@@ -70,12 +70,11 @@ legacyForge {
 dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation("org.jetbrains:annotations:26.0.1")
-    modImplementation("org.gt-reimagined:antimatter-forge:${antimatter_version}")
+    modImplementation("org.gt-reimagined:gt-lib:${gtlib_version}")
     modImplementation("org.gt-reimagined:tesseract-forge:${tesseract_version}")
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
     modCompileOnly("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
     modCompileOnly("curse.maven:terrafirmacraft-302973:4723717")
-    modImplementation("earth.terrarium:botarium-forge-1.18.2:${project.botarium_version}")
     modImplementation("curse.maven:curios-309927:4985315")
     modImplementation("com.teamresourceful.resourcefullib:resourcefullib-forge-1.18.2:${project.resourcefullib_version}")
     modImplementation("dev.trinsdar:terraform-wood-api-v1:${project.terraform_version_forge}")

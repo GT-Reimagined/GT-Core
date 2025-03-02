@@ -7,7 +7,7 @@ import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
 import muramasa.antimatter.recipe.ingredient.PropertyIngredient;
 import muramasa.antimatter.tool.AntimatterToolType;
-import muramasa.antimatter.util.AntimatterPlatformUtils;
+import muramasa.antimatter.util.RegistryUtils;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -42,7 +42,7 @@ public class Tools {
 
         if (AntimatterAPI.isModLoaded(Ref.MOD_TOP)) {
             ARMOR.getAll().forEach((m, a) ->{
-                provider.addToolRecipe(PROBE_BUILDER.get(m.getId() + "_" + AntimatterDefaultTools.HELMET.getId()), consumer, Ref.ID, m.getId() + "_helmet_with_probe", "antimatter_armor", AntimatterDefaultTools.HELMET.getToolStack(m), of('H', PropertyIngredient.builder("helmet").itemStacks(AntimatterDefaultTools.HELMET.getToolStack(m).getItem()).build(), 'P', AntimatterPlatformUtils.INSTANCE.getItemFromID(Ref.MOD_TOP, "probe")), "HP");
+                provider.addToolRecipe(PROBE_BUILDER.get(m.getId() + "_" + AntimatterDefaultTools.HELMET.getId()), consumer, Ref.ID, m.getId() + "_helmet_with_probe", "antimatter_armor", AntimatterDefaultTools.HELMET.getToolStack(m), of('H', PropertyIngredient.builder("helmet").itemStacks(AntimatterDefaultTools.HELMET.getToolStack(m).getItem()).build(), 'P', RegistryUtils.getItemFromID(Ref.MOD_TOP, "probe")), "HP");
             });
 
         }
@@ -135,7 +135,7 @@ public class Tools {
                                of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPR", "FH ");
                    }
                }
-               if (t.toolTypes().contains(SCYTHE) && (!AntimatterAPI.isModLoaded("gtspartan") || AntimatterPlatformUtils.INSTANCE.isFabric())){
+               if (t.toolTypes().contains(SCYTHE) && !AntimatterAPI.isModLoaded("gtspartan")){
                    if (m.has(FLINT)){
                        if (!AntimatterAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", SCYTHE.getToolStack(m),
@@ -351,7 +351,7 @@ public class Tools {
             provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCREWDRIVER_TIP.get(m),
                     of('R', ROD.getMaterialTag(m), 'F', FILE.getTag(), 'H', HAMMER.getTag()), "HR", "RF");
         });
-        if (!AntimatterAPI.isModLoaded("gtspartan") || AntimatterPlatformUtils.INSTANCE.isFabric()) {
+        if (!AntimatterAPI.isModLoaded("gtspartan")) {
             SCYTHE_BLADE.all().forEach(m -> {
                 if (m.has(GEM)){
                     provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCYTHE_BLADE.get(m),

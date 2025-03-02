@@ -78,7 +78,7 @@ public class IconBakedModel extends AntimatterBakedModel<IconBakedModel> {
                 offset = 0;
             }
             int amount = massStorage.getItemAmount();
-            ItemStack display = massStorage.itemHandler.map(i -> i.getHandler(SlotType.DISPLAY).getItem(0)).orElse(ItemStack.EMPTY);
+            ItemStack display = massStorage.itemHandler.map(i -> i.getHandler(SlotType.DISPLAY).getStackInSlot(0)).orElse(ItemStack.EMPTY);
             if (amount > 0 || !display.isEmpty()) {
                 String number = amount == massStorage.getMaxLimit() ? "100%" : Integer.toString(amount);
                 for (int i = 0; i < number.length(); i++) {

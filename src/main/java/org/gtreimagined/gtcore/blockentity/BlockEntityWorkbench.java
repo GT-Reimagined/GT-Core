@@ -7,18 +7,12 @@ import muramasa.antimatter.gui.SlotType;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.gui.ContainerWorkbench;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
-import muramasa.antimatter.capability.machine.MachineCoverHandler;
-import muramasa.antimatter.cover.ICover;
 import muramasa.antimatter.gui.event.GuiEvents;
 import muramasa.antimatter.gui.event.IGuiEvent;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
-import tesseract.api.item.ExtendedItemContainer;
 
 public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkbench>{
     public BlockEntityWorkbench(MaterialMachine type, BlockPos pos, BlockState state) {

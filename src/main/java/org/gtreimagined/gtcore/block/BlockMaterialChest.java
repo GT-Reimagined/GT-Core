@@ -7,8 +7,10 @@ import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.machine.types.Machine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -30,10 +32,12 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityChest;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 
+import javax.annotation.Nullable;
 import java.util.function.BiPredicate;
 
 
@@ -84,13 +88,33 @@ public class BlockMaterialChest extends BlockMachineMaterial implements SimpleWa
     public int getAnalogOutputSignal(BlockState pBlockState, Level pLevel, BlockPos pPos) {
         BlockEntity tile = pLevel.getBlockEntity(pPos);
         if (tile instanceof BlockEntityChest chest){
-            Container container = chest.itemHandler.map(i -> i.getHandler(SlotType.STORAGE)).orElse(null);
+            IItemHandler container = chest.itemHandler.map(i -> i.getHandler(SlotType.STORAGE)).orElse(null);
             if (container != null){
-                return AbstractContainerMenu.getRedstoneSignalFromContainer(container);
+                return getRedstoneSignalFromContainer(container);
             }
 
         }
         return 0;
+    }
+
+    public static int getRedstoneSignalFromContainer(@Nullable IItemHandler inv) {
+        if (inv == null) {
+            return 0;
+        } else {
+            int i = 0;
+            float f = 0.0F;
+
+            for(int j = 0; j < inv.getSlots(); ++j) {
+                ItemStack itemstack = inv.getStackInSlot(j);
+                if (!itemstack.isEmpty()) {
+                    f += (float)itemstack.getCount() / (float)Math.min(inv.getSlotLimit(j), itemstack.getMaxStackSize());
+                    ++i;
+                }
+            }
+
+            f /= (float)inv.getSlots();
+            return Mth.floor(f * 14.0F) + (i > 0 ? 1 : 0);
+        }
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {

@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import muramasa.antimatter.mixin.BiomeAccessor;
-import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.TagUtils;
 import muramasa.antimatter.worldgen.AntimatterWorldGenerator;
 import muramasa.antimatter.worldgen.object.WorldGenBase;
@@ -95,9 +94,6 @@ public class RubberTreeWorldGen extends WorldGenBase<RubberTreeWorldGen> {
         TREE = PlacementUtils.register("gtcore:rubber", RubberTreeWorldGen.TREE_FEATURE_CONFIG, new RubberTreePlacementModifier(), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(0), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTCoreBlocks.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
         TREE_JUNGLE = PlacementUtils.register("gtcore:rubber_jungle", RubberTreeWorldGen.TREE_FEATURE_JUNGLE_CONFIG, new RubberTreePlacementModifier(), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(0), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTCoreBlocks.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
         TREE_SWAMP = PlacementUtils.register("gtcore:rubber_swamp", RubberTreeWorldGen.TREE_FEATURE_SWAMP_CONFIG, new RubberTreePlacementModifier(), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(2), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTCoreBlocks.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
-        if (AntimatterPlatformUtils.INSTANCE.isFabric()){
-            Registry.register(Registry.FOLIAGE_PLACER_TYPES, new ResourceLocation(GTCore.ID, "rubber_foilage_placer"), RubberFoliagePlacer.RUBBER);
-        }
         Registry.register(Registry.TRUNK_PLACER_TYPES, new ResourceLocation(GTCore.ID, "rubber_trunk_placer"), RubberTrunkPlacer.RUBBER);
         Registry.register(Registry.PLACEMENT_MODIFIERS, new ResourceLocation(GTCore.ID, "rubber_tree_placement_modifier"), RUBBER_TREE_PLACEMENT_MODIFIER);
     }

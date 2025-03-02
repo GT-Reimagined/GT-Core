@@ -1,19 +1,19 @@
 package org.gtreimagined.gtcore.machine;
 
-import earth.terrarium.botarium.common.fluid.base.FluidHolder;
-import earth.terrarium.botarium.common.fluid.utils.FluidHooks;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.texture.Texture;
+import muramasa.antimatter.util.FluidUtils;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityDrum;
 import org.gtreimagined.gtcore.item.ItemBlockDrum;
-import tesseract.FluidPlatformUtils;
 import tesseract.TesseractGraphWrappers;
 
 import static muramasa.antimatter.Data.WRENCH_MATERIAL;
@@ -35,9 +35,9 @@ public class DrumMachine extends MaterialMachine{
                 tooltip.add(Utils.translatable("antimatter.tooltip.acid_proof"));
             }
             CompoundTag nbt = stack.getTag();
-            FluidHolder fluid = nbt != null && nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.safeGetItemFluidManager(stack).map(fi -> fi.getFluidInTank(0)).orElse(FluidHooks.emptyFluid());
+            FluidStack fluid = nbt != null && nbt.contains("Fluid") ? FluidUtils.fromTag(nbt.getCompound("Fluid")) : stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).map(fi -> fi.getFluidInTank(0)).orElse(FluidStack.EMPTY);
             if (!fluid.isEmpty()){
-                tooltip.add(Utils.translatable("machine.drum.fluid", fluid.getFluidAmount() / TesseractGraphWrappers.dropletMultiplier, FluidPlatformUtils.INSTANCE.getFluidDisplayName(fluid)).withStyle(ChatFormatting.AQUA));
+                tooltip.add(Utils.translatable("machine.drum.fluid", fluid.getAmount(), FluidUtils.getFluidDisplayName(fluid)).withStyle(ChatFormatting.AQUA));
             }
             if (nbt != null && nbt.contains("Outputs")){
                 tooltip.add(Utils.translatable("machine.drum.output"));

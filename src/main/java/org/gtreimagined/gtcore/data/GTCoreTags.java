@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.data;
 
-import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -10,7 +9,7 @@ import net.minecraft.world.level.material.Fluid;
 import org.gtreimagined.gtcore.GTCore;
 
 public class GTCoreTags {
-    public static final TagKey<Fluid> STEAM =  TagKey.create(Registry.FLUID_REGISTRY, new ResourceLocation((AntimatterPlatformUtils.INSTANCE.isForge() ? "forge" : "c"), "steam"));
+    public static final TagKey<Fluid> STEAM =  TagKey.create(Registry.FLUID_REGISTRY, new ResourceLocation("forge", "steam"));
     public static TagKey<Item> PLATES_IRON_ALUMINIUM = getTag("plates/ironaluminium");
     public static TagKey<Item> CIRCUITS_BASIC = getTag("circuits/basic");
     public static TagKey<Item> CIRCUITS_GOOD = getTag("circuits/good");

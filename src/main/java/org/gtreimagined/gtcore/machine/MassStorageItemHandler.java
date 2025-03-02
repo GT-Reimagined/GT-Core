@@ -6,9 +6,10 @@ import muramasa.antimatter.capability.machine.MachineItemHandler;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.machine.MachineState;
 import net.minecraft.core.Direction;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
 import org.gtreimagined.gtcore.data.SlotTypes;
-import tesseract.api.item.ExtendedItemContainer;
 
 import java.util.Optional;
 
@@ -36,7 +37,7 @@ public class MassStorageItemHandler extends MachineItemHandler<BlockEntityMassSt
     }
 
     @Override
-    public Optional<? extends ExtendedItemContainer> forNullSide() {
-        return Optional.empty();
+    public LazyOptional<? extends IItemHandler> forNullSide() {
+        return LazyOptional.empty();
     }
 }

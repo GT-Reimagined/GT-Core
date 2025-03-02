@@ -26,7 +26,7 @@ public class IconModelLoader extends AntimatterModelLoader<IconModel> {
     }
 
     @Override
-    public IconModel readModel(JsonDeserializationContext jsonDeserializationContext, JsonObject jsonObject) {
+    public IconModel read(JsonDeserializationContext jsonDeserializationContext, JsonObject jsonObject) {
         JsonObject copy = jsonObject.deepCopy();
         copy.remove("loader");
         UnbakedModel model = jsonDeserializationContext.deserialize(copy, BlockModel.class);

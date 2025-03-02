@@ -93,7 +93,7 @@ public class MessageInventorySync implements Packet<MessageInventorySync> {
                         machine.itemHandler.ifPresent(i -> {
                             var handler = i.getHandler(inventorySync.type);
                             if (handler.getSlots() > 0 && inventorySync.slot < handler.getSlots()){
-                                handler.setItem(inventorySync.slot, inventorySync.stack);
+                                handler.setStackInSlot(inventorySync.slot, inventorySync.stack);
                             }
                         });
                     }

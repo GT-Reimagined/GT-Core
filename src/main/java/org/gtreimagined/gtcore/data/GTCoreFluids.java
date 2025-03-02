@@ -1,12 +1,12 @@
 package org.gtreimagined.gtcore.data;
 
-import earth.terrarium.botarium.common.registry.fluid.FluidProperties;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.fluid.AntimatterFluid;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Material;
+import net.minecraftforge.fluids.FluidAttributes;
 import org.gtreimagined.gtcore.GTCore;
 
 import static muramasa.antimatter.fluid.AntimatterFluid.OVERLAY_TEXTURE;
@@ -21,20 +21,18 @@ public class GTCoreFluids {
     public static void init(){
 
     }
-    private static FluidProperties.Builder prepareLavaAttributes() {
-        FluidProperties.Builder builder = FluidProperties.create();
-        return builder.still(PAHOEHOE_STILL_TEXTURE).flowing(PAHOEHOE_STILL_TEXTURE).overlay(OVERLAY_TEXTURE)
-                .viscosity(3000).density(6000).temperature(1200).sounds("bucket_fill", SoundEvents.BUCKET_FILL).sounds("bucket_empty", SoundEvents.BUCKET_EMPTY);
+    private static FluidAttributes.Builder prepareLavaAttributes() {
+        return FluidAttributes.builder(PAHOEHOE_STILL_TEXTURE, PAHOEHOE_STILL_TEXTURE).overlay(OVERLAY_TEXTURE)
+                .viscosity(3000).density(6000).temperature(1200).sound(SoundEvents.BUCKET_FILL, SoundEvents.BUCKET_EMPTY);
     }
 
     private static Block.Properties prepareLavaProperties() {
         return Block.Properties.of(Material.LAVA).strength(100.0F).noDrops().lightLevel(s -> 9);
     }
 
-    private static FluidProperties.Builder prepareAttributes(String fluid) {
-        FluidProperties.Builder builder = FluidProperties.create();
-        return builder.still(new ResourceLocation(GTCore.ID, "fluid/" + fluid)).flowing(new ResourceLocation(GTCore.ID, "fluid/" + fluid)).overlay(OVERLAY_TEXTURE)
-                .sounds("bucket_fill", SoundEvents.BUCKET_FILL).sounds("bucket_empty", SoundEvents.BUCKET_EMPTY);
+    private static FluidAttributes.Builder prepareAttributes(String fluid) {
+        return FluidAttributes.builder(new ResourceLocation(GTCore.ID, "fluid/" + fluid), new ResourceLocation(GTCore.ID, "fluid/" + fluid)).overlay(OVERLAY_TEXTURE)
+                .sound(SoundEvents.BUCKET_FILL, SoundEvents.BUCKET_EMPTY);
     }
 
     private static Block.Properties prepareProperties() {

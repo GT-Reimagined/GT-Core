@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.items.CapabilityItemHandler;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.machine.HopperItemHandler;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
@@ -55,7 +56,7 @@ public class BlockEntityGTHopper extends BlockEntityMaterial<BlockEntityGTHopper
         if (this.itemHandler.map(i -> !i.getHandler(SlotType.STORAGE).isEmpty()).orElse(false)) {
             BlockEntity neighbor = getCachedBlockEntity(this.getFacing());
             if (neighbor != null) {
-                TesseractCapUtils.INSTANCE.getItemHandler(neighbor, this.getFacing().getOpposite()).ifPresent(adjHandler -> {
+                neighbor.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, this.getFacing().getOpposite()).ifPresent(adjHandler -> {
                     this.itemHandler.ifPresent(h -> Utils.transferItems(h.getHandler(SlotType.STORAGE), adjHandler, true));
                 });
             }
@@ -63,7 +64,7 @@ public class BlockEntityGTHopper extends BlockEntityMaterial<BlockEntityGTHopper
         BlockEntity above = getCachedBlockEntity(Direction.UP);
         if (above != null) {
             this.itemHandler.ifPresent(to -> {
-                TesseractCapUtils.INSTANCE.getItemHandler(above, Direction.DOWN).ifPresent(from -> {
+                above.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.DOWN).ifPresent(from -> {
                     Utils.transferItems(from, to.getHandler(SlotType.STORAGE), true);
                 });
             });

@@ -3,9 +3,8 @@ package org.gtreimagined.gtcore.loader.crafting;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.data.AntimatterDefaultTools;
-import muramasa.antimatter.data.ForgeCTags;
 import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
-import muramasa.antimatter.util.AntimatterPlatformUtils;
+import muramasa.antimatter.util.RegistryUtils;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -15,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper;
+import net.minecraftforge.common.Tags;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.GTCoreConfig;
 import org.gtreimagined.gtcore.data.GTCoreItems;
@@ -70,7 +70,7 @@ public class VanillaRecipes {
         provider.addItemRecipe(consumer, "minecraft", "", "misc",
                 Items.BUCKET, of('I', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag()), "IHI", " I ");
         provider.addItemRecipe(consumer, "minecraft", "", "misc",
-                Items.HOPPER, of('I', PLATE.getMaterialTag(Iron), 'W', WRENCH.getTag(), 'C', ForgeCTags.CHESTS), "IWI", "ICI", " I ");
+                Items.HOPPER, of('I', PLATE.getMaterialTag(Iron), 'W', WRENCH.getTag(), 'C', Tags.Items.CHESTS), "IWI", "ICI", " I ");
         provider.addStackRecipe(consumer, "minecraft", "", "cauldrons", new ItemStack(Items.CAULDRON),
                 of('P', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag()), "P P", "PHP", "PPP");
         provider.addStackRecipe(consumer, "minecraft", "", "misc", new ItemStack(Items.IRON_DOOR, 3),
@@ -104,12 +104,12 @@ public class VanillaRecipes {
         int amount1 = GTCoreConfig.HARDER_WOOD.get() ? 2 : 4;
         int amount2 = GTCoreConfig.HARDER_WOOD.get() ? 4 : 6;
         provider.shapeless(consumer, domain, "", "planks", new ItemStack(plank, amount1), log);
-        provider.addStackRecipe(consumer, domain, AntimatterPlatformUtils.INSTANCE.getIdFromItem(plank).getPath() + "_" + amount2, "planks", new ItemStack(plank, amount2), of('S', SAW.getTag(), 'P', log), "S", "P");
+        provider.addStackRecipe(consumer, domain, RegistryUtils.getIdFromItem(plank).getPath() + "_" + amount2, "planks", new ItemStack(plank, amount2), of('S', SAW.getTag(), 'P', log), "S", "P");
     }
 
     static void addBeeswaxRecipe(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider, String id){
-        provider.shapeless(consumer, "minecraft", "waxed_" + id + "_from_honeycomb", "waxed_blocks", new ItemStack(AntimatterPlatformUtils.INSTANCE.getItemFromID(new ResourceLocation("waxed_" + id))),
-                AntimatterPlatformUtils.INSTANCE.getItemFromID(new ResourceLocation(id)), DUST.getMaterialTag(Beeswax));
+        provider.shapeless(consumer, "minecraft", "waxed_" + id + "_from_honeycomb", "waxed_blocks", new ItemStack(RegistryUtils.getItemFromID(new ResourceLocation("waxed_" + id))),
+                RegistryUtils.getItemFromID(new ResourceLocation(id)), DUST.getMaterialTag(Beeswax));
     }
 
     private static void loadWood(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
@@ -129,8 +129,8 @@ public class VanillaRecipes {
 
         String[] stones = {"stone", "smooth_stone", "sandstone", "cut_sandstone", "cobblestone", "red_sandstone", "cut_red_sandstone", "prismarine", "dark_prismarine", "polished_granite", "smooth_red_sandstone", "polished_diorite", "mossy_cobblestone", "smooth_sandstone", "smooth_quartz", "granite", "andesite", "polished_andesite", "diorite", "blackstone", "polished_blackstone", "purpur", "quartz", "brick", "stone_brick", "nether_brick", "prismarine_brick", "mossy_stone_brick", "end_stone_brick", "red_nether_brick", "polished_blackstone_brick"};
         for (String stone : stones) {
-            Item full = AntimatterPlatformUtils.INSTANCE.getItemFromID(new ResourceLocation(stone + (stone.equals("purpur") || stone.equals("quartz") ? "_block" : stone.contains("brick") ? "s" : "")));
-            Item slab = AntimatterPlatformUtils.INSTANCE.getItemFromID(new ResourceLocation(stone + "_slab"));
+            Item full = RegistryUtils.getItemFromID(new ResourceLocation(stone + (stone.equals("purpur") || stone.equals("quartz") ? "_block" : stone.contains("brick") ? "s" : "")));
+            Item slab = RegistryUtils.getItemFromID(new ResourceLocation(stone + "_slab"));
             String[] pattern = stone.equals("purpur") || stone.equals("quartz") || stone.equals("sandstone") || stone.equals("red_sandstone") || stone.equals("stone_brick") || stone.equals("nether_brick") || stone.equals("polished_blackstone") ? new String[]{"SS"} : new String[]{"S", "S"};
             provider.addItemRecipe(consumer, GTCore.ID, stone + "_slab_to_" + stone, "slabs", full, of('S', slab), pattern);
         }
@@ -138,7 +138,7 @@ public class VanillaRecipes {
         for (String s : wood) {
             ResourceLocation name = new ResourceLocation(s + "_planks");
             ResourceLocation slab = new ResourceLocation(s + "_slab");
-            provider.addItemRecipe(consumer, GTCore.ID, slab.getPath() + "_to_" + name.getPath(), "slabs", AntimatterPlatformUtils.INSTANCE.getItemFromID(name), of('S', AntimatterPlatformUtils.INSTANCE.getItemFromID(slab)), "S", "S");
+            provider.addItemRecipe(consumer, GTCore.ID, slab.getPath() + "_to_" + name.getPath(), "slabs", RegistryUtils.getItemFromID(name), of('S', RegistryUtils.getItemFromID(slab)), "S", "S");
         }
     }
 }

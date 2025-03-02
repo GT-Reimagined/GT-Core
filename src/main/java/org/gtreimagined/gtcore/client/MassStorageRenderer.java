@@ -47,8 +47,8 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
         var display = tile.itemHandler.map(i -> i.getHandler(SlotType.DISPLAY)).orElse(null);
         var storage = tile.itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
         if (display != null && storage != null) {
-            ItemStack stack = display.getItem(0);
-            if (stack.isEmpty()) stack = storage.getItem(0);
+            ItemStack stack = display.getStackInSlot(0);
+            if (stack.isEmpty()) stack = storage.getStackInSlot(0);
             if (!stack.isEmpty()) {
                 Direction facing = tile.getFacing();
                 BlockPos coverPos = tile.getBlockPos().relative(facing);

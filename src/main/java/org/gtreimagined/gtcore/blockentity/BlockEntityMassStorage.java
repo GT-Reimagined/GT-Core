@@ -1,6 +1,9 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import earth.terrarium.botarium.common.fluid.base.FluidHolder;
+import muramasa.antimatter.capability.item.ITrackedHandler;
+import muramasa.antimatter.capability.item.TrackedItemHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.data.GTCoreTools;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.item.ItemTape;
@@ -15,7 +18,6 @@ import muramasa.antimatter.machine.MachineState;
 import muramasa.antimatter.machine.event.IMachineEvent;
 import muramasa.antimatter.network.AntimatterNetwork;
 import muramasa.antimatter.tool.AntimatterToolType;
-import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -37,12 +39,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import tesseract.FluidPlatformUtils;
 import tesseract.TesseractCapUtils;
-import tesseract.TesseractGraphWrappers;
-import tesseract.api.item.ExtendedItemContainer;
 
 import java.util.List;
+import java.util.Map;
 
 public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassStorage> implements IInventorySyncTile {
     boolean output = false;
@@ -63,7 +63,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     }
 
     public int getItemAmount(){
-        return itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED).getItem(0).getCount()).orElse(0);
+        return itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED).getStackInSlot(0).getCount()).orElse(0);
     }
 
     @Override
@@ -73,8 +73,11 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
             CompoundTag nbt = new CompoundTag();
             this.itemHandler.ifPresent(handler -> {
                 handler.getAll().forEach((f, i) -> {
-                    if (i.isEmpty()) return;
-                    nbt.put(f.getId(), i.serialize(new CompoundTag()));
+                    if (i instanceof TrackedItemHandler<?> t) {
+                        if (t.isEmpty()) return;
+                        nbt.put(f.getId(), t.serializeNBT());
+                    }
+
                 });
             });
             if (!nbt.isEmpty()) {
@@ -94,7 +97,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     public void dropInventory(BlockState state, LootContext.Builder builder, List<ItemStack> drops) {
         if (getMachineState() != MachineState.ACTIVE) {
             itemHandler.ifPresent(t -> {
-                ItemStack held = t.getHandler(SlotTypes.UNLIMITED).getItem(0);
+                ItemStack held = t.getHandler(SlotTypes.UNLIMITED).getStackInSlot(0);
                 int amountToExtract = held.getCount();
                 if (amountToExtract > 0){
                     if (amountToExtract > held.getMaxStackSize()){
@@ -123,7 +126,9 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
                 this.itemHandler.ifPresent(handler -> {
                     handler.getAll().forEach((f, i) -> {
                         if (!inventories.contains(f.getId())) return;
-                        i.deserialize(inventories.getCompound(f.getId()));
+                        if (i instanceof TrackedItemHandler<?> t) {
+                            t.deserializeNBT(inventories.getCompound(f.getId()));
+                        }
                     });
                 });
                 this.setMachineState(MachineState.ACTIVE);
@@ -145,7 +150,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         var handler = itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
         ItemStack stack = player.getItemInHand(hand);
         if (stack.getItem() instanceof ItemTape tape && stack.isDamageableItem()) {
-            int count = handler.getItem(0).getCount();
+            int count = handler.getStackInSlot(0).getCount();
             if (count == 0 || count <= stack.getMaxDamage() - stack.getDamageValue()){
                 int damage = count == 0 ? 1 : count;
                 this.setMachineState(MachineState.ACTIVE);
@@ -178,7 +183,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
             //TODO: translation component
             player.sendMessage(Utils.literal("Filter " + (keepFilter ? "Stays" : "Resets") + " when empty"), player.getUUID());
             Utils.damageStack(player.getItemInHand(hand), hand, player);
-            if (!keepFilter) itemHandler.ifPresent(i -> i.getHandler(SlotType.DISPLAY).setItem(0, ItemStack.EMPTY));
+            if (!keepFilter) itemHandler.ifPresent(i -> i.getHandler(SlotType.DISPLAY).setStackInSlot(0, ItemStack.EMPTY));
             return InteractionResult.SUCCESS;
         }
         if (hit.getDirection().getAxis().isHorizontal() && hit.getDirection() == this.getFacing() && handler != null){
@@ -210,12 +215,12 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
 
             } else if (x > 0.25 && x < 0.75){
                 if (y > 0.125 && y < 0.625){
-                    ItemStack stored = handler.getItem(0);
-                    ItemStack displayed = itemHandler.map(i -> i.getHandler(SlotType.DISPLAY).getItem(0)).orElse(ItemStack.EMPTY);
+                    ItemStack stored = handler.getStackInSlot(0);
+                    ItemStack displayed = itemHandler.map(i -> i.getHandler(SlotType.DISPLAY).getStackInSlot(0)).orElse(ItemStack.EMPTY);
                     if (type == AntimatterDefaultTools.SOFT_HAMMER){
                         amountToExtract = stored.getCount();
                         Utils.damageStack(stack, hand, player);
-                        itemHandler.get().getHandler(SlotType.DISPLAY).setItem(0, ItemStack.EMPTY);
+                        itemHandler.get().getHandler(SlotType.DISPLAY).setStackInSlot(0, ItemStack.EMPTY);
                     } else {
                         if (!stack.isEmpty()){
                             ItemStack leftover = handler.insertItem(0, stack.copy(), true);
@@ -245,7 +250,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
 
                 }
             }
-            ItemStack held = handler.getItem(0);
+            ItemStack held = handler.getStackInSlot(0);
             if (amountToExtract > 0 && !held.isEmpty()){
                 int extract = Math.min(amountToExtract, held.getCount());
 
@@ -308,15 +313,15 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         return nbt;
     }
 
-    public CompoundTag serializeWithEmpty(Container container, CompoundTag nbt) {
+    public CompoundTag serializeWithEmpty(IItemHandler container, CompoundTag nbt) {
         ListTag nbtTagList = new ListTag();
 
 
-        for(int i = 0; i < container.getContainerSize(); ++i) {
+        for(int i = 0; i < container.getSlots(); ++i) {
             CompoundTag itemTag = new CompoundTag();
             itemTag.putInt("Slot", i);
-            container.getItem(i).save(itemTag);
-            itemTag.putInt("count", container.getItem(i).getCount());
+            container.getStackInSlot(i).save(itemTag);
+            itemTag.putInt("count", container.getStackInSlot(i).getCount());
             nbtTagList.add(itemTag);
         }
 
@@ -340,12 +345,12 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         BlockEntity adjTile = getCachedBlockEntity(outputDir);
         if (adjTile == null) return;
         if (!itemStack.isEmpty()) {
-            TesseractCapUtils.INSTANCE.getItemHandler(adjTile, outputDir.getOpposite()).ifPresent(adjHandler -> {
+            adjTile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, outputDir.getOpposite()).ifPresent(adjHandler -> {
                 ItemStack transferred = Utils.insertItem(adjHandler, itemStack.copy(), simulate);
                 itemStack.shrink(itemStack.getCount() - transferred.getCount());
             });
         } else if (!simulate){
-            TesseractCapUtils.INSTANCE.getItemHandler(adjTile, outputDir.getOpposite()).ifPresent(adjHandler -> {
+            adjTile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, outputDir.getOpposite()).ifPresent(adjHandler -> {
                 this.itemHandler.ifPresent(h -> Utils.transferItems(h.getHandler(SlotTypes.UNLIMITED), adjHandler,true));
             });
         }

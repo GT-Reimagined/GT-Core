@@ -6,6 +6,7 @@ import muramasa.antimatter.network.AntimatterNetwork;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.network.MessageCraftingSync;
 import org.jetbrains.annotations.NotNull;
@@ -45,7 +46,7 @@ public class InventoryWorkbench extends CraftingContainer {
     public void setChanged() {
         this.projectTable.getTile().setChanged();
         this.eventHandler.slotsChanged(this);
-        if(AntimatterAPI.getSIDE().isClient())
+        if(FMLEnvironment.dist.isClient())
             AntimatterNetwork.NETWORK.sendToServer(new MessageCraftingSync());
     }
 

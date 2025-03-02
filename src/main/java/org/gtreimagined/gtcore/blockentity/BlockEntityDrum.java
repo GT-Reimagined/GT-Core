@@ -1,19 +1,17 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import earth.terrarium.botarium.common.fluid.base.FluidContainer;
-import earth.terrarium.botarium.common.fluid.base.FluidHolder;
-import earth.terrarium.botarium.common.fluid.base.PlatformFluidHandler;
-import earth.terrarium.botarium.common.fluid.utils.FluidHooks;
-import earth.terrarium.botarium.common.item.ItemStackHolder;
+import muramasa.antimatter.util.FluidUtils;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import org.gtreimagined.gtcore.machine.DrumMachine;
 import muramasa.antimatter.Ref;
-import muramasa.antimatter.capability.fluid.FluidTank;
 import muramasa.antimatter.capability.fluid.FluidTanks;
 import muramasa.antimatter.capability.machine.MachineFluidHandler;
 import muramasa.antimatter.data.AntimatterTags;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.tool.AntimatterToolType;
-import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -31,10 +29,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
-import tesseract.FluidPlatformUtils;
 import tesseract.TesseractCapUtils;
 import tesseract.TesseractGraphWrappers;
-import tesseract.api.fluid.FluidContainerHandler;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +40,7 @@ import static net.minecraft.core.Direction.DOWN;
 import static net.minecraft.core.Direction.UP;
 
 public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
-    FluidHolder drop = FluidHooks.emptyFluid();
+    FluidStack drop = FluidStack.EMPTY;
     boolean output = false;
     public BlockEntityDrum(DrumMachine type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -84,9 +80,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         if (!drops.isEmpty()){
             ItemStack stack = drops.get(0);
             if (!getDrop().isEmpty()){
-                ItemStackHolder holder = new ItemStackHolder(stack);
-                FluidHooks.safeGetItemFluidManager(stack).ifPresent(f -> f.insertFluid(holder, drop, false));
-                stack = holder.getStack();
+                stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).ifPresent(f -> f.fill(drop, FluidAction.EXECUTE));
             }
             if (isOutput()){
                 CompoundTag nbt = stack.getOrCreateTag();
@@ -100,9 +94,9 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         super.onPlacedBy(world, pos, state, placer, stack);
         CompoundTag nbt = stack.getTag();
         this.fluidHandler.ifPresent(f -> {
-            FluidHolder fluid = nbt != null && nbt.contains("Fluid") ? FluidHooks.fluidFromCompound(nbt.getCompound("Fluid")) : FluidHooks.safeGetItemFluidManager(stack).map(fi -> fi.getFluidInTank(0)).orElse(FluidHooks.emptyFluid());
+            FluidStack fluid = nbt != null && nbt.contains("Fluid") ? FluidUtils.fromTag(nbt.getCompound("Fluid")) : stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).map(fi -> fi.getFluidInTank(0)).orElse(FluidStack.EMPTY);
             if (!fluid.isEmpty()){
-                f.insertFluid(fluid, false);
+                f.fill(fluid, FluidAction.EXECUTE);
             }
             if (nbt != null && nbt.contains("Outputs")){
                 ((DrumFluidHandler)f).setOutput(nbt.getBoolean("Outputs"));
@@ -110,7 +104,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         });
     }
 
-    public FluidHolder getDrop() {
+    public FluidStack getDrop() {
         return drop;
     }
 
@@ -122,15 +116,14 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
     public List<String> getInfo(boolean simple) {
         List<String> list = super.getInfo(simple);
         fluidHandler.ifPresent(f -> {
-            FluidHolder stack = f.getInputTanks().getFluidInTank(0);
-            String addition = AntimatterPlatformUtils.INSTANCE.isFabric() && !stack.isEmpty() ? "/" + stack.getFluidAmount() + "droplets" : "";
-            list.add("Fluid: " + (stack.isEmpty() ? "Empty" : (stack.getFluidAmount() / TesseractGraphWrappers.dropletMultiplier) + "mb" + addition + " of " + FluidPlatformUtils.INSTANCE.getFluidDisplayName(stack).getString()));
+            FluidStack stack = f.getInputTanks().getFluidInTank(0);
+            list.add("Fluid: " + (stack.isEmpty() ? "Empty" : stack.getAmount() + "mb" + " of " + FluidUtils.getFluidDisplayName(stack).getString()));
         });
         list.add("Auto Output: " + isOutput());
         return list;
     }
 
-    public static class DrumFluidHandler extends MachineFluidHandler<BlockEntityDrum> implements FluidContainerHandler {
+    public static class DrumFluidHandler extends MachineFluidHandler<BlockEntityDrum> {
         boolean output = false;
         public DrumFluidHandler(BlockEntityDrum tile) {
             super(tile);
@@ -168,20 +161,11 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         public void onUpdate() {
             super.onUpdate();
             if (output){
-                Direction dir = FluidPlatformUtils.INSTANCE.getFluidDensity(getTank(0).getStoredFluid().getFluid()) < 0 ? UP : DOWN;
-                if (getTank(0).getStoredFluid().getFluidAmount() > 0){
-                    Optional<PlatformFluidHandler> cap = getFluidHandler(dir);
-                    cap.ifPresent(other -> Utils.transferFluids(this, other, 1000));
+                Direction dir = FluidUtils.getFluidDensity(getTank(0).getFluid().getFluid()) < 0 ? UP : DOWN;
+                if (getTank(0).getFluid().getAmount() > 0){
+                    FluidUtils.getFluidHandler(tile.getLevel(), tile.getBlockPos().relative(dir), tile.getCachedBlockEntity(dir), dir.getOpposite()).ifPresent(other -> Utils.transferFluids(this, other, 1000));
                 }
             }
-        }
-
-        private Optional<PlatformFluidHandler> getFluidHandler(Direction side){
-            BlockEntity be = tile.getCachedBlockEntity(side);
-            if (be == null){
-                return TesseractCapUtils.INSTANCE.getFluidHandler(tile.getLevel(), tile.getBlockPos().relative(side), side.getOpposite());
-            }
-            return FluidHooks.safeGetBlockFluidManager(be, side.getOpposite());
         }
 
         @Override
@@ -198,29 +182,24 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         }
 
         @Override
-        public boolean canInput(FluidHolder fluid, Direction direction) {
-            boolean gaseous = FluidPlatformUtils.INSTANCE.getFluidDensity(fluid.getFluid()) < 0;
+        public boolean canInput(FluidStack fluid, Direction direction) {
+            boolean gaseous = FluidUtils.getFluidDensity(fluid.getFluid()) < 0;
             if (output && ((direction == UP && gaseous) || (direction == DOWN && !gaseous))) return false;
             return super.canInput(fluid, direction);
         }
 
         @Override
-        public long insertFluid(FluidHolder fluid, boolean simulate) {
+        public int fill(FluidStack fluid, FluidAction action) {
             if (tile.getMachineType() instanceof DrumMachine drumMachine && !drumMachine.isAcidProof() && fluid.getFluid().is(AntimatterTags.ACID)){
-                long insert = super.insertFluid(fluid, true);
+                int insert = super.fill(fluid, FluidAction.SIMULATE);
                 if (insert > 0){
-                    if (!simulate) {
+                    if (action.execute()) {
                         tile.getLevel().setBlock(tile.getBlockPos(), Blocks.AIR.defaultBlockState(), 3);
                     }
-                    return Math.min(16L, fluid.getFluidAmount());
+                    return Math.min(16, fluid.getAmount());
                 }
             }
-            return super.insertFluid(fluid, simulate);
-        }
-
-        @Override
-        public FluidContainer getFluidContainer() {
-            return this;
+            return super.fill(fluid, action);
         }
     }
 }

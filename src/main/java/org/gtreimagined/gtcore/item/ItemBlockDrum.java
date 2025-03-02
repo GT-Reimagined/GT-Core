@@ -1,14 +1,15 @@
 package org.gtreimagined.gtcore.item;
 
-import earth.terrarium.botarium.common.fluid.base.FluidHolder;
 import muramasa.antimatter.block.AntimatterItemBlock;
 import muramasa.antimatter.data.AntimatterTags;
 import muramasa.antimatter.item.IFluidItem;
 import muramasa.antimatter.machine.BlockMachine;
+import net.minecraftforge.fluids.FluidStack;
 import org.gtreimagined.gtcore.machine.DrumMachine;
 import tesseract.TesseractGraphWrappers;
 
 import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 public class ItemBlockDrum extends AntimatterItemBlock implements IFluidItem {
     final DrumMachine machine;
@@ -22,14 +23,14 @@ public class ItemBlockDrum extends AntimatterItemBlock implements IFluidItem {
     }
 
     @Override
-    public long getTankSize() {
-        if (machine != null) return machine.maxCapacity * TesseractGraphWrappers.dropletMultiplier;
+    public int getCapacity() {
+        if (machine != null) return machine.maxCapacity;
         return 0;
     }
 
     @Override
-    public BiPredicate<Integer, FluidHolder> getFilter() {
-        return (i, f) -> {
+    public Predicate<FluidStack> getFilter() {
+        return (f) -> {
             if (machine != null && !machine.isAcidProof() && f.getFluid().is(AntimatterTags.ACID)) return false;
             return true;
         };

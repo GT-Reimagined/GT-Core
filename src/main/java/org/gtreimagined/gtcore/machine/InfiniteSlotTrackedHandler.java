@@ -39,10 +39,10 @@ public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedIt
         if (getTile() instanceof BlockEntityMassStorage barrel && barrel.itemHandler.isPresent()) {
             if (barrel.getMachineState() == MachineState.ACTIVE) return stack;
             var handler = barrel.itemHandler.get().getHandler(SlotType.DISPLAY);
-            if (barrel.keepFilter && !handler.getItem(0).isEmpty() && !Utils.equals(stack, handler.getItem(0))) {
+            if (barrel.keepFilter && !handler.getStackInSlot(0).isEmpty() && !Utils.equals(stack, handler.getStackInSlot(0))) {
                 return stack;
-            } else if (barrel.keepFilter && handler.getItem(0).isEmpty() && !simulate) {
-                barrel.itemHandler.ifPresent(i -> i.getHandler(SlotType.DISPLAY).setItem(0, Utils.ca(1, stack)));
+            } else if (barrel.keepFilter && handler.getStackInSlot(0).isEmpty() && !simulate) {
+                barrel.itemHandler.ifPresent(i -> i.getHandler(SlotType.DISPLAY).setStackInSlot(0, Utils.ca(1, stack)));
             }
             if (barrel.isOutputOverflow()){
                 ItemStack leftover = super.insertItem(slot, stack.copy(), simulate);
@@ -70,9 +70,9 @@ public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedIt
                     if (!simulate) {
                         this.stacks.set(slot, ItemStack.EMPTY);
                         if (getTile() instanceof BlockEntityMassStorage barrel && barrel.itemHandler.isPresent() && !barrel.keepFilter){
-                            ItemStack display = barrel.itemHandler.get().getHandler(SlotType.DISPLAY).getItem(0);
+                            ItemStack display = barrel.itemHandler.get().getHandler(SlotType.DISPLAY).getStackInSlot(0);
                             if (!display.isEmpty()){
-                                barrel.itemHandler.get().getHandler(SlotType.DISPLAY).setItem(0, ItemStack.EMPTY);
+                                barrel.itemHandler.get().getHandler(SlotType.DISPLAY).setStackInSlot(0, ItemStack.EMPTY);
                             }
                         }
                         this.onContentsChanged(slot);
@@ -93,7 +93,8 @@ public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedIt
     }
 
     @Override
-    public CompoundTag serialize(CompoundTag nbt) {
+    public CompoundTag serializeNBT() {
+        CompoundTag nbt = new CompoundTag();
         ListTag nbtTagList = new ListTag();
         for (int i = 0; i < stacks.size(); i++) {
             if (!stacks.get(i).isEmpty()) {
@@ -110,7 +111,7 @@ public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedIt
     }
 
     @Override
-    public void deserialize(CompoundTag nbt) {
+    public void deserializeNBT(CompoundTag nbt) {
         ListTag tagList = nbt.getList("Items", Tag.TAG_COMPOUND);
         for (int i = 0; i < tagList.size(); i++) {
             CompoundTag itemTags = tagList.getCompound(i);

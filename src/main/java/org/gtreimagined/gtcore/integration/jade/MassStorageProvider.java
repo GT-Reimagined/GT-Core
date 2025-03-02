@@ -25,10 +25,10 @@ public class MassStorageProvider implements IComponentProvider {
             var handler = massStorage.itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
             var displayHandler = massStorage.itemHandler.map(i -> i.getHandler(SlotType.DISPLAY)).orElse(null);
             if (handler != null && displayHandler != null) {
-                ItemStack stack = handler.getItem(0);
+                ItemStack stack = handler.getStackInSlot(0);
                 boolean displayItem = false;
                 if (stack.isEmpty()) {
-                    stack = displayHandler.getItem(0);
+                    stack = displayHandler.getStackInSlot(0);
                     displayItem = true;
                 }
                 if (!stack.isEmpty()){

@@ -18,14 +18,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.gtreimagined.gtcore.gui.ContainerWorkbench;
-import tesseract.api.item.ExtendedItemContainer;
 
 import java.util.Optional;
 
 public class SlotBlueprint extends AbstractSlot<SlotBlueprint> implements IClickableSlot {
-    public SlotBlueprint(SlotType<SlotBlueprint> type, IGuiHandler tile, ExtendedItemContainer stackHandler, int index, int x, int y) {
+    public SlotBlueprint(SlotType<SlotBlueprint> type, IGuiHandler tile, IItemHandler stackHandler, int index, int x, int y) {
         super(type, tile, stackHandler, index, x, y);
     }
 

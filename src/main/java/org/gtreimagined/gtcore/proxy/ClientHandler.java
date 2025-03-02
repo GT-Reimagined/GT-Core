@@ -2,10 +2,10 @@ package org.gtreimagined.gtcore.proxy;
 
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.client.ClientPlatformHelper;
 import muramasa.antimatter.client.ModelUtils;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.resources.ResourceLocation;
@@ -31,13 +31,13 @@ public class ClientHandler {
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new Material(Sheets.SIGN_SHEET, GTCoreBlocks.RUBBER_SIGN.getTexture()));
         AntimatterAPI.all(BlockMachineMaterial.class, b -> {
             if (b.getType() instanceof MassStorageMachine) {
-                ClientPlatformHelper.INSTANCE.registerBlockEntityRenderer((BlockEntityType<BlockEntityMassStorage>) b.getType().getTileType(), c -> new MassStorageRenderer<>());
+                BlockEntityRenderers.register((BlockEntityType<BlockEntityMassStorage>) b.getType().getTileType(), c -> new MassStorageRenderer<>());
             }
         });
 
         AntimatterAPI.all(BlockMaterialChest.class, b -> {
             if (b.getType() instanceof ChestMachine) {
-                ClientPlatformHelper.INSTANCE.registerBlockEntityRenderer((BlockEntityType<BlockEntityChest>) b.getType().getTileType(), MaterialChestRenderer::new);
+                BlockEntityRenderers.register((BlockEntityType<BlockEntityChest>) b.getType().getTileType(), MaterialChestRenderer::new);
             }
         });
         AntimatterAPI.runLaterClient(() -> {

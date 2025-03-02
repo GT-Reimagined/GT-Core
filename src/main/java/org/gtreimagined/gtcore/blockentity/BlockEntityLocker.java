@@ -1,5 +1,6 @@
 package org.gtreimagined.gtcore.blockentity;
 
+import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
 import muramasa.antimatter.capability.machine.MachineCoverHandler;
 import muramasa.antimatter.cover.ICover;
@@ -19,7 +20,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import tesseract.api.item.ExtendedItemContainer;
 
 
 public class BlockEntityLocker extends BlockEntityMaterial<BlockEntityLocker> {
@@ -70,7 +70,7 @@ public class BlockEntityLocker extends BlockEntityMaterial<BlockEntityLocker> {
 
     @Override
     public <V> boolean blocksCapability(@NotNull Class<V> cap, Direction side) {
-        return super.blocksCapability(cap, side) || cap == ExtendedItemContainer.class;
+        return super.blocksCapability(cap, side) || cap == IItemHandler.class;
     }
 
     private EquipmentSlot getSlot(int slot){

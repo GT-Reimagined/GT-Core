@@ -12,7 +12,6 @@ import muramasa.antimatter.blockentity.pipe.BlockEntityPipe;
 import muramasa.antimatter.capability.ICoverHandler;
 import muramasa.antimatter.cover.CoverFactory;
 import muramasa.antimatter.cover.ICover;
-import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.CodeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -175,7 +174,7 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     }
 
     private void updateBlock(Direction side){
-        AntimatterPlatformUtils.INSTANCE.markAndNotifyBlock(getLevel(), getBlockPos(), getLevel().getChunkAt(getBlockPos()), getBlockState(), getBlockState(), 1, 512);
+        getLevel().markAndNotifyBlock(getBlockPos(), getLevel().getChunkAt(getBlockPos()), getBlockState(), getBlockState(), 1, 512);
         BlockPos neighbor = getBlockPos().relative(side);
         BlockState neighborState = getLevel().getBlockState(neighbor);
         getLevel().updateNeighborsAtExceptFromFacing(neighbor, neighborState.getBlock(), side.getOpposite());

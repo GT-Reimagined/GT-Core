@@ -5,9 +5,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.teamresourceful.resourcefullib.common.networking.base.NetworkDirection;
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
-import muramasa.antimatter.event.forge.AntimatterCraftingEvent;
-import muramasa.antimatter.event.forge.AntimatterLoaderEvent;
-import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
+import muramasa.antimatter.common.event.PlayerTickCallback;
+import muramasa.antimatter.event.AntimatterCraftingEvent;
+import muramasa.antimatter.event.AntimatterLoaderEvent;
+import muramasa.antimatter.event.AntimatterProvidersEvent;
+import muramasa.antimatter.util.RegistryUtils;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -55,7 +57,6 @@ import org.gtreimagined.gtcore.tree.RubberTreeWorldGen;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.AntimatterMod;
 import muramasa.antimatter.Ref;
-import muramasa.antimatter.common.event.CommonEvents;
 import muramasa.antimatter.data.AntimatterMaterials;
 import muramasa.antimatter.datagen.AntimatterDynamics;
 import muramasa.antimatter.datagen.builder.AntimatterTagBuilder;
@@ -65,9 +66,7 @@ import muramasa.antimatter.integration.jeirei.AntimatterJEIREIPlugin;
 import muramasa.antimatter.network.AntimatterNetwork;
 import muramasa.antimatter.recipe.loader.IRecipeRegistrate;
 import muramasa.antimatter.registration.RegistrationEvent;
-import muramasa.antimatter.registration.Side;
 import muramasa.antimatter.tool.IAntimatterTool;
-import muramasa.antimatter.util.AntimatterPlatformUtils;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
@@ -88,6 +87,7 @@ import org.gtreimagined.gtcore.data.GTCoreMaterials;
 import org.gtreimagined.gtcore.data.Guis;
 import org.gtreimagined.gtcore.data.MenuHandlers;
 import org.gtreimagined.gtcore.data.RecipeMaps;
+import org.spongepowered.asm.mixin.MixinEnvironment.Side;
 
 import java.util.Arrays;
 import java.util.function.BiConsumer;
@@ -156,25 +156,22 @@ public class GTCore extends AntimatterMod {
 
     private void onProvidersEvent(AntimatterProvidersEvent event){
         final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
-        event.addProvider(ID, () -> {
+        event.addProvider(() -> {
             p[0] = new GTCoreBlockTagProvider(ID, NAME.concat(" Block Tags"), false);
             return p[0];
         });
-        event.addProvider(ID, () -> new GTCoreItemTagProvider(ID, NAME.concat(" Item Tags"), false, p[0]));
+        event.addProvider(() -> new GTCoreItemTagProvider(ID, NAME.concat(" Item Tags"), false, p[0]));
 
-        event.addProvider(ID, () -> new GTCoreBlockLootProvider(ID, NAME.concat(" Loot generator")));
-        event.addProvider(ID, () -> new AntimatterTagProvider<>(BuiltinRegistries.BIOME, ID, NAME.concat(" Biome Tags"), "worldgen/biome") {
+        event.addProvider(() -> new GTCoreBlockLootProvider(ID, NAME.concat(" Loot generator")));
+        event.addProvider(() -> new AntimatterTagProvider<>(BuiltinRegistries.BIOME, ID, NAME.concat(" Biome Tags"), "worldgen/biome") {
             @Override
             protected void processTags(String domain) {
                 AntimatterTagBuilder<Biome> tags = this.tag(TagUtils.getBiomeTag(new ResourceLocation(ID, "is_invalid_rubber"))).addTag(BiomeTags.IS_TAIGA).addTag(BiomeTags.IS_MOUNTAIN).addTag(BiomeTags.IS_OCEAN).addTag(BiomeTags.IS_DEEP_OCEAN).addTag(BiomeTags.IS_NETHER).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_desert"))).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_plains")));
-                boolean forge = AntimatterPlatformUtils.INSTANCE.isForge();
-                String d = forge ? "forge" : "c";
-                String end = forge ? "is_end" : "in_the_end";
-                tags.addTag(TagUtils.getBiomeTag(new ResourceLocation(d, end)));
-                tags.addTag(TagUtils.getBiomeTag(new ResourceLocation(d, forge ? "is_snowy" : "snowy")));
+                tags.addTag(TagUtils.getBiomeTag(new ResourceLocation("forge", "is_end")));
+                tags.addTag(TagUtils.getBiomeTag(new ResourceLocation("forge", "is_snowy")));
             }
         });
-        event.addProvider(ID, () -> new AntimatterTagProvider<>(BuiltinRegistries.CONFIGURED_FEATURE, ID, NAME.concat(" Configured Feature Tags"), "worldgen/configured_feature") {
+        event.addProvider(() -> new AntimatterTagProvider<>(BuiltinRegistries.CONFIGURED_FEATURE, ID, NAME.concat(" Configured Feature Tags"), "worldgen/configured_feature") {
             @Override
             protected void processTags(String domain) {
                 if (AntimatterAPI.isModLoaded("tfc")){
@@ -182,7 +179,7 @@ public class GTCore extends AntimatterMod {
                 }
             }
         });
-        event.addProvider(ID, () -> new AntimatterWorldgenProvider(ID, NAME.concat(" Configured Features"), "configured_feature"){
+        event.addProvider(() -> new AntimatterWorldgenProvider(ID, NAME.concat(" Configured Features"), "configured_feature"){
             @Override
             public void run() {
                 if (!AntimatterAPI.isModLoaded("tfc")) return;
@@ -250,7 +247,7 @@ public class GTCore extends AntimatterMod {
     }
 
     @Override
-    public void onRegistrationEvent(RegistrationEvent event, Side side) {
+    public void onRegistrationEvent(RegistrationEvent event, Dist side) {
         switch (event) {
             case DATA_INIT -> {
                 SlotTypes.init();
@@ -271,7 +268,7 @@ public class GTCore extends AntimatterMod {
                     MassStorageProvider.createTopProvider();
                     RedstoneWireProvider.createTopProvider();
                 }
-                CommonEvents.addPlayerTickCallback(GTCommonEvents::onPlayerTick);
+                PlayerTickCallback.PLAYER_TICK_CALLBACKS.add(GTCommonEvents::onPlayerTick);
                 AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, SYNC_ID, MessageCraftingSync.HANDLER, MessageCraftingSync.class);
                 AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.SERVER_TO_CLIENT, INV_SYNC_ID, MessageInventorySync.HANDLER, MessageInventorySync.class);
                 AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, TRIGGER_SYNC_ID, MessageTriggerInventorySync.HANDLER, MessageTriggerInventorySync.class);
@@ -333,37 +330,37 @@ public class GTCore extends AntimatterMod {
                 .toolEnchantments(ImmutableMap.of(Enchantments.MOB_LOOTING, 2, Enchantments.BLOCK_FORTUNE, 2))
                 .blacklistToolTypes(AXE, PICKAXE, SHOVEL, SWORD, HOE).build();
         if (AntimatterAPI.isModLoaded("twilightforest")){
-            INGOT.replacement(GTCoreMaterials.Ironwood, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "ironwood_ingot"));
-            BLOCK.replacement(GTCoreMaterials.Ironwood, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "ironwood_block"));
-            INGOT.replacement(GTCoreMaterials.Knightmetal, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "knightmetal_ingot"));
-            BLOCK.replacement(GTCoreMaterials.Knightmetal, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "knightmetal_block"));
-            INGOT.replacement(GTCoreMaterials.Steeleaf, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "steeleaf_ingot"));
-            BLOCK.replacement(GTCoreMaterials.Steeleaf, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "steeleaf_block"));
-            INGOT.replacement(GTCoreMaterials.FierySteel, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "fiery_ingot"));
-            BLOCK.replacement(GTCoreMaterials.FierySteel, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("twilightforest", "fiery_block"));
+            INGOT.replacement(GTCoreMaterials.Ironwood, () -> RegistryUtils.getItemFromID("twilightforest", "ironwood_ingot"));
+            BLOCK.replacement(GTCoreMaterials.Ironwood, () -> RegistryUtils.getItemFromID("twilightforest", "ironwood_block"));
+            INGOT.replacement(GTCoreMaterials.Knightmetal, () -> RegistryUtils.getItemFromID("twilightforest", "knightmetal_ingot"));
+            BLOCK.replacement(GTCoreMaterials.Knightmetal, () -> RegistryUtils.getItemFromID("twilightforest", "knightmetal_block"));
+            INGOT.replacement(GTCoreMaterials.Steeleaf, () -> RegistryUtils.getItemFromID("twilightforest", "steeleaf_ingot"));
+            BLOCK.replacement(GTCoreMaterials.Steeleaf, () -> RegistryUtils.getItemFromID("twilightforest", "steeleaf_block"));
+            INGOT.replacement(GTCoreMaterials.FierySteel, () -> RegistryUtils.getItemFromID("twilightforest", "fiery_ingot"));
+            BLOCK.replacement(GTCoreMaterials.FierySteel, () -> RegistryUtils.getItemFromID("twilightforest", "fiery_block"));
         }
         event.setMaterial(GTCoreMaterials.Signalum).asMetal(1353).mats(of(Copper, 1, Silver, 2, RedAlloy, 5));
         event.setMaterial(GTCoreMaterials.Lumium).asMetal(593).mats(of(Tin, 3, Silver, 1, Glowstone, 4));
         event.setMaterial(GTCoreMaterials.Enderium).asMetal(1071).mats(of(Tin, 2, Silver, 1, Platinum, 1, EnderPearl, 4));
         if (AntimatterAPI.isModLoaded("thermal")){
-            INGOT.replacement(GTCoreMaterials.Signalum, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "signalum_ingot"));
-            DUST.replacement(GTCoreMaterials.Signalum, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "signalum_dust"));
-            NUGGET.replacement(GTCoreMaterials.Signalum, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "signalum_nugget"));
-            BLOCK.replacement(GTCoreMaterials.Signalum, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "signalum_block"));
-            GEAR.replacement(GTCoreMaterials.Signalum, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "signalum_gear"));
-            PLATE.replacement(GTCoreMaterials.Signalum, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "signalum_plate"));
-            INGOT.replacement(Lumium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "lumium_ingot"));
-            DUST.replacement(Lumium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "lumium_dust"));
-            NUGGET.replacement(Lumium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "lumium_nugget"));
-            BLOCK.replacement(Lumium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "lumium_block"));
-            GEAR.replacement(Lumium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "lumium_gear"));
-            PLATE.replacement(Lumium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "lumium_plate"));
-            INGOT.replacement(GTCoreMaterials.Enderium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "enderium_ingot"));
-            DUST.replacement(GTCoreMaterials.Enderium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "enderium_dust"));
-            NUGGET.replacement(GTCoreMaterials.Enderium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "enderium_nugget"));
-            BLOCK.replacement(GTCoreMaterials.Enderium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "enderium_block"));
-            GEAR.replacement(GTCoreMaterials.Enderium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "enderium_gear"));
-            PLATE.replacement(GTCoreMaterials.Enderium, () -> AntimatterPlatformUtils.INSTANCE.getItemFromID("thermal", "enderium_plate"));
+            INGOT.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_ingot"));
+            DUST.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_dust"));
+            NUGGET.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_nugget"));
+            BLOCK.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_block"));
+            GEAR.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_gear"));
+            PLATE.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_plate"));
+            INGOT.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_ingot"));
+            DUST.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_dust"));
+            NUGGET.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_nugget"));
+            BLOCK.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_block"));
+            GEAR.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_gear"));
+            PLATE.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_plate"));
+            INGOT.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_ingot"));
+            DUST.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_dust"));
+            NUGGET.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_nugget"));
+            BLOCK.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_block"));
+            GEAR.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_gear"));
+            PLATE.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_plate"));
         }
         GTCoreBlocks.initItemBarrels();
         Guis.init();

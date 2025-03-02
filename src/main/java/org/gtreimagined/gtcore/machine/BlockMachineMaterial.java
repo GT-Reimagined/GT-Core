@@ -60,7 +60,7 @@ public class BlockMachineMaterial extends BlockMachine {
                 var storage = massStorage.itemHandler.map(h -> h.getHandler(SlotTypes.UNLIMITED)).orElse(null);
                 if (storage != null){
                     int max = massStorage.getMaxLimit();
-                    int count = storage.getItem(0).getCount();
+                    int count = storage.getStackInSlot(0).getCount();
                     if (max == count) return 0xFF0000;
                     if (massStorage.getMassStorageMachine().getMaterial().has(MaterialTags.WOOD)) return 0x000000;
                 }

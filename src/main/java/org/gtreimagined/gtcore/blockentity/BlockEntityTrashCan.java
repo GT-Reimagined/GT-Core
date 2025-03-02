@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import earth.terrarium.botarium.common.fluid.base.FluidHolder;
 import muramasa.antimatter.blockentity.BlockEntityMachine;
 import muramasa.antimatter.capability.CoverHandler;
 import muramasa.antimatter.capability.item.FakeTrackedItemHandler;
@@ -15,8 +14,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
-import tesseract.api.item.ExtendedItemContainer;
 
 import java.util.Optional;
 
@@ -25,18 +27,18 @@ public class BlockEntityTrashCan extends BlockEntityMachine<BlockEntityTrashCan>
         super(type, pos, state);
         this.itemHandler.set(() -> new MachineItemHandler<>(this){
             @Override
-            public Optional<ExtendedItemContainer> forSide(Direction side) {
-                return Optional.of(new TrashCanCombinedHandler(side, tile.coverHandler.map(c -> c).orElse(null), this.inventories.values().stream().filter(t -> !(t instanceof FakeTrackedItemHandler)).toArray(ExtendedItemContainer[]::new)));
+            public LazyOptional<IItemHandler> forSide(Direction side) {
+                return LazyOptional.of(() -> new TrashCanCombinedHandler(side, tile.coverHandler.map(c -> c).orElse(null), this.inventories.values().stream().filter(t -> !(t instanceof FakeTrackedItemHandler)).toArray(IItemHandlerModifiable[]::new)));
             }
         });
         this.fluidHandler.set(() -> new MachineFluidHandler<>(this, 1000, 1, 0){
             @Override
-            public long insertFluid(FluidHolder fluid, boolean simulate) {
-                return fluid.getFluidAmount();
+            public int fill(FluidStack fluid, FluidAction action) {
+                return fluid.getAmount();
             }
 
             @Override
-            public boolean allowsInsertion() {
+            public boolean canInput() {
                 return true;
             }
         });
@@ -53,7 +55,7 @@ public class BlockEntityTrashCan extends BlockEntityMachine<BlockEntityTrashCan>
     }
 
     public static class TrashCanCombinedHandler extends SidedCombinedInvWrapper {
-        public TrashCanCombinedHandler(Direction side, CoverHandler<?> coverHandler, ExtendedItemContainer... itemHandler) {
+        public TrashCanCombinedHandler(Direction side, CoverHandler<?> coverHandler, IItemHandlerModifiable... itemHandler) {
             super(side, coverHandler, d -> true, d-> true, itemHandler);
         }
 
@@ -67,8 +69,9 @@ public class BlockEntityTrashCan extends BlockEntityMachine<BlockEntityTrashCan>
             return ItemStack.EMPTY;
         }
 
+        @NotNull
         @Override
-        public ItemStack getItem(int slot) {
+        public ItemStack getStackInSlot(int slot) {
             return ItemStack.EMPTY;
         }
     }

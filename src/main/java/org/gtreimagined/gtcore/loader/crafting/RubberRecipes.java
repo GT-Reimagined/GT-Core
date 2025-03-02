@@ -2,7 +2,6 @@ package org.gtreimagined.gtcore.loader.crafting;
 
 import com.google.common.collect.ImmutableMap;
 import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.data.ForgeCTags;
 import muramasa.antimatter.datagen.builder.AntimatterCookingRecipeBuilder;
 import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
 import muramasa.antimatter.util.TagUtils;
@@ -12,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.common.Tags;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.data.GTCoreItems;
@@ -57,7 +57,7 @@ public class RubberRecipes {
         provider.addStackRecipe(consumer, GTCore.ID, "", "rubber_wood", new ItemStack(GTCoreItems.RubberBoat), ImmutableMap.of('R', GTCoreBlocks.RUBBER_PLANKS), "R R", "RRR");
         provider.shapeless(consumer, GTCore.ID, "", "rubber_wood", new ItemStack(GTCoreBlocks.RUBBER_BUTTON), GTCoreBlocks.RUBBER_PLANKS);
         provider.addStackRecipe(consumer, GTCore.ID, "sapbag", "blocks",
-                new ItemStack(SAP_BAG), of('L', ForgeCTags.LEATHER, 'S', SAW.getTag(), 's', Items.STICK), "sss", "LSL", "LLL");
+                new ItemStack(SAP_BAG), of('L', Tags.Items.LEATHER, 'S', SAW.getTag(), 's', Items.STICK), "sss", "LSL", "LLL");
         provider.addStackRecipe(consumer, GTCore.ID, "torch", "torches", new ItemStack(Items.TORCH, 4), of('S', GTCoreItems.StickyResin, 'R', Items.STICK), "S", "R");
     }
 

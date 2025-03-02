@@ -46,9 +46,9 @@ public class BlockEntityPlasticBin extends BlockEntityMassStorage {
             this.sidedSync(true);
             Utils.damageStack(player.getItemInHand(hand), hand, player);
             var handler = itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
-            int amountToExtract = handler.getItem(0).getCount() - maxLimit;
+            int amountToExtract = handler.getStackInSlot(0).getCount() - maxLimit;
             if (amountToExtract > 0) {
-                ItemStack stored = handler.getItem(0);
+                ItemStack stored = handler.getStackInSlot(0);
                 if (!stored.isEmpty()) {
                     if (amountToExtract > stored.getMaxStackSize()){
                         int toExtract = amountToExtract;

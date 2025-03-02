@@ -1,11 +1,8 @@
 package org.gtreimagined.gtcore;
 
+import carbonconfiglib.CarbonConfig;
 import carbonconfiglib.config.*;
 import carbonconfiglib.config.ConfigEntry.BoolValue;
-import carbonconfiglib.config.ConfigEntry.EnumValue;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.util.AntimatterPlatformUtils;
-import net.minecraft.world.item.Items;
 
 public class GTCoreConfig {
     public static ConfigHandler CONFIG;
@@ -32,7 +29,7 @@ public class GTCoreConfig {
         VILLAGER_TRADE_REPLACEMENTS = section.addBool("villager_trade_replacements", true, "If true replaces emeralds with gt credits in all villager trades - Default: true");
         COMPOSTER_OUTPUT_REPLACEMENT = section.addBool("composter_output_replacement", true, "If true makes the composter make fertilizer instead of bonemeal - Default: true");
         HONEYCOMB_REPLACEMENT = section.addBool("honeycomb_replacement", true, "If true honeycomb usage for making waxed copper is replaced by beeswax - Default: true");
-        CONFIG = AntimatterPlatformUtils.INSTANCE.createConfig(GTCore.ID, config);
+        CONFIG = CarbonConfig.CONFIGS.createConfig(config);
         CONFIG.register();
     }
 

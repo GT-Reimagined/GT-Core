@@ -7,7 +7,6 @@ import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.item.ItemBattery;
 import muramasa.antimatter.machine.BlockMachine;
 import muramasa.antimatter.pipe.BlockPipe;
-import muramasa.antimatter.registration.Side;
 import muramasa.antimatter.tool.AntimatterItemTier;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
@@ -35,6 +34,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraftforge.api.distmarker.Dist;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.behaviour.BehaviourElectricWrenchSwitching;
 import org.gtreimagined.gtcore.behaviour.BehaviourKnifeTooltip;
@@ -129,7 +129,7 @@ public class GTCoreTools {
         }
     }
 
-    public static void init(Side side){
+    public static void init(Dist side){
         CHAINSAW.addBehaviour(BehaviourTreeFelling.INSTANCE, BehaviourLogStripping.INSTANCE);
         DRILL.addBehaviour(new BehaviourAOEBreak(1, 1, 1, 8, "3x3"), BehaviourTorchPlacing.INSTANCE);
         JACKHAMMER.addBehaviour(new BehaviourAOEBreak(1, 1, 1, 8, "3x3"), BehaviourTorchPlacing.INSTANCE);

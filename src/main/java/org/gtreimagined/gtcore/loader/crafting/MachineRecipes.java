@@ -1,13 +1,10 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
 import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.data.AntimatterDefaultTools;
-import muramasa.antimatter.data.AntimatterMaterialTypes;
-import muramasa.antimatter.data.ForgeCTags;
 import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
-import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraftforge.common.Tags;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.machine.DrumMachine;
 import org.gtreimagined.gtcore.machine.HopperMachine;
@@ -32,7 +29,7 @@ public class MachineRecipes {
         AntimatterAPI.all(HopperMachine.class).forEach(h -> {
             Material m = h.getMaterial();
             if (m.has(PLATE)){
-                provider.addItemRecipe(output, GTCore.ID, "", "machines", h.getItem(NONE), of('W', WRENCH.getTag(), 'C', ForgeCTags.CHESTS_WOODEN, 'P', PLATE.getMaterialTag(m)), "PWP", "PCP", " P ");
+                provider.addItemRecipe(output, GTCore.ID, "", "machines", h.getItem(NONE), of('W', WRENCH.getTag(), 'C', Tags.Items.CHESTS_WOODEN, 'P', PLATE.getMaterialTag(m)), "PWP", "PCP", " P ");
             }
         });
     }

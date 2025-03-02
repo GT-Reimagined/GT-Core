@@ -49,13 +49,13 @@ public class MassStorageProvider implements IProbeInfoProvider {
         if (blockEntity instanceof BlockEntityMassStorage massStorage){
             var handler = massStorage.itemHandler.map(i -> {
                 var h = i.getHandler(SlotTypes.UNLIMITED);
-                if (h.getItem(0).isEmpty()) return i.getHandler(SlotType.DISPLAY);
+                if (h.getStackInSlot(0).isEmpty()) return i.getHandler(SlotType.DISPLAY);
                 return h;
             }).orElse(null);
             if (handler != null){
                 IProbeInfo vertical = iProbeInfo.vertical(iProbeInfo.defaultLayoutStyle().borderColor(Config.chestContentsBorderColor).spacing(0));
                 IProbeInfo horizontal = vertical.horizontal((new LayoutStyle()).spacing(10).alignment(ElementAlignment.ALIGN_CENTER));
-                ItemStack stack = handler.getItem(0);
+                ItemStack stack = handler.getStackInSlot(0);
                 if (stack.getCount() > 0){
                     MutableComponent text = new TextComponent("").append(stack.getHoverName());
                     if (stack.hasCustomHoverName()) text.withStyle(ChatFormatting.ITALIC);

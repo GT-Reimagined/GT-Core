@@ -4,11 +4,11 @@ import com.mojang.datafixers.util.Pair;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import muramasa.antimatter.client.IAntimatterModel;
 import muramasa.antimatter.client.ModelUtils;
-import muramasa.antimatter.client.model.IModelConfiguration;
 import muramasa.antimatter.texture.Texture;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockElement;
 import net.minecraft.client.renderer.block.model.FaceBakery;
+import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.Material;
@@ -16,6 +16,7 @@ import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.client.model.IModelConfiguration;
 import org.gtreimagined.gtcore.GTCore;
 
 import java.util.Collection;
@@ -26,7 +27,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 
-public class IconModel implements IAntimatterModel {
+public class IconModel implements IAntimatterModel<IconModel> {
     private final UnbakedModel baseModel;
     static Map<String, Material> TEXTURE_MAP = null;
     static List<Map<String, List<BakedQuad>>> ICON_MODELS = null;
@@ -44,13 +45,13 @@ public class IconModel implements IAntimatterModel {
     }
 
     @Override
-    public BakedModel bakeModel(ModelBakery modelBakery, Function<Material, TextureAtlasSprite> function, ModelState modelState, ResourceLocation resourceLocation) {
+    public BakedModel bakeModel(IModelConfiguration configuration, ModelBakery modelBakery, Function<Material, TextureAtlasSprite> function, ModelState modelState, ItemOverrides overrides, ResourceLocation resourceLocation) {
         BakedModel base = baseModel.bake(modelBakery, function, modelState, resourceLocation);
         return new IconBakedModel(Objects.requireNonNull(base), function);
     }
 
     @Override
-    public Collection<Material> getMaterials(IModelConfiguration iModelConfiguration, Function<ResourceLocation, UnbakedModel> function, Set<Pair<String, String>> set) {
+    public Collection<Material> getTextures(IModelConfiguration iModelConfiguration, Function<ResourceLocation, UnbakedModel> function, Set<Pair<String, String>> set) {
         Set<Material> materials = new HashSet<>();
         materials.addAll(baseModel.getMaterials(function, set));
         materials.addAll(TEXTURE_MAP.values());
