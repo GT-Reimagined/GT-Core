@@ -33,7 +33,7 @@ public class IconModelLoader extends AntimatterModelLoader<IconModel> {
         if (BLOCK_ELEMENTS == null) {
             BLOCK_ELEMENTS = new ObjectArrayList<>();
             try {
-                Resource resource = ModelUtils.INSTANCE.getModelBakery().resourceManager.getResource(new ResourceLocation(GTCore.ID, "models/block/machine/overlay/mass_storage/icons.json"));
+                Resource resource = ModelUtils.getModelBakery().resourceManager.getResource(new ResourceLocation(GTCore.ID, "models/block/machine/overlay/mass_storage/icons.json"));
                 InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8);
                 JsonReader jsonReader = new JsonReader(reader);
                 JsonElement element = Streams.parse(jsonReader);

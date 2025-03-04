@@ -79,7 +79,7 @@ public class BlockMachineMaterial extends BlockMachine {
             super.onItemModelBuild(item, prov);
             return;
         }
-        AntimatterItemModelBuilder b = prov.getBuilder(item).parent(prov.existing("antimatter", "block/preset/layered")).texture("base", this.type.getBaseTexture(this.tier, MachineState.IDLE)[0]);
+        AntimatterItemModelBuilder b = prov.getBuilder(item).parent(prov.existing("gtlib", "block/preset/layered")).texture("base", this.type.getBaseTexture(this.tier, MachineState.IDLE)[0]);
         Texture[] base = this.type.getBaseTexture(this.tier, MachineState.IDLE);
         if (base.length >= 6) {
             for(int s = 0; s < 6; ++s) {
@@ -95,7 +95,7 @@ public class BlockMachineMaterial extends BlockMachine {
         }
         if (!(type instanceof MassStorageMachine)) return;
         b.override().predicate(new ResourceLocation(GTCore.ID, "taped"), 1.0F).model(new ResourceLocation(getDomain(), "item/" +id + "_taped")).end();
-        b = prov.getBuilder(getId() + "_taped").parent(prov.existing("antimatter", "block/preset/layered")).texture("base", this.type.getBaseTexture(this.tier, MachineState.ACTIVE)[0]);
+        b = prov.getBuilder(getId() + "_taped").parent(prov.existing("gtlib", "block/preset/layered")).texture("base", this.type.getBaseTexture(this.tier, MachineState.ACTIVE)[0]);
         if (base.length >= 6) {
             for(int s = 0; s < 6; ++s) {
                 b.texture("base" + Utils.coverRotateFacing(Ref.DIRS[s], Direction.NORTH).getSerializedName(), base[s]);

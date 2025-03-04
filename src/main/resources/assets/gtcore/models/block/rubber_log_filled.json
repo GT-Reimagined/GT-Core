@@ -1,5 +1,5 @@
 {
-	"parent": "antimatter:block/preset/simple",
+	"parent": "gtlib:block/preset/simple",
 	"textures": {
 		"down": "gtcore:block/tree/rubber_log_end",
 		"up": "gtcore:block/tree/rubber_log_end",

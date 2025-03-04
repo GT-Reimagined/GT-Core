@@ -68,7 +68,7 @@ public class IconBakedModel extends AntimatterBakedModel<IconBakedModel> {
     @Override
     public List<BakedQuad> getBlockQuads(BlockState state, @Nullable Direction direction, @NotNull Random rand, @NotNull BlockAndTintGetter level, @NotNull BlockPos pos) {
         List<BakedQuad> quads = new ObjectArrayList<>();
-        quads.addAll(ModelUtils.INSTANCE.getQuadsFromBaked(baseModel, state, direction, rand, level, pos));
+        quads.addAll(ModelUtils.getQuadsFromBaked(baseModel, state, direction, rand, level, pos));
         if (direction != Direction.SOUTH) return quads;
         BlockEntity be = level.getBlockEntity(pos);
         if (be instanceof BlockEntityMassStorage massStorage && massStorage.getMachineState() != MachineState.ACTIVE){

@@ -41,16 +41,16 @@ public class ClientHandler {
             }
         });
         AntimatterAPI.runLaterClient(() -> {
-            AntimatterAPI.all(BlockMachineMaterial.class, b -> ModelUtils.INSTANCE.setRenderLayer(b, RenderType.cutout()));
-            AntimatterAPI.all(BlockMultiMachineMaterial.class, b -> ModelUtils.INSTANCE.setRenderLayer(b, RenderType.cutout()));
-            AntimatterAPI.all(BlockMaterialChest.class, b -> ModelUtils.INSTANCE.setRenderLayer(b, RenderType.cutout()));
-            AntimatterAPI.all(BlockGTHopper.class, b -> ModelUtils.INSTANCE.setRenderLayer(b, RenderType.cutout()));
-            AntimatterAPI.all(BlockCasing.class, b -> ModelUtils.INSTANCE.setRenderLayer(b, RenderType.cutout()));
-            ModelUtils.INSTANCE.setRenderLayer(GTCoreBlocks.RUBBER_SAPLING, RenderType.cutout());
-            ModelUtils.INSTANCE.setRenderLayer(GTCoreBlocks.RUBBER_LEAVES, RenderType.cutout());
-            ModelUtils.INSTANCE.setRenderLayer(GTCoreBlocks.RUBBER_TRAPDOOR, RenderType.cutout());
-            ModelUtils.INSTANCE.setRenderLayer(GTCoreBlocks.RUBBER_DOOR, RenderType.cutout());
-            ModelUtils.INSTANCE.setRenderLayer(GTCoreBlocks.SAP_BAG, RenderType.cutout());
+            AntimatterAPI.all(BlockMachineMaterial.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
+            AntimatterAPI.all(BlockMultiMachineMaterial.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
+            AntimatterAPI.all(BlockMaterialChest.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
+            AntimatterAPI.all(BlockGTHopper.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
+            AntimatterAPI.all(BlockCasing.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
+            ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_SAPLING, RenderType.cutout());
+            ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_LEAVES, RenderType.cutout());
+            ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_TRAPDOOR, RenderType.cutout());
+            ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_DOOR, RenderType.cutout());
+            ModelUtils.setRenderLayer(GTCoreBlocks.SAP_BAG, RenderType.cutout());
         });
     }
 
