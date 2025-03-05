@@ -32,7 +32,7 @@ public class DrumMachine extends MaterialMachine{
         addTooltipInfo((machine, stack, world, tooltip, flag) -> {
             tooltip.add(Utils.translatable("machine.drum.capacity", maxCapacity).withStyle(ChatFormatting.AQUA));
             if (acidProof){
-                tooltip.add(Utils.translatable("antimatter.tooltip.acid_proof"));
+                tooltip.add(Utils.translatable("gtlib.tooltip.acid_proof"));
             }
             CompoundTag nbt = stack.getTag();
             FluidStack fluid = nbt != null && nbt.contains("Fluid") ? FluidUtils.fromTag(nbt.getCompound("Fluid")) : stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).map(fi -> fi.getFluidInTank(0)).orElse(FluidStack.EMPTY);
