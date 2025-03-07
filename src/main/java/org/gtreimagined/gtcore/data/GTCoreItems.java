@@ -118,31 +118,6 @@ public class GTCoreItems {
     public static ItemPowerUnit SmallPowerUnit = new ItemPowerUnit(GTCore.ID, "small_power_unit", GTCoreMaterials.Aluminium);
     public static ItemPowerUnit JackhammerPowerUnit = new ItemPowerUnit(GTCore.ID, "jackhammer_power_unit", Material.NULL);
 
-    public static ItemBasic<?> RawLapotronCrustal = new ItemBasic<>(GTCore.ID, "raw_lapotron_crystal");
-    public static ItemBasic<?> BatteryHullSmall = new ItemBasic<>(GTCore.ID, "small_battery_hull").tip("An empty LV Battery Hull");
-    public static ItemBasic<?> BatteryHullMedium = new ItemBasic<>(GTCore.ID, "medium_battery_hull").tip("An empty MV Battery Hull");
-    public static ItemBasic<?> BatteryHullLarge = new ItemBasic<>(GTCore.ID, "large_battery_hull").tip("An empty HV Battery Hull");
-    public static ItemBasic<?> BatteryRE = new ItemMultiTextureBattery(GTCore.ID, "re_battery", Tier.LV, 10000, true).tip("Reusable Battery");
-    public static ItemBasic<?> BatterySmallAcid = new ItemMultiTextureBattery(GTCore.ID, "small_acid_battery", Tier.LV, 18000, false).tip("Single Use");
-    public static ItemBasic<?> BatterySmallMercury = new ItemMultiTextureBattery(GTCore.ID, "small_mercury_battery", Tier.LV, 32000, false).tip("Single Use");
-    public static ItemBasic<?> BatterySmallCadmium = new ItemMultiTextureBattery(GTCore.ID, "small_cadmium_battery", Tier.LV,75000, 2, true).tip("Reusable");
-    public static ItemBasic<?> BatterySmallLithium = new ItemMultiTextureBattery(GTCore.ID, "small_lithium_battery", Tier.LV, 100000, true).tip("Reusable");
-    public static ItemBasic<?> BatterySmallSodium = new ItemMultiTextureBattery(GTCore.ID, "small_sodium_battery", Tier.LV, 50000, true).tip("Reusable");
-    public static ItemBasic<?> BatteryMediumAcid = new ItemMultiTextureBattery(GTCore.ID, "medium_acid_battery", Tier.MV, 72000, false).tip("Single Use");
-    public static ItemBasic<?> BatteryMediumMercury = new ItemMultiTextureBattery(GTCore.ID, "medium_mercury_battery", Tier.MV, 128000, false).tip("Single Use");
-    public static ItemBasic<?> BatteryMediumCadmium = new ItemMultiTextureBattery(GTCore.ID, "medium_cadmium_battery", Tier.MV, 300000, 2, true).tip("Reusable");
-    public static ItemBasic<?> BatteryMediumLithium = new ItemMultiTextureBattery(GTCore.ID, "medium_lithium_battery", Tier.MV, 400000, true).tip("Reusable");
-    public static ItemBasic<?> BatteryMediumSodium = new ItemMultiTextureBattery(GTCore.ID, "medium_sodium_battery", Tier.MV,200000, true).tip("Reusable");
-    public static ItemBasic<?> BatteryLargeAcid = new ItemMultiTextureBattery(GTCore.ID, "large_acid_battery", Tier.HV, 288000, false).tip("Single Use");
-    public static ItemBasic<?> BatteryLargeMercury = new ItemMultiTextureBattery(GTCore.ID, "large_mercury_battery", Tier.HV, 512000, false).tip("Single Use");
-    public static ItemBasic<?> BatteryLargeCadmium = new ItemMultiTextureBattery(GTCore.ID, "large_cadmium_battery", Tier.HV, 1200000, 2, true).tip("Reusable");
-    public static ItemBasic<?> BatteryLargeLithium = new ItemMultiTextureBattery(GTCore.ID, "large_lithium_battery", Tier.HV, 1600000, true).tip("Reusable");
-    public static ItemBasic<?> BatteryLargeSodium = new ItemMultiTextureBattery(GTCore.ID, "large_sodium_battery", Tier.HV, 800000, true).tip("Reusable");
-    public static ItemBasic<?> EnergyCrystal = new ItemMultiTextureBattery(GTCore.ID, "energy_crystal", Tier.HV, 1_000_000, true);
-    public static ItemBasic<?> LapotronCrystal = new ItemMultiTextureBattery(GTCore.ID, "lapotron_crystal", Tier.EV, 10_000_000, true);
-    public static ItemBasic<?> BatteryEnergyOrb = new ItemMultiTextureBattery(GTCore.ID, "lapotronic_energy_orb", Tier.IV, 100_000_000, true);
-    public static ItemBasic<?> BatteryEnergyOrbCluster = new ItemMultiTextureBattery(GTCore.ID, "lapotronic_energy_orb_cluster", Tier.LUV, 1_000_000_000, true);
-
     public static ItemBasic<?> EmptyShape = new ItemBasic<>(GTCore.ID, "empty_shape_plate", "molds/").tip("Raw plate to make Molds and Extruder Shapes");
     public static ItemBasic<?> MoldPlate = new ItemBasic<>(GTCore.ID, "plate_mold", "molds/").tip("Mold for making Plates");
     public static ItemBasic<?> MoldCasing = new ItemBasic<>(GTCore.ID, "casing_mold", "molds/").tip("Mold for making Item Casings");

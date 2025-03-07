@@ -81,12 +81,8 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(CIRCUITS_3D).add(Circuit3D);
         this.tag(CIRCUITS_INFINITE).add(CircuitInfinite);
         this.tag(CIRCUITS_DATA_ORB).add(DataOrb);
-        this.tag(BATTERIES_RE).add(BatteryRE);
-        this.tag(BATTERIES_SMALL).add(BatterySmallSodium, BatterySmallCadmium, BatterySmallLithium);
-        this.tag(BATTERIES_MEDIUM).add(BatteryMediumSodium, BatteryMediumCadmium, BatteryMediumLithium);
-        this.tag(BATTERIES_LARGE).add(BatteryLargeSodium, BatteryLargeCadmium, BatteryLargeLithium, EnergyCrystal);
         if (AntimatterAPI.isModLoaded("curios")){
-            this.tag(TagUtils.getItemTag(new ResourceLocation("curios", "belt"))).addTag(BATTERIES_RE).addTag(BATTERIES_SMALL).addTag(BATTERIES_MEDIUM).addTag(BATTERIES_LARGE);
+            this.tag(TagUtils.getItemTag(new ResourceLocation("curios", "belt"))).addTag(BATTERIES_LV).addTag(BATTERIES_MV).addTag(BATTERIES_HV);
         }
         this.tag(POWER_UNIT_LV).add(PowerUnitLV);
         this.tag(POWER_UNIT_MV).add(PowerUnitMV);
