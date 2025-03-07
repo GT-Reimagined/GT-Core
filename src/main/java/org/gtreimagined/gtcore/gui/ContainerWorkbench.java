@@ -145,7 +145,7 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
         for (int i = 17; i < 26; i++) {
             Slot slot = (Slot) slots.get(i);
             if (slot.hasItem()) {
-                moveItemStackTo(slot.getItem(), 32, 68, false);
+                moveItemStackTo(slot.getItem(), 34, 70, false);
                 if (slot.getItem().getCount() <= 0)
                     slot.set(ItemStack.EMPTY);
             }
