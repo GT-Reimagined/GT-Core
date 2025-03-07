@@ -281,11 +281,9 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     }
 
     @Override
-    public void onFirstTick() {
-        super.onFirstTick();
-        if (level != null && isClientSide()){
-            AntimatterNetwork.NETWORK.sendToServer(new MessageTriggerInventorySync(this.getBlockPos()));
-        }
+    public void onFirstTickClient(Level level, BlockPos pos, BlockState state) {
+        super.onFirstTickClient(level, pos, state);
+        AntimatterNetwork.NETWORK.sendToServer(new MessageTriggerInventorySync(this.getBlockPos()));
     }
 
     @Override

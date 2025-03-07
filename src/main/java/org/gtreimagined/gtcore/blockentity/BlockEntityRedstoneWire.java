@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.blockentity;
 
 import muramasa.antimatter.pipe.PipeSize;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import org.gtreimagined.gtcore.block.BlockRedstoneWire;
 import org.gtreimagined.gtcore.block.RedstoneWire;
@@ -43,8 +44,8 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     }
 
     @Override
-    public void onFirstTick() {
-        super.onFirstTick();
+    public void onFirstTickServer(Level level, BlockPos pos, BlockState state) {
+        super.onFirstTickServer(level, pos, state);
         updateConnectionStatus();
         if (updateRedstone()) doRedstoneUpdate(this);
         if (mConnectedToNonWire) {

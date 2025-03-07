@@ -72,9 +72,8 @@ public class BlockEntityGTHopper extends BlockEntityMaterial<BlockEntityGTHopper
     }
 
     @Override
-    public void onFirstTick() {
-        super.onFirstTick();
-        if (isClientSide()) return;
+    public void onFirstTickServer(Level level, BlockPos pos, BlockState state) {
+        super.onFirstTickServer(level, pos, state);
         for (Direction direction : Direction.values()) {
             if (level.getSignal(this.getBlockPos().relative(direction), direction) > 0){
                 this.disabled = true;
