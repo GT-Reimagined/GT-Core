@@ -67,7 +67,7 @@ public class MaterialRecipes {
         }
         AntimatterMaterialTypes.ROD.all().forEach(m -> {
             if (m.has(AntimatterMaterialTypes.INGOT)) {
-                provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_rod", "antimatter_material", AntimatterMaterialTypes.ROD.get(m, craftingMultiplier), of('F', AntimatterDefaultTools.FILE.getTag(), 'I', AntimatterMaterialTypes.INGOT.getMaterialTag(m)), "F", "I");
+                provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_rod", "antimatter_material", AntimatterMaterialTypes.ROD.get(m, craftingMultiplier), of('F', AntimatterDefaultTools.FILE.getTag(), 'I', AntimatterMaterialTypes.INGOT.getMaterialTag(m)), "F ", " I");
             }
             if (m.has(AntimatterMaterialTypes.BOLT)) {
                 provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_bolt", "antimatter_material", AntimatterMaterialTypes.BOLT.get(m, 2 * craftingMultiplier), of('F', SAW.getTag(), 'I', AntimatterMaterialTypes.ROD.getMaterialTag(m)), "F ", " I");
