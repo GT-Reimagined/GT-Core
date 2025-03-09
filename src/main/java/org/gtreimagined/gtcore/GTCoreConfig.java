@@ -1,8 +1,10 @@
 package org.gtreimagined.gtcore;
 
 import carbonconfiglib.CarbonConfig;
-import carbonconfiglib.config.*;
+import carbonconfiglib.config.Config;
 import carbonconfiglib.config.ConfigEntry.BoolValue;
+import carbonconfiglib.config.ConfigHandler;
+import carbonconfiglib.config.ConfigSection;
 
 public class GTCoreConfig {
     public static ConfigHandler CONFIG;
@@ -15,6 +17,7 @@ public class GTCoreConfig {
     public static BoolValue VILLAGER_TRADE_REPLACEMENTS;
     public static BoolValue COMPOSTER_OUTPUT_REPLACEMENT;
     public static BoolValue HONEYCOMB_REPLACEMENT;
+    public static BoolValue DISABLE_BLOCK_CRAFTING;
 
     public static void createConfig(){
         Config config = new Config(GTCore.ID);
@@ -29,6 +32,7 @@ public class GTCoreConfig {
         VILLAGER_TRADE_REPLACEMENTS = section.addBool("villager_trade_replacements", true, "If true replaces emeralds with gt credits in all villager trades - Default: true");
         COMPOSTER_OUTPUT_REPLACEMENT = section.addBool("composter_output_replacement", true, "If true makes the composter make fertilizer instead of bonemeal - Default: true");
         HONEYCOMB_REPLACEMENT = section.addBool("honeycomb_replacement", true, "If true honeycomb usage for making waxed copper is replaced by beeswax - Default: true");
+        DISABLE_BLOCK_CRAFTING = section.addBool("disable_block_crafting", true, "Disables crafting of material blocks in the crafting table, eg. Block of Iron");
         CONFIG = CarbonConfig.CONFIGS.createConfig(config);
         CONFIG.register();
     }

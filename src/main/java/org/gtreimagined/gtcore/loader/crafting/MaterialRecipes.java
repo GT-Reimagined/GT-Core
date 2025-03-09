@@ -13,6 +13,7 @@ import muramasa.antimatter.material.MaterialType;
 import muramasa.antimatter.material.MaterialTypeItem;
 import muramasa.antimatter.recipe.ingredient.RecipeIngredient;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.GTCoreConfig;
@@ -64,6 +65,30 @@ public class MaterialRecipes {
                             AntimatterDefaultTools.MORTAR.getTag(), AntimatterMaterialTypes.CRUSHED.getMaterialTag(m));
                 }
             });
+        }
+        BLOCK.all().forEach(m -> {
+            boolean blockReplacement = BLOCK.getReplacements().containsKey(m);
+            if (m.has(INGOT)){
+                if (GTCoreConfig.DISABLE_BLOCK_CRAFTING.get()) return;
+                if (INGOT.getReplacements().containsKey(m) && blockReplacement) return;
+                provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_block", "blocks", BLOCK.get().get(m).asStack(), ImmutableMap.of('I', INGOT.getMaterialTag(m)), "III", "III", "III");
+                provider.shapeless(consumer, GTCore.ID,"ingot_" + m.getId() + "_from_block", "blocks", INGOT.get(m, 9), BLOCK.getMaterialTag(m));
+            } else if (m.has(GEM)){
+                if (GEM.getReplacements().containsKey(m) && blockReplacement) return;
+                provider.shapeless(consumer, GTCore.ID,"gem_" + m.getId() + "_from_block", "blocks", GEM.get(m, 9), BLOCK.getMaterialTag(m));
+                if (GTCoreConfig.DISABLE_BLOCK_CRAFTING.get()) return;
+                provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_block", "blocks", BLOCK.get().get(m).asStack(), ImmutableMap.of('I', GEM.getMaterialTag(m)), "III", "III", "III");
+            }
+        });
+        if (GTCoreConfig.DISABLE_BLOCK_CRAFTING.get()) {
+            provider.removeRecipe(new ResourceLocation("iron_block"));
+            provider.removeRecipe(new ResourceLocation("copper_block"));
+            provider.removeRecipe(new ResourceLocation("gold_block"));
+            provider.removeRecipe(new ResourceLocation("diamond_block"));
+            provider.removeRecipe(new ResourceLocation("emerald_block"));
+            provider.removeRecipe(new ResourceLocation("netherite_block"));
+            provider.removeRecipe(new ResourceLocation("lapis_block"));
+            provider.removeRecipe(new ResourceLocation("redstone_block"));
         }
         AntimatterMaterialTypes.ROD.all().forEach(m -> {
             if (m.has(AntimatterMaterialTypes.INGOT)) {
