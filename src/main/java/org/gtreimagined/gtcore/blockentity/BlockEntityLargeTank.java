@@ -1,7 +1,11 @@
 package org.gtreimagined.gtcore.blockentity;
 
+import muramasa.antimatter.capability.CoverHandler;
+import muramasa.antimatter.capability.fluid.FluidHandlerSidedWrapper;
 import muramasa.antimatter.capability.fluid.FluidTanks;
+import muramasa.antimatter.capability.fluid.IFluidNode;
 import muramasa.antimatter.capability.machine.MachineFluidHandler;
+import muramasa.antimatter.cover.ICover;
 import muramasa.antimatter.data.AntimatterTags;
 import muramasa.antimatter.util.FluidUtils;
 import muramasa.antimatter.util.Utils;
@@ -15,9 +19,14 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import org.gtreimagined.gtcore.machine.MultiblockTankMachine;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -26,10 +35,12 @@ import static net.minecraft.core.Direction.UP;
 
 public class BlockEntityLargeTank extends BlockEntityMaterialBasicMultiMachine<BlockEntityLargeTank> {
     MultiblockTankMachine tankMachine;
+    LazyOptional<IFluidHandler> fakeFacingWrapper;
     public BlockEntityLargeTank(MultiblockTankMachine type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         this.fluidHandler.set(() -> new LargeTankFluidHandler(this, type.getCapacity(), 1, 0));
         this.tankMachine = type;
+        this.fakeFacingWrapper = LazyOptional.of(() -> new FakeSidedFluidHandler(fluidHandler.get(), coverHandler.get(), this.getFacing(state)));
     }
 
     @Override
@@ -51,6 +62,14 @@ public class BlockEntityLargeTank extends BlockEntityMaterialBasicMultiMachine<B
             list.add("Fluid: " + (stack.isEmpty() ? "Empty" : stack.getAmount() + "mb" + " of " + FluidUtils.getFluidDisplayName(stack).getString()));
         });
         return list;
+    }
+
+    @Override
+    public <U> LazyOptional<U> getCapabilityFromFake(@NotNull Capability<U> cap, @Nullable Direction side, ICover cover) {
+        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && side == this.getFacing()) {
+            return fakeFacingWrapper.cast();
+        }
+        return super.getCapabilityFromFake(cap, side, cover);
     }
 
     public static class LargeTankFluidHandler extends MachineFluidHandler<BlockEntityLargeTank> {
@@ -155,6 +174,29 @@ public class BlockEntityLargeTank extends BlockEntityMaterialBasicMultiMachine<B
                 }
             }
             return false;
+        }
+    }
+
+    public static class FakeSidedFluidHandler extends FluidHandlerSidedWrapper {
+        private CoverHandler<?> coverHandler;
+
+        public FakeSidedFluidHandler(IFluidNode fluidHandler, CoverHandler<?> coverHandler, Direction side) {
+            super(fluidHandler, coverHandler, side);
+            this.coverHandler = coverHandler;
+        }
+        public int fill(FluidStack resource, IFluidHandler.FluidAction action) {
+            if (this.coverHandler != null) {
+                if (this.coverHandler.get(this.side).blocksInput(IFluidHandler.class, this.side)) {
+                    return 0;
+                }
+
+                int oldAmount = resource.getAmount();
+                if (this.coverHandler.onTransfer(resource, this.side, true, action.simulate())) {
+                    return oldAmount - resource.getAmount();
+                }
+            }
+
+            return this.fluidHandler.canInput(resource, this.side) ? this.fluidHandler.fill(resource, action) : 0;
         }
     }
 }
