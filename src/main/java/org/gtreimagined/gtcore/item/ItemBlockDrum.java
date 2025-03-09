@@ -6,9 +6,7 @@ import muramasa.antimatter.item.IFluidItem;
 import muramasa.antimatter.machine.BlockMachine;
 import net.minecraftforge.fluids.FluidStack;
 import org.gtreimagined.gtcore.machine.DrumMachine;
-import tesseract.TesseractGraphWrappers;
 
-import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public class ItemBlockDrum extends AntimatterItemBlock implements IFluidItem {

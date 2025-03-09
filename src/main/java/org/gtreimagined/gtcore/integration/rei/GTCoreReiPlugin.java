@@ -1,8 +1,5 @@
 package org.gtreimagined.gtcore.integration.rei;
 
-import me.shedaniel.rei.forge.REIPluginClient;
-import org.gtreimagined.gtcore.gui.ContainerWorkbench;
-import org.gtreimagined.gtcore.machine.WorkbenchMachine;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.transfer.TransferHandler;
@@ -10,10 +7,13 @@ import me.shedaniel.rei.api.client.registry.transfer.TransferHandlerRegistry;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.entry.type.VanillaEntryTypes;
+import me.shedaniel.rei.forge.REIPluginClient;
 import me.shedaniel.rei.plugin.common.BuiltinPlugin;
 import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCraftingDisplay;
 import muramasa.antimatter.AntimatterAPI;
 import net.minecraft.world.item.ItemStack;
+import org.gtreimagined.gtcore.gui.ContainerWorkbench;
+import org.gtreimagined.gtcore.machine.WorkbenchMachine;
 
 import java.util.ArrayList;
 import java.util.List;

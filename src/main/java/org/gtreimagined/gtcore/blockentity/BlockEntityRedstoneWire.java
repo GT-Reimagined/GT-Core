@@ -1,26 +1,20 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import muramasa.antimatter.pipe.PipeSize;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import org.gtreimagined.gtcore.block.BlockRedstoneWire;
-import org.gtreimagined.gtcore.block.RedstoneWire;
-import org.gtreimagined.gtcore.cover.CoverRedstoneTorch;
-import org.gtreimagined.gtcore.cover.CoverSelectorTag;
-import muramasa.antimatter.Antimatter;
-import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.blockentity.pipe.BlockEntityPipe;
-import muramasa.antimatter.capability.ICoverHandler;
-import muramasa.antimatter.cover.CoverFactory;
 import muramasa.antimatter.cover.ICover;
+import muramasa.antimatter.pipe.PipeSize;
 import muramasa.antimatter.util.CodeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.redstone.Redstone;
+import org.gtreimagined.gtcore.block.BlockRedstoneWire;
+import org.gtreimagined.gtcore.block.RedstoneWire;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -11,8 +11,6 @@ import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
 import org.gtreimagined.gtcore.data.SlotTypes;
 
-import java.util.Optional;
-
 public class MassStorageItemHandler extends MachineItemHandler<BlockEntityMassStorage> {
 
     public MassStorageItemHandler(BlockEntityMassStorage tile) {

@@ -4,8 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.cover.CoverFactory;
 import muramasa.antimatter.item.ItemBasic;
-import muramasa.antimatter.item.ItemMultiTextureBattery;
-import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.recipe.ingredient.RecipeIngredient;
 import muramasa.antimatter.texture.Texture;

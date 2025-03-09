@@ -1,7 +1,5 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import net.minecraftforge.items.IItemHandler;
-import org.gtreimagined.gtcore.machine.MaterialMachine;
 import muramasa.antimatter.capability.machine.MachineCoverHandler;
 import muramasa.antimatter.cover.ICover;
 import muramasa.antimatter.gui.SlotType;
@@ -18,6 +16,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.items.IItemHandler;
+import org.gtreimagined.gtcore.machine.MaterialMachine;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

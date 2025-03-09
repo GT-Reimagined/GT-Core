@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.item;
 
-import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.block.AntimatterItemBlock;
 import muramasa.antimatter.client.RenderHelper;
 import muramasa.antimatter.machine.BlockMachine;

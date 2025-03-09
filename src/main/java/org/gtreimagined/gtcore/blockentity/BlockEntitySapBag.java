@@ -1,15 +1,15 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import org.gtreimagined.gtcore.data.GTCoreBlocks;
-import org.gtreimagined.gtcore.data.GTCoreItems;
-import org.gtreimagined.gtcore.tree.ResinState;
-import org.gtreimagined.gtcore.tree.block.BlockRubberLog;
 import muramasa.antimatter.blockentity.BlockEntityBase;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import org.gtreimagined.gtcore.data.GTCoreBlocks;
+import org.gtreimagined.gtcore.data.GTCoreItems;
+import org.gtreimagined.gtcore.tree.ResinState;
+import org.gtreimagined.gtcore.tree.block.BlockRubberLog;
 
 public class BlockEntitySapBag extends BlockEntityBase<BlockEntitySapBag> {
     ItemStack sap = ItemStack.EMPTY;

@@ -6,7 +6,6 @@ import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Direction.Axis;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -19,11 +18,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.items.CapabilityItemHandler;
-import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.machine.HopperItemHandler;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
 import org.jetbrains.annotations.Nullable;
-import tesseract.TesseractCapUtils;
 
 public class BlockEntityGTHopper extends BlockEntityMaterial<BlockEntityGTHopper> implements ILimitedOutputTile{
     protected int stackLimit = 0;

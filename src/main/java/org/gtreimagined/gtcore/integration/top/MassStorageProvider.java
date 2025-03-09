@@ -1,24 +1,16 @@
 package org.gtreimagined.gtcore.integration.top;
 
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
-import org.gtreimagined.gtcore.data.SlotTypes;
 import mcjty.theoneprobe.api.CompoundText;
 import mcjty.theoneprobe.api.ElementAlignment;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.IProbeInfoProvider;
 import mcjty.theoneprobe.api.ProbeMode;
-import mcjty.theoneprobe.apiimpl.elements.ElementHorizontal;
-import mcjty.theoneprobe.apiimpl.elements.ElementItemLabel;
-import mcjty.theoneprobe.apiimpl.elements.ElementItemStack;
-import mcjty.theoneprobe.apiimpl.elements.ElementVertical;
 import mcjty.theoneprobe.apiimpl.styles.ItemStyle;
 import mcjty.theoneprobe.apiimpl.styles.LayoutStyle;
 import mcjty.theoneprobe.config.Config;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.integration.top.TheOneProbePlugin;
-import muramasa.antimatter.machine.MachineState;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextComponent;
@@ -28,9 +20,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
-
-import java.awt.*;
+import org.gtreimagined.gtcore.data.SlotTypes;
 
 public class MassStorageProvider implements IProbeInfoProvider {
 

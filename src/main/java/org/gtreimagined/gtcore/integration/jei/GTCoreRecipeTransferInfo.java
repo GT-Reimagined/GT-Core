@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.integration.jei;
 
-import org.gtreimagined.gtcore.gui.ContainerWorkbench;
 import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.recipe.RecipeType;
@@ -8,6 +7,7 @@ import mezz.jei.api.recipe.transfer.IRecipeTransferInfo;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.crafting.CraftingRecipe;
+import org.gtreimagined.gtcore.gui.ContainerWorkbench;
 
 import java.util.ArrayList;
 import java.util.List;

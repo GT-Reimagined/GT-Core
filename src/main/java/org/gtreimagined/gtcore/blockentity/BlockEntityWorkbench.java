@@ -4,15 +4,15 @@ import muramasa.antimatter.capability.item.FakeTrackedItemHandler;
 import muramasa.antimatter.capability.item.TrackedItemHandler;
 import muramasa.antimatter.capability.machine.MachineItemHandler;
 import muramasa.antimatter.gui.SlotType;
-import org.gtreimagined.gtcore.data.SlotTypes;
-import org.gtreimagined.gtcore.gui.ContainerWorkbench;
-import org.gtreimagined.gtcore.machine.MaterialMachine;
 import muramasa.antimatter.gui.event.GuiEvents;
 import muramasa.antimatter.gui.event.IGuiEvent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.BlockState;
+import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.gui.ContainerWorkbench;
+import org.gtreimagined.gtcore.machine.MaterialMachine;
 
 public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkbench>{
     public BlockEntityWorkbench(MaterialMachine type, BlockPos pos, BlockState state) {

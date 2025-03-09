@@ -1,7 +1,5 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import org.gtreimagined.gtcore.data.SlotTypes;
-import org.gtreimagined.gtcore.machine.MassStorageMachine;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.util.Utils;
@@ -14,6 +12,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.machine.MassStorageMachine;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

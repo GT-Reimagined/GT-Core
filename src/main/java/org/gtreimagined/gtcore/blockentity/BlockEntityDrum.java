@@ -1,17 +1,12 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import muramasa.antimatter.util.FluidUtils;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
-import org.gtreimagined.gtcore.machine.DrumMachine;
 import muramasa.antimatter.Ref;
 import muramasa.antimatter.capability.fluid.FluidTanks;
 import muramasa.antimatter.capability.machine.MachineFluidHandler;
 import muramasa.antimatter.data.AntimatterTags;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.tool.AntimatterToolType;
+import muramasa.antimatter.util.FluidUtils;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,16 +19,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
+import org.gtreimagined.gtcore.machine.DrumMachine;
 import org.jetbrains.annotations.Nullable;
-import tesseract.TesseractCapUtils;
-import tesseract.TesseractGraphWrappers;
 
 import java.util.List;
-import java.util.Optional;
 
 import static muramasa.antimatter.data.AntimatterDefaultTools.WRENCH;
 import static net.minecraft.core.Direction.DOWN;

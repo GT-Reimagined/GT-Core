@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.capability.fluid.FluidTanks;
 import muramasa.antimatter.capability.machine.MachineFluidHandler;
 import muramasa.antimatter.data.AntimatterTags;
@@ -20,12 +19,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import org.gtreimagined.gtcore.machine.MultiblockTankMachine;
 import org.jetbrains.annotations.Nullable;
-import tesseract.TesseractGraphWrappers;
 
 import java.util.List;
-import java.util.Optional;
 
-import static muramasa.antimatter.data.AntimatterMaterials.Wood;
 import static net.minecraft.core.Direction.UP;
 
 public class BlockEntityLargeTank extends BlockEntityMaterialBasicMultiMachine<BlockEntityLargeTank> {

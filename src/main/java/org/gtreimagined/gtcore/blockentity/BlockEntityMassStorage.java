@@ -1,17 +1,7 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import muramasa.antimatter.capability.item.ITrackedHandler;
-import muramasa.antimatter.capability.item.TrackedItemHandler;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import org.gtreimagined.gtcore.data.GTCoreTools;
-import org.gtreimagined.gtcore.data.SlotTypes;
-import org.gtreimagined.gtcore.item.ItemTape;
-import org.gtreimagined.gtcore.machine.MassStorageMachine;
-import org.gtreimagined.gtcore.machine.MassStorageItemHandler;
-import org.gtreimagined.gtcore.network.MessageInventorySync;
-import org.gtreimagined.gtcore.network.MessageTriggerInventorySync;
 import muramasa.antimatter.Ref;
+import muramasa.antimatter.capability.item.TrackedItemHandler;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.gui.SlotType;
 import muramasa.antimatter.machine.MachineState;
@@ -25,7 +15,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -37,12 +26,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.item.ItemTape;
+import org.gtreimagined.gtcore.machine.MassStorageItemHandler;
+import org.gtreimagined.gtcore.machine.MassStorageMachine;
+import org.gtreimagined.gtcore.network.MessageTriggerInventorySync;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import tesseract.TesseractCapUtils;
 
 import java.util.List;
-import java.util.Map;
 
 public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassStorage> implements IInventorySyncTile {
     boolean output = false;

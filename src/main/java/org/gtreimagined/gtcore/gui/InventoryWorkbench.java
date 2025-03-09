@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.gui;
 
-import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.capability.machine.MachineItemHandler;
 import muramasa.antimatter.network.AntimatterNetwork;
 import net.minecraft.world.inventory.AbstractContainerMenu;

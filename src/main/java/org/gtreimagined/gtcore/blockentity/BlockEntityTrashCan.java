@@ -20,8 +20,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
-
 public class BlockEntityTrashCan extends BlockEntityMachine<BlockEntityTrashCan> {
     public BlockEntityTrashCan(Machine<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);

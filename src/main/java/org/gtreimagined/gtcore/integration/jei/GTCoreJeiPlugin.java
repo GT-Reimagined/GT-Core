@@ -1,22 +1,17 @@
 package org.gtreimagined.gtcore.integration.jei;
 
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.machine.WorkbenchMachine;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
-import mezz.jei.api.recipe.advanced.IRecipeManagerPlugin;
-import mezz.jei.api.registration.IAdvancedRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
-import mezz.jei.api.registration.IVanillaCategoryExtensionRegistration;
 import muramasa.antimatter.Antimatter;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Ref;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.CraftingRecipe;
-
+import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.machine.WorkbenchMachine;
 
 import java.util.Optional;
 

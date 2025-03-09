@@ -14,7 +14,6 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityDrum;
 import org.gtreimagined.gtcore.item.ItemBlockDrum;
-import tesseract.TesseractGraphWrappers;
 
 import static muramasa.antimatter.Data.WRENCH_MATERIAL;
 

@@ -1,13 +1,9 @@
 package org.gtreimagined.gtcore;
 
-import muramasa.antimatter.machine.Tier;
-import org.gtreimagined.gtcore.data.GTCoreBlocks;
-import org.gtreimagined.gtcore.machine.DrumMachine;
-import org.gtreimagined.gtcore.machine.LockerMachine;
-import org.gtreimagined.gtcore.machine.WorkbenchMachine;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.AntimatterRemapping;
 import muramasa.antimatter.machine.BlockMachine;
+import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.registration.IAntimatterObject;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
