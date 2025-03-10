@@ -23,8 +23,7 @@ import java.util.function.Consumer;
 import static com.google.common.collect.ImmutableMap.of;
 import static muramasa.antimatter.data.AntimatterDefaultTools.*;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
-import static muramasa.antimatter.material.MaterialTags.NOSMASH;
-import static muramasa.antimatter.material.MaterialTags.RUBBERTOOLS;
+import static muramasa.antimatter.material.MaterialTags.*;
 
 public class MaterialRecipes {
 
@@ -68,16 +67,18 @@ public class MaterialRecipes {
         }
         BLOCK.all().forEach(m -> {
             boolean blockReplacement = BLOCK.getReplacements().containsKey(m);
+            int output = m.has(QUARTZ_LIKE_BLOCKS) ? 4 : 9;
+            String[] strings = m.has(QUARTZ_LIKE_BLOCKS) ? new String[]{"II", "II"} : new String[]{"III", "III", "III"};
             if (m.has(INGOT)){
                 if (GTCoreConfig.DISABLE_BLOCK_CRAFTING.get()) return;
                 if (INGOT.getReplacements().containsKey(m) && blockReplacement) return;
-                provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_block", "blocks", BLOCK.get().get(m).asStack(), ImmutableMap.of('I', INGOT.getMaterialTag(m)), "III", "III", "III");
-                provider.shapeless(consumer, GTCore.ID,"ingot_" + m.getId() + "_from_block", "blocks", INGOT.get(m, 9), BLOCK.getMaterialTag(m));
+                provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_block", "blocks", BLOCK.get().get(m).asStack(), ImmutableMap.of('I', INGOT.getMaterialTag(m)), strings);
+                provider.shapeless(consumer, GTCore.ID,"ingot_" + m.getId() + "_from_block", "blocks", INGOT.get(m, output), BLOCK.getMaterialTag(m));
             } else if (m.has(GEM)){
                 if (GEM.getReplacements().containsKey(m) && blockReplacement) return;
-                provider.shapeless(consumer, GTCore.ID,"gem_" + m.getId() + "_from_block", "blocks", GEM.get(m, 9), BLOCK.getMaterialTag(m));
+                provider.shapeless(consumer, GTCore.ID,"gem_" + m.getId() + "_from_block", "blocks", GEM.get(m, output), BLOCK.getMaterialTag(m));
                 if (GTCoreConfig.DISABLE_BLOCK_CRAFTING.get()) return;
-                provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_block", "blocks", BLOCK.get().get(m).asStack(), ImmutableMap.of('I', GEM.getMaterialTag(m)), "III", "III", "III");
+                provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_block", "blocks", BLOCK.get().get(m).asStack(), ImmutableMap.of('I', GEM.getMaterialTag(m)), strings);
             }
         });
         if (GTCoreConfig.DISABLE_BLOCK_CRAFTING.get()) {
