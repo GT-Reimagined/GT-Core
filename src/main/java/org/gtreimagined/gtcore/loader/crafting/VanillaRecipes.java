@@ -70,7 +70,7 @@ public class VanillaRecipes {
         provider.addItemRecipe(consumer, "minecraft", "", "misc",
                 Items.BUCKET, of('I', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag()), "IHI", " I ");
         provider.addItemRecipe(consumer, "minecraft", "", "misc",
-                Items.HOPPER, of('I', PLATE.getMaterialTag(Iron), 'W', WRENCH.getTag(), 'C', Tags.Items.CHESTS), "IWI", "ICI", " I ");
+                Items.HOPPER, of('I', PLATE.getMaterialTag(Iron), 'W', WRENCH.getTag(), 'C', Tags.Items.CHESTS_WOODEN), "IWI", "ICI", " I ");
         provider.addStackRecipe(consumer, "minecraft", "", "cauldrons", new ItemStack(Items.CAULDRON),
                 of('P', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag()), "P P", "PHP", "PPP");
         provider.addStackRecipe(consumer, "minecraft", "", "misc", new ItemStack(Items.IRON_DOOR, 3),
