@@ -53,6 +53,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.gtreimagined.gtcore.block.BlockDimensionMarker;
 import org.gtreimagined.gtcore.client.BakedModels;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.data.GTCoreCables;
@@ -302,6 +303,7 @@ public class GTCore extends AntimatterMod {
                                 || toolType == GTCoreTools.POCKET_MULTITOOL_SCREWDRIVER
                                 || toolType == GTCoreTools.POCKET_MULTITOOL_WIRE_CUTTER;
                     }).forEach(tool -> l.add(tool.getItem()));
+                    AntimatterAPI.all(BlockDimensionMarker.class).forEach(b -> l.add(b.asItem()));
                 });
             }
             case CLIENT_DATA_INIT -> {
