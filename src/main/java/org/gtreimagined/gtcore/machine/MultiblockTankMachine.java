@@ -37,6 +37,8 @@ public class MultiblockTankMachine extends MaterialBasicMultiMachine {
                     .build());
         }
         addTooltipInfo((machine, stack, world, tooltip, flag) -> {
+            tooltip.add(Utils.translatable("tooltip.gtcore.large_tank.0", machine.getName()));
+            tooltip.add(Utils.translatable("tooltip.gtcore." + (small ? "small": "large") + "_tank.1", casing.get().getName()));
             tooltip.add(Utils.translatable("machine.drum.capacity", capacity));
         });
         addFlags(MachineFlag.FLUID);

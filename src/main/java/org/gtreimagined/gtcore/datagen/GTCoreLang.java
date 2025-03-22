@@ -87,6 +87,9 @@ public class GTCoreLang {
             add("tooltip.gtcore.knife", "Can be used to harvest sticky resin from spots on rubber trees");
             add("tooltip.gtcore.selector_tag.0", "Right click to cycle mode forward");
             add("tooltip.gtcore.selector_tag.1", "Shift right click to cycle mode backward");
+            add("tooltip.gtcore.large_tank.0", "Controller block for %s");
+            add("tooltip.gtcore.large_tank.1", "Size(WxHxD): 5x5x5 of %s (Hollow) Controller (Center block on one face of the cube)");
+            add("tooltip.gtcore.small_tank.1", "Size(WxHxD): 3x3x3 of %s (Hollow) Controller (Center block on one face of the cube)");
             AntimatterAPI.all(ItemBasic.class, domain).forEach(i -> override(i.getDescriptionId(), lowerUnderscoreToUpperSpaced(i.getId())
                     .replace("Lv", "(LV)")
                     .replace("Mv", "(MV)")
