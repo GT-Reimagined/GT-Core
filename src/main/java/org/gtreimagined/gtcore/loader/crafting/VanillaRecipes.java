@@ -81,6 +81,8 @@ public class VanillaRecipes {
                 of('I', PLATE.getMaterialTag(Gold), 'H', HAMMER.getTag()), "IIH");
         provider.addStackRecipe(consumer, "minecraft", "", "misc", new ItemStack(Items.HEAVY_WEIGHTED_PRESSURE_PLATE),
                 of('I', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag()), "IIH");
+        provider.addItemRecipe(consumer, "misc", Items.SHEARS,
+                of('I', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag(), 'F', FILE.getTag()), "HI", "IF");
 
         provider.addItemRecipe(consumer, "vanilla_armor", Items.IRON_HELMET,
                 of('I', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag()), "III", "IHI");
