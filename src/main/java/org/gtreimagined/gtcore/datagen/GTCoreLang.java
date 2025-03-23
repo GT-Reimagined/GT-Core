@@ -10,7 +10,6 @@ import muramasa.antimatter.util.Utils;
 import org.apache.commons.lang3.StringUtils;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.BlockCasing;
-import org.gtreimagined.gtcore.block.BlockDimensionMarker;
 import org.gtreimagined.gtcore.block.BlockRedstoneWire;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.data.GTCoreItems;
@@ -98,7 +97,6 @@ public class GTCoreLang {
                     .replace("Iv", "(IV)")));
             AntimatterAPI.all(BlockCasing.class).forEach(b -> this.add(b, Utils.lowerUnderscoreToUpperSpaced(b.getId())));
             AntimatterAPI.all(ItemHazmatArmor.class, domain).forEach(i -> this.add(i, Utils.lowerUnderscoreToUpperSpaced(i.getId())));
-            AntimatterAPI.all(BlockDimensionMarker.class, domain).forEach(i -> this.add(i, Utils.lowerUnderscoreToUpperSpaced(i.getDimension())));
         }
 
         @Override

@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.BlockCasing;
-import org.gtreimagined.gtcore.block.BlockDimensionMarker;
 import org.gtreimagined.gtcore.block.BlockSapBag;
 import org.gtreimagined.gtcore.blockentity.BlockEntityPlasticBin;
 import org.gtreimagined.gtcore.blockentity.BlockEntitySapBag;
@@ -114,15 +113,6 @@ public class GTCoreBlocks {
 
     public static final BlockCasing REINFORCED_GLASS = new BlockCasing(GTCore.ID, "reinforced_glass", Block.Properties.of(net.minecraft.world.level.material.Material.GLASS).strength(15.0f, 150.0f).sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion().isValidSpawn(((blockState, blockGetter, blockPos, object) -> false)).isRedstoneConductor(GTCoreBlocks::isntSolid).isSuffocating(GTCoreBlocks::isntSolid).isViewBlocking(GTCoreBlocks::isntSolid));
     public static final BlockCasing REINFORCED_STONE = new BlockCasing(GTCore.ID, "reinforced_stone", Block.Properties.of(net.minecraft.world.level.material.Material.STONE).strength(80.0f, 150.0f).sound(SoundType.STONE).requiresCorrectToolForDrops());
-
-    public static final BlockDimensionMarker OVERWORLD_MARKER = new BlockDimensionMarker("overworld");
-    public static final BlockDimensionMarker NETHER_MARKER = new BlockDimensionMarker("the_nether");
-    public static final BlockDimensionMarker END_MARKER = new BlockDimensionMarker("the_end");
-    public static final BlockDimensionMarker TWILIGHT_FOREST_MARKER = new BlockDimensionMarker("twilight_forest");
-    public static final BlockDimensionMarker MOON_MARKER = new BlockDimensionMarker("moon");
-    public static final BlockDimensionMarker MARS_MARKER = new BlockDimensionMarker("mars");
-    public static final BlockDimensionMarker MERCURY_MARKER = new BlockDimensionMarker("mercury");
-    public static final BlockDimensionMarker VENUS_MARKER = new BlockDimensionMarker("venus");
 
     public static Boolean isntSolid(BlockState state, BlockGetter reader, BlockPos pos) {
         return false;
