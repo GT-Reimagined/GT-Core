@@ -29,7 +29,7 @@ import static org.gtreimagined.gtcore.loader.crafting.VanillaRecipes.addWoodReci
 public class RubberRecipes {
 
     public static void addRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
-        if (!AntimatterAPI.isModLoaded("gti") && !AntimatterAPI.isModLoaded("gt4r")) {
+        if (!AntimatterAPI.isModLoaded("gt5r") && !AntimatterAPI.isModLoaded("gt4r")) {
             AntimatterCookingRecipeBuilder.smeltingRecipe(Ingredient.of(GTCoreItems.StickyResin), DUST.get(GTCoreMaterials.Rubber, 1), 0.1f, 200).addCriterion("has_resin", provider.hasSafeItem(GTCoreItems.StickyResin)).build(consumer, "resin_to_rubber");
         }
         Item lumber = AntimatterAPI.isModLoaded("tfc") ? AntimatterAPI.get(Item.class, "rubber_lumber", GTCore.ID) : GTCoreBlocks.RUBBER_PLANKS.asItem();
