@@ -1,16 +1,17 @@
 package org.gtreimagined.gtcore.machine;
 
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.machine.Tier;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.texture.Texture;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.BlockMaterialChest;
 import org.gtreimagined.gtcore.blockentity.BlockEntityChest;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.machine.Tier;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.texture.Texture;
 
-import static muramasa.antimatter.gui.SlotType.STORAGE;
-import static muramasa.antimatter.machine.MachineFlag.*;
+import static org.gtreimagined.gtlib.gui.SlotType.STORAGE;
+import static org.gtreimagined.gtlib.machine.MachineFlag.*;
+
 
 public class ChestMachine extends MaterialMachine {
     public ChestMachine(String domain, Material material, boolean addSlots) {
@@ -47,6 +48,6 @@ public class ChestMachine extends MaterialMachine {
                 }
             }
         }
-        AntimatterAPI.register(ChestMachine.class, this);
+        GTAPI.register(ChestMachine.class, this);
     }
 }

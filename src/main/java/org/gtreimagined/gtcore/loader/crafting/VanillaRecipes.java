@@ -1,10 +1,5 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.data.AntimatterDefaultTools;
-import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
-import muramasa.antimatter.util.RegistryUtils;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -18,21 +13,26 @@ import net.minecraftforge.common.Tags;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.GTCoreConfig;
 import org.gtreimagined.gtcore.data.GTCoreItems;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.data.GTTools;
+import org.gtreimagined.gtlib.datagen.providers.GTRecipeProvider;
+import org.gtreimagined.gtlib.util.RegistryUtils;
 
 import java.util.function.Consumer;
 
 import static com.google.common.collect.ImmutableMap.of;
-import static muramasa.antimatter.data.AntimatterDefaultTools.*;
-import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
-import static muramasa.antimatter.data.AntimatterMaterials.Gold;
-import static muramasa.antimatter.data.AntimatterMaterials.Iron;
 import static org.gtreimagined.gtcore.data.GTCoreMaterials.Beeswax;
+import static org.gtreimagined.gtlib.data.GTLibMaterials.Gold;
+import static org.gtreimagined.gtlib.data.GTLibMaterials.Iron;
+import static org.gtreimagined.gtlib.data.GTMaterialTypes.*;
+import static org.gtreimagined.gtlib.data.GTTools.*;
 
 public class VanillaRecipes {
-    public static void loadRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
+    public static void loadRecipes(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider) {
         provider.addStackRecipe(consumer, GTCore.ID, "lead_from_resin", "", new ItemStack(Items.LEAD, 2), of('S', Items.STRING, 'R', GTCoreItems.StickyResin), "SS ", "SR ", "  S");
         if (!GTAPI.isModLoaded(Ref.MOD_TFC)) {
-            provider.shapeless(consumer, "gravel_to_flint", "mortar_recipes", new ItemStack(Items.FLINT), AntimatterDefaultTools.MORTAR.getTag(), Items.GRAVEL);
+            provider.shapeless(consumer, "gravel_to_flint", "mortar_recipes", new ItemStack(Items.FLINT), GTTools.MORTAR.getTag(), Items.GRAVEL);
         }
 
         provider.addItemRecipe(consumer, GTCore.ID, "piston_sticky","gears", Blocks.STICKY_PISTON, of('S', GTCoreItems.StickyResin, 'P', Blocks.PISTON), "S", "P");
@@ -40,7 +40,7 @@ public class VanillaRecipes {
         loadWood(consumer, provider);
     }
 
-    private static void loadOverrides(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
+    private static void loadOverrides(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider) {
         if (GTCoreConfig.DISABLE_WOOD_TOOLS.get()){
             provider.removeRecipe(new ResourceLocation("wooden_axe"));
             provider.removeRecipe(new ResourceLocation("wooden_pickaxe"));
@@ -102,19 +102,19 @@ public class VanillaRecipes {
                 of('I', PLATE.getMaterialTag(Gold), 'H', HAMMER.getTag()), "I I", "IHI");
     }
 
-    static void addWoodRecipe(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider, String domain, TagKey<Item> log, Item plank){
+    static void addWoodRecipe(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider, String domain, TagKey<Item> log, Item plank){
         int amount1 = GTCoreConfig.HARDER_WOOD.get() ? 2 : 4;
         int amount2 = GTCoreConfig.HARDER_WOOD.get() ? 4 : 6;
         provider.shapeless(consumer, domain, "", "planks", new ItemStack(plank, amount1), log);
         provider.addStackRecipe(consumer, domain, RegistryUtils.getIdFromItem(plank).getPath() + "_" + amount2, "planks", new ItemStack(plank, amount2), of('S', SAW.getTag(), 'P', log), "S", "P");
     }
 
-    static void addBeeswaxRecipe(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider, String id){
+    static void addBeeswaxRecipe(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider, String id){
         provider.shapeless(consumer, "minecraft", "waxed_" + id + "_from_honeycomb", "waxed_blocks", new ItemStack(RegistryUtils.getItemFromID(new ResourceLocation("waxed_" + id))),
                 RegistryUtils.getItemFromID(new ResourceLocation(id)), DUST.getMaterialTag(Beeswax));
     }
 
-    private static void loadWood(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
+    private static void loadWood(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider) {
         if (GTCoreConfig.HARDER_WOOD.get()){
             provider.addStackRecipe(consumer, "minecraft", "", "wood_stuff", new ItemStack(Items.STICK, 2), of('P', ItemTags.PLANKS), "P", "P");
             provider.addStackRecipe(consumer, GTCore.ID, "sticks_4", "wood_stuff", new ItemStack(Items.STICK, 4), of('P', ItemTags.PLANKS, 'S', SAW.getTag()), "S", "P", "P");

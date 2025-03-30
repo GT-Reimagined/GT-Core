@@ -1,18 +1,18 @@
 package org.gtreimagined.gtcore.machine;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.machine.MachineState;
-import muramasa.antimatter.machine.Tier;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.material.MaterialTags;
-import muramasa.antimatter.texture.Texture;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.ItemStack;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
 import org.gtreimagined.gtcore.item.ItemBlockMassStorage;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.machine.MachineState;
+import org.gtreimagined.gtlib.machine.Tier;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.material.MaterialTags;
+import org.gtreimagined.gtlib.texture.Texture;
+import org.gtreimagined.gtlib.util.Utils;
 
 public class MassStorageMachine extends MaterialMachine{
     final int capacity;
@@ -75,7 +75,7 @@ public class MassStorageMachine extends MaterialMachine{
                     new Texture(domain, "block/machine/overlay/" + barrel + "/" + stateDir + "side")
             };
         });
-        AntimatterAPI.register(MassStorageMachine.class, this);
+        GTAPI.register(MassStorageMachine.class, this);
     }
 
     public int getCapacity() {

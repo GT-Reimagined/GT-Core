@@ -18,6 +18,7 @@ import org.gtreimagined.gtcore.machine.HopperItemHandler;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
 import org.gtreimagined.gtlib.data.GTTools;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.tool.GTToolType;
 import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.Nullable;
 
@@ -87,7 +88,7 @@ public class BlockEntityGTHopper extends BlockEntityMaterial<BlockEntityGTHopper
     }
 
     @Override
-    public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable AntimatterToolType type) {
+    public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable GTToolType type) {
         ItemStack stack = player.getItemInHand(hand);
         if (stack.is(GTTools.SCREWDRIVER.getTag())){
             if (!observeStackLimit){

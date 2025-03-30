@@ -1,7 +1,5 @@
 package org.gtreimagined.gtcore.tree;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.worldgen.feature.IAntimatterFeature;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
@@ -19,12 +17,14 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.tree.block.BlockRubberLog;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.worldgen.feature.IGTFeature;
 
 import java.util.Random;
 
 public class RubberTree extends AbstractTreeGrower {
 
-    public static final TreeFeature TREE_FEATURE = (TreeFeature) GTAPI.register(IAntimatterFeature.class, new RubberTreeFeature()).asFeature();
+    public static final TreeFeature TREE_FEATURE = (TreeFeature) GTAPI.register(IGTFeature.class, new RubberTreeFeature()).asFeature();
     public static final WeightedStateProvider TRUNK_BLOCKS;
 
     static {

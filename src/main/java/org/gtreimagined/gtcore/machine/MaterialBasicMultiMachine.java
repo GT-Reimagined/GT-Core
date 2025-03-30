@@ -1,12 +1,13 @@
 package org.gtreimagined.gtcore.machine;
 
-import muramasa.antimatter.Data;
-import muramasa.antimatter.machine.types.BasicMultiMachine;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.util.Utils;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMaterialBasicMultiMachine;
+import org.gtreimagined.gtlib.Data;
+import org.gtreimagined.gtlib.machine.types.BasicMultiMachine;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.util.Utils;
 
-import static muramasa.antimatter.machine.MachineFlag.COVERABLE;
+import static org.gtreimagined.gtlib.machine.MachineFlag.COVERABLE;
+
 
 public class MaterialBasicMultiMachine extends BasicMultiMachine<MaterialBasicMultiMachine> {
     Material material;

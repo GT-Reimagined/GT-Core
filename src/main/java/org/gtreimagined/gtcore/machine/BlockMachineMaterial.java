@@ -1,19 +1,6 @@
 package org.gtreimagined.gtcore.machine;
 
 import com.google.common.collect.ImmutableMap;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.datagen.builder.AntimatterBlockModelBuilder;
-import muramasa.antimatter.datagen.builder.AntimatterItemModelBuilder;
-import muramasa.antimatter.datagen.json.JLoaderModel;
-import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.machine.BlockMachine;
-import muramasa.antimatter.machine.MachineState;
-import muramasa.antimatter.machine.Tier;
-import muramasa.antimatter.machine.types.Machine;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.material.MaterialTags;
-import muramasa.antimatter.texture.Texture;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -27,13 +14,26 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
 import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.datagen.builder.GTBlockModelBuilder;
+import org.gtreimagined.gtlib.datagen.builder.GTItemModelBuilder;
+import org.gtreimagined.gtlib.datagen.json.JLoaderModel;
+import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
+import org.gtreimagined.gtlib.machine.BlockMachine;
+import org.gtreimagined.gtlib.machine.MachineState;
+import org.gtreimagined.gtlib.machine.Tier;
+import org.gtreimagined.gtlib.machine.types.Machine;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.material.MaterialTags;
+import org.gtreimagined.gtlib.texture.Texture;
+import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static muramasa.antimatter.Data.WRENCH_MATERIAL;
-import static muramasa.antimatter.material.Material.NULL;
+import static org.gtreimagined.gtlib.Data.WRENCH_MATERIAL;
+import static org.gtreimagined.gtlib.material.Material.NULL;
 
 public class BlockMachineMaterial extends BlockMachine {
     Material material = NULL;
@@ -74,12 +74,12 @@ public class BlockMachineMaterial extends BlockMachine {
         return i == 0 ? material.getRGB() : -1;
     }
 
-    public void onItemModelBuild(ItemLike item, AntimatterItemModelProvider prov) {
+    public void onItemModelBuild(ItemLike item, GTItemModelProvider prov) {
         if (!(type instanceof MassStorageMachine) && !(type instanceof BarrelMachine)) {
             super.onItemModelBuild(item, prov);
             return;
         }
-        AntimatterItemModelBuilder b = prov.getBuilder(item).parent(prov.existing("gtlib", "block/preset/layered")).texture("base", this.type.getBaseTexture(this.tier, MachineState.IDLE)[0]);
+        GTItemModelBuilder b = prov.getBuilder(item).parent(prov.existing("gtlib", "block/preset/layered")).texture("base", this.type.getBaseTexture(this.tier, MachineState.IDLE)[0]);
         Texture[] base = this.type.getBaseTexture(this.tier, MachineState.IDLE);
         if (base.length >= 6) {
             for(int s = 0; s < 6; ++s) {
@@ -113,7 +113,7 @@ public class BlockMachineMaterial extends BlockMachine {
     }
 
     @Override
-    protected void buildModelsForState(AntimatterBlockModelBuilder builder, MachineState state) {
+    protected void buildModelsForState(GTBlockModelBuilder builder, MachineState state) {
         if (!(getType() instanceof MassStorageMachine)){
             super.buildModelsForState(builder, state);
             return;

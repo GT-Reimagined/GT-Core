@@ -1,8 +1,5 @@
 package org.gtreimagined.gtcore.tree.block;
 
-import muramasa.antimatter.datagen.builder.VariantBlockStateBuilder;
-import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -29,10 +26,14 @@ import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.gtreimagined.gtcore.tree.ResinState;
+import org.gtreimagined.gtlib.datagen.builder.VariantBlockStateBuilder;
+import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider;
+import org.gtreimagined.gtlib.util.Utils;
 
 import java.util.Random;
 
-import static muramasa.antimatter.data.AntimatterDefaultTools.KNIFE;
+import static org.gtreimagined.gtlib.data.GTTools.KNIFE;
+
 
 public class BlockRubberLog extends BlockRubberWood {
 
@@ -94,7 +95,7 @@ public class BlockRubberLog extends BlockRubberWood {
     }
 
     @Override
-    public void onBlockModelBuild(Block block, AntimatterBlockStateProvider prov) {
+    public void onBlockModelBuild(Block block, GTBlockStateProvider prov) {
         ResourceLocation rubberLog = prov.existing(GTCore.ID, "block/" + id);
         ResourceLocation rubberLogEmpty = prov.existing(GTCore.ID, "block/" + id + "_empty");
         ResourceLocation rubberLogFilled = prov.existing(GTCore.ID, "block/" + id + "_filled");

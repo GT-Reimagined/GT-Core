@@ -1,29 +1,31 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.data.AntimatterMaterials;
-import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.pipe.PipeSize;
-import muramasa.antimatter.pipe.types.FluidPipe;
-import muramasa.antimatter.pipe.types.ItemPipe;
 import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.ItemStack;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.data.GTLibMaterials;
+import org.gtreimagined.gtlib.data.GTTools;
+import org.gtreimagined.gtlib.datagen.providers.GTRecipeProvider;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.pipe.PipeSize;
+import org.gtreimagined.gtlib.pipe.types.FluidPipe;
+import org.gtreimagined.gtlib.pipe.types.ItemPipe;
 
 import java.util.function.Consumer;
 
 import static com.google.common.collect.ImmutableMap.of;
-import static muramasa.antimatter.data.AntimatterDefaultTools.*;
-import static muramasa.antimatter.data.AntimatterMaterialTypes.PLATE;
+import static org.gtreimagined.gtlib.data.GTMaterialTypes.PLATE;
+import static org.gtreimagined.gtlib.data.GTTools.*;
 
 public class Pipes {
-    public static void loadRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
+    public static void loadRecipes(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider) {
         final CriterionTriggerInstance in = provider.hasSafeItem(WRENCH.getTag());
         GTAPI.all(ItemPipe.class, i -> {
             Material m = i.getMaterial();
-            if (!m.has(PLATE) || m == AntimatterMaterials.Wood) return;
+            if (!m.has(PLATE) || m == GTLibMaterials.Wood) return;
             if (i.getSizes().contains(PipeSize.TINY)){
                 provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_pipe_item_tiny", "antimatter_pipes", new ItemStack(i.getBlock(PipeSize.TINY), 1), of('H', HAMMER.getTag(), 'W', WRENCH.getTag(), 'P', PLATE.getMaterialTag(m), 'S', SAW.getTag()), "SP ", "W H");
             }
@@ -47,7 +49,7 @@ public class Pipes {
                 provider.addItemRecipe(consumer, Ref.ID, "", "antimatter_pipes", f.getBlock(PipeSize.NONUPLE), of('P', f.getBlock(PipeSize.SMALL)), "PPP", "PPP", "PPP");
                 provider.shapeless(consumer, Ref.ID, "", "antimatter_pipes", new ItemStack(f.getBlock(PipeSize.SMALL), 9), f.getBlock(PipeSize.NONUPLE));
             }
-            if (!m.has(PLATE) || m == AntimatterMaterials.Wood) return;
+            if (!m.has(PLATE) || m == GTLibMaterials.Wood) return;
             if (f.getSizes().contains(PipeSize.TINY)){
                 provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_pipe_fluid_tiny", "antimatter_pipes", new ItemStack(f.getBlock(PipeSize.TINY), 1), of('H', HAMMER.getTag(), 'W', WRENCH.getTag(), 'P', PLATE.getMaterialTag(m), 'S', SAW.getTag()), "SP ", "W H");
             }

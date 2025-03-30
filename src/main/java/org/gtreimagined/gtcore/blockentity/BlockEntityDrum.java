@@ -24,15 +24,16 @@ import org.gtreimagined.gtlib.capability.fluid.FluidTanks;
 import org.gtreimagined.gtlib.capability.machine.MachineFluidHandler;
 import org.gtreimagined.gtlib.data.GTLibTags;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.tool.GTToolType;
 import org.gtreimagined.gtlib.util.FluidUtils;
 import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static muramasa.antimatter.data.AntimatterDefaultTools.WRENCH;
 import static net.minecraft.core.Direction.DOWN;
 import static net.minecraft.core.Direction.UP;
+import static org.gtreimagined.gtlib.data.GTTools.WRENCH;
 
 public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
     FluidStack drop = FluidStack.EMPTY;
@@ -43,7 +44,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
     }
 
     @Override
-    public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable AntimatterToolType type) {
+    public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable GTToolType type) {
         boolean[] success = new boolean[1];
         this.fluidHandler.ifPresent(f -> {
             DrumFluidHandler dF = (DrumFluidHandler) f;

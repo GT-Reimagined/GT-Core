@@ -1,16 +1,17 @@
 package org.gtreimagined.gtcore.machine;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.gui.SlotType;
-import muramasa.antimatter.machine.MachineFlag;
-import muramasa.antimatter.machine.Tier;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.util.Utils;
 import org.gtreimagined.gtcore.block.BlockGTHopper;
 import org.gtreimagined.gtcore.blockentity.BlockEntityGTHopper;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.machine.MachineFlag;
+import org.gtreimagined.gtlib.machine.Tier;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.util.Utils;
 
-import static muramasa.antimatter.machine.MachineFlag.GUI;
-import static muramasa.antimatter.machine.MachineFlag.ITEM;
+import static org.gtreimagined.gtlib.machine.MachineFlag.GUI;
+import static org.gtreimagined.gtlib.machine.MachineFlag.ITEM;
+
 
 public class HopperMachine extends MaterialMachine{
     public HopperMachine(String domain, Material material, int slots) {
@@ -25,7 +26,7 @@ public class HopperMachine extends MaterialMachine{
         addTooltipInfo(Utils.translatable("machine.gtcore.hopper.screwdriver"));
         if (slots <= 0) throw new IllegalArgumentException("slots cannot be <= 0!");
         if (slots > 36) throw new IllegalArgumentException("slots cannot be > 36!");
-        AntimatterAPI.register(HopperMachine.class, this);
+        GTAPI.register(HopperMachine.class, this);
         int startY;
         int rows;
         if (slots > 27 || slots == 16 || slots == 20){

@@ -1,15 +1,16 @@
 package org.gtreimagined.gtcore.machine;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.machine.MachineState;
-import muramasa.antimatter.machine.Tier;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.texture.Texture;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityBarrel;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.machine.MachineState;
+import org.gtreimagined.gtlib.machine.Tier;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.texture.Texture;
 
-import static muramasa.antimatter.gui.SlotType.STORAGE;
-import static muramasa.antimatter.machine.MachineFlag.*;
+import static org.gtreimagined.gtlib.gui.SlotType.STORAGE;
+import static org.gtreimagined.gtlib.machine.MachineFlag.*;
+
 
 public class BarrelMachine extends MaterialMachine{
     public BarrelMachine(String domain, Material material, boolean addSlots) {
@@ -44,6 +45,6 @@ public class BarrelMachine extends MaterialMachine{
                 }
             }
         }
-        AntimatterAPI.register(BarrelMachine.class, this);
+        GTAPI.register(BarrelMachine.class, this);
     }
 }

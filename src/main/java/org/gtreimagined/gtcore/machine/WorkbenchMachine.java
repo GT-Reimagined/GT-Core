@@ -1,18 +1,19 @@
 package org.gtreimagined.gtcore.machine;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.gui.ButtonOverlay;
-import muramasa.antimatter.gui.SlotData;
-import muramasa.antimatter.gui.widget.SlotWidget;
-import muramasa.antimatter.material.Material;
 import net.minecraft.resources.ResourceLocation;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityWorkbench;
 import org.gtreimagined.gtcore.data.MenuHandlers;
 import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.gui.ButtonOverlay;
+import org.gtreimagined.gtlib.gui.SlotData;
+import org.gtreimagined.gtlib.gui.widget.SlotWidget;
+import org.gtreimagined.gtlib.material.Material;
 
-import static muramasa.antimatter.gui.SlotType.STORAGE;
-import static muramasa.antimatter.machine.MachineFlag.*;
+import static org.gtreimagined.gtlib.gui.SlotType.STORAGE;
+import static org.gtreimagined.gtlib.machine.MachineFlag.*;
+
 
 public class WorkbenchMachine extends ChargingMachine{
     public WorkbenchMachine(String domain, Material material, boolean charge) {
@@ -42,6 +43,6 @@ public class WorkbenchMachine extends ChargingMachine{
             t.addWidget(SlotWidget.build(new SlotData<>(STORAGE, 136, 64, new ResourceLocation(GTCore.ID, "textures/gui/slots/crafting_output.png"))));
         });
         this.removeFlags(COVERABLE);
-        AntimatterAPI.register(WorkbenchMachine.class, this);
+        GTAPI.register(WorkbenchMachine.class, this);
     }
 }

@@ -1,26 +1,29 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
-import muramasa.antimatter.material.Material;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.Tags;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.machine.DrumMachine;
 import org.gtreimagined.gtcore.machine.HopperMachine;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.data.GTTools;
+import org.gtreimagined.gtlib.datagen.providers.GTRecipeProvider;
+import org.gtreimagined.gtlib.machine.Tier;
+import org.gtreimagined.gtlib.material.Material;
 
 import java.util.function.Consumer;
 
 import static com.google.common.collect.ImmutableMap.of;
-import static muramasa.antimatter.data.AntimatterDefaultTools.HAMMER;
-import static muramasa.antimatter.data.AntimatterDefaultTools.WRENCH;
-import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
-import static muramasa.antimatter.machine.Tier.NONE;
+import static org.gtreimagined.gtlib.data.GTMaterialTypes.*;
+import static org.gtreimagined.gtlib.data.GTTools.HAMMER;
+import static org.gtreimagined.gtlib.data.GTTools.WRENCH;
+import static org.gtreimagined.gtlib.machine.Tier.NONE;
 
 public class MachineRecipes {
-    public static void initRecipes(Consumer<FinishedRecipe> output, AntimatterRecipeProvider provider){
+    public static void initRecipes(Consumer<FinishedRecipe> output, GTRecipeProvider provider){
         GTAPI.all(DrumMachine.class).forEach(d -> {
             Material m = d.getMaterial();
             if (m.has(PLATE) && (m.has(ROD_LONG) || m.has(ROD))){

@@ -4,21 +4,21 @@ import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import com.terraformersmc.terraform.boat.impl.item.TerraformBoatItem;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.registration.IAntimatterObject;
-import muramasa.antimatter.registration.IModelProvider;
-import muramasa.antimatter.registration.ITextureProvider;
-import muramasa.antimatter.texture.Texture;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.registration.IGTObject;
+import org.gtreimagined.gtlib.registration.IModelProvider;
+import org.gtreimagined.gtlib.registration.ITextureProvider;
+import org.gtreimagined.gtlib.texture.Texture;
 
 import java.util.function.Predicate;
 
-public class ItemRubberBoat extends TerraformBoatItem implements IAntimatterObject, ITextureProvider, IModelProvider {
+public class ItemRubberBoat extends TerraformBoatItem implements IGTObject, ITextureProvider, IModelProvider {
     private static final Predicate<Entity> RIDERS = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
 
     static TerraformBoatType RUBBER_BOAT_TYPE;

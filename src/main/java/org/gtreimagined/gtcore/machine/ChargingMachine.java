@@ -1,11 +1,12 @@
 package org.gtreimagined.gtcore.machine;
 
-import muramasa.antimatter.machine.Tier;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.texture.Texture;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtlib.machine.Tier;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.texture.Texture;
 
-import static muramasa.antimatter.machine.MachineFlag.EU;
+import static org.gtreimagined.gtlib.machine.MachineFlag.EU;
+
 
 public class ChargingMachine extends MaterialMachine{
     public ChargingMachine(String domain, Material material, String suffix, boolean charge) {

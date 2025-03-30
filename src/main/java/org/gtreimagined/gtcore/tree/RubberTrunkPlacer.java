@@ -3,8 +3,6 @@ package org.gtreimagined.gtcore.tree;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.util.TagUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.LevelSimulatedReader;
@@ -17,6 +15,8 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.util.TagUtils;
 
 import java.util.List;
 import java.util.Random;

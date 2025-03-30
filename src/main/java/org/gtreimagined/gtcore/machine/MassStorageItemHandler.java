@@ -1,15 +1,15 @@
 package org.gtreimagined.gtcore.machine;
 
 
-import muramasa.antimatter.capability.item.FakeTrackedItemHandler;
-import muramasa.antimatter.capability.machine.MachineItemHandler;
-import muramasa.antimatter.gui.SlotType;
-import muramasa.antimatter.machine.MachineState;
 import net.minecraft.core.Direction;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
 import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtlib.capability.item.FakeTrackedItemHandler;
+import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
+import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.machine.MachineState;
 
 public class MassStorageItemHandler extends MachineItemHandler<BlockEntityMassStorage> {
 

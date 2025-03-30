@@ -1,11 +1,5 @@
 package org.gtreimagined.gtcore.machine;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.machine.Tier;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.texture.Texture;
-import muramasa.antimatter.util.FluidUtils;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -14,15 +8,22 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityDrum;
 import org.gtreimagined.gtcore.item.ItemBlockDrum;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.machine.Tier;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.texture.Texture;
+import org.gtreimagined.gtlib.util.FluidUtils;
+import org.gtreimagined.gtlib.util.Utils;
 
-import static muramasa.antimatter.Data.WRENCH_MATERIAL;
+import static org.gtreimagined.gtlib.Data.WRENCH_MATERIAL;
+
 
 public class DrumMachine extends MaterialMachine{
     public final int maxCapacity;
     private boolean acidProof = false;
     public DrumMachine(String domain, Material material, int maxCapacity) {
         super(domain, material.getId() + "_drum", material);
-        AntimatterAPI.register(DrumMachine.class, this);
+        GTAPI.register(DrumMachine.class, this);
         this.maxCapacity = maxCapacity;
         setTiers(Tier.NONE);
         this.setTile(((materialMachine, blockPos, blockState) -> new BlockEntityDrum(this, blockPos, blockState)));

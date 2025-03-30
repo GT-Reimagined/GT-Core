@@ -1,8 +1,5 @@
 package org.gtreimagined.gtcore.tree;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.util.TagUtils;
-import muramasa.antimatter.worldgen.feature.IAntimatterFeature;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
@@ -16,8 +13,11 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.util.TagUtils;
+import org.gtreimagined.gtlib.worldgen.feature.IGTFeature;
 
-public class RubberTreeFeature extends TreeFeature implements IAntimatterFeature {
+public class RubberTreeFeature extends TreeFeature implements IGTFeature {
 
     public RubberTreeFeature() {
         super(TreeConfiguration.CODEC);

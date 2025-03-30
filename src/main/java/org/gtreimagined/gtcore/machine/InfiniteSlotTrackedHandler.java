@@ -1,16 +1,16 @@
 package org.gtreimagined.gtcore.machine;
 
-import muramasa.antimatter.capability.IGuiHandler;
-import muramasa.antimatter.capability.item.TrackedItemHandler;
-import muramasa.antimatter.gui.SlotType;
-import muramasa.antimatter.machine.MachineState;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
 import org.gtreimagined.gtcore.blockentity.BlockEntityPlasticBin;
+import org.gtreimagined.gtlib.capability.IGuiHandler;
+import org.gtreimagined.gtlib.capability.item.TrackedItemHandler;
+import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.machine.MachineState;
+import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.BiPredicate;

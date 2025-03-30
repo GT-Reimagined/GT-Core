@@ -24,6 +24,7 @@ import org.gtreimagined.gtlib.data.GTTools;
 import org.gtreimagined.gtlib.datagen.builder.VariantBlockStateBuilder.VariantBuilder;
 import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider;
 import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
+import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.machine.types.Machine;
 import org.gtreimagined.gtlib.texture.Texture;
 import org.gtreimagined.gtlib.util.Utils;

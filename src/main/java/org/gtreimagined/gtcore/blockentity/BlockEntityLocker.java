@@ -17,6 +17,7 @@ import org.gtreimagined.gtcore.machine.MaterialMachine;
 import org.gtreimagined.gtlib.capability.machine.MachineCoverHandler;
 import org.gtreimagined.gtlib.cover.ICover;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.tool.GTToolType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,7 +34,7 @@ public class BlockEntityLocker extends BlockEntityMaterial<BlockEntityLocker> {
     }
 
     @Override
-    public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable AntimatterToolType type) {
+    public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable GTToolType type) {
         if (player.getItemInHand(hand).isEmpty() && hit.getDirection() == this.getFacing()){
             this.itemHandler.ifPresent(h -> {
                 for (int i = 0; i < 4; i++){

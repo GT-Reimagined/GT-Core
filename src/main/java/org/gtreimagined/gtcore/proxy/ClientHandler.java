@@ -1,8 +1,6 @@
 package org.gtreimagined.gtcore.proxy;
 
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.client.ModelUtils;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -22,6 +20,8 @@ import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 import org.gtreimagined.gtcore.machine.BlockMultiMachineMaterial;
 import org.gtreimagined.gtcore.machine.ChestMachine;
 import org.gtreimagined.gtcore.machine.MassStorageMachine;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.client.ModelUtils;
 
 import java.util.function.Consumer;
 

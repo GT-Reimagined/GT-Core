@@ -1,10 +1,10 @@
 package org.gtreimagined.gtcore.machine;
 
-import muramasa.antimatter.capability.IGuiHandler;
-import muramasa.antimatter.capability.item.TrackedItemHandler;
-import muramasa.antimatter.gui.SlotType;
 import net.minecraft.world.item.ItemStack;
 import org.gtreimagined.gtcore.blockentity.ILimitedOutputTile;
+import org.gtreimagined.gtlib.capability.IGuiHandler;
+import org.gtreimagined.gtlib.capability.item.TrackedItemHandler;
+import org.gtreimagined.gtlib.gui.SlotType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.BiPredicate;

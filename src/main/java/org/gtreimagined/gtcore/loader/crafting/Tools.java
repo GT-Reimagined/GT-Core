@@ -1,14 +1,6 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
 import com.google.common.collect.ImmutableMap;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.data.AntimatterDefaultTools;
-import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
-import muramasa.antimatter.recipe.ingredient.PropertyIngredient;
-import muramasa.antimatter.tool.AntimatterToolType;
-import muramasa.antimatter.util.RegistryUtils;
-import muramasa.antimatter.util.TagUtils;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -18,20 +10,29 @@ import net.minecraft.world.item.Items;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.GTCoreConfig;
 import org.gtreimagined.gtcore.data.GTCoreTools;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.data.GTTools;
+import org.gtreimagined.gtlib.datagen.providers.GTRecipeProvider;
+import org.gtreimagined.gtlib.recipe.RecipeBuilders;
+import org.gtreimagined.gtlib.recipe.ingredient.PropertyIngredient;
+import org.gtreimagined.gtlib.tool.GTToolType;
+import org.gtreimagined.gtlib.util.RegistryUtils;
+import org.gtreimagined.gtlib.util.TagUtils;
 
 import java.util.Arrays;
 import java.util.function.Consumer;
 
 import static com.google.common.collect.ImmutableMap.of;
-import static muramasa.antimatter.data.AntimatterDefaultTools.*;
-import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
-import static muramasa.antimatter.data.AntimatterMaterials.*;
-import static muramasa.antimatter.material.MaterialTags.*;
-import static muramasa.antimatter.recipe.RecipeBuilders.CROWBAR_BUILDER;
-import static muramasa.antimatter.recipe.RecipeBuilders.PROBE_BUILDER;
+import static org.gtreimagined.gtlib.data.GTLibMaterials.*;
+import static org.gtreimagined.gtlib.data.GTMaterialTypes.*;
+import static org.gtreimagined.gtlib.data.GTTools.*;
+import static org.gtreimagined.gtlib.material.MaterialTags.*;
+import static org.gtreimagined.gtlib.recipe.RecipeBuilders.CROWBAR_BUILDER;
+import static org.gtreimagined.gtlib.recipe.RecipeBuilders.PROBE_BUILDER;
 
 public class Tools {
-    public static void init(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
+    public static void init(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider) {
         provider.removeRecipe(new ResourceLocation("farmersdelight", "flint_knife"));
         provider.removeRecipe(new ResourceLocation("farmersdelight", "iron_knife"));
         provider.removeRecipe(new ResourceLocation("farmersdelight", "golden_knife"));
@@ -42,7 +43,7 @@ public class Tools {
 
         if (GTAPI.isModLoaded(Ref.MOD_TOP)) {
             ARMOR.getAll().forEach((m, a) ->{
-                provider.addToolRecipe(PROBE_BUILDER.get(m.getId() + "_" + AntimatterDefaultTools.HELMET.getId()), consumer, Ref.ID, m.getId() + "_helmet_with_probe", "antimatter_armor", AntimatterDefaultTools.HELMET.getToolStack(m), of('H', PropertyIngredient.builder("helmet").itemStacks(AntimatterDefaultTools.HELMET.getToolStack(m).getItem()).build(), 'P', RegistryUtils.getItemFromID(Ref.MOD_TOP, "probe")), "HP");
+                provider.addToolRecipe(PROBE_BUILDER.get(m.getId() + "_" + GTTools.HELMET.getId()), consumer, Ref.ID, m.getId() + "_helmet_with_probe", "gt_armor", GTTools.HELMET.getToolStack(m), of('H', PropertyIngredient.builder("helmet").itemStacks(GTTools.HELMET.getToolStack(m).getItem()).build(), 'P', RegistryUtils.getItemFromID(Ref.MOD_TOP, "probe")), "HP");
             });
 
         }
@@ -53,27 +54,27 @@ public class Tools {
             builder.put('I', input);
             if (!m.has(GEM)) builder.put('H', HAMMER.getTag());
             String[] strings = !m.has(GEM) ? new String[]{"III", "IHI"} : new String[]{"III", "I I"};
-            provider.addStackRecipe(consumer, Ref.ID, "", "antimatter_armor", AntimatterDefaultTools.HELMET.getToolStack(m),
+            provider.addStackRecipe(consumer, Ref.ID, "", "gt_armor", GTTools.HELMET.getToolStack(m),
                     builder.build(), strings);
             strings = !m.has(GEM) ? new String[]{"IHI", "III", "III"} : new String[]{"I I", "III", "III"};
-            provider.addStackRecipe(consumer, Ref.ID, "", "antimatter_armor", AntimatterDefaultTools.CHESTPLATE.getToolStack(m),
+            provider.addStackRecipe(consumer, Ref.ID, "", "gt_armor", GTTools.CHESTPLATE.getToolStack(m),
                     builder.build(), strings);
             strings = !m.has(GEM) ? new String[]{"III", "IHI", "I I"} : new String[]{"III", "I I", "I I"};
-            provider.addStackRecipe(consumer, Ref.ID, "", "antimatter_armor", AntimatterDefaultTools.LEGGINGS.getToolStack(m),
+            provider.addStackRecipe(consumer, Ref.ID, "", "gt_armor", GTTools.LEGGINGS.getToolStack(m),
                     builder.build(), strings);
             strings = !m.has(GEM) ? new String[]{"I I", "IHI"} : new String[]{"I I", "I I"};
-            provider.addStackRecipe(consumer, Ref.ID, "", "antimatter_armor", AntimatterDefaultTools.BOOTS.getToolStack(m),
+            provider.addStackRecipe(consumer, Ref.ID, "", "gt_armor", GTTools.BOOTS.getToolStack(m),
                     builder.build(), strings);
         });
        TOOLS.getAll().forEach((m, t) -> {
            TagKey<Item> rod = t.handleMaterial().has(ROD) ? ROD.getMaterialTag(t.handleMaterial()) : ROD.getMaterialTag(Wood);
-           AntimatterToolType[] toolHeadTypes = new AntimatterToolType[]{PICKAXE, AXE, SWORD, SHOVEL, HOE, FILE, SAW, HAMMER, SCREWDRIVER, SCYTHE};
+           GTToolType[] toolHeadTypes = new GTToolType[]{PICKAXE, AXE, SWORD, SHOVEL, HOE, FILE, SAW, HAMMER, SCREWDRIVER, SCYTHE};
            Arrays.stream(toolHeadTypes).forEach(type -> {
-               if (type == SCYTHE && AntimatterAPI.isModLoaded("gtspartan")) return;
+               if (type == SCYTHE && GTAPI.isModLoaded("gtspartan")) return;
                if (t.toolTypes().contains(type)){
                    if (type.getMaterialTypeItem() == null) return;
                    if (m.has(type.getMaterialTypeItem())){
-                       provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_" + type.getId() + "_from_" + type.getMaterialTypeItem().getId(), "antimatter_tools_from_tool_parts", type.getToolStack(m), of('T', type.getMaterialTypeItem().getMaterialTag(m), 'R', rod), "T", "R");
+                       provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_" + type.getId() + "_from_" + type.getMaterialTypeItem().getId(), "gt_tools_from_tool_parts", type.getToolStack(m), of('T', type.getMaterialTypeItem().getMaterialTag(m), 'R', rod), "T", "R");
                    }
                }
            });
@@ -117,41 +118,41 @@ public class Tools {
                }
                if (t.toolTypes().contains(SCREWDRIVER) && m.has(ROD)){
                    provider.addStackRecipe(consumer, GTCore.ID, "", "", SCREWDRIVER.getToolStack(m),
-                           of('R', rod, 'P', ROD.getMaterialTag(m),'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), " FP", " PH", "R  ");
+                           of('R', rod, 'P', ROD.getMaterialTag(m),'F', GTTools.FILE.getTag(), 'H', GTTools.HAMMER.getTag()), " FP", " PH", "R  ");
                }
                if (t.toolTypes().contains(PLUNGER) && m.has(ROD)){
                    RUBBERTOOLS.all().stream().filter(r -> r.has(PLATE) && r != Wood).forEach(r -> {
                        provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_plunger_with_" + r.getId(), "", PLUNGER.getToolStack(m),
-                               of('P', ROD.getMaterialTag(m), 'R', PLATE.getMaterialTag(r),'F', AntimatterDefaultTools.FILE.getTag(), 'W', WIRE_CUTTER.getTag()), "WRR", " PR", "P F");
+                               of('P', ROD.getMaterialTag(m), 'R', PLATE.getMaterialTag(r),'F', GTTools.FILE.getTag(), 'W', WIRE_CUTTER.getTag()), "WRR", " PR", "P F");
                    });
 
                }
                if (t.toolTypes().contains(SAW)){
                    if (m.has(GEM)){
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", SAW.getToolStack(m),
-                               of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "PPR", "F  ");
+                               of('R', rod, 'P', plateGem,'F', GTTools.FILE.getTag()), "PPR", "F  ");
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", SAW.getToolStack(m),
-                               of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPR", "FH ");
+                               of('R', rod, 'P', plateGem,'F', GTTools.FILE.getTag(), 'H', GTTools.HAMMER.getTag()), "PPR", "FH ");
                    }
                }
-               if (t.toolTypes().contains(SCYTHE) && !AntimatterAPI.isModLoaded("gtspartan")){
+               if (t.toolTypes().contains(SCYTHE) && !GTAPI.isModLoaded("gtspartan")){
                    if (m.has(FLINT)){
-                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                       if (!GTAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", SCYTHE.getToolStack(m),
                                    of('R', rod, 'P', ingotGem), "PPP", "  R");
                        }
                    } else if (m.has(GEM)){
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", SCYTHE.getToolStack(m),
-                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', AntimatterDefaultTools.FILE.getTag()), "PPI", " FR", "  R");
+                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', GTTools.FILE.getTag()), "PPI", " FR", "  R");
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", SCYTHE.getToolStack(m),
-                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPI", "HFR", "  R");
+                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', GTTools.FILE.getTag(), 'H', GTTools.HAMMER.getTag()), "PPI", "HFR", "  R");
                    }
                }
                if (t.toolTypes().contains(WIRE_CUTTER)){
                    ImmutableMap.Builder<Character, Object> builder = ImmutableMap.builder();
-                   builder.put('R', rod).put('P', plateGem).put('F', AntimatterDefaultTools.FILE.getTag()).put('H', AntimatterDefaultTools.HAMMER.getTag()).put('S', SCREWDRIVER.getTag());
+                   builder.put('R', rod).put('P', plateGem).put('F', GTTools.FILE.getTag()).put('H', GTTools.HAMMER.getTag()).put('S', SCREWDRIVER.getTag());
                    if (m.has(SCREW)) builder.put('W', SCREW.getMaterialTag(m));
                    String last = m.has(SCREW) ? "RWR" : "R R";
                    provider.addStackRecipe(consumer, GTCore.ID, "", "", WIRE_CUTTER.getToolStack(m),
@@ -159,103 +160,103 @@ public class Tools {
                }
                if (t.toolTypes().contains(BRANCH_CUTTER)){
                    ImmutableMap.Builder<Character, Object> builder = ImmutableMap.builder();
-                   builder.put('R', rod).put('P', plateGem).put('F', AntimatterDefaultTools.FILE.getTag()).put('S', SCREWDRIVER.getTag());
+                   builder.put('R', rod).put('P', plateGem).put('F', GTTools.FILE.getTag()).put('S', SCREWDRIVER.getTag());
                    if (m.has(SCREW)) builder.put('W', SCREW.getMaterialTag(m));
                    String last = m.has(SCREW) ? "RWR" : "R R";
                    provider.addStackRecipe(consumer, GTCore.ID, "", "", BRANCH_CUTTER.getToolStack(m),
                            builder.build(), "PFP", "PSP", last);
                }
                if (t.toolTypes().contains(CROWBAR) && m.has(ROD)){
-                   provider.addToolRecipe(CROWBAR_BUILDER.get(m.getId() + "_" + CROWBAR.getId()), consumer, GTCore.ID, "", "antimatter_crowbars", CROWBAR.getToolStack(m), of('H', AntimatterDefaultTools.HAMMER.getTag(), 'C', PropertyIngredient.builder("secondary").itemTags(TagUtils.getForgelikeItemTag("dyes")).build(), 'R', ROD.getMaterialTag(m), 'F', AntimatterDefaultTools.FILE.getTag()), "HCR", "CRC", "RCF");
+                   provider.addToolRecipe(CROWBAR_BUILDER.get(m.getId() + "_" + CROWBAR.getId()), consumer, GTCore.ID, "", "gt_crowbars", CROWBAR.getToolStack(m), of('H', GTTools.HAMMER.getTag(), 'C', PropertyIngredient.builder("secondary").itemTags(TagUtils.getForgelikeItemTag("dyes")).build(), 'R', ROD.getMaterialTag(m), 'F', GTTools.FILE.getTag()), "HCR", "CRC", "RCF");
                }
 
                if (t.toolTypes().contains(PICKAXE) && replaceVanilla){
                    if (m.has(FLINT)){
-                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                       if (!GTAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", PICKAXE.getToolStack(m),
                                    of('R', rod, 'P', ingotGem), "PPP", " R ");
                        }
                    } else if (m.has(GEM)){
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", PICKAXE.getToolStack(m),
-                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', AntimatterDefaultTools.FILE.getTag()), "PII", "FR ", " R ");
+                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', GTTools.FILE.getTag()), "PII", "FR ", " R ");
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", PICKAXE.getToolStack(m),
-                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PII", "FRH", " R ");
+                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', GTTools.FILE.getTag(), 'H', GTTools.HAMMER.getTag()), "PII", "FRH", " R ");
                    }
                }
 
                if (t.toolTypes().contains(AXE) && replaceVanilla){
                    if (m.has(FLINT)){
-                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                       if (!GTAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", AXE.getToolStack(m),
                                    of('R', rod, 'P', ingotGem), "PP", "PR");
                        }
                    } else if (m.has(GEM)){
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", AXE.getToolStack(m),
-                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', AntimatterDefaultTools.FILE.getTag()), "PI", "PR", "FR");
+                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', GTTools.FILE.getTag()), "PI", "PR", "FR");
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", AXE.getToolStack(m),
-                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PIH", "PR ", "FR ");
+                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', GTTools.FILE.getTag(), 'H', GTTools.HAMMER.getTag()), "PIH", "PR ", "FR ");
                    }
                }
 
                if (t.toolTypes().contains(SHOVEL) && replaceVanilla){
                    if (m.has(FLINT)){
-                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                       if (!GTAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", SHOVEL.getToolStack(m),
                                    of('R', rod, 'P', ingotGem), "P", "R");
                        }
                    } else if (m.has(GEM)){
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", SHOVEL.getToolStack(m),
-                               of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", " R", " R");
+                               of('R', rod, 'P', plateGem,'F', GTTools.FILE.getTag()), "FP", " R", " R");
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", SHOVEL.getToolStack(m),
-                               of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " R ", " R ");
+                               of('R', rod, 'P', plateGem,'F', GTTools.FILE.getTag(), 'H', GTTools.HAMMER.getTag()), "FPH", " R ", " R ");
                    }
                }
 
                if (t.toolTypes().contains(SWORD) && replaceVanilla){
                    if (m.has(FLINT)){
-                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                       if (!GTAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", SWORD.getToolStack(m),
                                    of('R', rod, 'P', ingotGem), "P", "P", "R");
                        }
                    } else if (m.has(GEM)){
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", SWORD.getToolStack(m),
-                               of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", " P", " R");
+                               of('R', rod, 'P', plateGem,'F', GTTools.FILE.getTag()), "FP", " P", " R");
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", SWORD.getToolStack(m),
-                               of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " P ", " R ");
+                               of('R', rod, 'P', plateGem,'F', GTTools.FILE.getTag(), 'H', GTTools.HAMMER.getTag()), "FPH", " P ", " R ");
                    }
                }
 
                if (t.toolTypes().contains(HOE) && replaceVanilla){
                    if (m.has(FLINT)){
-                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                       if (!GTAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", HOE.getToolStack(m),
                                    of('R', rod, 'P', ingotGem), "PP", " R");
                        }
                    } else if (m.has(GEM)){
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", HOE.getToolStack(m),
-                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', AntimatterDefaultTools.FILE.getTag()), "PI", "FR", " R");
+                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', GTTools.FILE.getTag()), "PI", "FR", " R");
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", HOE.getToolStack(m),
-                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PIH", "FR ", " R ");
+                               of('R', rod, 'P', plateGem, 'I', ingotGem,'F', GTTools.FILE.getTag(), 'H', GTTools.HAMMER.getTag()), "PIH", "FR ", " R ");
                    }
                }
 
                if (t.toolTypes().contains(KNIFE)){
                    if (m.has(FLINT)){
-                       if (!AntimatterAPI.isModLoaded("tfc")) {
+                       if (!GTAPI.isModLoaded("tfc")) {
                            provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
                                    of('R', rod, 'P', ingotGem), "RP");
                        }
                    } else if (m.has(GEM)){
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
-                               of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", " R");
+                               of('R', rod, 'P', plateGem,'F', GTTools.FILE.getTag()), "FP", " R");
                    } else {
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
-                               of('R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FP", "HR");
+                               of('R', rod, 'P', plateGem,'F', GTTools.FILE.getTag(), 'H', GTTools.HAMMER.getTag()), "FP", "HR");
                    }
                }
 
@@ -263,7 +264,7 @@ public class Tools {
        });
     }
 
-    private static void vanillaToolRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
+    private static void vanillaToolRecipes(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider){
         provider.addItemRecipe(consumer, GTCore.ID, "stone_pickaxe", "tools", Items.STONE_PICKAXE, of('R', ROCK.getTag(), 'S', Items.STICK), "RRR", " S ");
         provider.addItemRecipe(consumer, GTCore.ID, "stone_axe", "tools", Items.STONE_AXE, of('R', ROCK.getTag(), 'S', Items.STICK), "RR", "RS");
         provider.addItemRecipe(consumer, GTCore.ID, "stone_shovel", "tools", Items.STONE_SHOVEL, of('R', ROCK.getTag(), 'S', Items.STICK), "R", "S");
@@ -271,7 +272,7 @@ public class Tools {
         provider.addItemRecipe(consumer, GTCore.ID, "stone_sword", "tools", Items.STONE_SWORD, of('R', ROCK.getTag(), 'S', Items.STICK), "R", "R", "S");
     }
 
-    private static void toolPartRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
+    private static void toolPartRecipes(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider){
         PICKAXE_HEAD.all().forEach(m -> {
             if (m.has(GEM)){
                 provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", PICKAXE_HEAD.get(m),
@@ -351,7 +352,7 @@ public class Tools {
             provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCREWDRIVER_TIP.get(m),
                     of('R', ROD.getMaterialTag(m), 'F', FILE.getTag(), 'H', HAMMER.getTag()), "HR", "RF");
         });
-        if (!AntimatterAPI.isModLoaded("gtspartan")) {
+        if (!GTAPI.isModLoaded("gtspartan")) {
             SCYTHE_BLADE.all().forEach(m -> {
                 if (m.has(GEM)){
                     provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCYTHE_BLADE.get(m),

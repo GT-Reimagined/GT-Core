@@ -1,17 +1,17 @@
 package org.gtreimagined.gtcore.machine;
 
 import com.gtnewhorizon.structurelib.structure.StructureUtility;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.machine.MachineFlag;
-import muramasa.antimatter.machine.Tier;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.material.MaterialTags;
-import muramasa.antimatter.structure.FakeTileElement;
-import muramasa.antimatter.texture.Texture;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityLargeTank;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.machine.MachineFlag;
+import org.gtreimagined.gtlib.machine.Tier;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.material.MaterialTags;
+import org.gtreimagined.gtlib.structure.FakeTileElement;
+import org.gtreimagined.gtlib.texture.Texture;
+import org.gtreimagined.gtlib.util.Utils;
 
 import java.util.function.Supplier;
 
@@ -53,7 +53,7 @@ public class MultiblockTankMachine extends MaterialBasicMultiMachine {
             return new Texture[]{blank, blank, blank, new Texture(GTCore.ID, "block/casing/wall/" + prefix + "_tank_side_overlay"), blank, blank};
         });
         setVerticalFacingAllowed(true);
-        AntimatterAPI.register(MultiblockTankMachine.class, this);
+        GTAPI.register(MultiblockTankMachine.class, this);
     }
 
     public int getCapacity() {

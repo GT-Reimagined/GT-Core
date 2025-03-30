@@ -1,18 +1,18 @@
 package org.gtreimagined.gtcore.machine;
 
-import muramasa.antimatter.machine.BlockMultiMachine;
-import muramasa.antimatter.machine.Tier;
-import muramasa.antimatter.machine.types.Machine;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.registration.IColorHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import org.gtreimagined.gtlib.machine.BlockMultiMachine;
+import org.gtreimagined.gtlib.machine.Tier;
+import org.gtreimagined.gtlib.machine.types.Machine;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.registration.IColorHandler;
 import org.jetbrains.annotations.Nullable;
 
-import static muramasa.antimatter.material.Material.NULL;
+import static org.gtreimagined.gtlib.material.Material.NULL;
 
 public class BlockMultiMachineMaterial extends BlockMultiMachine implements IColorHandler {
     Material material = NULL;

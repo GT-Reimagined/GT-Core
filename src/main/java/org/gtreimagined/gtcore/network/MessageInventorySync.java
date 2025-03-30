@@ -3,10 +3,6 @@ package org.gtreimagined.gtcore.network;
 import com.teamresourceful.resourcefullib.common.networking.base.Packet;
 import com.teamresourceful.resourcefullib.common.networking.base.PacketContext;
 import com.teamresourceful.resourcefullib.common.networking.base.PacketHandler;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.blockentity.BlockEntityMachine;
-import muramasa.antimatter.gui.SlotType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -15,6 +11,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.blockentity.BlockEntityMachine;
+import org.gtreimagined.gtlib.gui.SlotType;
 
 public class MessageInventorySync implements Packet<MessageInventorySync> {
     public static final PacketHandler<MessageInventorySync> HANDLER = new Handler();
@@ -81,7 +81,7 @@ public class MessageInventorySync implements Packet<MessageInventorySync> {
 
         @Override
         public MessageInventorySync decode(FriendlyByteBuf friendlyByteBuf) {
-            return new MessageInventorySync(friendlyByteBuf.readBlockPos(), AntimatterAPI.get(SlotType.class, friendlyByteBuf.readUtf(), Ref.ID), friendlyByteBuf.readVarInt(), readItemNoLimit(friendlyByteBuf));
+            return new MessageInventorySync(friendlyByteBuf.readBlockPos(), GTAPI.get(SlotType.class, friendlyByteBuf.readUtf(), Ref.ID), friendlyByteBuf.readVarInt(), readItemNoLimit(friendlyByteBuf));
         }
 
         @Override

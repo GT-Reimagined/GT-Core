@@ -18,7 +18,6 @@ import net.minecraft.world.level.Level;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMaterial;
 import org.gtreimagined.gtcore.gui.slots.SlotWorkTableResult;
 import org.gtreimagined.gtlib.blockentity.BlockEntityMachine;
-import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
 import org.gtreimagined.gtlib.gui.MenuHandlerMachine;
 import org.gtreimagined.gtlib.gui.SlotData;
 import org.gtreimagined.gtlib.gui.container.ContainerMachine;
@@ -37,8 +36,8 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
     @Override
     protected void addSlots(BlockEntityMachine<?> tile) {
         craftResult =  new ResultContainer();
-        craftingGrid = new InventoryWorkbench(this, (MachineItemHandler<?>) tile.itemHandler.map(m -> m).orElse(null), 3, 3);
-        addSlot(new SlotWorkTableResult((MachineItemHandler<?>) tile.itemHandler.map(m -> m).orElse(null), playerInv.player, craftingGrid, craftResult, 0, 136, 64));
+        craftingGrid = new InventoryWorkbench(this, tile.itemHandler.map(m -> m).orElse(null), 3, 3);
+        addSlot(new SlotWorkTableResult(tile.itemHandler.map(m -> m).orElse(null), playerInv.player, craftingGrid, craftResult, 0, 136, 64));
         Object2IntMap<String> slotIndexMap = new Object2IntOpenHashMap<>();
         int i = 1;
         for (SlotData slot : tile.getMachineType().getSlots(tile.getMachineTier())) {
@@ -48,7 +47,7 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
             if (slot.getType().getId().equals("crafting")){
                 supplier = new Slot(craftingGrid, slotIndexMap.getInt(slot.getType().getId()), slot.getX(), slot.getY());
             } else {
-                supplier = slot.getType().getSlotSupplier().get((SlotType) slot.getType(), tile, tile.itemHandler.map(t -> t.getAll()).orElse(Collections.emptyMap()), slotIndexMap.getInt(slot.getType().getId()),(SlotData) slot);
+                supplier = slot.getType().getSlotSupplier().get(slot.getType(), tile, tile.itemHandler.map(t -> t.getAll()).orElse(Collections.emptyMap()), slotIndexMap.getInt(slot.getType().getId()), slot);
             }
             addSlot(supplier);
             slotIndexMap.computeInt(slot.getType().getId(),(a,b) -> {
@@ -131,7 +130,7 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
 
     public void clearCraftingGrid() {
         for (int i = 17; i < 26; i++) {
-            Slot slot = (Slot) slots.get(i);
+            Slot slot = slots.get(i);
             if (slot.hasItem()) {
                 moveItemStackTo(slot.getItem(), 1, 17, false);
                 if (slot.getItem().getCount() <= 0)
@@ -142,7 +141,7 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
 
     public void clearCraftingGridToPlayer() {
         for (int i = 17; i < 26; i++) {
-            Slot slot = (Slot) slots.get(i);
+            Slot slot = slots.get(i);
             if (slot.hasItem()) {
                 moveItemStackTo(slot.getItem(), 34, 70, false);
                 if (slot.getItem().getCount() <= 0)

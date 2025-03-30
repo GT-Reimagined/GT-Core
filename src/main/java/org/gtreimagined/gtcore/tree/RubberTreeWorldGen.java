@@ -3,10 +3,6 @@ package org.gtreimagined.gtcore.tree;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
-import muramasa.antimatter.mixin.BiomeAccessor;
-import muramasa.antimatter.util.TagUtils;
-import muramasa.antimatter.worldgen.AntimatterWorldGenerator;
-import muramasa.antimatter.worldgen.object.WorldGenBase;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -32,6 +28,10 @@ import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
 import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
+import org.gtreimagined.gtlib.mixin.BiomeAccessor;
+import org.gtreimagined.gtlib.util.TagUtils;
+import org.gtreimagined.gtlib.worldgen.GTLibWorldGenerator;
+import org.gtreimagined.gtlib.worldgen.object.WorldGenBase;
 
 import java.util.Random;
 import java.util.Set;
@@ -82,7 +82,7 @@ public class RubberTreeWorldGen extends WorldGenBase<RubberTreeWorldGen> {
 
     public RubberTreeWorldGen(){
         super("rubber_tree", RubberTreeWorldGen.class, Level.OVERWORLD);
-        AntimatterWorldGenerator.register(this.toRegister, this);
+        GTLibWorldGenerator.register(this.toRegister, this);
     }
 
     public static final PlacementModifierType<RubberTreePlacementModifier> RUBBER_TREE_PLACEMENT_MODIFIER  = () -> RubberTreePlacementModifier.CODEC;

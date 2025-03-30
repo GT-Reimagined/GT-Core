@@ -5,29 +5,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.teamresourceful.resourcefullib.common.networking.base.NetworkDirection;
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.AntimatterMod;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.common.event.PlayerTickCallback;
-import muramasa.antimatter.data.AntimatterMaterials;
-import muramasa.antimatter.datagen.AntimatterDynamics;
-import muramasa.antimatter.datagen.builder.AntimatterTagBuilder;
-import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
-import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
-import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.datagen.providers.AntimatterTagProvider;
-import muramasa.antimatter.datagen.providers.AntimatterWorldgenProvider;
-import muramasa.antimatter.event.AntimatterCraftingEvent;
-import muramasa.antimatter.event.AntimatterLoaderEvent;
-import muramasa.antimatter.event.AntimatterProvidersEvent;
-import muramasa.antimatter.event.MaterialEvent;
-import muramasa.antimatter.integration.jeirei.AntimatterJEIREIPlugin;
-import muramasa.antimatter.network.AntimatterNetwork;
-import muramasa.antimatter.recipe.loader.IRecipeRegistrate;
-import muramasa.antimatter.registration.RegistrationEvent;
-import muramasa.antimatter.tool.IAntimatterTool;
-import muramasa.antimatter.util.RegistryUtils;
-import muramasa.antimatter.util.TagUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -91,20 +68,43 @@ import org.gtreimagined.gtcore.proxy.CommonHandler;
 import org.gtreimagined.gtcore.tree.RubberFoliagePlacer;
 import org.gtreimagined.gtcore.tree.RubberTree;
 import org.gtreimagined.gtcore.tree.RubberTreeWorldGen;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.GTMod;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.common.event.PlayerTickCallback;
+import org.gtreimagined.gtlib.data.GTLibMaterials;
+import org.gtreimagined.gtlib.datagen.GTLibDynamics;
+import org.gtreimagined.gtlib.datagen.builder.GTTagBuilder;
+import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider;
+import org.gtreimagined.gtlib.datagen.providers.GTBlockTagProvider;
+import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
+import org.gtreimagined.gtlib.datagen.providers.GTTagProvider;
+import org.gtreimagined.gtlib.datagen.providers.GTWorldgenProvider;
+import org.gtreimagined.gtlib.event.GTCraftingEvent;
+import org.gtreimagined.gtlib.event.GTLoaderEvent;
+import org.gtreimagined.gtlib.event.GTProvidersEvent;
+import org.gtreimagined.gtlib.event.MaterialEvent;
+import org.gtreimagined.gtlib.integration.jeirei.AntimatterJEIREIPlugin;
+import org.gtreimagined.gtlib.network.GTLibNetwork;
+import org.gtreimagined.gtlib.recipe.loader.IRecipeRegistrate;
+import org.gtreimagined.gtlib.registration.RegistrationEvent;
+import org.gtreimagined.gtlib.tool.IGTTool;
+import org.gtreimagined.gtlib.util.RegistryUtils;
+import org.gtreimagined.gtlib.util.TagUtils;
 
 import java.util.Arrays;
 import java.util.function.BiConsumer;
 
 import static com.google.common.collect.ImmutableMap.of;
-import static muramasa.antimatter.data.AntimatterDefaultTools.*;
-import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
-import static muramasa.antimatter.data.AntimatterMaterials.*;
-import static muramasa.antimatter.material.MaterialTags.RUBBERTOOLS;
-import static muramasa.antimatter.material.MaterialTags.WOOD;
 import static org.gtreimagined.gtcore.data.GTCoreMaterials.*;
+import static org.gtreimagined.gtlib.data.GTLibMaterials.*;
+import static org.gtreimagined.gtlib.data.GTMaterialTypes.*;
+import static org.gtreimagined.gtlib.data.GTTools.*;
+import static org.gtreimagined.gtlib.material.MaterialTags.RUBBERTOOLS;
+import static org.gtreimagined.gtlib.material.MaterialTags.WOOD;
 
 @Mod(GTCore.ID)
-public class GTCore extends AntimatterMod {
+public class GTCore extends GTMod {
 
     public static final Logger LOGGER = LogManager.getLogger(); // Directly reference a log4j logger.
     public static final String ID = "gtcore", NAME = "GT Core";
@@ -125,10 +125,10 @@ public class GTCore extends AntimatterMod {
             eventBus.addListener(this::onStitch);
             TerraformBoatClientHelper.registerModelLayer(new ResourceLocation(GTCore.ID, "rubber"));
         });
-        if (AntimatterAPI.isModLoaded("curios")) eventBus.addListener(CurioPlugin::loadIMC);
-        AntimatterDynamics.clientProvider(ID, () -> new AntimatterBlockStateProvider(ID, NAME + " BlockStates"));
-        AntimatterDynamics.clientProvider(ID, () -> new AntimatterItemModelProvider(ID, NAME + " Item Models"));
-        AntimatterDynamics.clientProvider(ID, GTCoreLang.en_US::new);
+        if (GTAPI.isModLoaded("curios")) eventBus.addListener(CurioPlugin::loadIMC);
+        GTLibDynamics.clientProvider(ID, () -> new GTBlockStateProvider(ID, NAME + " BlockStates"));
+        GTLibDynamics.clientProvider(ID, () -> new GTItemModelProvider(ID, NAME + " Item Models"));
+        GTLibDynamics.clientProvider(ID, GTCoreLang.en_US::new);
         GTCoreConfig.createConfig();
     }
 
@@ -157,8 +157,8 @@ public class GTCore extends AntimatterMod {
         ClientHandler.onStitch(event.getAtlas(), event::addSprite);
     }
 
-    private void onProvidersEvent(AntimatterProvidersEvent event){
-        final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
+    private void onProvidersEvent(GTProvidersEvent event){
+        final GTBlockTagProvider[] p = new GTBlockTagProvider[1];
         event.addProvider(() -> {
             p[0] = new GTCoreBlockTagProvider(ID, NAME.concat(" Block Tags"), false);
             return p[0];
@@ -166,26 +166,26 @@ public class GTCore extends AntimatterMod {
         event.addProvider(() -> new GTCoreItemTagProvider(ID, NAME.concat(" Item Tags"), false, p[0]));
 
         event.addProvider(() -> new GTCoreBlockLootProvider(ID, NAME.concat(" Loot generator")));
-        event.addProvider(() -> new AntimatterTagProvider<>(BuiltinRegistries.BIOME, ID, NAME.concat(" Biome Tags"), "worldgen/biome") {
+        event.addProvider(() -> new GTTagProvider<>(BuiltinRegistries.BIOME, ID, NAME.concat(" Biome Tags"), "worldgen/biome") {
             @Override
             protected void processTags(String domain) {
-                AntimatterTagBuilder<Biome> tags = this.tag(TagUtils.getBiomeTag(new ResourceLocation(ID, "is_invalid_rubber"))).addTag(BiomeTags.IS_TAIGA).addTag(BiomeTags.IS_MOUNTAIN).addTag(BiomeTags.IS_OCEAN).addTag(BiomeTags.IS_DEEP_OCEAN).addTag(BiomeTags.IS_NETHER).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_desert"))).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_plains")));
+                GTTagBuilder<Biome> tags = this.tag(TagUtils.getBiomeTag(new ResourceLocation(ID, "is_invalid_rubber"))).addTag(BiomeTags.IS_TAIGA).addTag(BiomeTags.IS_MOUNTAIN).addTag(BiomeTags.IS_OCEAN).addTag(BiomeTags.IS_DEEP_OCEAN).addTag(BiomeTags.IS_NETHER).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_desert"))).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_plains")));
                 tags.addTag(TagUtils.getBiomeTag(new ResourceLocation("forge", "is_end")));
                 tags.addTag(TagUtils.getBiomeTag(new ResourceLocation("forge", "is_snowy")));
             }
         });
-        event.addProvider(() -> new AntimatterTagProvider<>(BuiltinRegistries.CONFIGURED_FEATURE, ID, NAME.concat(" Configured Feature Tags"), "worldgen/configured_feature") {
+        event.addProvider(() -> new GTTagProvider<>(BuiltinRegistries.CONFIGURED_FEATURE, ID, NAME.concat(" Configured Feature Tags"), "worldgen/configured_feature") {
             @Override
             protected void processTags(String domain) {
-                if (AntimatterAPI.isModLoaded("tfc")){
+                if (GTAPI.isModLoaded("tfc")){
                     this.tag(TagKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, new ResourceLocation("tfc", "forest_trees"))).add(ResourceKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, new ResourceLocation(GTCore.ID, "tree/rubber_entry")));
                 }
             }
         });
-        event.addProvider(() -> new AntimatterWorldgenProvider(ID, NAME.concat(" Configured Features"), "configured_feature"){
+        event.addProvider(() -> new GTWorldgenProvider(ID, NAME.concat(" Configured Features"), "configured_feature"){
             @Override
             public void run() {
-                if (!AntimatterAPI.isModLoaded("tfc")) return;
+                if (!GTAPI.isModLoaded("tfc")) return;
                 JsonObject object = new JsonObject();
                 object.addProperty("type", "tfc:random_tree");
                 JsonObject config = new JsonObject();
@@ -230,7 +230,7 @@ public class GTCore extends AntimatterMod {
         });
     }
 
-    private void onCraftingEvent(AntimatterCraftingEvent event){
+    private void onCraftingEvent(GTCraftingEvent event){
         event.addLoader(MachineRecipes::initRecipes);
         event.addLoader(RubberRecipes::addRecipes);
         event.addLoader(MaterialRecipes::loadMaterialRecipes);
@@ -240,7 +240,7 @@ public class GTCore extends AntimatterMod {
         event.addLoader(MiscRecipes::loadRecipes);
     }
 
-    public static void registerRecipeLoaders(AntimatterLoaderEvent event) {
+    public static void registerRecipeLoaders(GTLoaderEvent event) {
         BiConsumer<String, IRecipeRegistrate.IRecipeLoader> loader = (a, b) -> event.registrat.add(GTCore.ID, a, b);
         loader.accept("assembling", AssemblyLoader::init);
     }
@@ -267,23 +267,23 @@ public class GTCore extends AntimatterMod {
                 if (side.isClient()) RecipeMaps.clientMaps();
                 RubberTree.init();
                 RubberTreeWorldGen.init();
-                if (AntimatterAPI.isModLoaded(Ref.MOD_TOP)){
+                if (GTAPI.isModLoaded(Ref.MOD_TOP)){
                     MassStorageProvider.createTopProvider();
                     RedstoneWireProvider.createTopProvider();
                 }
                 PlayerTickCallback.PLAYER_TICK_CALLBACKS.add(GTCommonEvents::onPlayerTick);
-                AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, SYNC_ID, MessageCraftingSync.HANDLER, MessageCraftingSync.class);
-                AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.SERVER_TO_CLIENT, INV_SYNC_ID, MessageInventorySync.HANDLER, MessageInventorySync.class);
-                AntimatterNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, TRIGGER_SYNC_ID, MessageTriggerInventorySync.HANDLER, MessageTriggerInventorySync.class);
+                GTLibNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, SYNC_ID, MessageCraftingSync.HANDLER, MessageCraftingSync.class);
+                GTLibNetwork.NETWORK.registerPacket(NetworkDirection.SERVER_TO_CLIENT, INV_SYNC_ID, MessageInventorySync.HANDLER, MessageInventorySync.class);
+                GTLibNetwork.NETWORK.registerPacket(NetworkDirection.CLIENT_TO_SERVER, TRIGGER_SYNC_ID, MessageTriggerInventorySync.HANDLER, MessageTriggerInventorySync.class);
             }
             case DATA_READY -> {
                 WoodType.register(GTCoreBlocks.RUBBER_WOOD_TYPE);
                 GTCoreRemapping.init();
                 CommonHandler.setup();
                 AntimatterJEIREIPlugin.addItemsToHide(l -> {
-                    l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_lv", GTCore.ID).getItem());
-                    l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_mv", GTCore.ID).getItem());
-                    l.add(AntimatterAPI.get(IAntimatterTool.class, "electric_wrench_alt_hv", GTCore.ID).getItem());
+                    l.add(GTAPI.get(IGTTool.class, "electric_wrench_alt_lv", GTCore.ID).getItem());
+                    l.add(GTAPI.get(IGTTool.class, "electric_wrench_alt_mv", GTCore.ID).getItem());
+                    l.add(GTAPI.get(IGTTool.class, "electric_wrench_alt_hv", GTCore.ID).getItem());
                     if (GTCoreConfig.DISABLE_WOOD_TOOLS.get()){
                         l.addAll(Arrays.asList(Items.WOODEN_AXE, Items.WOODEN_HOE, Items.WOODEN_PICKAXE, Items.WOODEN_SWORD));
                     }
@@ -293,7 +293,7 @@ public class GTCore extends AntimatterMod {
                     for (int i = 1; i < 25; i++) {
                         l.add(GTCoreItems.SELECTOR_TAG_ITEMS.get(i));
                     }
-                    AntimatterAPI.all(IAntimatterTool.class).stream().filter(t -> {
+                    GTAPI.all(IGTTool.class).stream().filter(t -> {
                         var toolType = t.getAntimatterToolType();
                         return toolType == GTCoreTools.POCKET_MULTITOOL_SCISSORS
                                 || toolType == GTCoreTools.POCKET_MULTITOOL_FILE
@@ -322,7 +322,7 @@ public class GTCore extends AntimatterMod {
         event.setMaterial(GTCoreMaterials.Plastic).flags(RUBBERTOOLS);
         event.setMaterial(GTCoreMaterials.Beeswax).asDust();
         event.setMaterial(GTCoreMaterials.FierySteel).asMetal().tool().toolDamage(4).toolSpeed(9).toolDurability(1024).toolQuality(4)
-                .toolEnchantments(ImmutableMap.of(Enchantments.FIRE_ASPECT, 2)).handleMaterial(AntimatterMaterials.Blaze)
+                .toolEnchantments(ImmutableMap.of(Enchantments.FIRE_ASPECT, 2)).handleMaterial(GTLibMaterials.Blaze)
                 .blacklistToolTypes(PICKAXE, SWORD).build();
         event.setMaterial(GTCoreMaterials.Knightmetal).asMetal().tool().toolDamage(3).toolSpeed(8).toolDurability(512).toolQuality(3)
                 .blacklistToolTypes(AXE, PICKAXE, SWORD).build();
@@ -332,7 +332,7 @@ public class GTCore extends AntimatterMod {
         event.setMaterial(GTCoreMaterials.Steeleaf).asMetal().tool().toolDamage(4).toolSpeed(8).toolDurability(131).toolQuality(3)
                 .toolEnchantments(ImmutableMap.of(Enchantments.MOB_LOOTING, 2, Enchantments.BLOCK_FORTUNE, 2))
                 .blacklistToolTypes(AXE, PICKAXE, SHOVEL, SWORD, HOE).build();
-        if (AntimatterAPI.isModLoaded("twilightforest")){
+        if (GTAPI.isModLoaded("twilightforest")){
             INGOT.replacement(GTCoreMaterials.Ironwood, () -> RegistryUtils.getItemFromID("twilightforest", "ironwood_ingot"));
             BLOCK.replacement(GTCoreMaterials.Ironwood, () -> RegistryUtils.getItemFromID("twilightforest", "ironwood_block"));
             INGOT.replacement(GTCoreMaterials.Knightmetal, () -> RegistryUtils.getItemFromID("twilightforest", "knightmetal_ingot"));
@@ -345,7 +345,7 @@ public class GTCore extends AntimatterMod {
         event.setMaterial(GTCoreMaterials.Signalum).asMetal(1353).mats(of(Copper, 1, Silver, 2, RedAlloy, 5));
         event.setMaterial(GTCoreMaterials.Lumium).asMetal(593).mats(of(Tin, 3, Silver, 1, Glowstone, 4));
         event.setMaterial(GTCoreMaterials.Enderium).asMetal(1071).mats(of(Tin, 2, Silver, 1, Platinum, 1, EnderPearl, 4));
-        if (AntimatterAPI.isModLoaded("thermal")){
+        if (GTAPI.isModLoaded("thermal")){
             INGOT.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_ingot"));
             DUST.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_dust"));
             NUGGET.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_nugget"));

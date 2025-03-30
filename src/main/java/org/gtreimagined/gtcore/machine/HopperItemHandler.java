@@ -1,10 +1,10 @@
 package org.gtreimagined.gtcore.machine;
 
-import muramasa.antimatter.capability.item.TrackedItemHandler;
-import muramasa.antimatter.capability.machine.MachineItemHandler;
-import muramasa.antimatter.gui.SlotType;
 import net.minecraft.core.Direction;
 import org.gtreimagined.gtcore.blockentity.BlockEntityGTHopper;
+import org.gtreimagined.gtlib.capability.item.TrackedItemHandler;
+import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
+import org.gtreimagined.gtlib.gui.SlotType;
 
 public class HopperItemHandler extends MachineItemHandler<BlockEntityGTHopper> {
     public HopperItemHandler(BlockEntityGTHopper tile) {

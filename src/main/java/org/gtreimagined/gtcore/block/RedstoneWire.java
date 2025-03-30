@@ -2,6 +2,7 @@ package org.gtreimagined.gtcore.block;
 
 import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
+import org.gtreimagined.gtlib.material.Material;
 import org.gtreimagined.gtlib.pipe.PipeSize;
 import org.gtreimagined.gtlib.pipe.types.PipeType;
 
