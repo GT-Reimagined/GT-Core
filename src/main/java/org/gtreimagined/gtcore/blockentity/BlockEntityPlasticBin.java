@@ -1,8 +1,5 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import muramasa.antimatter.data.AntimatterDefaultTools;
-import muramasa.antimatter.tool.AntimatterToolType;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
@@ -14,6 +11,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.machine.MassStorageMachine;
+import org.gtreimagined.gtlib.data.GTTools;
+import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,7 +32,7 @@ public class BlockEntityPlasticBin extends BlockEntityMassStorage {
 
     @Override
     public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable AntimatterToolType type) {
-        if (type == AntimatterDefaultTools.WIRE_CUTTER){
+        if (type == GTTools.WIRE_CUTTER){
             maxLimit = player.isCrouching() ? maxLimit / 2 : maxLimit * 2;
             if (maxLimit == 32) {
                 maxLimit = 1024;

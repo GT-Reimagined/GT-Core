@@ -29,7 +29,7 @@ public class MaterialRecipes {
 
     public static void loadMaterialRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
         int craftingMultiplier = GTCoreConfig.LOSSY_PART_CRAFTING.get() ? 1 : 2;
-        if (!AntimatterAPI.isModLoaded("tfc")) {
+        if (!GTAPI.isModLoaded("tfc")) {
             AntimatterMaterialTypes.DUST.all().forEach(m -> {
                 if (m.has(AntimatterMaterialTypes.INGOT)) {
                     provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_grind_ingot", "antimatter_material",

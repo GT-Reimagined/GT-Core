@@ -1,9 +1,5 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import muramasa.antimatter.capability.machine.MachineCoverHandler;
-import muramasa.antimatter.cover.ICover;
-import muramasa.antimatter.gui.SlotType;
-import muramasa.antimatter.tool.AntimatterToolType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -18,6 +14,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
+import org.gtreimagined.gtlib.capability.machine.MachineCoverHandler;
+import org.gtreimagined.gtlib.cover.ICover;
+import org.gtreimagined.gtlib.gui.SlotType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

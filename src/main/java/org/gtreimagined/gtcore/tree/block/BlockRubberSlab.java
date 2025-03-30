@@ -14,7 +14,7 @@ import org.gtreimagined.gtcore.GTCore;
 public class BlockRubberSlab extends SlabBlock implements IAntimatterObject, IModelProvider {
     public BlockRubberSlab() {
         super(Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD));
-        AntimatterAPI.register(BlockRubberSlab.class, this);
+        GTAPI.register(BlockRubberSlab.class, this);
     }
 
     @Override

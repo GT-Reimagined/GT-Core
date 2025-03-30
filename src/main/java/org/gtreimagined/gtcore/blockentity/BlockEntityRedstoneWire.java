@@ -1,9 +1,5 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import muramasa.antimatter.blockentity.pipe.BlockEntityPipe;
-import muramasa.antimatter.cover.ICover;
-import muramasa.antimatter.pipe.PipeSize;
-import muramasa.antimatter.util.CodeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -15,6 +11,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.redstone.Redstone;
 import org.gtreimagined.gtcore.block.BlockRedstoneWire;
 import org.gtreimagined.gtcore.block.RedstoneWire;
+import org.gtreimagined.gtlib.blockentity.pipe.BlockEntityPipe;
+import org.gtreimagined.gtlib.cover.ICover;
+import org.gtreimagined.gtlib.pipe.PipeSize;
+import org.gtreimagined.gtlib.util.CodeUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;

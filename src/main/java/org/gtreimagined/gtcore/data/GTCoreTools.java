@@ -1,24 +1,6 @@
 package org.gtreimagined.gtcore.data;
 
 import com.google.common.collect.ImmutableMap;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.data.AntimatterDefaultTools;
-import muramasa.antimatter.item.ItemBattery;
-import muramasa.antimatter.machine.BlockMachine;
-import muramasa.antimatter.pipe.BlockPipe;
-import muramasa.antimatter.tool.AntimatterItemTier;
-import muramasa.antimatter.tool.AntimatterToolType;
-import muramasa.antimatter.tool.IAntimatterTool;
-import muramasa.antimatter.tool.MaterialTool;
-import muramasa.antimatter.tool.behaviour.BehaviourAOEBreak;
-import muramasa.antimatter.tool.behaviour.BehaviourExtendedHighlight;
-import muramasa.antimatter.tool.behaviour.BehaviourLogStripping;
-import muramasa.antimatter.tool.behaviour.BehaviourShearing;
-import muramasa.antimatter.tool.behaviour.BehaviourTorchPlacing;
-import muramasa.antimatter.tool.behaviour.BehaviourTreeFelling;
-import muramasa.antimatter.util.TagUtils;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -39,6 +21,24 @@ import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.behaviour.BehaviourElectricWrenchSwitching;
 import org.gtreimagined.gtcore.behaviour.BehaviourKnifeTooltip;
 import org.gtreimagined.gtcore.behaviour.BehaviourMultitoolSwitching;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.data.GTTools;
+import org.gtreimagined.gtlib.item.ItemBattery;
+import org.gtreimagined.gtlib.machine.BlockMachine;
+import org.gtreimagined.gtlib.pipe.BlockPipe;
+import org.gtreimagined.gtlib.tool.GTItemTier;
+import org.gtreimagined.gtlib.tool.GTToolType;
+import org.gtreimagined.gtlib.tool.IGTTool;
+import org.gtreimagined.gtlib.tool.MaterialTool;
+import org.gtreimagined.gtlib.tool.behaviour.BehaviourAOEBreak;
+import org.gtreimagined.gtlib.tool.behaviour.BehaviourExtendedHighlight;
+import org.gtreimagined.gtlib.tool.behaviour.BehaviourLogStripping;
+import org.gtreimagined.gtlib.tool.behaviour.BehaviourShearing;
+import org.gtreimagined.gtlib.tool.behaviour.BehaviourTorchPlacing;
+import org.gtreimagined.gtlib.tool.behaviour.BehaviourTreeFelling;
+import org.gtreimagined.gtlib.util.TagUtils;
+import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.Nullable;
 import tesseract.TesseractCapUtils;
 import tesseract.api.gt.IEnergyHandlerItem;
@@ -46,42 +46,42 @@ import tesseract.api.gt.IGTNode;
 
 import java.util.List;
 
-import static muramasa.antimatter.data.AntimatterDefaultTools.*;
-import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
 import static net.minecraft.world.level.material.Material.*;
+import static org.gtreimagined.gtlib.data.GTMaterialTypes.*;
+import static org.gtreimagined.gtlib.data.GTTools.*;
 
 public class GTCoreTools {
-    private static final AntimatterToolType.IToolSupplier POWERED_TOOL_SUPPLIER = new AntimatterToolType.IToolSupplier() {
+    private static final GTToolType.IToolSupplier POWERED_TOOL_SUPPLIER = new GTToolType.IToolSupplier() {
         @Override
-        public IAntimatterTool create(String domain, AntimatterToolType toolType, AntimatterItemTier tier, Item.Properties properties) {
+        public IGTTool create(String domain, GTToolType toolType, GTItemTier tier, Item.Properties properties) {
             return null;
         }
 
         @Override
-        public IAntimatterTool create(String domain, AntimatterToolType toolType, AntimatterItemTier tier, Item.Properties properties, int energyTier) {
+        public IGTTool create(String domain, GTToolType toolType, GTItemTier tier, Item.Properties properties, int energyTier) {
             return new PoweredTool(domain, toolType, tier, properties, energyTier);
         }
     };
-    public static final AntimatterToolType DRILL = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTCore.ID, "drill", 1, 2, 10, 3.0F, -3.0F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setType(PICKAXE).setUseAction(UseAnim.BLOCK).setPowered(100000, 1, 2, 3).setMaterialTypeItem(DRILLBIT).setUseSound(Ref.DRILL).addTags("pickaxe", "shovel").addEffectiveMaterials(ICE_SOLID, PISTON, DIRT, CLAY, GRASS, SAND).setRepairable(false);
-    public static final AntimatterToolType BUZZSAW = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTCore.ID, "buzzsaw", 1, 1, 1, 0.5F, -2.7F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setTag(SAW).setPowered(100000, 1, 2, 3).setOverlayLayers(2).addTags("saw").setMaterialTypeItem(BUZZSAW_BLADE);
-    public static final AntimatterToolType ELECTRIC_SCREWDRIVER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTCore.ID, "electric_screwdriver", SCREWDRIVER)).setTag(SCREWDRIVER).setPowered(100000, 1, 2, 3).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseSound(Ref.WRENCH).setOverlayLayers(2).setTag(SCREWDRIVER);
-    public static final AntimatterToolType ELECTRIC_WRENCH = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTCore.ID, "electric_wrench", WRENCH).setTag(WRENCH).setPowered(100000, 1, 2, 3)).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseSound(Ref.WRENCH).addEffectiveBlocks(Blocks.HOPPER).setType(WRENCH).setMaterialTypeItem(WRENCHBIT).addBlacklistedEnchantments(Enchantments.BLOCK_EFFICIENCY);
-    public static final AntimatterToolType ELECTRIC_WRENCH_ALT = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTCore.ID, "electric_wrench_alt", WRENCH).setTag(WRENCH_ALT).setPowered(100000, 1, 2, 3)).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseSound(Ref.WRENCH).addEffectiveBlocks(Blocks.HOPPER).setType(WRENCH).setMaterialTypeItem(WRENCHBIT).addBlacklistedEnchantments(Enchantments.BLOCK_EFFICIENCY).setCustomName("Electric Wrench (Alt)");
-    public static final AntimatterToolType CHAINSAW = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTCore.ID, "chainsaw", 1, 1, 5, 6.0F, -2.0F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseAction(UseAnim.BLOCK).setPowered(100000, 1, 2, 3).setMaterialTypeItem(CHAINSAWBIT).addEffectiveMaterials(WOOD, PLANT, REPLACEABLE_PLANT, BAMBOO, LEAVES).addEffectiveBlocks(Blocks.COBWEB).setType(AXE).addTags("saw");
+    public static final GTToolType DRILL = GTAPI.register(GTToolType.class, new GTToolType(GTCore.ID, "drill", 1, 2, 10, 3.0F, -3.0F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setType(PICKAXE).setUseAction(UseAnim.BLOCK).setPowered(100000, 1, 2, 3).setMaterialTypeItem(DRILLBIT).setUseSound(Ref.DRILL).addTags("pickaxe", "shovel").addEffectiveMaterials(ICE_SOLID, PISTON, DIRT, CLAY, GRASS, SAND).setRepairable(false);
+    public static final GTToolType BUZZSAW = GTAPI.register(GTToolType.class, new GTToolType(GTCore.ID, "buzzsaw", 1, 1, 1, 0.5F, -2.7F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setTag(SAW).setPowered(100000, 1, 2, 3).setOverlayLayers(2).addTags("saw").setMaterialTypeItem(BUZZSAW_BLADE);
+    public static final GTToolType ELECTRIC_SCREWDRIVER = GTAPI.register(GTToolType.class, new GTToolType(GTCore.ID, "electric_screwdriver", SCREWDRIVER)).setTag(SCREWDRIVER).setPowered(100000, 1, 2, 3).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseSound(Ref.WRENCH).setOverlayLayers(2).setTag(SCREWDRIVER);
+    public static final GTToolType ELECTRIC_WRENCH = GTAPI.register(GTToolType.class, new GTToolType(GTCore.ID, "electric_wrench", WRENCH).setTag(WRENCH).setPowered(100000, 1, 2, 3)).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseSound(Ref.WRENCH).addEffectiveBlocks(Blocks.HOPPER).setType(WRENCH).setMaterialTypeItem(WRENCHBIT).addBlacklistedEnchantments(Enchantments.BLOCK_EFFICIENCY);
+    public static final GTToolType ELECTRIC_WRENCH_ALT = GTAPI.register(GTToolType.class, new GTToolType(GTCore.ID, "electric_wrench_alt", WRENCH).setTag(WRENCH_ALT).setPowered(100000, 1, 2, 3)).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseSound(Ref.WRENCH).addEffectiveBlocks(Blocks.HOPPER).setType(WRENCH).setMaterialTypeItem(WRENCHBIT).addBlacklistedEnchantments(Enchantments.BLOCK_EFFICIENCY).setCustomName("Electric Wrench (Alt)");
+    public static final GTToolType CHAINSAW = GTAPI.register(GTToolType.class, new GTToolType(GTCore.ID, "chainsaw", 1, 1, 5, 6.0F, -2.0F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setUseAction(UseAnim.BLOCK).setPowered(100000, 1, 2, 3).setMaterialTypeItem(CHAINSAWBIT).addEffectiveMaterials(WOOD, PLANT, REPLACEABLE_PLANT, BAMBOO, LEAVES).addEffectiveBlocks(Blocks.COBWEB).setType(AXE).addTags("saw");
 
-    public static final AntimatterToolType JACKHAMMER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTCore.ID, "jackhammer", 1, 2, 10, 1.0F, -3.2F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setPowered(100000, 3).setToolSpeedMultiplier(2.0f).setUseSound(Ref.DRILL).addEffectiveBlockTags(TagUtils.getForgelikeBlockTag("stone"), TagUtils.getForgelikeBlockTag("cobblestone"), BlockTags.NYLIUM).addEffectiveBlocks(Blocks.BASALT, Blocks.NETHERRACK, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN, Blocks.DRIPSTONE_BLOCK, Blocks.END_STONE);
+    public static final GTToolType JACKHAMMER = GTAPI.register(GTToolType.class, new GTToolType(GTCore.ID, "jackhammer", 1, 2, 10, 1.0F, -3.2F, false)).setToolSupplier(POWERED_TOOL_SUPPLIER).setPowered(100000, 3).setToolSpeedMultiplier(2.0f).setUseSound(Ref.DRILL).addEffectiveBlockTags(TagUtils.getForgelikeBlockTag("stone"), TagUtils.getForgelikeBlockTag("cobblestone"), BlockTags.NYLIUM).addEffectiveBlocks(Blocks.BASALT, Blocks.NETHERRACK, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN, Blocks.DRIPSTONE_BLOCK, Blocks.END_STONE);
 
-    public static final AntimatterToolType POCKET_MULTITOOL = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.SHARED_ID, "pocket_multitool", 1, 2, 2, 1.0f, -1.5f, false)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setMaterialTypeItem(RING);
-    public static final AntimatterToolType POCKET_MULTITOOL_KNIFE = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.SHARED_ID, "pocket_multitool_knife", KNIFE)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Knife)").setTag(new ResourceLocation(Ref.ID, "knives")).setType(KNIFE);
-    public static final AntimatterToolType POCKET_MULTITOOL_SAW = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.SHARED_ID, "pocket_multitool_saw", SAW)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Saw)").setType(SAW).setTag(SAW);
-    public static final AntimatterToolType POCKET_MULTITOOL_FILE = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.SHARED_ID, "pocket_multitool_file", FILE)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (File)").setType(FILE).setTag(FILE);
-    public static final AntimatterToolType POCKET_MULTITOOL_SCREWDRIVER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.SHARED_ID, "pocket_multitool_screwdriver", SCREWDRIVER)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Screwdriver)").setTag(SCREWDRIVER).setType(SCREWDRIVER).setUseSound(Ref.WRENCH);
-    public static final AntimatterToolType POCKET_MULTITOOL_WIRE_CUTTER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.SHARED_ID, "pocket_multitool_wire_cutter", WIRE_CUTTER)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Wire Cutter)").setTag(WIRE_CUTTER).setType(WIRE_CUTTER).setUseSound(SoundEvents.SHEEP_SHEAR).addEffectiveMaterials(WOOL, SPONGE, WEB, CLOTH_DECORATION);
-    public static final AntimatterToolType POCKET_MULTITOOL_SCISSORS = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(Ref.SHARED_ID, "pocket_multitool_scissors", SCISSORS)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Scissors)").setTag(SCISSORS).setType(SCISSORS);
+    public static final GTToolType POCKET_MULTITOOL = GTAPI.register(GTToolType.class, new GTToolType(Ref.SHARED_ID, "pocket_multitool", 1, 2, 2, 1.0f, -1.5f, false)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setMaterialTypeItem(RING);
+    public static final GTToolType POCKET_MULTITOOL_KNIFE = GTAPI.register(GTToolType.class, new GTToolType(Ref.SHARED_ID, "pocket_multitool_knife", KNIFE)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Knife)").setTag(new ResourceLocation(Ref.ID, "knives")).setType(KNIFE);
+    public static final GTToolType POCKET_MULTITOOL_SAW = GTAPI.register(GTToolType.class, new GTToolType(Ref.SHARED_ID, "pocket_multitool_saw", SAW)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Saw)").setType(SAW).setTag(SAW);
+    public static final GTToolType POCKET_MULTITOOL_FILE = GTAPI.register(GTToolType.class, new GTToolType(Ref.SHARED_ID, "pocket_multitool_file", FILE)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (File)").setType(FILE).setTag(FILE);
+    public static final GTToolType POCKET_MULTITOOL_SCREWDRIVER = GTAPI.register(GTToolType.class, new GTToolType(Ref.SHARED_ID, "pocket_multitool_screwdriver", SCREWDRIVER)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Screwdriver)").setTag(SCREWDRIVER).setType(SCREWDRIVER).setUseSound(Ref.WRENCH);
+    public static final GTToolType POCKET_MULTITOOL_WIRE_CUTTER = GTAPI.register(GTToolType.class, new GTToolType(Ref.SHARED_ID, "pocket_multitool_wire_cutter", WIRE_CUTTER)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Wire Cutter)").setTag(WIRE_CUTTER).setType(WIRE_CUTTER).setUseSound(SoundEvents.SHEEP_SHEAR).addEffectiveMaterials(WOOL, SPONGE, WEB, CLOTH_DECORATION);
+    public static final GTToolType POCKET_MULTITOOL_SCISSORS = GTAPI.register(GTToolType.class, new GTToolType(Ref.SHARED_ID, "pocket_multitool_scissors", SCISSORS)).setDurabilityMultiplier(4.0f).setToolSupplier(PocketMultitoolTool::new).setCustomName("Pocket Multitool (Scissors)").setTag(SCISSORS).setType(SCISSORS);
 
     public static class PoweredTool extends MaterialTool {
 
-        public PoweredTool(String domain, AntimatterToolType type, AntimatterItemTier tier, Properties properties, int energyTier) {
+        public PoweredTool(String domain, GTToolType type, GTItemTier tier, Properties properties, int energyTier) {
             super(domain, type, tier, properties, energyTier);
         }
 
@@ -111,7 +111,7 @@ public class GTCoreTools {
 
     public static class PocketMultitoolTool extends MaterialTool{
 
-        public PocketMultitoolTool(String domain, AntimatterToolType type, AntimatterItemTier tier, Properties properties) {
+        public PocketMultitoolTool(String domain, GTToolType type, GTItemTier tier, Properties properties) {
             super(domain, type, tier, properties);
         }
 
@@ -156,26 +156,26 @@ public class GTCoreTools {
 
     private static void clientInit() {
         ELECTRIC_SCREWDRIVER.addBehaviour(new BehaviourExtendedHighlight(b -> b instanceof BlockMachine || b instanceof BlockPipe, BehaviourExtendedHighlight.COVER_FUNCTION));
-        ELECTRIC_WRENCH.addBehaviour(new BehaviourExtendedHighlight(b -> b instanceof BlockMachine || (b instanceof BlockPipe && b.builtInRegistryHolder().is(AntimatterDefaultTools.WRENCH.getToolType())) || b.defaultBlockState().hasProperty(BlockStateProperties.FACING_HOPPER) || b.defaultBlockState().hasProperty(BlockStateProperties.HORIZONTAL_FACING), BehaviourExtendedHighlight.PIPE_FUNCTION));
+        ELECTRIC_WRENCH.addBehaviour(new BehaviourExtendedHighlight(b -> b instanceof BlockMachine || (b instanceof BlockPipe && b.builtInRegistryHolder().is(GTTools.WRENCH.getToolType())) || b.defaultBlockState().hasProperty(BlockStateProperties.FACING_HOPPER) || b.defaultBlockState().hasProperty(BlockStateProperties.HORIZONTAL_FACING), BehaviourExtendedHighlight.PIPE_FUNCTION));
         POCKET_MULTITOOL_SCREWDRIVER.addBehaviour(new BehaviourExtendedHighlight(b -> b instanceof BlockMachine || b instanceof BlockPipe, BehaviourExtendedHighlight.COVER_FUNCTION));
-        POCKET_MULTITOOL_WIRE_CUTTER.addBehaviour(new BehaviourExtendedHighlight(b -> b instanceof BlockPipe && b.builtInRegistryHolder().is(AntimatterDefaultTools.WIRE_CUTTER.getToolType()), BehaviourExtendedHighlight.PIPE_FUNCTION));
+        POCKET_MULTITOOL_WIRE_CUTTER.addBehaviour(new BehaviourExtendedHighlight(b -> b instanceof BlockPipe && b.builtInRegistryHolder().is(GTTools.WIRE_CUTTER.getToolType()), BehaviourExtendedHighlight.PIPE_FUNCTION));
     }
 
     private static ItemStack getBrokenItem(ItemStack tool, ItemLike broken){
         ItemStack powerUnit = new ItemStack(broken);
         Tuple<Long, Long> tuple = getEnergy(tool);
-        CompoundTag dataTag = powerUnit.getOrCreateTagElement(muramasa.antimatter.Ref.TAG_ITEM_ENERGY_DATA);
+        CompoundTag dataTag = powerUnit.getOrCreateTagElement(Ref.TAG_ITEM_ENERGY_DATA);
         IEnergyHandlerItem handler = TesseractCapUtils.INSTANCE.getEnergyHandlerItem(powerUnit).orElse(null);
         if (handler != null){
             handler.setEnergy(tuple.getA());
             handler.setCapacity(tuple.getB());
             powerUnit = handler.getContainer().getItemStack();
         } else {
-            dataTag.putLong(muramasa.antimatter.Ref.KEY_ITEM_ENERGY, tuple.getA());
-            dataTag.putLong(muramasa.antimatter.Ref.KEY_ITEM_MAX_ENERGY, tuple.getB());
+            dataTag.putLong(Ref.KEY_ITEM_ENERGY, tuple.getA());
+            dataTag.putLong(Ref.KEY_ITEM_MAX_ENERGY, tuple.getB());
         }
         if (broken.asItem() == GTCoreItems.SmallPowerUnit){
-            GTCoreItems.PowerUnitHV.setMaterial(((IAntimatterTool)tool.getItem()).getSecondaryMaterial(tool), powerUnit);
+            GTCoreItems.PowerUnitHV.setMaterial(((IGTTool)tool.getItem()).getSecondaryMaterial(tool), powerUnit);
         }
         return powerUnit;
     }
@@ -186,7 +186,7 @@ public class GTCoreTools {
             long maxEnergy = TesseractCapUtils.INSTANCE.getEnergyHandlerItem(stack).map(IGTNode::getCapacity).orElse(battery.getCapacity());
             return new Tuple<>(energy, maxEnergy);
         }
-        if (stack.getItem() instanceof IAntimatterTool tool){
+        if (stack.getItem() instanceof IGTTool tool){
             if (tool.getAntimatterToolType().isPowered()){
                 long currentEnergy = tool.getCurrentEnergy(stack);
                 long maxEnergy = tool.getMaxEnergy(stack);

@@ -1,15 +1,15 @@
 package org.gtreimagined.gtcore.behaviour;
 
-import muramasa.antimatter.behaviour.IAddInformation;
-import muramasa.antimatter.tool.IBasicAntimatterTool;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import org.gtreimagined.gtlib.behaviour.IAddInformation;
+import org.gtreimagined.gtlib.tool.IBasicGTTool;
+import org.gtreimagined.gtlib.util.Utils;
 
 import java.util.List;
 
-public class BehaviourKnifeTooltip implements IAddInformation<IBasicAntimatterTool> {
+public class BehaviourKnifeTooltip implements IAddInformation<IBasicGTTool> {
     public static final BehaviourKnifeTooltip INSTANCE = new BehaviourKnifeTooltip();
     @Override
     public String getId() {
@@ -17,7 +17,7 @@ public class BehaviourKnifeTooltip implements IAddInformation<IBasicAntimatterTo
     }
 
     @Override
-    public void onAddInformation(IBasicAntimatterTool instance, ItemStack stack, List<Component> tooltip, TooltipFlag flag) {
+    public void onAddInformation(IBasicGTTool instance, ItemStack stack, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Utils.translatable("tooltip.gtcore.knife"));
     }
 }

@@ -14,7 +14,7 @@ import org.gtreimagined.gtcore.GTCore;
 public class BlockRubberPressurePlate extends PressurePlateBlock implements IAntimatterObject, IModelProvider {
     public BlockRubberPressurePlate() {
         super(Sensitivity.EVERYTHING, Properties.of(Material.WOOD).noCollission().strength(0.5f).sound(SoundType.WOOD));
-        AntimatterAPI.register(BlockRubberPressurePlate.class, this);
+        GTAPI.register(BlockRubberPressurePlate.class, this);
     }
 
     @Override

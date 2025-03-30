@@ -40,7 +40,7 @@ public class Tools {
         toolPartRecipes(consumer, provider);
         vanillaToolRecipes(consumer, provider);
 
-        if (AntimatterAPI.isModLoaded(Ref.MOD_TOP)) {
+        if (GTAPI.isModLoaded(Ref.MOD_TOP)) {
             ARMOR.getAll().forEach((m, a) ->{
                 provider.addToolRecipe(PROBE_BUILDER.get(m.getId() + "_" + AntimatterDefaultTools.HELMET.getId()), consumer, Ref.ID, m.getId() + "_helmet_with_probe", "antimatter_armor", AntimatterDefaultTools.HELMET.getToolStack(m), of('H', PropertyIngredient.builder("helmet").itemStacks(AntimatterDefaultTools.HELMET.getToolStack(m).getItem()).build(), 'P', RegistryUtils.getItemFromID(Ref.MOD_TOP, "probe")), "HP");
             });

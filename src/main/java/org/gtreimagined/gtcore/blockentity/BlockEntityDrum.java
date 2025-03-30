@@ -1,13 +1,5 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.capability.fluid.FluidTanks;
-import muramasa.antimatter.capability.machine.MachineFluidHandler;
-import muramasa.antimatter.data.AntimatterTags;
-import muramasa.antimatter.gui.SlotType;
-import muramasa.antimatter.tool.AntimatterToolType;
-import muramasa.antimatter.util.FluidUtils;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -27,6 +19,13 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import org.gtreimagined.gtcore.machine.DrumMachine;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.capability.fluid.FluidTanks;
+import org.gtreimagined.gtlib.capability.machine.MachineFluidHandler;
+import org.gtreimagined.gtlib.data.GTLibTags;
+import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.util.FluidUtils;
+import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -186,7 +185,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
 
         @Override
         public int fill(FluidStack fluid, FluidAction action) {
-            if (tile.getMachineType() instanceof DrumMachine drumMachine && !drumMachine.isAcidProof() && fluid.getFluid().is(AntimatterTags.ACID)){
+            if (tile.getMachineType() instanceof DrumMachine drumMachine && !drumMachine.isAcidProof() && fluid.getFluid().is(GTLibTags.ACID)){
                 int insert = super.fill(fluid, FluidAction.SIMULATE);
                 if (insert > 0){
                     if (action.execute()) {

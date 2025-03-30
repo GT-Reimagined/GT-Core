@@ -1,9 +1,9 @@
 package org.gtreimagined.gtcore.client.model;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import muramasa.antimatter.dynamic.DynamicBakedModel;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
+import org.gtreimagined.gtlib.dynamic.DynamicBakedModel;
 
 public class SapBagBakedModel extends DynamicBakedModel {
     public static final Int2ObjectOpenHashMap<BakedModel[]> CONFIGS = new Int2ObjectOpenHashMap<>();

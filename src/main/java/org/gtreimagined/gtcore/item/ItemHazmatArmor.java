@@ -64,7 +64,7 @@ public class ItemHazmatArmor extends ArmorItem implements IAntimatterObject, ITe
     public ItemHazmatArmor(EquipmentSlot slot, String id) {
         super(HAZMAT, slot, new Properties().tab(Ref.TAB_ITEMS));
         this.id = id;
-        AntimatterAPI.register(ItemHazmatArmor.class, this);
+        GTAPI.register(ItemHazmatArmor.class, this);
     }
 
     @Override

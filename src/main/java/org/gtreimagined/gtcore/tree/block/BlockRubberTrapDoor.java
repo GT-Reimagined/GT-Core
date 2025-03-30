@@ -16,7 +16,7 @@ import org.gtreimagined.gtcore.GTCore;
 public class BlockRubberTrapDoor extends TrapDoorBlock implements IAntimatterObject, IModelProvider {
     public BlockRubberTrapDoor() {
         super(Properties.of(Material.WOOD).strength(3.0f).sound(SoundType.WOOD).noOcclusion());
-        AntimatterAPI.register(BlockRubberTrapDoor.class, this);
+        GTAPI.register(BlockRubberTrapDoor.class, this);
     }
 
     @Override

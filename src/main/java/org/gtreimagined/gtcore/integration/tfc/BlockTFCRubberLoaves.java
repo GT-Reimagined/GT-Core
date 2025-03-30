@@ -20,7 +20,7 @@ public class BlockTFCRubberLoaves extends TFCLeavesBlock implements IAntimatterO
         super(ExtendedProperties.of(Material.LEAVES).strength(0.5F).sound(SoundType.GRASS).randomTicks().noOcclusion().isViewBlocking(TFCBlocks::never).flammableLikeLeaves(), 7, () -> TFCRubberData.RUBBER_FALLEN_LEAVES, () -> TFCRubberData.RUBBER_TWIG);
         this.domain = GTCore.ID;
         this.id = "rubber_leaves";
-        AntimatterAPI.register(BlockTFCRubberLoaves.class, this);
+        GTAPI.register(BlockTFCRubberLoaves.class, this);
     }
 
     @Override

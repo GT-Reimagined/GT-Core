@@ -25,7 +25,7 @@ public class ItemRubberBoat extends TerraformBoatItem implements IAntimatterObje
 
     public ItemRubberBoat() {
         super(() -> RUBBER_BOAT_TYPE, new Properties().tab(Ref.TAB_ITEMS).stacksTo(1));
-        AntimatterAPI.register(ItemRubberBoat.class, this);
+        GTAPI.register(ItemRubberBoat.class, this);
         TerraformBoatItemHelper.registerBoatDispenserBehavior(this, () -> RUBBER_BOAT_TYPE);
         RUBBER_BOAT_TYPE = new TerraformBoatType.Builder().item(this).build();
         Registry.register(TerraformBoatTypeRegistry.INSTANCE, new ResourceLocation(GTCore.ID, "rubber"), RUBBER_BOAT_TYPE);

@@ -21,7 +21,7 @@ import static muramasa.antimatter.data.AntimatterMaterialTypes.PLATE;
 public class Pipes {
     public static void loadRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
         final CriterionTriggerInstance in = provider.hasSafeItem(WRENCH.getTag());
-        AntimatterAPI.all(ItemPipe.class, i -> {
+        GTAPI.all(ItemPipe.class, i -> {
             Material m = i.getMaterial();
             if (!m.has(PLATE) || m == AntimatterMaterials.Wood) return;
             if (i.getSizes().contains(PipeSize.TINY)){
@@ -37,7 +37,7 @@ public class Pipes {
                 provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_pipe_item_large", "antimatter_pipes", new ItemStack(i.getBlock(PipeSize.LARGE), 1), of('H', HAMMER.getTag(), 'W', WRENCH.getTag(), 'P', PLATE.getMaterialTag(m)), "PPP", "W H", "PPP");
             }
         });
-        AntimatterAPI.all(FluidPipe.class, f -> {
+        GTAPI.all(FluidPipe.class, f -> {
             Material m = f.getMaterial();
             if (f.getSizes().contains(PipeSize.QUADRUPLE) && f.getSizes().contains(PipeSize.NORMAL)){
                 provider.addItemRecipe(consumer, Ref.ID, "", "antimatter_pipes", f.getBlock(PipeSize.QUADRUPLE), of('P', f.getBlock(PipeSize.NORMAL)), "PP", "PP");

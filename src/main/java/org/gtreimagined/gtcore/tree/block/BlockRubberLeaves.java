@@ -13,7 +13,7 @@ public class BlockRubberLeaves extends LeavesBlock implements IAntimatterObject,
 
     public BlockRubberLeaves() {
         super(BlockPropertiesHelper.leaves());
-        AntimatterAPI.register(BlockRubberLeaves.class, this);
+        GTAPI.register(BlockRubberLeaves.class, this);
     }
 
     @Override

@@ -1,10 +1,10 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import muramasa.antimatter.blockentity.BlockEntityMachine;
-import muramasa.antimatter.material.Material;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
+import org.gtreimagined.gtlib.blockentity.BlockEntityMachine;
+import org.gtreimagined.gtlib.material.Material;
 
 public class BlockEntityMaterial<T extends BlockEntityMaterial<T>> extends BlockEntityMachine<T> {
     protected Material material;

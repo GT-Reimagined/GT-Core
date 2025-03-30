@@ -1,12 +1,12 @@
 package org.gtreimagined.gtcore.data;
 
-import muramasa.antimatter.cover.CoverFactory;
-import muramasa.antimatter.cover.CoverReplacements;
-import muramasa.antimatter.texture.Texture;
 import net.minecraft.world.item.Items;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.cover.CoverRedstoneTorch;
 import org.gtreimagined.gtcore.cover.CoverRepeater;
+import org.gtreimagined.gtlib.cover.CoverFactory;
+import org.gtreimagined.gtlib.cover.CoverReplacements;
+import org.gtreimagined.gtlib.texture.Texture;
 
 public class GTCoreCovers {
 

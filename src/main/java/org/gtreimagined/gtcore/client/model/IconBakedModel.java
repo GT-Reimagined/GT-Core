@@ -2,12 +2,6 @@ package org.gtreimagined.gtcore.client.model;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import muramasa.antimatter.client.ModelUtils;
-import muramasa.antimatter.client.RenderHelper;
-import muramasa.antimatter.client.SimpleModelState;
-import muramasa.antimatter.client.baked.AntimatterBakedModel;
-import muramasa.antimatter.gui.SlotType;
-import muramasa.antimatter.machine.MachineState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockElement;
 import net.minecraft.client.renderer.block.model.BlockElementFace;
@@ -24,6 +18,12 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
+import org.gtreimagined.gtlib.client.ModelUtils;
+import org.gtreimagined.gtlib.client.RenderHelper;
+import org.gtreimagined.gtlib.client.SimpleModelState;
+import org.gtreimagined.gtlib.client.baked.GTBakedModel;
+import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.machine.MachineState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,7 +36,7 @@ import java.util.function.Function;
 import static org.gtreimagined.gtcore.client.model.IconModel.FACE_BAKERY;
 import static org.gtreimagined.gtcore.client.model.IconModel.ICON_MODELS;
 
-public class IconBakedModel extends AntimatterBakedModel<IconBakedModel> {
+public class IconBakedModel extends GTBakedModel<IconBakedModel> {
     BakedModel baseModel;
 
     public IconBakedModel(BakedModel baseModel, Function<Material, TextureAtlasSprite> function) {

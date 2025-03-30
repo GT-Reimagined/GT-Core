@@ -1,13 +1,5 @@
 package org.gtreimagined.gtcore.block;
 
-import muramasa.antimatter.datagen.builder.AntimatterBlockModelBuilder;
-import muramasa.antimatter.datagen.builder.DynamicConfigBuilder;
-import muramasa.antimatter.datagen.builder.VariantBlockStateBuilder;
-import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
-import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.dynamic.BlockDynamic;
-import muramasa.antimatter.dynamic.ModelConfig;
-import muramasa.antimatter.texture.Texture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -38,10 +30,19 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.client.model.generators.ItemModelProvider;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntitySapBag;
 import org.gtreimagined.gtcore.client.BakedModels;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
+import org.gtreimagined.gtlib.datagen.builder.DynamicConfigBuilder;
+import org.gtreimagined.gtlib.datagen.builder.GTBlockModelBuilder;
+import org.gtreimagined.gtlib.datagen.builder.VariantBlockStateBuilder;
+import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider;
+import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
+import org.gtreimagined.gtlib.dynamic.BlockDynamic;
+import org.gtreimagined.gtlib.dynamic.ModelConfig;
+import org.gtreimagined.gtlib.texture.Texture;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -152,12 +153,12 @@ public class BlockSapBag extends BlockDynamic implements SimpleWaterloggedBlock,
     }
 
     @Override
-    public void onItemModelBuild(ItemLike item, AntimatterItemModelProvider prov) {
+    public void onItemModelBuild(ItemLike item, GTItemModelProvider prov) {
         prov.getBuilder(item).parent(prov.existing(GTCore.ID, "block/sapbag/north")).texture("side", TEXTURES[2]).texture("bottom", TEXTURES[0]).texture("top", TEXTURES[1]);
     }
 
     @Override
-    public void onBlockModelBuild(Block block, AntimatterBlockStateProvider prov) {
+    public void onBlockModelBuild(Block block, GTBlockStateProvider prov) {
         prov.getVariantBuilder(block).forAllStates(s -> new VariantBlockStateBuilder.VariantBuilder()
                 .modelFile(buildModelsForState(prov.getBuilder(block), s))
                 .uvLock()
@@ -168,7 +169,7 @@ public class BlockSapBag extends BlockDynamic implements SimpleWaterloggedBlock,
         return facing.get2DDataValue() +  (filled * 10);
     }
 
-    AntimatterBlockModelBuilder buildModelsForState(AntimatterBlockModelBuilder builder, BlockState state) {
+    GTBlockModelBuilder buildModelsForState(GTBlockModelBuilder builder, BlockState state) {
         builder.staticConfigId("sap_bag");
         Direction f = state.getValue(HORIZONTAL_FACING);
         boolean waterlogged = state.getValue(WATERLOGGED);

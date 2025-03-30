@@ -30,38 +30,38 @@ public class GTCoreBlockTagProvider extends AntimatterBlockTagProvider {
         super.processTags(domain);
         this.tag(TagUtils.getForgelikeBlockTag("wg_stone")).add(BLACK_GRANITE.getState().getBlock(), RED_GRANITE.getState().getBlock(), MARBLE.getState().getBlock(), AntimatterStoneTypes.BASALT.getState().getBlock(), KOMATIITE.getState().getBlock(), LIMESTONE.getState().getBlock(), GREEN_SCHIST.getState().getBlock(), BLUE_SCHIST.getState().getBlock(), KIMBERLITE.getState().getBlock(), QUARTZITE.getState().getBlock(), SLATE.getState().getBlock(), SHALE.getState().getBlock());
         this.tag(TagUtils.getBlockTag(new ResourceLocation("minecraft","base_stone_overworld"))).add(BLACK_GRANITE.getState().getBlock(), RED_GRANITE.getState().getBlock(), MARBLE.getState().getBlock(), AntimatterStoneTypes.BASALT.getState().getBlock(), KOMATIITE.getState().getBlock(), LIMESTONE.getState().getBlock(), GREEN_SCHIST.getState().getBlock(), BLUE_SCHIST.getState().getBlock(), KIMBERLITE.getState().getBlock(), QUARTZITE.getState().getBlock(), SLATE.getState().getBlock(), SHALE.getState().getBlock());
-        AntimatterAPI.all(BlockMachineMaterial.class, cas -> {
+        GTAPI.all(BlockMachineMaterial.class, cas -> {
             if (cas.getMaterial().has(WOOD)){
                 this.tag(AntimatterDefaultTools.AXE.getToolType()).add(cas);
             } else {
                 this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
             }
         });
-        AntimatterAPI.all(BlockMaterialChest.class, cas -> {
+        GTAPI.all(BlockMaterialChest.class, cas -> {
             if (cas.getMaterial().has(WOOD)){
                 this.tag(AntimatterDefaultTools.AXE.getToolType()).add(cas);
             } else {
                 this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
             }
         });
-        AntimatterAPI.all(BlockMultiMachineMaterial.class, cas -> {
+        GTAPI.all(BlockMultiMachineMaterial.class, cas -> {
             if (cas.getMaterial().has(WOOD)){
                 this.tag(AntimatterDefaultTools.AXE.getToolType()).add(cas);
             } else {
                 this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
             }
         });
-        AntimatterAPI.all(BlockGTHopper.class, h -> {
+        GTAPI.all(BlockGTHopper.class, h -> {
             if (h.getMaterial().has(WOOD)){
                 this.tag(AntimatterDefaultTools.AXE.getToolType()).add(h);
             } else {
                 this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(h);
             }
         });
-        /*AntimatterAPI.all(BlockNonSolidMachine.class, Ref.ID, cas -> {
+        /*GTAPI.all(BlockNonSolidMachine.class, Ref.ID, cas -> {
             this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
         });
-        AntimatterAPI.all(BlockRedstoneMachine.class, Ref.ID, cas -> {
+        GTAPI.all(BlockRedstoneMachine.class, Ref.ID, cas -> {
             this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
         });*/
         this.tag(BlockTags.LEAVES).add(GTCoreBlocks.RUBBER_LEAVES);

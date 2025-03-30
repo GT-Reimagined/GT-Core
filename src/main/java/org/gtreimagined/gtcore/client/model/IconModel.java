@@ -2,9 +2,6 @@ package org.gtreimagined.gtcore.client.model;
 
 import com.mojang.datafixers.util.Pair;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import muramasa.antimatter.client.IAntimatterModel;
-import muramasa.antimatter.client.ModelUtils;
-import muramasa.antimatter.texture.Texture;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockElement;
 import net.minecraft.client.renderer.block.model.FaceBakery;
@@ -18,6 +15,9 @@ import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.IModelConfiguration;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtlib.client.IGTModel;
+import org.gtreimagined.gtlib.client.ModelUtils;
+import org.gtreimagined.gtlib.texture.Texture;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -27,7 +27,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 
-public class IconModel implements IAntimatterModel<IconModel> {
+public class IconModel implements IGTModel<IconModel> {
     private final UnbakedModel baseModel;
     static Map<String, Material> TEXTURE_MAP = null;
     static List<Map<String, List<BakedQuad>>> ICON_MODELS = null;

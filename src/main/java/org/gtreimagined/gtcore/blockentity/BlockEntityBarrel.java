@@ -1,8 +1,6 @@
 package org.gtreimagined.gtcore.blockentity;
 
 
-import muramasa.antimatter.gui.container.ContainerMachine;
-import muramasa.antimatter.machine.MachineState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -12,6 +10,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
+import org.gtreimagined.gtlib.gui.container.ContainerMachine;
+import org.gtreimagined.gtlib.machine.MachineState;
 
 public class BlockEntityBarrel extends BlockEntityMaterial<BlockEntityBarrel> {
     protected float lidAngle;

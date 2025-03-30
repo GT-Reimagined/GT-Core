@@ -21,14 +21,14 @@ import static muramasa.antimatter.machine.Tier.NONE;
 
 public class MachineRecipes {
     public static void initRecipes(Consumer<FinishedRecipe> output, AntimatterRecipeProvider provider){
-        AntimatterAPI.all(DrumMachine.class).forEach(d -> {
+        GTAPI.all(DrumMachine.class).forEach(d -> {
             Material m = d.getMaterial();
             if (m.has(PLATE) && (m.has(ROD_LONG) || m.has(ROD))){
                 TagKey<Item> rod = m.has(ROD_LONG) ? ROD_LONG.getMaterialTag(m) : ROD.getMaterialTag(m);
                 provider.addItemRecipe(output, GTCore.ID, "", "machines", d.getItem(NONE), of('H', HAMMER.getTag(), 'R', rod, 'P', PLATE.getMaterialTag(m)), " H ", "PRP", "PRP");
             }
         });
-        AntimatterAPI.all(HopperMachine.class).forEach(h -> {
+        GTAPI.all(HopperMachine.class).forEach(h -> {
             Material m = h.getMaterial();
             if (m.has(PLATE)){
                 provider.addItemRecipe(output, GTCore.ID, "", "machines", h.getItem(NONE), of('W', WRENCH.getTag(), 'C', Tags.Items.CHESTS_WOODEN, 'P', PLATE.getMaterialTag(m)), "PWP", "PCP", " P ");

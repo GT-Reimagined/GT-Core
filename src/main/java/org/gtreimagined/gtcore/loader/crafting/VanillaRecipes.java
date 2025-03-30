@@ -31,7 +31,7 @@ import static org.gtreimagined.gtcore.data.GTCoreMaterials.Beeswax;
 public class VanillaRecipes {
     public static void loadRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
         provider.addStackRecipe(consumer, GTCore.ID, "lead_from_resin", "", new ItemStack(Items.LEAD, 2), of('S', Items.STRING, 'R', GTCoreItems.StickyResin), "SS ", "SR ", "  S");
-        if (!AntimatterAPI.isModLoaded(Ref.MOD_TFC)) {
+        if (!GTAPI.isModLoaded(Ref.MOD_TFC)) {
             provider.shapeless(consumer, "gravel_to_flint", "mortar_recipes", new ItemStack(Items.FLINT), AntimatterDefaultTools.MORTAR.getTag(), Items.GRAVEL);
         }
 

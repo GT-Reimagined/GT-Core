@@ -1,10 +1,9 @@
 package org.gtreimagined.gtcore.block;
 
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.pipe.PipeSize;
-import muramasa.antimatter.pipe.types.PipeType;
 import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
+import org.gtreimagined.gtlib.pipe.PipeSize;
+import org.gtreimagined.gtlib.pipe.types.PipeType;
 
 import java.util.Set;
 import java.util.stream.Collectors;

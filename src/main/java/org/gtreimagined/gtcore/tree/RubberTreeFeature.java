@@ -35,7 +35,7 @@ public class RubberTreeFeature extends TreeFeature implements IAntimatterFeature
 
     @Override
     public void build(ResourceLocation name, Biome.ClimateSettings climate, Biome.BiomeCategory category, BiomeSpecialEffects effects, BiomeGenerationSettings.Builder gen, MobSpawnSettings.Builder spawns) {
-        if (AntimatterAPI.isModLoaded("tfc")) return;
+        if (GTAPI.isModLoaded("tfc")) return;
         if (name.equals(Biomes.SWAMP.location())) {
             gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTreeWorldGen.TREE_SWAMP);
         } else if (name.equals(Biomes.JUNGLE.location())) {
@@ -49,7 +49,7 @@ public class RubberTreeFeature extends TreeFeature implements IAntimatterFeature
     public int getMaxFreeTreeHeight(LevelSimulatedReader level, int trunkHeight, BlockPos topPosition, TreeConfiguration config) {
         boolean isFluid = level.isFluidAtPosition(topPosition.above(), state -> state.is(FluidTags.WATER));
         if (isFluid) return 0;
-        boolean treeGrows = !AntimatterAPI.isModLoaded("tfc") || level.isStateAtPosition(topPosition.below(), state -> state.is(TagUtils.getBlockTag(new ResourceLocation("tfc", "tree_grows_on"))));
+        boolean treeGrows = !GTAPI.isModLoaded("tfc") || level.isStateAtPosition(topPosition.below(), state -> state.is(TagUtils.getBlockTag(new ResourceLocation("tfc", "tree_grows_on"))));
         if (!treeGrows) return 0;
         return super.getMaxFreeTreeHeight(level, trunkHeight, topPosition, config);
     }

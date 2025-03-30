@@ -27,7 +27,7 @@ public class BlockRubberWood extends RotatedPillarBlock implements IModelProvide
         super(properties);
         this.domain = domain;
         this.id = id;
-        AntimatterAPI.register(getClass(), this);
+        GTAPI.register(getClass(), this);
     }
 
     public BlockRubberWood(String domain, String id){

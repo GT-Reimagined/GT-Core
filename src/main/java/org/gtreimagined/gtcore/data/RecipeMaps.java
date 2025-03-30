@@ -1,16 +1,6 @@
 package org.gtreimagined.gtcore.data;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.integration.jeirei.renderer.InfoRenderers;
-import muramasa.antimatter.machine.BlockMachine;
-import muramasa.antimatter.machine.Tier;
-import muramasa.antimatter.recipe.IRecipe;
-import muramasa.antimatter.recipe.RecipeProxies;
-import muramasa.antimatter.recipe.ingredient.RecipeIngredient;
-import muramasa.antimatter.recipe.map.Proxy;
-import muramasa.antimatter.recipe.map.RecipeBuilder;
-import muramasa.antimatter.recipe.map.RecipeMap;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -18,6 +8,16 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.integration.jeirei.renderer.InfoRenderers;
+import org.gtreimagined.gtlib.machine.BlockMachine;
+import org.gtreimagined.gtlib.machine.Tier;
+import org.gtreimagined.gtlib.recipe.IRecipe;
+import org.gtreimagined.gtlib.recipe.RecipeProxies;
+import org.gtreimagined.gtlib.recipe.ingredient.RecipeIngredient;
+import org.gtreimagined.gtlib.recipe.map.Proxy;
+import org.gtreimagined.gtlib.recipe.map.RecipeBuilder;
+import org.gtreimagined.gtlib.recipe.map.RecipeMap;
 
 import java.util.List;
 import java.util.function.BiFunction;
@@ -27,10 +27,10 @@ import java.util.function.BiFunction;
 public class RecipeMaps {
 
     public static BiFunction<Integer, Integer, Proxy> DISSASSEMBLER_PROXY = (power, duration) -> new Proxy(RecipeType.CRAFTING, getDefaultCrafting(power, duration));
-    public static RecipeMap<RecipeBuilder> STEAM_SMELTING = AntimatterAPI.register(RecipeMap.class,
+    public static RecipeMap<RecipeBuilder> STEAM_SMELTING = GTAPI.register(RecipeMap.class,
             new RecipeMap<>(GTCore.ID, "steam_furnace", new RecipeBuilder())
                     .setProxy(RecipeProxies.FURNACE_PROXY.apply(8, 160)).setGuiTier(Tier.BRONZE));
-    public static RecipeMap<RecipeBuilder> ASSEMBLING = AntimatterAPI.register(RecipeMap.class,
+    public static RecipeMap<RecipeBuilder> ASSEMBLING = GTAPI.register(RecipeMap.class,
             new RecipeMap<>(GTCore.ID, "assembler", new RecipeBuilder()));
 
     private static BiFunction<Recipe<?>, RecipeBuilder, IRecipe> getDefaultCrafting(int power, int duration) {

@@ -16,7 +16,7 @@ import org.gtreimagined.gtcore.GTCore;
 public class BlockRubberButton extends WoodButtonBlock implements IAntimatterObject, IModelProvider {
     public BlockRubberButton() {
         super(Properties.of(Material.DECORATION).noCollission().strength(0.5f).sound(SoundType.WOOD));
-        AntimatterAPI.register(BlockRubberButton.class, this);
+        GTAPI.register(BlockRubberButton.class, this);
     }
 
     @Override

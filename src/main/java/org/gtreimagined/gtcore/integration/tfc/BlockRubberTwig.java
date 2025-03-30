@@ -18,7 +18,7 @@ import org.gtreimagined.gtcore.GTCore;
 public class BlockRubberTwig extends GroundcoverBlock implements IModelProvider, IAntimatterObject {
     public BlockRubberTwig() {
         super(ExtendedProperties.of(TFCMaterials.GROUNDCOVER).strength(0.05F, 0.0F).sound(SoundType.WOOD).noCollission().flammableLikeWool(), TWIG, null);
-        AntimatterAPI.register(BlockRubberTwig.class, this);
+        GTAPI.register(BlockRubberTwig.class, this);
     }
 
     @Override

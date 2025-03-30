@@ -1,11 +1,5 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import muramasa.antimatter.capability.item.FakeTrackedItemHandler;
-import muramasa.antimatter.capability.item.TrackedItemHandler;
-import muramasa.antimatter.capability.machine.MachineItemHandler;
-import muramasa.antimatter.gui.SlotType;
-import muramasa.antimatter.gui.event.GuiEvents;
-import muramasa.antimatter.gui.event.IGuiEvent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -13,6 +7,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.gui.ContainerWorkbench;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
+import org.gtreimagined.gtlib.capability.item.FakeTrackedItemHandler;
+import org.gtreimagined.gtlib.capability.item.TrackedItemHandler;
+import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
+import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.event.GuiEvents;
+import org.gtreimagined.gtlib.gui.event.IGuiEvent;
 
 public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkbench>{
     public BlockEntityWorkbench(MaterialMachine type, BlockPos pos, BlockState state) {

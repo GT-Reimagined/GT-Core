@@ -1,10 +1,6 @@
 package org.gtreimagined.gtcore.block;
 
 import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
-import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.gui.SlotType;
-import muramasa.antimatter.machine.Tier;
-import muramasa.antimatter.machine.types.Machine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
@@ -30,10 +26,15 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityChest;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
+import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
+import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.machine.Tier;
+import org.gtreimagined.gtlib.machine.types.Machine;
 
 import javax.annotation.Nullable;
 import java.util.function.BiPredicate;
@@ -121,7 +122,7 @@ public class BlockMaterialChest extends BlockMachineMaterial implements SimpleWa
     }
 
     @Override
-    public void onItemModelBuild(ItemLike item, AntimatterItemModelProvider prov) {
+    public void onItemModelBuild(ItemLike item, GTItemModelProvider prov) {
         prov.getBuilder(item).parent(prov.existing(GTCore.ID, "block/material_chest"));
     }
 

@@ -21,7 +21,7 @@ import org.gtreimagined.gtcore.GTCore;
 public class BlockTFCRubberSapling extends TFCSaplingBlock implements IAntimatterObject, IModelProvider, ITextureProvider {
     public BlockTFCRubberSapling() {
         super(new TFCRubberTree(), ExtendedProperties.of(Material.PLANT, MaterialColor.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).flammableLikeLeaves().blockEntity(TFCBlockEntities.TICK_COUNTER), 7);
-        AntimatterAPI.register(BlockTFCRubberSapling.class, this);
+        GTAPI.register(BlockTFCRubberSapling.class, this);
     }
 
 

@@ -24,7 +24,7 @@ import java.util.Random;
 
 public class RubberTree extends AbstractTreeGrower {
 
-    public static final TreeFeature TREE_FEATURE = (TreeFeature) AntimatterAPI.register(IAntimatterFeature.class, new RubberTreeFeature()).asFeature();
+    public static final TreeFeature TREE_FEATURE = (TreeFeature) GTAPI.register(IAntimatterFeature.class, new RubberTreeFeature()).asFeature();
     public static final WeightedStateProvider TRUNK_BLOCKS;
 
     static {

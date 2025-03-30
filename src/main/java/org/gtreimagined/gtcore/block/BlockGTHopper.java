@@ -1,13 +1,5 @@
 package org.gtreimagined.gtcore.block;
 
-import muramasa.antimatter.data.AntimatterDefaultTools;
-import muramasa.antimatter.datagen.builder.VariantBlockStateBuilder.VariantBuilder;
-import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
-import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.machine.Tier;
-import muramasa.antimatter.machine.types.Machine;
-import muramasa.antimatter.texture.Texture;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
@@ -25,8 +17,16 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.client.model.generators.ItemModelProvider;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
+import org.gtreimagined.gtlib.data.GTTools;
+import org.gtreimagined.gtlib.datagen.builder.VariantBlockStateBuilder.VariantBuilder;
+import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider;
+import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
+import org.gtreimagined.gtlib.machine.types.Machine;
+import org.gtreimagined.gtlib.texture.Texture;
+import org.gtreimagined.gtlib.util.Utils;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.FACING_HOPPER;
 
@@ -53,7 +53,7 @@ public class BlockGTHopper extends BlockMachineMaterial {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         if (context instanceof EntityCollisionContext collisionContext && collisionContext.getEntity() instanceof Player player){
-            if (Utils.isPlayerHolding(player, InteractionHand.MAIN_HAND, AntimatterDefaultTools.WRENCH)){
+            if (Utils.isPlayerHolding(player, InteractionHand.MAIN_HAND, GTTools.WRENCH)){
                 return Shapes.block();
             }
         }
@@ -78,12 +78,12 @@ public class BlockGTHopper extends BlockMachineMaterial {
     }
 
     @Override
-    public void onItemModelBuild(ItemLike item, AntimatterItemModelProvider prov) {
+    public void onItemModelBuild(ItemLike item, GTItemModelProvider prov) {
         prov.getBuilder(item).parent(prov.existing(GTCore.ID, "block/hopper")).texture("side", new Texture(GTCore.ID, "block/machine/base/hopper/side")).texture("bottom", new Texture(GTCore.ID, "block/machine/base/hopper/bottom")).texture("top", new Texture(GTCore.ID, "block/machine/base/hopper/top"));
     }
 
     @Override
-    public void onBlockModelBuild(Block block, AntimatterBlockStateProvider prov) {
+    public void onBlockModelBuild(Block block, GTBlockStateProvider prov) {
         prov.getVariantBuilder(block).forAllStates(b -> {
             VariantBuilder builder = new VariantBuilder();
             Direction facing = b.getValue(FACING_HOPPER);

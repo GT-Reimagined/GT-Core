@@ -1,12 +1,5 @@
 package org.gtreimagined.gtcore.block;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.datagen.builder.AntimatterBlockModelBuilder;
-import muramasa.antimatter.datagen.providers.AntimatterBlockStateProvider;
-import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.dynamic.BlockDynamic;
-import muramasa.antimatter.registration.ITextureProvider;
-import muramasa.antimatter.texture.Texture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
@@ -15,13 +8,21 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.datagen.builder.GTBlockModelBuilder;
+import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider;
+import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
+import org.gtreimagined.gtlib.dynamic.BlockDynamic;
+import org.gtreimagined.gtlib.registration.ITextureProvider;
+import org.gtreimagined.gtlib.texture.Texture;
 
 public class BlockCasing extends BlockDynamic {
 
     public BlockCasing(String domain, String id, Properties properties) {
         super(domain, id, properties);
-        if (this.getClass() != BlockCasing.class) AntimatterAPI.register(BlockCasing.class, this);
+        if (this.getClass() != BlockCasing.class) GTAPI.register(BlockCasing.class, this);
     }
 
     public BlockCasing(String domain, String id) {
@@ -34,8 +35,8 @@ public class BlockCasing extends BlockDynamic {
     }
 
     @Override
-    public void onBlockModelBuild(Block block, AntimatterBlockStateProvider prov) {
-        AntimatterBlockModelBuilder builder = buildBlock(block,prov);
+    public void onBlockModelBuild(Block block, GTBlockStateProvider prov) {
+        GTBlockModelBuilder builder = buildBlock(block,prov);
         if (builder != null) {
             prov.state(block, builder);
         } else {
@@ -43,7 +44,7 @@ public class BlockCasing extends BlockDynamic {
         }
     }
     //Hierarchial block builder.
-    protected AntimatterBlockModelBuilder buildBlock(Block block, AntimatterBlockStateProvider prov) {
+    protected GTBlockModelBuilder buildBlock(Block block, GTBlockStateProvider prov) {
         return null;
     }
 
@@ -60,7 +61,7 @@ public class BlockCasing extends BlockDynamic {
     }
 
     @Override
-    public void onItemModelBuild(ItemLike item, AntimatterItemModelProvider prov) {
-        prov.modelAndTexture(item, AntimatterBlockModelBuilder.getSimple()).tex(t -> t.putAll(AntimatterBlockModelBuilder.buildTextures(((ITextureProvider) item).getTextures())));
+    public void onItemModelBuild(ItemLike item, GTItemModelProvider prov) {
+        prov.modelAndTexture(item, GTBlockModelBuilder.getSimple()).tex(t -> t.putAll(GTBlockModelBuilder.buildTextures(((ITextureProvider) item).getTextures())));
     }
 }

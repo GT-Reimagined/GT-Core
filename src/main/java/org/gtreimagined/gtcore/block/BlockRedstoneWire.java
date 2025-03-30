@@ -1,14 +1,5 @@
 package org.gtreimagined.gtcore.block;
 
-import muramasa.antimatter.Data;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.blockentity.pipe.BlockEntityPipe;
-import muramasa.antimatter.data.AntimatterDefaultTools;
-import muramasa.antimatter.pipe.BlockPipe;
-import muramasa.antimatter.pipe.PipeSize;
-import muramasa.antimatter.texture.Texture;
-import muramasa.antimatter.tool.AntimatterToolType;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -24,6 +15,15 @@ import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
+import org.gtreimagined.gtlib.Data;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.blockentity.pipe.BlockEntityPipe;
+import org.gtreimagined.gtlib.data.GTTools;
+import org.gtreimagined.gtlib.pipe.BlockPipe;
+import org.gtreimagined.gtlib.pipe.PipeSize;
+import org.gtreimagined.gtlib.texture.Texture;
+import org.gtreimagined.gtlib.tool.GTToolType;
+import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -88,8 +88,8 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
     }
 
     @Override
-    public AntimatterToolType getToolType() {
-        return AntimatterDefaultTools.WIRE_CUTTER;
+    public GTToolType getToolType() {
+        return GTTools.WIRE_CUTTER;
     }
 
     @Override

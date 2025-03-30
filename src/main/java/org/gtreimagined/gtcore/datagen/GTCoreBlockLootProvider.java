@@ -20,10 +20,10 @@ public class GTCoreBlockLootProvider extends AntimatterBlockLootProvider {
     @Override
     protected void loot() {
         super.loot();
-        AntimatterAPI.all(BlockMachineMaterial.class, this::add);
-        AntimatterAPI.all(BlockMultiMachineMaterial.class, this::add);
-        AntimatterAPI.all(BlockMaterialChest.class, this::add);
-        AntimatterAPI.all(BlockGTHopper.class, this::add);
+        GTAPI.all(BlockMachineMaterial.class, this::add);
+        GTAPI.all(BlockMultiMachineMaterial.class, this::add);
+        GTAPI.all(BlockMaterialChest.class, this::add);
+        GTAPI.all(BlockGTHopper.class, this::add);
         tables.put(GTCoreBlocks.RUBBER_LEAVES, b -> createLeavesDrops(GTCoreBlocks.RUBBER_LEAVES, GTCoreBlocks.RUBBER_SAPLING, 0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F));
         this.add(GTCoreBlocks.RUBBER_LOG);
         this.add(GTCoreBlocks.RUBBER_SAPLING);
@@ -42,8 +42,8 @@ public class GTCoreBlockLootProvider extends AntimatterBlockLootProvider {
         tables.put(GTCoreBlocks.RUBBER_SIGN, b -> BlockLoot.createSingleItemTable(GTCoreBlocks.RUBBER_SIGN.asItem()));
         tables.put(GTCoreBlocks.RUBBER_WALL_SIGN, b -> BlockLoot.createSingleItemTable(GTCoreBlocks.RUBBER_SIGN.asItem()));
         this.add(GTCoreBlocks.SAP_BAG);
-        if (AntimatterAPI.isModLoaded("tfc")) {
-            this.add(AntimatterAPI.get(Block.class, "rubber_twig", GTCore.ID));
+        if (GTAPI.isModLoaded("tfc")) {
+            this.add(GTAPI.get(Block.class, "rubber_twig", GTCore.ID));
             this.add(AntimatterAPI.get(Block.class, "rubber_fallen_leaves", GTCore.ID));
         }
     }

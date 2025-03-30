@@ -23,7 +23,7 @@ public class ItemTape extends ItemBasic<ItemTape> {
     }
 
     public Item getEmpty(){
-        return AntimatterAPI.get(Item.class, id + "_empty", domain);
+        return GTAPI.get(Item.class, id + "_empty", domain);
     }
 
     @Override

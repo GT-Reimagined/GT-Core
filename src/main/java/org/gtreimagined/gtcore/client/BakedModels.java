@@ -2,9 +2,6 @@ package org.gtreimagined.gtcore.client;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
-import muramasa.antimatter.client.AntimatterModelManager;
-import muramasa.antimatter.client.model.loader.DynamicModelLoader;
-import muramasa.antimatter.dynamic.DynamicModel;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
@@ -17,6 +14,9 @@ import net.minecraftforge.client.model.IModelConfiguration;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.client.model.IconModelLoader;
 import org.gtreimagined.gtcore.client.model.SapBagBakedModel;
+import org.gtreimagined.gtlib.client.GTLibModelManager;
+import org.gtreimagined.gtlib.client.model.loader.DynamicModelLoader;
+import org.gtreimagined.gtlib.dynamic.DynamicModel;
 
 import java.util.function.Function;
 
@@ -25,7 +25,7 @@ public class BakedModels {
     public static final ResourceLocation LOADER_ICON = new ResourceLocation(GTCore.ID, "icon");
 
     public static void init() {
-        AntimatterModelManager.registerStaticConfigMap("sap_bag", () -> SapBagBakedModel.CONFIGS);
+        GTLibModelManager.registerStaticConfigMap("sap_bag", () -> SapBagBakedModel.CONFIGS);
         new IconModelLoader(LOADER_ICON);
         new DynamicModelLoader(LOADER_SAP_BAG) {
             @Override

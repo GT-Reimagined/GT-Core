@@ -13,7 +13,7 @@ import org.gtreimagined.gtcore.GTCore;
 public class ItemFertilizer extends BoneMealItem implements IAntimatterObject, ITextureProvider, IModelProvider {
     public ItemFertilizer() {
         super(new Item.Properties().tab(Ref.TAB_ITEMS));
-        AntimatterAPI.register(ItemFertilizer.class,this);
+        GTAPI.register(ItemFertilizer.class,this);
     }
 
     @Override

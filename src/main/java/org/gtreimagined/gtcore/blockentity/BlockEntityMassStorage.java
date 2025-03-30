@@ -1,14 +1,5 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.capability.item.TrackedItemHandler;
-import muramasa.antimatter.data.AntimatterDefaultTools;
-import muramasa.antimatter.gui.SlotType;
-import muramasa.antimatter.machine.MachineState;
-import muramasa.antimatter.machine.event.IMachineEvent;
-import muramasa.antimatter.network.AntimatterNetwork;
-import muramasa.antimatter.tool.AntimatterToolType;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -33,6 +24,14 @@ import org.gtreimagined.gtcore.item.ItemTape;
 import org.gtreimagined.gtcore.machine.MassStorageItemHandler;
 import org.gtreimagined.gtcore.machine.MassStorageMachine;
 import org.gtreimagined.gtcore.network.MessageTriggerInventorySync;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.capability.item.TrackedItemHandler;
+import org.gtreimagined.gtlib.data.GTTools;
+import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.machine.MachineState;
+import org.gtreimagined.gtlib.machine.event.IMachineEvent;
+import org.gtreimagined.gtlib.network.GTLibNetwork;
+import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -134,7 +133,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
 
     @Override
     public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable AntimatterToolType type) {
-        if ((type == AntimatterDefaultTools.KNIFE || type == AntimatterDefaultTools.SCISSORS) && this.getMachineState() == MachineState.ACTIVE){
+        if ((type == GTTools.KNIFE || type == GTTools.SCISSORS) && this.getMachineState() == MachineState.ACTIVE){
             setMachineState(MachineState.IDLE);
             Utils.damageStack(player.getItemInHand(hand), hand, player);
             return InteractionResult.SUCCESS;
@@ -158,21 +157,21 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
                 return InteractionResult.SUCCESS;
             }
         }
-        if (type == AntimatterDefaultTools.WIRE_CUTTER){
+        if (type == GTTools.WIRE_CUTTER){
             outputOverflow = !outputOverflow;
             //TODO: translation component
             player.sendMessage(Utils.literal(outputOverflow ? "Outputs overflow" : "Doesn't output overflow"), player.getUUID());
             Utils.damageStack(player.getItemInHand(hand), hand, player);
             return InteractionResult.SUCCESS;
         }
-        if (type == AntimatterDefaultTools.WRENCH_ALT){
+        if (type == GTTools.WRENCH_ALT){
             output = !output;
             //TODO: translation component
             player.sendMessage(Utils.literal(output ? "Auto output on" : "Auto output off"), player.getUUID());
             Utils.damageStack(player.getItemInHand(hand), hand, player);
             return InteractionResult.SUCCESS;
         }
-        if (type == AntimatterDefaultTools.SCREWDRIVER && coverHandler.map(c -> c.get(Utils.getInteractSide(hit)).isEmpty()).orElse(true)){
+        if (type == GTTools.SCREWDRIVER && coverHandler.map(c -> c.get(Utils.getInteractSide(hit)).isEmpty()).orElse(true)){
             keepFilter = !keepFilter;
             //TODO: translation component
             player.sendMessage(Utils.literal("Filter " + (keepFilter ? "Stays" : "Resets") + " when empty"), player.getUUID());
@@ -211,7 +210,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
                 if (y > 0.125 && y < 0.625){
                     ItemStack stored = handler.getStackInSlot(0);
                     ItemStack displayed = itemHandler.map(i -> i.getHandler(SlotType.DISPLAY).getStackInSlot(0)).orElse(ItemStack.EMPTY);
-                    if (type == AntimatterDefaultTools.SOFT_HAMMER){
+                    if (type == GTTools.SOFT_HAMMER){
                         amountToExtract = stored.getCount();
                         Utils.damageStack(stack, hand, player);
                         itemHandler.get().getHandler(SlotType.DISPLAY).setStackInSlot(0, ItemStack.EMPTY);
@@ -277,7 +276,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     @Override
     public void onFirstTickClient(Level level, BlockPos pos, BlockState state) {
         super.onFirstTickClient(level, pos, state);
-        AntimatterNetwork.NETWORK.sendToServer(new MessageTriggerInventorySync(this.getBlockPos()));
+        GTLibNetwork.NETWORK.sendToServer(new MessageTriggerInventorySync(this.getBlockPos()));
     }
 
     @Override

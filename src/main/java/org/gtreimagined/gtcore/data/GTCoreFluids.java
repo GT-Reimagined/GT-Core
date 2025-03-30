@@ -1,22 +1,22 @@
 package org.gtreimagined.gtcore.data;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.fluid.AntimatterFluid;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.fluids.FluidAttributes;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.fluid.GTFluid;
 
-import static muramasa.antimatter.fluid.AntimatterFluid.OVERLAY_TEXTURE;
+import static org.gtreimagined.gtlib.fluid.GTFluid.OVERLAY_TEXTURE;
 
 public class GTCoreFluids {
     public static final ResourceLocation PAHOEHOE_STILL_TEXTURE = new ResourceLocation(GTCore.ID, "fluid/pahoehoe_lava");
-    public static final AntimatterFluid PAHOEHOE_LAVA = AntimatterAPI.register(AntimatterFluid.class, new AntimatterFluid(GTCore.ID,"pahoehoe_lava", prepareLavaAttributes(), prepareLavaProperties()));
-    public static final AntimatterFluid FIERY_BLOOD = AntimatterAPI.register(AntimatterFluid.class, new AntimatterFluid(GTCore.ID,"fiery_blood", prepareAttributes("fiery_blood"), prepareProperties()));
-    public static final AntimatterFluid FIERY_TEARS = AntimatterAPI.register(AntimatterFluid.class, new AntimatterFluid(GTCore.ID,"fiery_tears", prepareAttributes("fiery_tears"), prepareProperties()));
-    public static final AntimatterFluid BEET_JUICE = AntimatterAPI.register(AntimatterFluid.class, new AntimatterFluid(GTCore.ID, "beet_juice", prepareAttributes("beet_juice"), prepareProperties()));
+    public static final GTFluid PAHOEHOE_LAVA = GTAPI.register(GTFluid.class, new GTFluid(GTCore.ID,"pahoehoe_lava", prepareLavaAttributes(), prepareLavaProperties()));
+    public static final GTFluid FIERY_BLOOD = GTAPI.register(GTFluid.class, new GTFluid(GTCore.ID,"fiery_blood", prepareAttributes("fiery_blood"), prepareProperties()));
+    public static final GTFluid FIERY_TEARS = GTAPI.register(GTFluid.class, new GTFluid(GTCore.ID,"fiery_tears", prepareAttributes("fiery_tears"), prepareProperties()));
+    public static final GTFluid BEET_JUICE = GTAPI.register(GTFluid.class, new GTFluid(GTCore.ID, "beet_juice", prepareAttributes("beet_juice"), prepareProperties()));
 
     public static void init(){
 

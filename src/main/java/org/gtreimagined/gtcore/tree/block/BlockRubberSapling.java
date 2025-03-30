@@ -27,7 +27,7 @@ public class BlockRubberSapling extends SaplingBlock implements IAntimatterObjec
 
     public BlockRubberSapling() {
         super(new RubberTree(), Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).instabreak());
-        AntimatterAPI.register(BlockRubberSapling.class, this);
+        GTAPI.register(BlockRubberSapling.class, this);
     }
 
     @Override

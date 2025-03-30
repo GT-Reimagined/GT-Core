@@ -29,17 +29,17 @@ import static org.gtreimagined.gtcore.loader.crafting.VanillaRecipes.addWoodReci
 public class RubberRecipes {
 
     public static void addRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
-        if (!AntimatterAPI.isModLoaded("gt5r") && !AntimatterAPI.isModLoaded("gt4r")) {
+        if (!GTAPI.isModLoaded("gt5r") && !GTAPI.isModLoaded("gt4r")) {
             AntimatterCookingRecipeBuilder.smeltingRecipe(Ingredient.of(GTCoreItems.StickyResin), DUST.get(GTCoreMaterials.Rubber, 1), 0.1f, 200).addCriterion("has_resin", provider.hasSafeItem(GTCoreItems.StickyResin)).build(consumer, "resin_to_rubber");
         }
-        Item lumber = AntimatterAPI.isModLoaded("tfc") ? AntimatterAPI.get(Item.class, "rubber_lumber", GTCore.ID) : GTCoreBlocks.RUBBER_PLANKS.asItem();
-        if (!AntimatterAPI.isModLoaded("tfc")){
+        Item lumber = GTAPI.isModLoaded("tfc") ? GTAPI.get(Item.class, "rubber_lumber", GTCore.ID) : GTCoreBlocks.RUBBER_PLANKS.asItem();
+        if (!GTAPI.isModLoaded("tfc")){
             addWoodRecipe(consumer, provider, GTCore.ID, GTCoreTags.RUBBER_LOGS, GTCoreBlocks.RUBBER_PLANKS.asItem());
-        } else if (AntimatterAPI.isModLoaded("tfc")){
+        } else if (GTAPI.isModLoaded("tfc")){
             provider.shapeless(consumer, GTCore.ID, "", "rubber_wood", new ItemStack(lumber, 8), GTCoreTags.RUBBER_LOGS, TagUtils.getItemTag(new ResourceLocation("tfc", "saws")));
             provider.addItemRecipe(consumer, "rubber_wood", GTCoreBlocks.RUBBER_PLANKS, of('R', lumber), "RR", "RR");
             provider.shapeless(consumer, GTCore.ID, "rubber_lumber_from_planks", "rubber_wood", new ItemStack(lumber, 4), GTCoreBlocks.RUBBER_PLANKS, TagUtils.getItemTag(new ResourceLocation("tfc", "saws")));
-            provider.addStackRecipe(consumer, GTCore.ID, "", "rubber_wood", new ItemStack(AntimatterAPI.get(Item.class, "rubber_log_fence", GTCore.ID), 8), of('R', GTCoreBlocks.RUBBER_LOG, 'L', lumber), "RLR", "RLR");
+            provider.addStackRecipe(consumer, GTCore.ID, "", "rubber_wood", new ItemStack(GTAPI.get(Item.class, "rubber_log_fence", GTCore.ID), 8), of('R', GTCoreBlocks.RUBBER_LOG, 'L', lumber), "RLR", "RLR");
         }
         provider.addStackRecipe(consumer, GTCore.ID, "", "rubber_wood", new ItemStack(GTCoreBlocks.RUBBER_WOOD, 3), ImmutableMap.of('R', GTCoreBlocks.RUBBER_LOG), "RR", "RR");
         provider.addStackRecipe(consumer, GTCore.ID, "", "rubber_wood", new ItemStack(GTCoreBlocks.STRIPPED_RUBBER_WOOD, 3), ImmutableMap.of('R', GTCoreBlocks.STRIPPED_RUBBER_LOG), "RR", "RR");

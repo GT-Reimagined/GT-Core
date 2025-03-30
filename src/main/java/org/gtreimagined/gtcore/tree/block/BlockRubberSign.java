@@ -17,7 +17,7 @@ public class BlockRubberSign extends TerraformSignBlock implements IAntimatterOb
 
     public BlockRubberSign() {
         super(new ResourceLocation(GTCore.ID, "entity/signs/rubber"), Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD));
-        AntimatterAPI.register(BlockRubberSign.class, this);
+        GTAPI.register(BlockRubberSign.class, this);
     }
 
     @Override

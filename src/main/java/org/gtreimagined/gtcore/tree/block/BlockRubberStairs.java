@@ -13,7 +13,7 @@ import org.gtreimagined.gtcore.data.GTCoreBlocks;
 public class BlockRubberStairs extends StairBlock implements IAntimatterObject, IModelProvider {
     public BlockRubberStairs() {
         super(GTCoreBlocks.RUBBER_PLANKS.defaultBlockState(), Properties.copy(GTCoreBlocks.RUBBER_PLANKS));
-        AntimatterAPI.register(BlockRubberStairs.class, this);
+        GTAPI.register(BlockRubberStairs.class, this);
     }
 
     @Override

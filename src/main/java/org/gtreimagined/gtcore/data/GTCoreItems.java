@@ -1,12 +1,6 @@
 package org.gtreimagined.gtcore.data;
 
 import com.google.common.collect.ImmutableMap;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.cover.CoverFactory;
-import muramasa.antimatter.item.ItemBasic;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.recipe.ingredient.RecipeIngredient;
-import muramasa.antimatter.texture.Texture;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import org.gtreimagined.gtcore.GTCore;
@@ -21,8 +15,15 @@ import org.gtreimagined.gtcore.item.ItemRadaway;
 import org.gtreimagined.gtcore.item.ItemSelectorTag;
 import org.gtreimagined.gtcore.item.ItemTape;
 import org.gtreimagined.gtcore.tree.item.ItemRubberBoat;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.cover.CoverFactory;
+import org.gtreimagined.gtlib.item.ItemBasic;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.recipe.ingredient.RecipeIngredient;
+import org.gtreimagined.gtlib.texture.Texture;
 
-import static muramasa.antimatter.data.AntimatterMaterials.Diamond;
+import static org.gtreimagined.gtlib.data.GTLibMaterials.Diamond;
+
 
 public class GTCoreItems {
 

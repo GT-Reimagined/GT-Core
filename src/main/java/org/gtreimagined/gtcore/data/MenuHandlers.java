@@ -1,11 +1,11 @@
 package org.gtreimagined.gtcore.data;
 
-import muramasa.antimatter.capability.IGuiHandler;
-import muramasa.antimatter.gui.MenuHandlerMachine;
 import net.minecraft.world.entity.player.Inventory;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMaterial;
 import org.gtreimagined.gtcore.gui.ContainerWorkbench;
+import org.gtreimagined.gtlib.capability.IGuiHandler;
+import org.gtreimagined.gtlib.gui.MenuHandlerMachine;
 
 public class MenuHandlers {
     public static MenuHandlerMachine<? extends BlockEntityMaterial, ? extends ContainerWorkbench> WORKBENCH_HANDLER = new MenuHandlerMachine(GTCore.ID, "container_workbench") {

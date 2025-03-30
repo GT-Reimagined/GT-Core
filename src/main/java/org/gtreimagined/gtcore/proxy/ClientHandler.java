@@ -29,23 +29,23 @@ public class ClientHandler {
 
     public static void init(){
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new Material(Sheets.SIGN_SHEET, GTCoreBlocks.RUBBER_SIGN.getTexture()));
-        AntimatterAPI.all(BlockMachineMaterial.class, b -> {
+        GTAPI.all(BlockMachineMaterial.class, b -> {
             if (b.getType() instanceof MassStorageMachine) {
                 BlockEntityRenderers.register((BlockEntityType<BlockEntityMassStorage>) b.getType().getTileType(), c -> new MassStorageRenderer<>());
             }
         });
 
-        AntimatterAPI.all(BlockMaterialChest.class, b -> {
+        GTAPI.all(BlockMaterialChest.class, b -> {
             if (b.getType() instanceof ChestMachine) {
                 BlockEntityRenderers.register((BlockEntityType<BlockEntityChest>) b.getType().getTileType(), MaterialChestRenderer::new);
             }
         });
-        AntimatterAPI.runLaterClient(() -> {
-            AntimatterAPI.all(BlockMachineMaterial.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
-            AntimatterAPI.all(BlockMultiMachineMaterial.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
-            AntimatterAPI.all(BlockMaterialChest.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
-            AntimatterAPI.all(BlockGTHopper.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
-            AntimatterAPI.all(BlockCasing.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
+        GTAPI.runLaterClient(() -> {
+            GTAPI.all(BlockMachineMaterial.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
+            GTAPI.all(BlockMultiMachineMaterial.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
+            GTAPI.all(BlockMaterialChest.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
+            GTAPI.all(BlockGTHopper.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
+            GTAPI.all(BlockCasing.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
             ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_SAPLING, RenderType.cutout());
             ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_LEAVES, RenderType.cutout());
             ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_TRAPDOOR, RenderType.cutout());

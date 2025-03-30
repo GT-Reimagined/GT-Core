@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 public class BlockFallenRubberLeaves extends FallenLeavesBlock implements IAntimatterObject, IModelProvider, IColorHandler {
     public BlockFallenRubberLeaves() {
         super(ExtendedProperties.of(TFCMaterials.GROUNDCOVER).noCollission().strength(0.05F, 0.0F).noOcclusion().sound(SoundType.CROP).flammableLikeWool());
-        AntimatterAPI.register(BlockFallenRubberLeaves.class, this);
+        GTAPI.register(BlockFallenRubberLeaves.class, this);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package org.gtreimagined.gtcore.blockentity;
 
 
-import muramasa.antimatter.gui.container.ContainerMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -17,6 +16,7 @@ import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
+import org.gtreimagined.gtlib.gui.container.ContainerMachine;
 
 import java.util.List;
 

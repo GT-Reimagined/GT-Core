@@ -55,13 +55,13 @@ public class GTCoreItemTagProvider extends AntimatterItemTagProvider {
         this.tag(ItemTags.WOODEN_TRAPDOORS).add(GTCoreBlocks.RUBBER_TRAPDOOR.asItem());
         this.tag(INGOTS_MIXED_METAL).add(MixedMetalIngot);
         this.tag(AntimatterTags.RADIATION_PROOF).add(UniversalHazardSuitMask, UniversalHazardSuitShirt, UniversalHazardSuitPants, UniversalHazardSuitBoots);
-        if (AntimatterAPI.isModLoaded("farmersdelight")) {
+        if (GTAPI.isModLoaded("farmersdelight")) {
             this.tag(TagUtils.getItemTag(new ResourceLocation("farmersdelight:tools/knives"))).addTag(AntimatterDefaultTools.KNIFE.getTag());
         }
-        if (AntimatterAPI.isModLoaded("tfc")){
-            this.tag(ItemTags.WOODEN_FENCES).add(AntimatterAPI.get(Item.class, "rubber_log_fence", GTCore.ID));
-            this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "lumber"))).add(AntimatterAPI.get(Item.class, "rubber_lumber", GTCore.ID));
-            this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "twigs"))).add(AntimatterAPI.get(Item.class, "rubber_twig", GTCore.ID));
+        if (GTAPI.isModLoaded("tfc")){
+            this.tag(ItemTags.WOODEN_FENCES).add(GTAPI.get(Item.class, "rubber_log_fence", GTCore.ID));
+            this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "lumber"))).add(GTAPI.get(Item.class, "rubber_lumber", GTCore.ID));
+            this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "twigs"))).add(GTAPI.get(Item.class, "rubber_twig", GTCore.ID));
             this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "fallen_leaves"))).add(AntimatterAPI.get(Item.class, "rubber_fallen_leaves", GTCore.ID));
             this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "firepit_fuel"))).addTag(GTCoreTags.RUBBER_LOGS);
             this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "firepit_logs"))).addTag(GTCoreTags.RUBBER_LOGS);

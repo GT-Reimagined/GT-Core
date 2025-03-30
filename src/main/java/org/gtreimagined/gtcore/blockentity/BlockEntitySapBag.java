@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import muramasa.antimatter.blockentity.BlockEntityBase;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -10,6 +9,7 @@ import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.gtreimagined.gtcore.tree.ResinState;
 import org.gtreimagined.gtcore.tree.block.BlockRubberLog;
+import org.gtreimagined.gtlib.blockentity.BlockEntityBase;
 
 public class BlockEntitySapBag extends BlockEntityBase<BlockEntitySapBag> {
     ItemStack sap = ItemStack.EMPTY;

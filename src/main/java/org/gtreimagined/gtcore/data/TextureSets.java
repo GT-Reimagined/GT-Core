@@ -1,7 +1,7 @@
 package org.gtreimagined.gtcore.data;
 
-import muramasa.antimatter.material.TextureSet;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtlib.material.TextureSet;
 
 public class TextureSets {
     public static final TextureSet LEAF = new TextureSet(GTCore.ID, "leaf");

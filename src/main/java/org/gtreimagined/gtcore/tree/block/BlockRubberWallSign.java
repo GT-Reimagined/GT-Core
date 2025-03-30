@@ -14,7 +14,7 @@ import org.gtreimagined.gtcore.data.GTCoreBlocks;
 public class BlockRubberWallSign extends TerraformWallSignBlock implements IAntimatterObject, IItemBlockProvider {
     public BlockRubberWallSign() {
         super(new ResourceLocation(GTCore.ID, "entity/signs/rubber"), Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD));
-        AntimatterAPI.register(BlockRubberWallSign.class, this);
+        GTAPI.register(BlockRubberWallSign.class, this);
     }
 
     @Override

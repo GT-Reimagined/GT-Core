@@ -13,7 +13,7 @@ import org.gtreimagined.gtcore.data.GTCoreBlocks;
 public class BlockRubberFenceGate extends FenceGateBlock implements IAntimatterObject, IModelProvider {
     public BlockRubberFenceGate() {
         super(Properties.copy(GTCoreBlocks.RUBBER_SLAB));
-        AntimatterAPI.register(BlockRubberFenceGate.class, this);
+        GTAPI.register(BlockRubberFenceGate.class, this);
     }
 
     @Override

@@ -1,14 +1,5 @@
 package org.gtreimagined.gtcore.blockentity;
 
-import muramasa.antimatter.capability.CoverHandler;
-import muramasa.antimatter.capability.fluid.FluidHandlerSidedWrapper;
-import muramasa.antimatter.capability.fluid.FluidTanks;
-import muramasa.antimatter.capability.fluid.IFluidNode;
-import muramasa.antimatter.capability.machine.MachineFluidHandler;
-import muramasa.antimatter.cover.ICover;
-import muramasa.antimatter.data.AntimatterTags;
-import muramasa.antimatter.util.FluidUtils;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -26,6 +17,15 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import org.gtreimagined.gtcore.machine.MultiblockTankMachine;
+import org.gtreimagined.gtlib.capability.CoverHandler;
+import org.gtreimagined.gtlib.capability.fluid.FluidHandlerSidedWrapper;
+import org.gtreimagined.gtlib.capability.fluid.FluidTanks;
+import org.gtreimagined.gtlib.capability.fluid.IFluidNode;
+import org.gtreimagined.gtlib.capability.machine.MachineFluidHandler;
+import org.gtreimagined.gtlib.cover.ICover;
+import org.gtreimagined.gtlib.data.GTLibTags;
+import org.gtreimagined.gtlib.util.FluidUtils;
+import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -127,7 +127,7 @@ public class BlockEntityLargeTank extends BlockEntityMaterialBasicMultiMachine<B
                 }
                 return inserted;
             }
-            if (!tile.tankMachine.isAcidProof() && fluid.getFluid().is(AntimatterTags.ACID)){
+            if (!tile.tankMachine.isAcidProof() && fluid.getFluid().is(GTLibTags.ACID)){
                 if (action.execute()) {
                     tile.getLevel().setBlock(tile.getBlockPos(), Blocks.AIR.defaultBlockState(), 3);
                 }

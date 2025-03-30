@@ -39,7 +39,7 @@ public class RubberTrunkPlacer extends StraightTrunkPlacer {
 
     @Override
     public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, Random random, int freeTreeHeight, BlockPos pos, TreeConfiguration config) {
-        if (!AntimatterAPI.isModLoaded("tfc")) setDirtAt(level, blockSetter, random, pos.below(), config);
+        if (!GTAPI.isModLoaded("tfc")) setDirtAt(level, blockSetter, random, pos.below(), config);
 
         for(int i = 0; i < freeTreeHeight; ++i) {
             placeLog(level, blockSetter, random, pos.above(i), config, Function.identity(), i);
@@ -50,7 +50,7 @@ public class RubberTrunkPlacer extends StraightTrunkPlacer {
 
     private static boolean isDirt(LevelSimulatedReader level, BlockPos pos) {
         return level.isStateAtPosition(pos, (blockState) -> {
-            return Feature.isDirt(blockState) && !blockState.is(Blocks.GRASS_BLOCK) && !blockState.is(Blocks.MYCELIUM) && (!AntimatterAPI.isModLoaded("tfc") ||
+            return Feature.isDirt(blockState) && !blockState.is(Blocks.GRASS_BLOCK) && !blockState.is(Blocks.MYCELIUM) && (!GTAPI.isModLoaded("tfc") ||
             !blockState.is(TagUtils.getBlockTag(new ResourceLocation("tfc", "tree_grows_on"))));
         });
     }

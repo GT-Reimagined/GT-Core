@@ -1,9 +1,10 @@
 package org.gtreimagined.gtcore.data;
 
-import muramasa.antimatter.machine.Tier;
-import muramasa.antimatter.recipe.IRecipe;
-import muramasa.antimatter.recipe.map.RecipeBuilder;
-import muramasa.antimatter.recipe.map.RecipeMap;
+
+import org.gtreimagined.gtlib.machine.Tier;
+import org.gtreimagined.gtlib.recipe.IRecipe;
+import org.gtreimagined.gtlib.recipe.map.RecipeBuilder;
+import org.gtreimagined.gtlib.recipe.map.RecipeMap;
 
 public class RecipeBuilders {
 
