@@ -1,9 +1,5 @@
 package org.gtreimagined.gtcore.gui.slots;
 
-import muramasa.antimatter.capability.IGuiHandler;
-import muramasa.antimatter.gui.SlotType;
-import muramasa.antimatter.gui.slot.AbstractSlot;
-import muramasa.antimatter.gui.slot.IClickableSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -11,6 +7,10 @@ import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
+import org.gtreimagined.gtlib.capability.IGuiHandler;
+import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.slot.AbstractSlot;
+import org.gtreimagined.gtlib.gui.slot.IClickableSlot;
 import org.jetbrains.annotations.NotNull;
 
 public class SlotUnlimited extends AbstractSlot<SlotUnlimited> implements IClickableSlot {

@@ -1,9 +1,5 @@
 package org.gtreimagined.gtcore.gui.slots;
 
-import muramasa.antimatter.capability.IGuiHandler;
-import muramasa.antimatter.gui.SlotType;
-import muramasa.antimatter.gui.slot.AbstractSlot;
-import muramasa.antimatter.gui.slot.IClickableSlot;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -17,6 +13,10 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.gtreimagined.gtcore.gui.ContainerWorkbench;
+import org.gtreimagined.gtlib.capability.IGuiHandler;
+import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.slot.AbstractSlot;
+import org.gtreimagined.gtlib.gui.slot.IClickableSlot;
 
 import java.util.Optional;
 

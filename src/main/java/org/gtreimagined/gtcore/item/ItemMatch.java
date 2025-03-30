@@ -1,9 +1,5 @@
 package org.gtreimagined.gtcore.item;
 
-import muramasa.antimatter.datagen.builder.AntimatterItemModelBuilder;
-import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.item.ItemBasic;
-import muramasa.antimatter.texture.Texture;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -20,7 +16,12 @@ import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraftforge.client.model.generators.ItemModelProvider;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtlib.datagen.builder.GTItemModelBuilder;
+import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
+import org.gtreimagined.gtlib.item.ItemBasic;
+import org.gtreimagined.gtlib.texture.Texture;
 
 import static org.gtreimagined.gtcore.data.GTCoreItems.*;
 
@@ -87,13 +88,13 @@ public class ItemMatch extends ItemBasic<ItemMatch> {
     }
 
     @Override
-    public void onItemModelBuild(ItemLike item, AntimatterItemModelProvider prov) {
+    public void onItemModelBuild(ItemLike item, GTItemModelProvider prov) {
         if (this != MatchBook && this != Lighter) {
             super.onItemModelBuild(item, prov);
             return;
         }
         String id = this.getId();
-        AntimatterItemModelBuilder builder = prov.getBuilder(id +"_lit");
+        GTItemModelBuilder builder = prov.getBuilder(id +"_lit");
         builder.parent(new ResourceLocation("minecraft:item/generated"));
         builder.texture("layer0", new Texture(GTCore.ID, "item/basic/" + id +"_lit"));
         prov.tex(item, new ResourceLocation(GTCore.ID, "item/basic/" + id)).override().predicate(new ResourceLocation("damaged"), 1).predicate(new ResourceLocation("damage"), 0).model(new ResourceLocation(GTCore.ID, "item/" + id +"_lit")).end();

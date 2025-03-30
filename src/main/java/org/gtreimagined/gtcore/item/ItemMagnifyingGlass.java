@@ -1,16 +1,16 @@
 package org.gtreimagined.gtcore.item;
 
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.item.ScannerItem;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.registration.IColorHandler;
-import muramasa.antimatter.texture.Texture;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.item.ScannerItem;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.registration.IColorHandler;
+import org.gtreimagined.gtlib.texture.Texture;
+import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

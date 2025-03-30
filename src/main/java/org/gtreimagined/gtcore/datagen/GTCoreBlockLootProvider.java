@@ -1,7 +1,5 @@
 package org.gtreimagined.gtcore.datagen;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.datagen.providers.AntimatterBlockLootProvider;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
@@ -10,9 +8,11 @@ import org.gtreimagined.gtcore.block.BlockMaterialChest;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 import org.gtreimagined.gtcore.machine.BlockMultiMachineMaterial;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.datagen.providers.GTBlockLootProvider;
 
 
-public class GTCoreBlockLootProvider extends AntimatterBlockLootProvider {
+public class GTCoreBlockLootProvider extends GTBlockLootProvider {
     public GTCoreBlockLootProvider(String providerDomain, String providerName) {
         super(providerDomain, providerName);
     }
@@ -44,7 +44,7 @@ public class GTCoreBlockLootProvider extends AntimatterBlockLootProvider {
         this.add(GTCoreBlocks.SAP_BAG);
         if (GTAPI.isModLoaded("tfc")) {
             this.add(GTAPI.get(Block.class, "rubber_twig", GTCore.ID));
-            this.add(AntimatterAPI.get(Block.class, "rubber_fallen_leaves", GTCore.ID));
+            this.add(GTAPI.get(Block.class, "rubber_fallen_leaves", GTCore.ID));
         }
     }
 }

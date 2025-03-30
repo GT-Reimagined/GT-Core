@@ -2,12 +2,6 @@ package org.gtreimagined.gtcore.gui;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import muramasa.antimatter.blockentity.BlockEntityMachine;
-import muramasa.antimatter.capability.machine.MachineItemHandler;
-import muramasa.antimatter.gui.MenuHandlerMachine;
-import muramasa.antimatter.gui.SlotData;
-import muramasa.antimatter.gui.SlotType;
-import muramasa.antimatter.gui.container.ContainerMachine;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
@@ -23,6 +17,11 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMaterial;
 import org.gtreimagined.gtcore.gui.slots.SlotWorkTableResult;
+import org.gtreimagined.gtlib.blockentity.BlockEntityMachine;
+import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
+import org.gtreimagined.gtlib.gui.MenuHandlerMachine;
+import org.gtreimagined.gtlib.gui.SlotData;
+import org.gtreimagined.gtlib.gui.container.ContainerMachine;
 
 import java.util.Collections;
 import java.util.Optional;

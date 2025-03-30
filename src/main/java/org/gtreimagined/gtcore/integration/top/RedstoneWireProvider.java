@@ -7,7 +7,6 @@ import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.IProbeInfoProvider;
 import mcjty.theoneprobe.api.ProbeMode;
 import mcjty.theoneprobe.config.Config;
-import muramasa.antimatter.integration.top.TheOneProbePlugin;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -17,6 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
+import org.gtreimagined.gtlib.integration.top.TheOneProbePlugin;
 
 public class RedstoneWireProvider implements IProbeInfoProvider {
     public static void createTopProvider(){

@@ -1,13 +1,13 @@
 package org.gtreimagined.gtcore.gui;
 
-import muramasa.antimatter.capability.machine.MachineItemHandler;
-import muramasa.antimatter.network.AntimatterNetwork;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.network.MessageCraftingSync;
+import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
+import org.gtreimagined.gtlib.network.GTLibNetwork;
 import org.jetbrains.annotations.NotNull;
 
 public class InventoryWorkbench extends CraftingContainer {
@@ -46,7 +46,7 @@ public class InventoryWorkbench extends CraftingContainer {
         this.projectTable.getTile().setChanged();
         this.eventHandler.slotsChanged(this);
         if(FMLEnvironment.dist.isClient())
-            AntimatterNetwork.NETWORK.sendToServer(new MessageCraftingSync());
+            GTLibNetwork.NETWORK.sendToServer(new MessageCraftingSync());
     }
 
     @NotNull

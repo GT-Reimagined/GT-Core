@@ -1,12 +1,12 @@
 package org.gtreimagined.gtcore.gui.slots;
 
-import muramasa.antimatter.capability.machine.MachineItemHandler;
-import muramasa.antimatter.gui.SlotType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.ResultSlot;
 import net.minecraft.world.item.ItemStack;
+import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
+import org.gtreimagined.gtlib.gui.SlotType;
 
 public class SlotWorkTableResult extends ResultSlot {
     private final CraftingContainer craftMatrix;

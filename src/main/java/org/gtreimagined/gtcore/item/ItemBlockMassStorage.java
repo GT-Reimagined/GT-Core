@@ -1,15 +1,15 @@
 package org.gtreimagined.gtcore.item;
 
-import muramasa.antimatter.block.AntimatterItemBlock;
-import muramasa.antimatter.client.RenderHelper;
-import muramasa.antimatter.machine.BlockMachine;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.machine.MassStorageMachine;
+import org.gtreimagined.gtlib.block.GTItemBlock;
+import org.gtreimagined.gtlib.client.RenderHelper;
+import org.gtreimagined.gtlib.machine.BlockMachine;
 
-public class ItemBlockMassStorage extends AntimatterItemBlock {
+public class ItemBlockMassStorage extends GTItemBlock {
     public ItemBlockMassStorage(BlockMachine block) {
         super(block);
         if (block.getType() instanceof MassStorageMachine && FMLEnvironment.dist.isClient()){

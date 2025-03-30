@@ -1,9 +1,9 @@
 package org.gtreimagined.gtcore.integration.tfc;
 
-import muramasa.antimatter.item.ItemBasic;
 import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
+import org.gtreimagined.gtlib.item.ItemBasic;
 
 public class TFCRubberData {
 

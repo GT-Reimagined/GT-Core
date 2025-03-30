@@ -5,13 +5,13 @@ import mcp.mobius.waila.api.IComponentProvider;
 import mcp.mobius.waila.api.IServerDataProvider;
 import mcp.mobius.waila.api.ITooltip;
 import mcp.mobius.waila.api.config.IPluginConfig;
-import muramasa.antimatter.util.CodeUtils;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
+import org.gtreimagined.gtlib.util.CodeUtils;
+import org.gtreimagined.gtlib.util.Utils;
 
 public class RedstoneWireProvider implements IComponentProvider, IServerDataProvider<BlockEntity> {
     public static final RedstoneWireProvider INSTANCE = new RedstoneWireProvider();

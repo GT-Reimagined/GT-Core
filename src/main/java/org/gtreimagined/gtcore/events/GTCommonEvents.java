@@ -1,14 +1,5 @@
 package org.gtreimagined.gtcore.events;
 
-import muramasa.antimatter.block.BlockStorage;
-import muramasa.antimatter.data.AntimatterMaterialTypes;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.material.MaterialItem;
-import muramasa.antimatter.material.MaterialTags;
-import muramasa.antimatter.pipe.BlockFluidPipe;
-import muramasa.antimatter.pipe.BlockPipe;
-import muramasa.antimatter.tool.IAntimatterTool;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.TextComponent;
@@ -19,6 +10,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 import org.gtreimagined.gtcore.machine.BlockMultiMachineMaterial;
+import org.gtreimagined.gtlib.block.BlockStorage;
+import org.gtreimagined.gtlib.data.GTMaterialTypes;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.material.MaterialItem;
+import org.gtreimagined.gtlib.material.MaterialTags;
+import org.gtreimagined.gtlib.pipe.BlockFluidPipe;
+import org.gtreimagined.gtlib.pipe.BlockPipe;
+import org.gtreimagined.gtlib.tool.IGTTool;
+import org.gtreimagined.gtlib.util.Utils;
 
 import java.util.UUID;
 
@@ -30,7 +30,7 @@ public class GTCommonEvents {
     public static final UUID TRINS_UUID = UUID.fromString("7c042366-854c-4582-8d2c-6831646ba5c7");
 
     public static void onPlayerTick(boolean end, boolean logicalServer, Player player){
-        if (end && logicalServer && !player.isInvulnerable() && player.getInventory().contains(AntimatterMaterialTypes.INGOT_HOT.getTag()) && !Utils.isFullHazmatSuit(player)){
+        if (end && logicalServer && !player.isInvulnerable() && player.getInventory().contains(GTMaterialTypes.INGOT_HOT.getTag()) && !Utils.isFullHazmatSuit(player)){
             BlockFluidPipe.applyTemperatureDamage(player, 1700, 1.0f, 1.0f);
         }
         if (end && logicalServer && player.tickCount % 120 == 0){
@@ -105,7 +105,7 @@ public class GTCommonEvents {
             if (!Utils.isFullHazmatSuit(player) && !player.isInvulnerable()) {
                 for (ItemStack stack : player.getAllSlots()){
                     Material m = null;
-                    if (stack.getItem() instanceof IAntimatterTool tool) m = tool.getPrimaryMaterial(stack);
+                    if (stack.getItem() instanceof IGTTool tool) m = tool.getPrimaryMaterial(stack);
                     if (stack.getItem() instanceof MaterialItem item) m = item.getMaterial();
                     if (stack.getItem() instanceof BlockItem blockItem){
                         if (blockItem.getBlock() instanceof BlockStorage storage) m = storage.getMaterial();

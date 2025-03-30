@@ -1,9 +1,5 @@
 package org.gtreimagined.gtcore.item;
 
-import muramasa.antimatter.item.ItemBasic;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.registration.IColorHandler;
-import muramasa.antimatter.texture.Texture;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -15,12 +11,18 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.data.GTCoreMaterials;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.item.ItemBasic;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.registration.IColorHandler;
+import org.gtreimagined.gtlib.texture.Texture;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static muramasa.antimatter.material.Material.NULL;
+import static org.gtreimagined.gtlib.material.Material.NULL;
+
 
 public class ItemMixedMetal extends ItemBasic<ItemMixedMetal> implements IColorHandler {
     public ItemMixedMetal() {
@@ -32,7 +34,7 @@ public class ItemMixedMetal extends ItemBasic<ItemMixedMetal> implements IColorH
         if (i > 2) return -1;
         CompoundTag stackNbt = stack.getTag();
         if (stackNbt == null) return -1;
-        CompoundTag nbt = stackNbt.getCompound(muramasa.antimatter.Ref.TAG_TOOL_DATA);
+        CompoundTag nbt = stackNbt.getCompound(Ref.TAG_TOOL_DATA);
         String tagId = i == 0 ? "tm" : i == 1 ? "mm" : "bm";
         Material mat = Material.get(nbt.getString(tagId));
         if (mat == NULL) return -1;
@@ -46,7 +48,7 @@ public class ItemMixedMetal extends ItemBasic<ItemMixedMetal> implements IColorH
             super.appendHoverText(stack, worldIn, tooltip, flagIn);
             return;
         }
-        CompoundTag nbt = stackNbt.getCompound(muramasa.antimatter.Ref.TAG_TOOL_DATA);
+        CompoundTag nbt = stackNbt.getCompound(Ref.TAG_TOOL_DATA);
         Material t = Material.get(nbt.getString("tm"));
         Material m = Material.get(nbt.getString("mm"));
         Material b = Material.get(nbt.getString("bm"));
@@ -76,7 +78,7 @@ public class ItemMixedMetal extends ItemBasic<ItemMixedMetal> implements IColorH
         nbt.putString("tm", top.getId());
         nbt.putString("mm", middle.getId());
         nbt.putString("bm", bottom.getId());
-        itemStack.getOrCreateTag().put(muramasa.antimatter.Ref.TAG_TOOL_DATA, nbt);
+        itemStack.getOrCreateTag().put(Ref.TAG_TOOL_DATA, nbt);
         return itemStack;
     }
 

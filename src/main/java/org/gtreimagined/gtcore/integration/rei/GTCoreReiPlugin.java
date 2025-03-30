@@ -14,6 +14,7 @@ import muramasa.antimatter.AntimatterAPI;
 import net.minecraft.world.item.ItemStack;
 import org.gtreimagined.gtcore.gui.ContainerWorkbench;
 import org.gtreimagined.gtcore.machine.WorkbenchMachine;
+import org.gtreimagined.gtlib.GTAPI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class GTCoreReiPlugin implements REIClientPlugin {
     @Override
     public void registerCategories(CategoryRegistry registry) {
         List<EntryStack<?>> list = new ArrayList<>();
-        AntimatterAPI.all(WorkbenchMachine.class).forEach(w -> {
+        GTAPI.all(WorkbenchMachine.class).forEach(w -> {
             w.getTiers().forEach(t -> {
                 list.add(EntryStack.of(VanillaEntryTypes.ITEM, new ItemStack(w.getItem(t))));
             });

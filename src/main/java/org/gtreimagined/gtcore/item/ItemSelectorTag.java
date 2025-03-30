@@ -1,11 +1,5 @@
 package org.gtreimagined.gtcore.item;
 
-import muramasa.antimatter.cover.CoverFactory;
-import muramasa.antimatter.cover.ICover;
-import muramasa.antimatter.cover.IHaveCover;
-import muramasa.antimatter.item.ItemBasic;
-import muramasa.antimatter.texture.Texture;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -14,6 +8,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.gtreimagined.gtcore.data.GTCoreItems;
+import org.gtreimagined.gtlib.cover.CoverFactory;
+import org.gtreimagined.gtlib.cover.ICover;
+import org.gtreimagined.gtlib.cover.IHaveCover;
+import org.gtreimagined.gtlib.item.ItemBasic;
+import org.gtreimagined.gtlib.texture.Texture;
+import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;

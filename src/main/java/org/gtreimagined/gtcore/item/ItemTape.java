@@ -1,14 +1,14 @@
 package org.gtreimagined.gtcore.item;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.item.ItemBasic;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.item.ItemBasic;
+import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;

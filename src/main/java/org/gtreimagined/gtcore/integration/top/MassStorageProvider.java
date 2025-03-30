@@ -9,8 +9,6 @@ import mcjty.theoneprobe.api.ProbeMode;
 import mcjty.theoneprobe.apiimpl.styles.ItemStyle;
 import mcjty.theoneprobe.apiimpl.styles.LayoutStyle;
 import mcjty.theoneprobe.config.Config;
-import muramasa.antimatter.gui.SlotType;
-import muramasa.antimatter.integration.top.TheOneProbePlugin;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextComponent;
@@ -23,6 +21,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
 import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.integration.top.TheOneProbePlugin;
 
 public class MassStorageProvider implements IProbeInfoProvider {
 

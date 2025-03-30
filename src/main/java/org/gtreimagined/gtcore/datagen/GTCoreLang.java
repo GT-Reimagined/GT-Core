@@ -1,12 +1,5 @@
 package org.gtreimagined.gtcore.datagen;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
-import muramasa.antimatter.item.ItemBasic;
-import muramasa.antimatter.pipe.BlockPipe;
-import muramasa.antimatter.pipe.PipeSize;
-import muramasa.antimatter.util.Utils;
 import org.apache.commons.lang3.StringUtils;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.BlockCasing;
@@ -15,13 +8,20 @@ import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.gtreimagined.gtcore.item.ItemHazmatArmor;
 import org.gtreimagined.gtcore.item.ItemSelectorTag;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.datagen.providers.GTLanguageProvider;
+import org.gtreimagined.gtlib.item.ItemBasic;
+import org.gtreimagined.gtlib.pipe.BlockPipe;
+import org.gtreimagined.gtlib.pipe.PipeSize;
+import org.gtreimagined.gtlib.util.Utils;
 
-import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
-import static muramasa.antimatter.util.Utils.lowerUnderscoreToUpperSpaced;
 import static org.gtreimagined.gtcore.data.GTCoreMaterials.Beeswax;
+import static org.gtreimagined.gtlib.data.GTMaterialTypes.*;
+import static org.gtreimagined.gtlib.util.Utils.lowerUnderscoreToUpperSpaced;
 
 public class GTCoreLang {
-    public static class en_US extends AntimatterLanguageProvider {
+    public static class en_US extends GTLanguageProvider {
 
         public en_US() {
             this("en_us");
@@ -95,18 +95,18 @@ public class GTCoreLang {
                     .replace("Hv", "(HV)")
                     .replace("Ev", "(EV)")
                     .replace("Iv", "(IV)")));
-            AntimatterAPI.all(BlockCasing.class).forEach(b -> this.add(b, Utils.lowerUnderscoreToUpperSpaced(b.getId())));
-            AntimatterAPI.all(ItemHazmatArmor.class, domain).forEach(i -> this.add(i, Utils.lowerUnderscoreToUpperSpaced(i.getId())));
+            GTAPI.all(BlockCasing.class).forEach(b -> this.add(b, lowerUnderscoreToUpperSpaced(b.getId())));
+            GTAPI.all(ItemHazmatArmor.class, domain).forEach(i -> this.add(i, lowerUnderscoreToUpperSpaced(i.getId())));
         }
 
         @Override
         protected void overrides() {
             super.overrides();
-            AntimatterAPI.all(BlockPipe.class).stream().filter(s -> s instanceof BlockRedstoneWire<?>).forEach(s -> {
+            GTAPI.all(BlockPipe.class).stream().filter(s -> s instanceof BlockRedstoneWire<?>).forEach(s -> {
                 String type = s.getSize() == PipeSize.TINY ? "Cable" : "Wire";
                 override(Ref.ID, s.getDescriptionId(), StringUtils.join(Utils.getLocalizedType(s.getType().getMaterial()), " ", type));
             });
-            AntimatterAPI.all(ItemSelectorTag.class, GTCore.ID).forEach(i -> override(i.getDescriptionId(), "Selector Tag (" + i.circuitId + ")"));
+            GTAPI.all(ItemSelectorTag.class, GTCore.ID).forEach(i -> override(i.getDescriptionId(), "Selector Tag (" + i.circuitId + ")"));
             override(Ref.ID, DUST.get(Beeswax).getDescriptionId(), "Beeswax");
             override(Ref.ID, DUST_SMALL.get(Beeswax).getDescriptionId(), "Small Beeswax");
             override(Ref.ID, DUST_TINY.get(Beeswax).getDescriptionId(), "Tiny Beeswax");

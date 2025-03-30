@@ -1,10 +1,5 @@
 package org.gtreimagined.gtcore.integration.tfc;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.registration.IAntimatterObject;
-import muramasa.antimatter.registration.IModelProvider;
-import muramasa.antimatter.registration.ITextureProvider;
-import muramasa.antimatter.texture.Texture;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
@@ -13,8 +8,13 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.registration.IGTObject;
+import org.gtreimagined.gtlib.registration.IModelProvider;
+import org.gtreimagined.gtlib.registration.ITextureProvider;
+import org.gtreimagined.gtlib.texture.Texture;
 
-public class BlockTFCRubberLoaves extends TFCLeavesBlock implements IAntimatterObject, ITextureProvider, IModelProvider {
+public class BlockTFCRubberLoaves extends TFCLeavesBlock implements IGTObject, ITextureProvider, IModelProvider {
     protected final String domain, id;
     public BlockTFCRubberLoaves() {
         super(ExtendedProperties.of(Material.LEAVES).strength(0.5F).sound(SoundType.GRASS).randomTicks().noOcclusion().isViewBlocking(TFCBlocks::never).flammableLikeLeaves(), 7, () -> TFCRubberData.RUBBER_FALLEN_LEAVES, () -> TFCRubberData.RUBBER_TWIG);

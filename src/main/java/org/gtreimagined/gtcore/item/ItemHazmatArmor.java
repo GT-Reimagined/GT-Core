@@ -1,11 +1,5 @@
 package org.gtreimagined.gtcore.item;
 
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.Ref;
-import muramasa.antimatter.registration.IAntimatterObject;
-import muramasa.antimatter.registration.IModelProvider;
-import muramasa.antimatter.registration.ITextureProvider;
-import muramasa.antimatter.texture.Texture;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -16,9 +10,15 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.registration.IGTObject;
+import org.gtreimagined.gtlib.registration.IModelProvider;
+import org.gtreimagined.gtlib.registration.ITextureProvider;
+import org.gtreimagined.gtlib.texture.Texture;
 import org.jetbrains.annotations.Nullable;
 
-public class ItemHazmatArmor extends ArmorItem implements IAntimatterObject, ITextureProvider, IModelProvider {
+public class ItemHazmatArmor extends ArmorItem implements IGTObject, ITextureProvider, IModelProvider {
     static ArmorMaterial HAZMAT = new ArmorMaterial() {
         @Override
         public int getDurabilityForSlot(EquipmentSlot slot) {
