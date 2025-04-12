@@ -39,9 +39,8 @@ import java.util.function.Predicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class RubberTreeWorldGen extends WorldGenBase<RubberTreeWorldGen> {
+public class RubberTreeWorldGen {
 
-    public static final RubberTreeWorldGen INSTANCE = new RubberTreeWorldGen();
     public static Holder<PlacedFeature> TREE;
     public static Holder<PlacedFeature> TREE_SWAMP;
     public static Holder<PlacedFeature> TREE_JUNGLE;
@@ -79,11 +78,6 @@ public class RubberTreeWorldGen extends WorldGenBase<RubberTreeWorldGen> {
     final static TreeConfiguration RUBBER_TREE_CONFIG_NORMAL =
             (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2),BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
                     new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().build();
-
-    public RubberTreeWorldGen(){
-        super("rubber_tree", RubberTreeWorldGen.class, Level.OVERWORLD);
-        GTLibWorldGenerator.register(this.toRegister, this);
-    }
 
     public static final PlacementModifierType<RubberTreePlacementModifier> RUBBER_TREE_PLACEMENT_MODIFIER  = () -> RubberTreePlacementModifier.CODEC;
 
