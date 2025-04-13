@@ -54,7 +54,7 @@ public class BlockEntitySteamMachine extends BlockEntityMachine<BlockEntitySteam
         //Allow up to 16 .
         @Override
         protected boolean validateRecipe(IRecipe r) {
-            return r.getPower() * 2 <= Tier.LV.getVoltage();
+            return r.getPower() * tile.machine.getEuMultiplier() <= Tier.LV.getVoltage();
         }
 
         public void setSteamClear(boolean steamClear) {
