@@ -20,7 +20,7 @@ public class BehaviourElectricWrenchSwitching implements IItemRightClick<IBasicG
     public InteractionResultHolder<ItemStack> onRightClick(IBasicGTTool instance, Level level, Player player, InteractionHand usedHand) {
         ItemStack stack = player.getItemInHand(usedHand);
         if (player.isShiftKeyDown() && !level.isClientSide){
-            String id = instance.getAntimatterToolType() == ELECTRIC_WRENCH_ALT ? instance.getId().replace("wrench_alt", "wrench") : instance.getId().replace("wrench", "wrench_alt");
+            String id = instance.getGTToolType() == ELECTRIC_WRENCH_ALT ? instance.getId().replace("wrench_alt", "wrench") : instance.getId().replace("wrench", "wrench_alt");
             Item newWrench = GTAPI.get(Item.class, id, instance.getDomain());
             ItemStack newStack = new ItemStack(newWrench);
             newStack.setTag(stack.getTag());

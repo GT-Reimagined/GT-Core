@@ -83,7 +83,7 @@ import org.gtreimagined.gtlib.event.GTCraftingEvent;
 import org.gtreimagined.gtlib.event.GTLoaderEvent;
 import org.gtreimagined.gtlib.event.GTProvidersEvent;
 import org.gtreimagined.gtlib.event.MaterialEvent;
-import org.gtreimagined.gtlib.integration.jeirei.AntimatterJEIREIPlugin;
+import org.gtreimagined.gtlib.integration.xei.GTLibXEIPlugin;
 import org.gtreimagined.gtlib.network.GTLibNetwork;
 import org.gtreimagined.gtlib.recipe.loader.IRecipeRegistrate;
 import org.gtreimagined.gtlib.registration.RegistrationEvent;
@@ -277,7 +277,7 @@ public class GTCore extends GTMod {
                 WoodType.register(GTCoreBlocks.RUBBER_WOOD_TYPE);
                 GTCoreRemapping.init();
                 CommonHandler.setup();
-                AntimatterJEIREIPlugin.addItemsToHide(l -> {
+                GTLibXEIPlugin.addItemsToHide(l -> {
                     l.add(GTAPI.get(IGTTool.class, "electric_wrench_alt_lv", GTCore.ID).getItem());
                     l.add(GTAPI.get(IGTTool.class, "electric_wrench_alt_mv", GTCore.ID).getItem());
                     l.add(GTAPI.get(IGTTool.class, "electric_wrench_alt_hv", GTCore.ID).getItem());
@@ -291,7 +291,7 @@ public class GTCore extends GTMod {
                         l.add(GTCoreItems.SELECTOR_TAG_ITEMS.get(i));
                     }
                     GTAPI.all(IGTTool.class).stream().filter(t -> {
-                        var toolType = t.getAntimatterToolType();
+                        var toolType = t.getGTToolType();
                         return toolType == GTCoreTools.POCKET_MULTITOOL_SCISSORS
                                 || toolType == GTCoreTools.POCKET_MULTITOOL_FILE
                                 || toolType == GTCoreTools.POCKET_MULTITOOL_KNIFE

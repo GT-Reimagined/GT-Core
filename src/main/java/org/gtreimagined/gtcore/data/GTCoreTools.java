@@ -187,7 +187,7 @@ public class GTCoreTools {
             return new Tuple<>(energy, maxEnergy);
         }
         if (stack.getItem() instanceof IGTTool tool){
-            if (tool.getAntimatterToolType().isPowered()){
+            if (tool.getGTToolType().isPowered()){
                 long currentEnergy = tool.getCurrentEnergy(stack);
                 long maxEnergy = tool.getMaxEnergy(stack);
                 return new Tuple<>(currentEnergy, maxEnergy);

@@ -30,8 +30,6 @@ import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtlib.mixin.BiomeAccessor;
 import org.gtreimagined.gtlib.util.TagUtils;
-import org.gtreimagined.gtlib.worldgen.GTLibWorldGenerator;
-import org.gtreimagined.gtlib.worldgen.object.WorldGenBase;
 
 import java.util.Random;
 import java.util.Set;

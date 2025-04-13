@@ -22,7 +22,7 @@ public class BehaviourMultitoolSwitching implements IItemRightClick<IBasicGTTool
     public InteractionResultHolder<ItemStack> onRightClick(IBasicGTTool instance, Level level, Player player, InteractionHand usedHand) {
         ItemStack stack = player.getItemInHand(usedHand);
         if (player.isShiftKeyDown() && !level.isClientSide){
-            var toolType = instance.getAntimatterToolType();
+            var toolType = instance.getGTToolType();
             String id = instance.getId();
             if (toolType == POCKET_MULTITOOL) id = id + "_knife";
             if (toolType == POCKET_MULTITOOL_KNIFE) id = id.replace("knife", "saw");
