@@ -41,7 +41,6 @@ import org.gtreimagined.gtcore.data.GTCoreMaterials;
 import org.gtreimagined.gtcore.data.GTCoreTools;
 import org.gtreimagined.gtcore.data.Guis;
 import org.gtreimagined.gtcore.data.MenuHandlers;
-import org.gtreimagined.gtcore.data.RecipeMaps;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.data.client.ScreenFactories;
 import org.gtreimagined.gtcore.datagen.GTCoreBlockLootProvider;
@@ -263,8 +262,6 @@ public class GTCore extends GTMod {
                 GTCoreMaterials.init();
                 GTCoreCables.init();
                 GTCoreTools.init(side);
-                RecipeMaps.init();
-                if (side.isClient()) RecipeMaps.clientMaps();
                 RubberTree.init();
                 RubberTreeWorldGen.init();
                 if (GTAPI.isModLoaded(Ref.MOD_TOP)){
