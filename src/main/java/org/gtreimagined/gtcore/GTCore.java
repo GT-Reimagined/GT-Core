@@ -58,7 +58,6 @@ import org.gtreimagined.gtcore.loader.crafting.Pipes;
 import org.gtreimagined.gtcore.loader.crafting.RubberRecipes;
 import org.gtreimagined.gtcore.loader.crafting.Tools;
 import org.gtreimagined.gtcore.loader.crafting.VanillaRecipes;
-import org.gtreimagined.gtcore.loader.machines.AssemblyLoader;
 import org.gtreimagined.gtcore.network.MessageCraftingSync;
 import org.gtreimagined.gtcore.network.MessageInventorySync;
 import org.gtreimagined.gtcore.network.MessageTriggerInventorySync;
@@ -115,7 +114,6 @@ public class GTCore extends GTMod {
         var eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::onProvidersEvent);
         eventBus.addListener(this::onCraftingEvent);
-        MinecraftForge.EVENT_BUS.addListener(GTCore::registerRecipeLoaders);
         MinecraftForge.EVENT_BUS.addListener(this::onChunkWatch);
         MinecraftForge.EVENT_BUS.addListener(this::onItemUse);
         eventBus.addGenericListener(FoliagePlacerType.class, this::onRegistration);
@@ -237,11 +235,6 @@ public class GTCore extends GTMod {
         event.addLoader(Tools::init);
         event.addLoader(VanillaRecipes::loadRecipes);
         event.addLoader(MiscRecipes::loadRecipes);
-    }
-
-    public static void registerRecipeLoaders(GTLoaderEvent event) {
-        BiConsumer<String, IRecipeRegistrate.IRecipeLoader> loader = (a, b) -> event.registrat.add(GTCore.ID, a, b);
-        loader.accept("assembling", AssemblyLoader::init);
     }
 
     private void onRegistration(final RegistryEvent.Register<FoliagePlacerType<?>> e){
