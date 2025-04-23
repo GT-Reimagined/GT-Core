@@ -33,7 +33,7 @@ public class MaterialRecipes {
         if (!GTAPI.isModLoaded("tfc")) {
             DUST.all().forEach(m -> {
                 if (m.has(GTMaterialTypes.INGOT)) {
-                    provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_grind_ingot", "gt_material",
+                    provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_grind_ingot", "gt_material",
                             DUST.get(m, 1), ImmutableMap.<Character, Object>builder()
                                     .put('M', GTTools.MORTAR.getTag())
                                     .put('I', GTMaterialTypes.INGOT.getMaterialTag(m))
@@ -41,27 +41,27 @@ public class MaterialRecipes {
                             "MI");
                 }
                 if (m.has(ROCK)) {
-                    provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_grind_rock", "gt_material",
+                    provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_grind_rock", "gt_material",
                             DUST.get(m, 1), ImmutableMap.<Character, Object>builder()
                                     .put('M', GTTools.MORTAR.getTag())
                                     .put('I', ROCK.getMaterialTag(m))
                                     .build(),
                             "II ", "IIM");
-                    provider.shapeless(consumer, m.getId() + "_grind_rock_2", "gt_material", GTMaterialTypes.DUST_SMALL.get(m, 1),
+                    provider.shapeless(consumer, GTCore.ID, m.getId() + "_grind_rock_2", "gt_material", GTMaterialTypes.DUST_SMALL.get(m, 1),
                             GTTools.MORTAR.getTag(), ROCK.getMaterialTag(m));
                 }
                 if (m.has(GTMaterialTypes.BEARING_ROCK)) {
-                    provider.addStackRecipe(consumer, Ref.ID, m.getId() + "_grind_bearing_rock", "gt_material",
+                    provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_grind_bearing_rock", "gt_material",
                             DUST.get(m, 1), ImmutableMap.<Character, Object>builder()
                                     .put('M', GTTools.MORTAR.getTag())
                                     .put('I', GTMaterialTypes.BEARING_ROCK.getMaterialTag(m))
                                     .build(),
                             "II ", "IIM");
-                    provider.shapeless(consumer, m.getId() + "_grind_bearing_rock_2", "gt_material", GTMaterialTypes.DUST_SMALL.get(m, 1),
+                    provider.shapeless(consumer, GTCore.ID, m.getId() + "_grind_bearing_rock_2", "gt_material", GTMaterialTypes.DUST_SMALL.get(m, 1),
                             GTTools.MORTAR.getTag(), GTMaterialTypes.BEARING_ROCK.getMaterialTag(m));
                 }
                 if (m.has(CRUSHED)){
-                    provider.shapeless(consumer, m.getId() + "_grind_crushed", "gt_material", GTMaterialTypes.DUST_IMPURE.get(m, 1),
+                    provider.shapeless(consumer, GTCore.ID, m.getId() + "_grind_crushed", "gt_material", GTMaterialTypes.DUST_IMPURE.get(m, 1),
                             GTTools.MORTAR.getTag(), CRUSHED.getMaterialTag(m));
                 }
             });
@@ -113,13 +113,13 @@ public class MaterialRecipes {
                 provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_rod_from_long_rod", "rods", ROD.get(m, 2),
                         ImmutableMap.of('S', SAW.getTag(), 'R', ROD_LONG.getMaterialTag(m)), "SR");
                 if (!m.has(NOSMASH)){
-                    provider.addStackRecipe(consumer, GTCore.ID, "", "rods", ROD_LONG.get(m, 1),
+                    provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_long_rod", "rods", ROD_LONG.get(m, 1),
                             ImmutableMap.of('S', HAMMER.getTag(), 'R', ROD.getMaterialTag(m)), "RSR");
                 }
             }
         });
         ROTOR.all().forEach(m -> {
-            provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_rotors", "gt_material",
+            provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_rotor", "gt_material",
                     ROTOR.get(m, 1), ImmutableMap.<Character, Object>builder()
                             .put('S', SCREWDRIVER.getTag())
                             .put('F', FILE.getTag())
@@ -134,21 +134,21 @@ public class MaterialRecipes {
             if (!m.has(NOSMASH)){
                 if (m.has(INGOT)){
                     Object[] array = GTCoreConfig.LOSSY_PART_CRAFTING.get() ? new Object[]{HAMMER.getTag(), INGOT.getMaterialTag(m), INGOT.getMaterialTag(m)} : new Object[]{HAMMER.getTag(), INGOT.getMaterialTag(m)};
-                    provider.shapeless(consumer, GTCore.ID, "", "gt_material", PLATE.get(m, 1), array);
+                    provider.shapeless(consumer, GTCore.ID, m.getId() + "_plate", "gt_material", PLATE.get(m, 1), array);
                 }
                 if (m.has(GEAR_SMALL)) {
-                    provider.addStackRecipe(consumer, GTCore.ID, "", "gt_material",
+                    provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_small_gear", "gt_material",
                             GEAR_SMALL.get(m, 1), ImmutableMap.of('H', HAMMER.getTag(),'P', PLATE.getMaterialTag(m)), "P ", " H");
                 }
                 if (m.has(ITEM_CASING)) {
-                    provider.addStackRecipe(consumer, GTCore.ID, "", "gt_material",
+                    provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_item_casing", "gt_material",
                             ITEM_CASING.get(m, 1), ImmutableMap.of('H', HAMMER.getTag(),'P', PLATE.getMaterialTag(m)), "H P");
                 }
                 if (m.has(FOIL)){
-                    provider.addStackRecipe(consumer, GTCore.ID, "", "gt_materials",
+                    provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_foil", "gt_materials",
                             FOIL.get(m, 2), of('H', HAMMER.getTag(), 'P', PLATE.getMaterialTag(m)), "HP");
                     if (m.has(WIRE_FINE)){
-                        provider.addItemRecipe(consumer, GTCore.ID, "", "gt_materials",
+                        provider.addItemRecipe(consumer, GTCore.ID, m.getId() + "_fine_wire", "gt_materials",
                                 WIRE_FINE.get(m), of('F', FOIL.getMaterialTag(m), 'W', WIRE_CUTTER.getTag()), "FW");
                     }
                 }
