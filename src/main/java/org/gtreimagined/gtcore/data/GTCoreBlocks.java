@@ -101,6 +101,7 @@ public class GTCoreBlocks {
     public static StoneType RED_GRANITE = GTAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "red_granite", RedGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
     public static StoneType BLACK_GRANITE = GTAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "black_granite", BlackGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
     public static StoneType MARBLE = GTAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "marble", Marble, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(0.75F,7.5F);
+    public static StoneType BASALT = GTAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "basalt", Basalt, "block/stone/", SoundType.BASALT, true).setHardnessAndResistance(1.25F, 4.2F));
 
     public static StoneType KOMATIITE = GTAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "komatiite", Komatiite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(3.0F, 30.0F).setHarvestLevel(2);
     public static StoneType LIMESTONE = GTAPI.register(StoneType.class,  new CobbleStoneType(GTCore.ID, "limestone", Limestone, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(0.75F,7.5F);

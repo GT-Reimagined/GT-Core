@@ -250,6 +250,7 @@ public class GTCoreMaterials {
      ** Stones
      **/
 
+    public static Material Basalt = GTAPI.register(Material.class, new Material(GTCore.ID, "basalt", 0x1e1414, ROUGH));
     public static Material BlackGranite = GTAPI.register(Material.class, new Material(GTCore.ID, "black_granite", 0x0a0a0a, ROUGH));
     public static Material BlueSchist = GTAPI.register(Material.class, new Material(GTCore.ID, "blue_schist", 0x0569be, NONE));
     public static Material GreenSchist = GTAPI.register(Material.class, new Material(GTCore.ID, "green_schist", 0x69be69, NONE));
