@@ -1,17 +1,20 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraftforge.common.Tags;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.GTCoreConfig;
+import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.Ref;
@@ -36,6 +39,9 @@ public class VanillaRecipes {
         }
 
         provider.addItemRecipe(consumer, GTCore.ID, "piston_sticky","gears", Blocks.STICKY_PISTON, of('S', GTCoreItems.StickyResin, 'P', Blocks.PISTON), "S", "P");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(GTCoreBlocks.BASALT.getState().getBlock()), Items.BASALT).unlockedBy("has_basalt", provider.hasSafeItem(GTCoreBlocks.BASALT.getState().getBlock())).save(consumer, new ResourceLocation(GTCore.ID, "basalt_to_vanilla_basalt"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(GTCoreBlocks.BASALT.getState().getBlock()), Items.POLISHED_BASALT).unlockedBy("has_basalt", provider.hasSafeItem(GTCoreBlocks.BASALT.getState().getBlock())).save(consumer, new ResourceLocation(GTCore.ID, "basalt_to_vanilla_polished_basalt"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(GTCoreBlocks.BASALT.getState().getBlock()), Items.SMOOTH_BASALT).unlockedBy("has_basalt", provider.hasSafeItem(GTCoreBlocks.BASALT.getState().getBlock())).save(consumer, new ResourceLocation(GTCore.ID, "basalt_to_vanilla_smooth_basalt"));
         loadOverrides(consumer, provider);
         loadWood(consumer, provider);
     }
