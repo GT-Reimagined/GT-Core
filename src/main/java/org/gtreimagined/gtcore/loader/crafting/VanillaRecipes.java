@@ -42,6 +42,7 @@ public class VanillaRecipes {
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(GTCoreBlocks.BASALT.getState().getBlock()), Items.BASALT).unlockedBy("has_basalt", provider.hasSafeItem(GTCoreBlocks.BASALT.getState().getBlock())).save(consumer, new ResourceLocation(GTCore.ID, "basalt_to_vanilla_basalt"));
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(GTCoreBlocks.BASALT.getState().getBlock()), Items.POLISHED_BASALT).unlockedBy("has_basalt", provider.hasSafeItem(GTCoreBlocks.BASALT.getState().getBlock())).save(consumer, new ResourceLocation(GTCore.ID, "basalt_to_vanilla_polished_basalt"));
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(GTCoreBlocks.BASALT.getState().getBlock()), Items.SMOOTH_BASALT).unlockedBy("has_basalt", provider.hasSafeItem(GTCoreBlocks.BASALT.getState().getBlock())).save(consumer, new ResourceLocation(GTCore.ID, "basalt_to_vanilla_smooth_basalt"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(Items.BASALT), GTCoreBlocks.BASALT.getState().getBlock().asItem()).unlockedBy("has_basalt", provider.hasSafeItem(Items.BASALT)).save(consumer, new ResourceLocation(GTCore.ID, "vanilla_basalt_to_basalt"));
         loadOverrides(consumer, provider);
         loadWood(consumer, provider);
     }
