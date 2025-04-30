@@ -24,6 +24,7 @@ import org.gtreimagined.gtcore.machine.ChestMachine;
 import org.gtreimagined.gtcore.machine.MassStorageMachine;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.client.ModelUtils;
+import org.lwjgl.opengl.GL11;
 
 import java.io.File;
 import java.io.FileOutputStream;
