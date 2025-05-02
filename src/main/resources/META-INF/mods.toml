@@ -26,6 +26,6 @@ description='''Core Items and blocks used by both gt5r and gt4r.'''
 [[dependencies.gtcore]]
     modId="gtlib"
     mandatory=true
-    versionRange="[0.3-pre.9,)"
+    versionRange="[0.3,)"
     ordering="AFTER"
     side="BOTH"
