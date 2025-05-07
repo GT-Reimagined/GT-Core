@@ -133,8 +133,8 @@ public class MaterialRecipes {
         PLATE.all().forEach(m -> {
             if (!m.has(NOSMASH)){
                 if (m.has(INGOT)){
-                    Object[] array = GTCoreConfig.LOSSY_PART_CRAFTING.get() ? new Object[]{HAMMER.getTag(), INGOT.getMaterialTag(m), INGOT.getMaterialTag(m)} : new Object[]{HAMMER.getTag(), INGOT.getMaterialTag(m)};
-                    provider.shapeless(consumer, GTCore.ID, m.getId() + "_plate", "gt_material", PLATE.get(m, 1), array);
+                    String[] array = GTCoreConfig.LOSSY_PART_CRAFTING.get() ? new String[]{"H", "I", "I"} : new String[]{"H", "I"};
+                    provider.addItemRecipe(consumer, GTCore.ID, m.getId() + "_plate", "gt_material", PLATE.get(m), of('H', HAMMER.getTag(), 'I', INGOT.getMaterialTag(m)), array);
                 }
                 if (m.has(GEAR_SMALL)) {
                     provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_small_gear", "gt_material",
