@@ -137,54 +137,25 @@ public class GTCoreMaterials {
      ** Metals
      **/
 
-    public static Material AnnealedCopper = GTAPI.register(Material.class, new Material(GTCore.ID, "annealed_copper", 0xff7814, SHINY));
-    public static Material BatteryAlloy = GTAPI.register(Material.class, new Material(GTCore.ID, "battery_alloy", 0x9c7ca0, DULL));
-    public static Material BismuthBronze = GTAPI.register(Material.class, new Material(GTCore.ID, "bismuth_bronze", 0x647d7d, DULL));
-    public static Material BlackBronze = GTAPI.register(Material.class, new Material(GTCore.ID, "black_bronze", 0x64327d, DULL));
-    public static Material BlackSteel = GTAPI.register(Material.class, new Material(GTCore.ID, "black_steel", 0x646464, METALLIC));
-    public static Material BlueSteel = GTAPI.register(Material.class, new Material(GTCore.ID, "blue_steel", 0x64648c, METALLIC));
     public static Material Brass = GTAPI.register(Material.class, new Material(GTCore.ID, "brass", 0xffb400, METALLIC));
     public static Material Bronze = GTAPI.register(Material.class, new Material(GTCore.ID, "bronze", 0xff8000, METALLIC));
-    public static Material CobaltBrass = GTAPI.register(Material.class, new Material(GTCore.ID, "cobalt_brass", 0xb4b4a0, METALLIC));
     public static Material Cupronickel = GTAPI.register(Material.class, new Material(GTCore.ID, "cupronickel", 0xe39680, METALLIC));
-    public static Material Duranium = GTAPI.register(Material.class, new Material(GTCore.ID, "duranium", 0xffffff, METALLIC));
     public static Material Electrum = GTAPI.register(Material.class, new Material(GTCore.ID, "electrum", 0xffff64, SHINY));
-    public static Material EnrichedNaquadah = GTAPI.register(Material.class, new Material(GTCore.ID, "enriched_naquadah", 0x323232, SHINY));
-    public static Material HSSE = GTAPI.register(Material.class, new Material(GTCore.ID, "hsse", 0x336600, METALLIC)).setDisplayNameString("HSS-E");
-    public static Material HSSG = GTAPI.register(Material.class, new Material(GTCore.ID, "hssg", 0x999900, METALLIC)).setDisplayNameString("HSS-G");
-    public static Material HSSS = GTAPI.register(Material.class, new Material(GTCore.ID, "hsss", 0x660033, METALLIC)).setDisplayNameString("HSS-S");
     public static Material Invar = GTAPI.register(Material.class, new Material(GTCore.ID, "invar", 0xb4b478, METALLIC));
     public static Material IronMagnetic = GTAPI.register(Material.class, new Material(GTCore.ID, "magnetic_iron", 0xc8c8c8, MAGNETIC)).setMassMultiplierAndDivider(51, 50);
     public static Material Kanthal = GTAPI.register(Material.class, new Material(GTCore.ID, "kanthal", 0xc2d2df, METALLIC));
     public static Material LeadedRedstone = GTAPI.register(Material.class, new Material(GTCore.ID, "leaded_redstone", 0x9a0000, DULL)).setMassMultiplierAndDivider(5, 4);
-    public static Material Magnalium = GTAPI.register(Material.class, new Material(GTCore.ID, "magnalium", 0xc8beff, DULL));
-    public static Material Naquadah = GTAPI.register(Material.class, new Material(GTCore.ID, "naquadah", 0x323232, METALLIC, Naq));
-    public static Material NaquadahAlloy = GTAPI.register(Material.class, new Material(GTCore.ID, "naquadah_alloy", 0x282828, METALLIC));
-    public static Material Naquadria = GTAPI.register(Material.class, new Material(GTCore.ID, "naquadria", 0x1e1e1e, SHINY));
     public static Material NeodymiumMagnetic = GTAPI.register(Material.class, new Material(GTCore.ID, "magnetic_neodymium", 0x646464, MAGNETIC)).setMassMultiplierAndDivider(51, 50);
-    public static Material Neutronium = GTAPI.register(Material.class, new Material(GTCore.ID, "neutronium", 0xfafafa, DULL, Nt));
     public static Material Nichrome = GTAPI.register(Material.class, new Material(GTCore.ID, "nichrome", 0xcdcef6, METALLIC));
-    public static Material NickelZincFerrite = GTAPI.register(Material.class, new Material(GTCore.ID, "nickel_zinc_ferrite", 0x3c3c3c, ROUGH));
-    public static Material NiobiumTitanium = GTAPI.register(Material.class, new Material(GTCore.ID, "niobium_titanium", 0x1d1d29, DULL));
     public static Material Osmiridium = GTAPI.register(Material.class, new Material(GTCore.ID, "osmiridium", 0x6464ff, METALLIC));
     public static Material RedAlloy = GTAPI.register(Material.class, new Material(GTCore.ID, "red_alloy", 0xc80000, DULL)).setMassMultiplierAndDivider(5, 4);
-    public static Material RedSteel = GTAPI.register(Material.class, new Material(GTCore.ID, "red_steel", 0x8c6464, METALLIC));
-    public static Material RoseGold = GTAPI.register(Material.class, new Material(GTCore.ID, "rose_gold", 0xffe61e, SHINY));
     public static Material SolderingAlloy = GTAPI.register(Material.class, new Material(GTCore.ID, "soldering_alloy", 0xdcdce6, DULL));
     public static Material Steel = GTAPI.register(Material.class, new Material(GTCore.ID, "steel", 0x808080, METALLIC)).setMassMultiplierAndDivider(51, 50);
     public static Material SteelMagnetic = GTAPI.register(Material.class, new Material(GTCore.ID, "magnetic_steel", 0x808080, MAGNETIC)).setMassMultiplierAndDivider(51, 50);
-    public static Material SterlingSilver = GTAPI.register(Material.class, new Material(GTCore.ID, "sterling_silver", 0xfadce1, SHINY));
     public static Material StainlessSteel = GTAPI.register(Material.class, new Material(GTCore.ID, "stainless_steel", 0xc8c8dc, SHINY));
-    public static Material TinAlloy = GTAPI.register(Material.class, new Material(GTCore.ID, "tin_alloy", 0x9fadbb, NONE));
-    public static Material Tritanium = GTAPI.register(Material.class, new Material(GTCore.ID, "tritanium", 0xffffff, SHINY));
     public static Material TungstenCarbide = GTAPI.register(Material.class, new Material(GTCore.ID, "tungsten_carbide", 0x330066, METALLIC));
     public static Material TungstenSteel = GTAPI.register(Material.class, new Material(GTCore.ID, "tungstensteel", 0x6464a0, METALLIC));
-    public static Material Ultimet = GTAPI.register(Material.class, new Material(GTCore.ID, "ultimet", 0xb4b4e6, SHINY));
-    public static Material VanadiumGallium = GTAPI.register(Material.class, new Material(GTCore.ID, "vanadium_gallium", 0x80808c, SHINY));
-    public static Material VanadiumSteel = GTAPI.register(Material.class, new Material(GTCore.ID, "vanadium_steel", 0xc0c0c0, METALLIC));
-    public static Material Vibranium = GTAPI.register(Material.class, new Material(GTCore.ID, "vibranium", 0x00ffff, SHINY));
     public static Material WroughtIron = GTAPI.register(Material.class, new Material(GTCore.ID, "wrought_iron", 0xc8b4b4, METALLIC));
-    public static Material YttriumBariumCuprate = GTAPI.register(Material.class, new Material(GTCore.ID, "yttrium_barium_cuprate", 0x504046, METALLIC));
 
     public static Material Signalum = GTAPI.register(Material.class, new Material(GTCore.ID, "signalum", 0xFF4000, SHINY));
     public static Material Lumium = GTAPI.register(Material.class, new Material(GTCore.ID, "lumium", 0xffff50, SHINY));
@@ -209,35 +180,7 @@ public class GTCoreMaterials {
     /**
      ** Gems
      **/
-
-    public static Material CoalCoke = GTAPI.register(Material.class, new Material(GTCore.ID, "coal_coke", 0x8c8caa, LIGNITE));
-    public static Material LigniteCoke = GTAPI.register(Material.class, new Material(GTCore.ID, "lignite_coke", 0x8c6464, LIGNITE));
-
-    public static Material Apatite = GTAPI.register(Material.class, new Material(GTCore.ID, "apatite", 0x78B4FA, DIAMOND));
-    public static Material Amber = GTAPI.register(Material.class, new Material(GTCore.ID, "amber", 0xFFB400, RUBY));
-    public static Material Amethyst = GTAPI.register(Material.class, new Material(GTCore.ID, "amethyst", 0xd232d2, RUBY));
-    public static Material Sapphire = GTAPI.register(Material.class, new Material(GTCore.ID, "sapphire", 0x6464c8, GEM_V));
-    public static Material BlueTopaz = GTAPI.register(Material.class, new Material(GTCore.ID, "blue_topaz", 0x0000ff, GEM_H));
-    public static Material MilkyQuartz = GTAPI.register(Material.class, new Material(GTCore.ID, "milky_quartz", 0xd2d2d2, QUARTZ));
-    public static Material CertusQuartz = GTAPI.register(Material.class,new Material(GTCore.ID, "certus_quartz", 0xd2d2e6, QUARTZ, Ref.MOD_AE));
-    public static Material ChargedCertusQuartz = GTAPI.register(Material.class,new Material(GTCore.ID, "charged_certus_quartz", 0xd2d2e6, QUARTZ, Ref.MOD_AE));
-    public static Material Fluix = GTAPI.register(Material.class, new Material(GTCore.ID, "fluix", 0x78468C, QUARTZ, Ref.MOD_AE));
-    public static Material Dilithium = GTAPI.register(Material.class, new Material(GTCore.ID, "dilithium", 0xfffafa, DIAMOND));
     public static Material Glass = GTAPI.register(Material.class, new Material(GTCore.ID, "glass", 0xfafafa, SHINY));
-    public static Material GreenSapphire = GTAPI.register(Material.class, new Material(GTCore.ID, "green_sapphire", 0x64c882, GEM_H));
-    public static Material Jade = GTAPI.register(Material.class, new Material(GTCore.ID, "jade", 0x64ff7d, LAPIS));
-    public static Material Lazurite = GTAPI.register(Material.class, new Material(GTCore.ID, "lazurite", 0x6478ff, LAPIS));
-    public static Material Monazite = GTAPI.register(Material.class, new Material(GTCore.ID, "monazite", 0x324632, DIAMOND));
-    public static Material NetherStar = GTAPI.register(Material.class, new Material(GTCore.ID, "nether_star", 0xffffff, NONE));
-    public static Material Olivine = GTAPI.register(Material.class, new Material(GTCore.ID, "olivine", 0x96ff96, RUBY));
-    public static Material Opal = GTAPI.register(Material.class, new Material(GTCore.ID, "opal", 0x0000ff, RUBY));
-    public static Material Phosphorus = GTAPI.register(Material.class, new Material(GTCore.ID, "phosphorus", 0xffff00, TextureSet.FLINT));
-    public static Material RedGarnet = GTAPI.register(Material.class, new Material(GTCore.ID, "red_garnet", 0xc85050, GARNET));
-    public static Material Ruby = GTAPI.register(Material.class, new Material(GTCore.ID, "ruby", 0xff6464, RUBY));
-    public static Material Sodalite = GTAPI.register(Material.class, new Material(GTCore.ID, "sodalite", 0x1414ff, LAPIS));
-    public static Material Tanzanite = GTAPI.register(Material.class, new Material(GTCore.ID, "tanzanite", 0x4000c8, GEM_V));
-    public static Material Topaz = GTAPI.register(Material.class, new Material(GTCore.ID, "topaz", 0xff8000, GEM_H));
-    public static Material YellowGarnet = GTAPI.register(Material.class, new Material(GTCore.ID, "yellow_garnet", 0xc8c850, GARNET));
 
     /**
      ** Plastic
