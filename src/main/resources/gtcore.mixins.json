@@ -9,7 +9,8 @@
     "MixinComposterBlock",
     "MixinHoneycombItem",
     "MixinMerchantOffer",
-    "NearestAttackableTargetMixin"
+    "NearestAttackableTargetMixin",
+    "RepairItemRecipeMixin"
   ],
   "client": [
     "AbstractClientPlayerEntityMixin"
