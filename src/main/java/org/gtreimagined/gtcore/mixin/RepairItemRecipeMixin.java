@@ -13,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
-@Debug(export = true)
 @Mixin(RepairItemRecipe.class)
 public class RepairItemRecipeMixin {
 
