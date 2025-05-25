@@ -71,17 +71,7 @@ public class GTCoreItemTagProvider extends GTItemTagProvider {
             this.tag(TagUtils.getItemTag(new ResourceLocation("tfc", "log_pile_logs"))).addTag(GTCoreTags.RUBBER_LOGS);
 
         }
-        this.tag(CIRCUITS_BASIC).add(CircuitBasic);
-        this.tag(CIRCUITS_GOOD).add(CircuitGood);
-        this.tag(CIRCUITS_ADVANCED).add(CircuitAdv);
-        this.tag(CIRCUITS_COMPLEX).add(CircuitComplex);
-        this.tag(CIRCUITS_DATA).add(CircuitDataStorage);
-        this.tag(CIRCUITS_ELITE).add(CircuitDataControl);
-        this.tag(CIRCUITS_MASTER).add(CircuitEnergyFlow);
-        this.tag(CIRCUITS_FUTURISTIC).add(CircuitFuturistic);
-        this.tag(CIRCUITS_3D).add(Circuit3D);
-        this.tag(CIRCUITS_INFINITE).add(CircuitInfinite);
-        this.tag(CIRCUITS_DATA_ORB).add(DataOrb);
+
         if (GTAPI.isModLoaded("curios")){
             this.tag(TagUtils.getItemTag(new ResourceLocation("curios", "belt"))).addTag(BATTERIES_LV).addTag(BATTERIES_MV).addTag(BATTERIES_HV);
         }

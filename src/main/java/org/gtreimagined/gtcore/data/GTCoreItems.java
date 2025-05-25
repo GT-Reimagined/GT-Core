@@ -77,34 +77,6 @@ public class GTCoreItems {
     public static ItemBasic<?> FALDuctTapeEmpty = new ItemTape(GTCore.ID, "fal_duct_tape_empty");
     public static ItemBasic<?> FALDuctTape = new ItemTape(GTCore.ID, "fal_duct_tape", 10000000);
 
-    public static ItemBasic<?> NandChip = new ItemBasic<>(GTCore.ID, "nand_chip").tip("A very simple circuit");
-    public static ItemBasic<?> AdvCircuitParts = new ItemBasic<>(GTCore.ID, "advanced_circuit_parts").tip("Used for making Advanced Circuits");
-    public static ItemBasic<?> ComplexCircuitParts = new ItemBasic<>(GTCore.ID, "complex_circuit_parts").tip("Used for making Complex Circuits");
-    public static ItemBasic<?> EtchedWiringMV = new ItemBasic<>(GTCore.ID, "copper_etched_wiring").tip("Circuit board parts");
-    public static ItemBasic<?> EtchedWiringHV = new ItemBasic<>(GTCore.ID, "gold_etched_wiring").tip("Circuit board parts");
-    public static ItemBasic<?> EtchedWiringEV = new ItemBasic<>(GTCore.ID, "platinum_etched_wiring").tip("Circuit board parts");
-    public static ItemBasic<?> EngravedCrystalChip = new ItemBasic<>(GTCore.ID, "engraved_crystal_chip").tip("Needed for Circuits");
-    public static ItemBasic<?> EngravedLapotronChip = new ItemBasic<>(GTCore.ID, "engraved_lapotron_chip").tip("Needed for Circuits");
-
-    public static ItemBasic<?> CircuitBoardBasic = new ItemBasic<>(GTCore.ID, "basic_circuit_board", "circuits/");
-    public static ItemBasic<?> CircuitBoardAdvanced = new ItemBasic<>(GTCore.ID, "advanced_circuit_board", "circuits/");
-    public static ItemBasic<?> CircuitBoardComplex = new ItemBasic<>(GTCore.ID, "complex_circuit_board", "circuits/");
-    public static ItemBasic<?> CircuitBoardEmpty = new ItemBasic<>(GTCore.ID, "empty_circuit_board", "circuits/");
-    public static ItemBasic<?> CircuitBoardProcessor = new ItemBasic<>(GTCore.ID, "processor_circuit_board", "circuits/");
-    public static ItemBasic<?> CircuitBoardProcessorEmpty = new ItemBasic<>(GTCore.ID, "empty_processor_circuit_board", "circuits/");
-
-    public static ItemBasic<?> CircuitBasic = new ItemBasic<>(GTCore.ID, "basic_circuit", "circuits/").tip("A Basic Circuit");
-    public static ItemBasic<?> CircuitGood = new ItemBasic<>(GTCore.ID, "good_circuit", "circuits/").tip("A Good Circuit");
-    public static ItemBasic<?> CircuitAdv = new ItemBasic<>(GTCore.ID, "advanced_circuit", "circuits/").tip("A Advanced Circuit");
-    public static ItemBasic<?> CircuitComplex = new ItemBasic<>(GTCore.ID, "complex_circuit", "circuits/").tip("A Complex Circuit");
-    public static ItemBasic<?> CircuitDataStorage = new ItemBasic<>(GTCore.ID, "data_storage_circuit", "circuits/");
-    public static ItemBasic<?> CircuitDataControl = new ItemBasic<>(GTCore.ID, "data_control_circuit", "circuits/").tip("An Elite Circuit"); //could be considered BIO
-    public static ItemBasic<?> CircuitEnergyFlow = new ItemBasic<>(GTCore.ID, "energy_flow_circuit", "circuits/").tip("A Master Circuit"); //maybe name futuristic
-    public static ItemBasic<?> CircuitFuturistic = new ItemBasic<>(GTCore.ID, "futuristic_circuit", "circuits/").tip("A Futuristic Circuit");
-    public static ItemBasic<?> Circuit3D = new ItemBasic<>(GTCore.ID, "3d_circuit", "circuits/").tip("A 3-Dimensional Circuit");
-    public static ItemBasic<?> CircuitInfinite = new ItemBasic<>(GTCore.ID, "infinite_circuit", "circuits/").tip("A Circuit with Infinite Power Throughput");
-    public static ItemBasic<?> DataOrb = new ItemBasic<>(GTCore.ID, "data_orb", "circuits/");
-
     public static ItemBasic<?> MotorLV = new ItemBasic<>(GTCore.ID, "motor_lv");
     public static ItemBasic<?> MotorMV = new ItemBasic<>(GTCore.ID, "motor_mv");
     public static ItemBasic<?> MotorHV = new ItemBasic<>(GTCore.ID, "motor_hv");
