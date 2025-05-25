@@ -18,9 +18,7 @@ public class GTCoreTags {
     public static TagKey<Item> CIRCUITS_DATA = getTag("circuits/data");
     public static TagKey<Item> CIRCUITS_ELITE = getTag("circuits/elite");
     public static TagKey<Item> CIRCUITS_MASTER = getTag("circuits/master");
-    public static TagKey<Item> CIRCUITS_FUTURISTIC = getTag("circuits/futuristic");
-    public static TagKey<Item> CIRCUITS_3D = getTag("circuits/3d");
-    public static TagKey<Item> CIRCUITS_INFINITE = getTag("circuits/infinite");
+    public static TagKey<Item> CIRCUITS_ULTIMATE = getTag("circuits/ultimate");
     public static TagKey<Item> CIRCUITS_DATA_ORB = getTag("circuits/data_orb");
     public static TagKey<Item> DUST_LAPIS_LAZURITE = getTag("dusts/lapislazurite");
     public static TagKey<Item> DUST_COALS = getTag("dusts/coals");
