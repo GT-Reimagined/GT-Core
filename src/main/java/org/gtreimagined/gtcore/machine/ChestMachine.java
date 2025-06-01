@@ -21,7 +21,7 @@ public class ChestMachine extends MaterialMachine {
         this.setTile(BlockEntityChest::new);
         this.setTiers(Tier.NONE);
         this.addFlags(ITEM, GUI);
-        this.tesr().noCovers();
+        this.tesr().noOutputCover();
         this.getGui().setPlayerYOffset(56).setPlayerXOffset(4);
         this.getGui().setYSize(222).setXSize(184).setBackgroundTexture("chest_base");
         this.overlayTexture((type, state, tier, i) -> new Texture[] {

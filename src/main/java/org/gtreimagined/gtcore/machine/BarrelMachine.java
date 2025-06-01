@@ -18,7 +18,7 @@ public class BarrelMachine extends MaterialMachine{
         this.setTile(BlockEntityBarrel::new);
         this.setTiers(Tier.NONE);
         this.addFlags(ITEM, GUI);
-        this.tesr().noCovers().setVerticalFacingAllowed(true);
+        this.tesr().noOutputCover().setVerticalFacingAllowed(true);
         this.getGui().setPlayerYOffset(56).setPlayerXOffset(4);
         this.getGui().setYSize(222).setXSize(184).setBackgroundTexture("chest_base");
         this.overlayTexture((type, state, tier, i) -> new Texture[] {
