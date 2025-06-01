@@ -126,9 +126,9 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
 
     private int getPower(Direction side) {
         if (side.get3DDataValue() == mReceived) return 0;
+        BlockEntity neighbor = getCachedBlockEntity(side);
         BlockState blockState = level.getBlockState(this.getBlockPos().relative(side));
-        Block block = blockState.getBlock();
-        if (block instanceof BlockRedstoneWire<?>) return 0;
+        if (neighbor instanceof BlockEntityRedstoneWire<?>) return 0;
         boolean connects = connects(side);
         if (mRedstone <= 0 || !connects) return 0;
         return getVanillaRedstonePower() - (blockState.is(Blocks.REDSTONE_WIRE) || blockState.isCollisionShapeFullBlock(level, this.getBlockPos().relative(side)) ? 1 : 0);
