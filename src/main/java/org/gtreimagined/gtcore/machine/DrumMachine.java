@@ -43,7 +43,7 @@ public class DrumMachine extends MaterialMachine{
                 tooltip.add(Utils.translatable("machine.drum.output"));
             }
         });
-        baseTexture((m, t, s) -> new Texture[] {
+        setBaseTexture((m, t, s) -> new Texture[] {
                 new Texture(GTCore.ID, "block/machine/base/drum/bottom"),
                 new Texture(GTCore.ID, "block/machine/base/drum/top"),
                 new Texture(GTCore.ID, "block/machine/base/drum/side"),
@@ -51,7 +51,7 @@ public class DrumMachine extends MaterialMachine{
                 new Texture(GTCore.ID, "block/machine/base/drum/side"),
                 new Texture(GTCore.ID, "block/machine/base/drum/side"),
         });
-        overlayTexture((type, state, tier, i) -> new Texture[] {
+        setOverlayTextures((type, state, tier, i) -> new Texture[] {
                 new Texture(GTCore.ID, "block/machine/overlay/drum/bottom"),
                 new Texture(GTCore.ID, "block/machine/overlay/drum/top"),
                 new Texture(GTCore.ID, "block/machine/overlay/drum/side"),

@@ -18,10 +18,10 @@ public class BarrelMachine extends MaterialMachine{
         this.setTile(BlockEntityBarrel::new);
         this.setTiers(Tier.NONE);
         this.addFlags(ITEM, GUI);
-        this.tesr().noOutputCover().setVerticalFacingAllowed(true);
-        this.getGui().setPlayerYOffset(56).setPlayerXOffset(4);
-        this.getGui().setYSize(222).setXSize(184).setBackgroundTexture("chest_base");
-        this.overlayTexture((type, state, tier, i) -> new Texture[] {
+        this.setRenderAsTesr().setNoOutputCover().setVerticalFacingAllowed(true);
+        this.getGuiData().setPlayerYOffset(56).setPlayerXOffset(4);
+        this.getGuiData().setYSize(222).setXSize(184).setBackgroundTexture("chest_base");
+        this.setOverlayTextures((type, state, tier, i) -> new Texture[] {
                 new Texture(GTCore.ID, "block/machine/overlay/item_barrel/side"),
                 new Texture(GTCore.ID, "block/machine/overlay/item_barrel/side"),
                 new Texture(GTCore.ID, "block/machine/overlay/item_barrel/bottom"),
@@ -29,7 +29,7 @@ public class BarrelMachine extends MaterialMachine{
                 new Texture(GTCore.ID, "block/machine/overlay/item_barrel/right"),
                 new Texture(GTCore.ID, "block/machine/overlay/item_barrel/left"),
         });
-        this.baseTexture((m, t, s) -> new Texture[] {
+        this.setBaseTexture((m, t, s) -> new Texture[] {
                 new Texture(GTCore.ID, "block/machine/base/item_barrel/side"),
                 new Texture(GTCore.ID, "block/machine/base/item_barrel/side"),
                 new Texture(GTCore.ID, "block/machine/base/item_barrel/bottom"),

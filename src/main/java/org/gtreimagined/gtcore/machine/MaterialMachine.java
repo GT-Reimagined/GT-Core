@@ -19,9 +19,9 @@ public class MaterialMachine extends Machine<MaterialMachine> {
         setTile(BlockEntityMaterial::new);
         addFlags(COVERABLE);
         this.setGUI(Data.BASIC_MENU_HANDLER);
-        noOutputCover();
-        allowFrontIO();
-        frontCovers();
+        setNoOutputCover();
+        setAllowsFrontIO();
+        setAllowsFrontCovers();
     }
 
     public Material getMaterial() {

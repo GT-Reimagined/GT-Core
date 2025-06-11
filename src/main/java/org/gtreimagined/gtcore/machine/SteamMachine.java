@@ -31,14 +31,14 @@ public class SteamMachine extends Machine<SteamMachine> {
         addFlags(BASIC, STEAM, COVERABLE);
         setGUI(Data.BASIC_MENU_HANDLER);
         setClientTicking();
-        getGui().getMachineData().setMachineStateLocation(BRONZE, "bronze_machine_state").setMachineStateLocation(STEEL, "steel_machine_state");
+        getGuiData().getMachineData().setMachineStateLocation(BRONZE, "bronze_machine_state").setMachineStateLocation(STEEL, "steel_machine_state");
         String suffix = id.contains("furnace") || id.contains("smelter") || id.contains("boiler") ? "default" : id.replace("steam_", "");
-        getGui().getMachineData().setProgressLocation(BRONZE, "bronze_" + suffix).setProgressLocation(STEEL, "steel_" + suffix);
+        getGuiData().getMachineData().setProgressLocation(BRONZE, "bronze_" + suffix).setProgressLocation(STEEL, "steel_" + suffix);
         String bSuffix = id.contains("macerator") || id.contains("forge_hammer") ? id.replace("steam", "") : "";
         if (id.contains("boiler")){
-            getGui().setBackgroundTexture(BRONZE, id + "_bronze").setBackgroundTexture(STEEL, id + "_steel");
+            getGuiData().setBackgroundTexture(BRONZE, id + "_bronze").setBackgroundTexture(STEEL, id + "_steel");
         } else {
-            getGui().setBackgroundTexture(BRONZE, "machine_bronze" + bSuffix).setBackgroundTexture(STEEL, "machine_steel" + bSuffix);
+            getGuiData().setBackgroundTexture(BRONZE, "machine_bronze" + bSuffix).setBackgroundTexture(STEEL, "machine_steel" + bSuffix);
         }
     }
 

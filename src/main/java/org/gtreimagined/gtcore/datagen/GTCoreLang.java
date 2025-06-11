@@ -108,8 +108,8 @@ public class GTCoreLang {
             });
             GTAPI.all(ItemSelectorTag.class, GTCore.ID).forEach(i -> override(i.getDescriptionId(), "Selector Tag (" + i.circuitId + ")"));
             override(Ref.ID, DUST.get(Beeswax).getDescriptionId(), "Beeswax");
-            override(Ref.ID, DUST_SMALL.get(Beeswax).getDescriptionId(), "Small Beeswax");
-            override(Ref.ID, DUST_TINY.get(Beeswax).getDescriptionId(), "Tiny Beeswax");
+            override(Ref.ID, SMALL_DUST.get(Beeswax).getDescriptionId(), "Small Beeswax");
+            override(Ref.ID, TINY_DUST.get(Beeswax).getDescriptionId(), "Tiny Beeswax");
         }
     }
 }

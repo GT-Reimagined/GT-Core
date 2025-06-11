@@ -29,7 +29,7 @@ public class Guis {
                 GTCoreBlocks.ENDER_GARBAGE_BIN.add(STORAGE, 62 + (x * 18), 17 + (y * 18), new ResourceLocation(GTCore.ID, "blank"));
             }
         }
-        GTCoreBlocks.ENDER_GARBAGE_BIN.getGui().setBackgroundTexture("ender_garbage_bin");
+        GTCoreBlocks.ENDER_GARBAGE_BIN.getGuiData().setBackgroundTexture("ender_garbage_bin");
 
     }
 }

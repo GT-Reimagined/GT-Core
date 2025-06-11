@@ -26,8 +26,8 @@ public class MachineRecipes {
     public static void initRecipes(Consumer<FinishedRecipe> output, GTRecipeProvider provider){
         GTAPI.all(DrumMachine.class).forEach(d -> {
             Material m = d.getMaterial();
-            if (m.has(PLATE) && (m.has(ROD_LONG) || m.has(ROD))){
-                TagKey<Item> rod = m.has(ROD_LONG) ? ROD_LONG.getMaterialTag(m) : ROD.getMaterialTag(m);
+            if (m.has(PLATE) && (m.has(LONG_ROD) || m.has(ROD))){
+                TagKey<Item> rod = m.has(LONG_ROD) ? LONG_ROD.getMaterialTag(m) : ROD.getMaterialTag(m);
                 provider.addItemRecipe(output, GTCore.ID, "", "machines", d.getItem(NONE), of('H', HAMMER.getTag(), 'R', rod, 'P', PLATE.getMaterialTag(m)), " H ", "PRP", "PRP");
             }
         });

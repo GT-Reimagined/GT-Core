@@ -30,7 +30,7 @@ public class GTCommonEvents {
     public static final UUID TRINS_UUID = UUID.fromString("7c042366-854c-4582-8d2c-6831646ba5c7");
 
     public static void onPlayerTick(boolean end, boolean logicalServer, Player player){
-        if (end && logicalServer && !player.isInvulnerable() && player.getInventory().contains(GTMaterialTypes.INGOT_HOT.getTag()) && !Utils.isFullHazmatSuit(player)){
+        if (end && logicalServer && !player.isInvulnerable() && player.getInventory().contains(GTMaterialTypes.HOT_INGOT.getTag()) && !Utils.isFullHazmatSuit(player)){
             BlockFluidPipe.applyTemperatureDamage(player, 1700, 1.0f, 1.0f);
         }
         if (end && logicalServer && player.tickCount % 120 == 0){

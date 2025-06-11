@@ -21,10 +21,10 @@ public class ChestMachine extends MaterialMachine {
         this.setTile(BlockEntityChest::new);
         this.setTiers(Tier.NONE);
         this.addFlags(ITEM, GUI);
-        this.tesr().noOutputCover();
-        this.getGui().setPlayerYOffset(56).setPlayerXOffset(4);
-        this.getGui().setYSize(222).setXSize(184).setBackgroundTexture("chest_base");
-        this.overlayTexture((type, state, tier, i) -> new Texture[] {
+        this.setRenderAsTesr().setNoOutputCover();
+        this.getGuiData().setPlayerYOffset(56).setPlayerXOffset(4);
+        this.getGuiData().setYSize(222).setXSize(184).setBackgroundTexture("chest_base");
+        this.setOverlayTextures((type, state, tier, i) -> new Texture[] {
                 new Texture(GTCore.ID, "model/material_chest_overlay_inventory"),
                 new Texture(GTCore.ID, "model/material_chest_overlay_inventory"),
                 new Texture(GTCore.ID, "model/material_chest_overlay_inventory"),
@@ -32,7 +32,7 @@ public class ChestMachine extends MaterialMachine {
                 new Texture(GTCore.ID, "model/material_chest_overlay_inventory"),
                 new Texture(GTCore.ID, "model/material_chest_overlay_inventory"),
         });
-        this.baseTexture((m, t, s) -> new Texture[] {
+        this.setBaseTexture((m, t, s) -> new Texture[] {
                 new Texture(GTCore.ID, "model/material_chest_particle"),
                 new Texture(GTCore.ID, "model/material_chest_particle"),
                 new Texture(GTCore.ID, "model/material_chest_particle"),
