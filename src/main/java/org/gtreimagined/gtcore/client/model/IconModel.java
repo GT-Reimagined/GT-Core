@@ -30,6 +30,7 @@ import java.util.function.Function;
 public class IconModel implements IGTModel<IconModel> {
     private final UnbakedModel baseModel;
     static Map<String, Material> TEXTURE_MAP = null;
+    static Map<String, TextureAtlasSprite> SPRITE_MAP = null;
     static List<Map<String, List<BakedQuad>>> ICON_MODELS = null;
     public static final FaceBakery FACE_BAKERY = new FaceBakery();
 
@@ -46,8 +47,14 @@ public class IconModel implements IGTModel<IconModel> {
 
     @Override
     public BakedModel bakeModel(IModelConfiguration configuration, ModelBakery modelBakery, Function<Material, TextureAtlasSprite> function, ModelState modelState, ItemOverrides overrides, ResourceLocation resourceLocation) {
+        if (SPRITE_MAP == null) {
+            SPRITE_MAP = new Object2ObjectOpenHashMap<>();
+            for (String icon : TEXTURE_MAP.keySet()) {
+                SPRITE_MAP.put(icon, function.apply(TEXTURE_MAP.get(icon)));
+            }
+        }
         BakedModel base = baseModel.bake(modelBakery, function, modelState, resourceLocation);
-        return new IconBakedModel(Objects.requireNonNull(base), function);
+        return new IconBakedModel(Objects.requireNonNull(base));
     }
 
     @Override

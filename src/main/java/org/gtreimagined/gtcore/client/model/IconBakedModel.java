@@ -39,7 +39,7 @@ import static org.gtreimagined.gtcore.client.model.IconModel.ICON_MODELS;
 public class IconBakedModel extends GTBakedModel<IconBakedModel> {
     BakedModel baseModel;
 
-    public IconBakedModel(BakedModel baseModel, Function<Material, TextureAtlasSprite> function) {
+    public IconBakedModel(BakedModel baseModel) {
         super(baseModel.getParticleIcon());
         this.baseModel = baseModel;
         if (ICON_MODELS == null){
@@ -54,7 +54,7 @@ public class IconBakedModel extends GTBakedModel<IconBakedModel> {
                     for (var entry : element.faces.entrySet()){
                         Direction dir = entry.getKey();
                         BlockElementFace face = entry.getValue();
-                        TextureAtlasSprite sprite = function.apply(IconModel.TEXTURE_MAP.get(icon));
+                        TextureAtlasSprite sprite = IconModel.SPRITE_MAP.get(icon);
                         BakedQuad quad = FACE_BAKERY.bakeQuad(element.from, element.to, face, sprite, dir, new SimpleModelState(RenderHelper.faceRotation(Direction.SOUTH)), element.rotation, element.shade, new ResourceLocation(GTCore.ID, "item_storage"));
                         bakedQuads.add(quad);
                     }
