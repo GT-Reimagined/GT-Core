@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.gtreimagined.gtcore.data.GTCoreItems;
+import org.gtreimagined.gtcore.item.ItemSelectorTag;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.item.ItemBasic;
 
@@ -30,12 +31,21 @@ public class BookRegistration {
 
     public static void registerBooks(){
         registerBookTexture(Items.BOOK, "book_vanilla");
+        registerBookTexture(Items.WRITTEN_BOOK, "book_vanilla");
+        registerBookTexture(Items.WRITABLE_BOOK, "book_vanilla");
         registerBookTexture(Items.ENCHANTED_BOOK, "book_enchanted");
+        registerBookTexture(Items.PAPER, "folder");
+        registerBookTexture(Items.NAME_TAG, "folder");
+        registerBookTexture(Items.MAP, "folder");
+        registerBookTexture(Items.FILLED_MAP, "folder_red");
         registerBookTexture(GTCoreItems.EmptyShape, "extruder_shape");
         GTAPI.all(ItemBasic.class, GTCore.ID).forEach(i -> {
             if (i.getId().endsWith("_shape") || i.getId().endsWith("_mold")){
                 registerBookTexture(i, "extruder_shape");
             }
+        });
+        GTAPI.all(ItemSelectorTag.class, GTCore.ID).forEach(i -> {
+            registerBookTexture(i, "tablet_computer_metallic");
         });
     }
 }
