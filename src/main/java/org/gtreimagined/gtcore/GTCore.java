@@ -270,6 +270,7 @@ public class GTCore extends GTMod {
                 WoodType.register(GTCoreBlocks.RUBBER_WOOD_TYPE);
                 GTCoreRemapping.init();
                 CommonHandler.setup();
+                BookRegistration.registerBooks();
                 GTLibXEIPlugin.addItemsToHide(l -> {
                     l.add(GTAPI.get(IGTTool.class, "electric_wrench_alt_lv", GTCore.ID).getItem());
                     l.add(GTAPI.get(IGTTool.class, "electric_wrench_alt_mv", GTCore.ID).getItem());

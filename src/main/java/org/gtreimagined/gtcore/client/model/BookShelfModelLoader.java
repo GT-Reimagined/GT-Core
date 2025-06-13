@@ -25,6 +25,9 @@ public class BookShelfModelLoader extends GTModelLoader<BookShelfModel> {
 
     @Override
     public BookShelfModel read(JsonDeserializationContext jsonDeserializationContext, JsonObject jsonObject) {
+        JsonObject copy = jsonObject.deepCopy();
+        copy.remove("loader");
+        UnbakedModel model = jsonDeserializationContext.deserialize(copy, BlockModel.class);
         if (BOOK_REFERENCE == null) {
             try {
                 Resource resource = ModelUtils.getModelBakery().resourceManager.getResource(new ResourceLocation(GTCore.ID, "models/block/bookshelf/book.json"));
@@ -42,6 +45,6 @@ public class BookShelfModelLoader extends GTModelLoader<BookShelfModel> {
                 GTCore.LOGGER.error(e);
             }
         }
-        return new BookShelfModel();
+        return new BookShelfModel(model);
     }
 }
