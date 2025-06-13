@@ -30,7 +30,7 @@ public class BookShelfModelLoader extends GTModelLoader<BookShelfModel> {
         UnbakedModel model = jsonDeserializationContext.deserialize(copy, BlockModel.class);
         if (BOOK_REFERENCE == null) {
             try {
-                Resource resource = ModelUtils.getModelBakery().resourceManager.getResource(new ResourceLocation(GTCore.ID, "models/block/bookshelf/book.json"));
+                Resource resource = ModelUtils.getModelBakery().resourceManager.getResource(new ResourceLocation(GTCore.ID, "models/block/machine/overlay/bookshelf/book.json"));
                 InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8);
                 JsonReader jsonReader = new JsonReader(reader);
                 JsonElement element = Streams.parse(jsonReader);
