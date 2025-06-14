@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -96,7 +97,16 @@ public class GTCoreBlocks {
 
     @Nullable
     public static MaterialMachine IRONWOOD_ITEM_BARREL = null;
-    public static BookShelfMachine IRON_BOOKSHELF = new BookShelfMachine("iron_bookshelf", GTLibMaterials.Iron);
+
+    public static BookShelfMachine OAK_BOOKSHELF = new BookShelfMachine("oak", new Texture("block/oak_planks"), () -> Blocks.OAK_PLANKS);
+    public static BookShelfMachine SPRUCE_BOOKSHELF = new BookShelfMachine("spruce", new Texture("block/spruce_planks"), () -> Blocks.SPRUCE_PLANKS);
+    public static BookShelfMachine BIRCH_BOOKSHELF = new BookShelfMachine("birch", new Texture("block/birch_planks"), () -> Blocks.BIRCH_PLANKS);
+    public static BookShelfMachine JUNGLE_BOOKSHELF = new BookShelfMachine("jungle", new Texture("block/jungle_planks"), () -> Blocks.JUNGLE_PLANKS);
+    public static BookShelfMachine ACACIA_BOOKSHELF = new BookShelfMachine("acacia", new Texture("block/acacia_planks"), () -> Blocks.ACACIA_PLANKS);
+    public static BookShelfMachine DARK_OAK_BOOKSHELF = new BookShelfMachine("dark_oak", new Texture("block/dark_oak_planks"), () -> Blocks.DARK_OAK_PLANKS);
+    public static BookShelfMachine CRIMSON_BOOKSHELF = new BookShelfMachine("crimson", new Texture("block/crimson_planks"), () -> Blocks.CRIMSON_PLANKS);
+    public static BookShelfMachine WARPED_BOOKSHELF = new BookShelfMachine("warped", new Texture("block/warped_planks"), () -> Blocks.WARPED_PLANKS);
+    public static BookShelfMachine RUBBER_BOOKSHELF = new BookShelfMachine("rubber", new Texture(GTCore.ID, "block/tree/rubber_planks"), () -> GTCoreBlocks.RUBBER_PLANKS);
 
     public static BasicMachine ENDER_GARBAGE_BIN = new BasicMachine(GTCore.ID, "ender_garbage_bin").setBaseTexture(new Texture(GTCore.ID, "block/machine/base/ender_garbage_bin")).setTiers(Tier.NONE).setCustomModel().setItemModelParent(new ResourceLocation(GTCore.ID, "block/ender_garbage_bin_base")).addFlags(MachineFlag.ITEM, MachineFlag.FLUID, MachineFlag.UNCULLED, MachineFlag.GUI).removeFlags(MachineFlag.COVERABLE, MachineFlag.EU).setAllowsFrontIO().setNoOutputCover().setTile(BlockEntityTrashCan::new);
 
