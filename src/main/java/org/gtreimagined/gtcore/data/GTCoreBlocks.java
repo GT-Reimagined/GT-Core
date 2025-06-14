@@ -17,6 +17,7 @@ import org.gtreimagined.gtcore.blockentity.BlockEntitySapBag;
 import org.gtreimagined.gtcore.blockentity.BlockEntityTrashCan;
 import org.gtreimagined.gtcore.integration.tfc.TFCRubberData;
 import org.gtreimagined.gtcore.machine.BarrelMachine;
+import org.gtreimagined.gtcore.machine.BookShelfMachine;
 import org.gtreimagined.gtcore.machine.ChestMachine;
 import org.gtreimagined.gtcore.machine.DrumMachine;
 import org.gtreimagined.gtcore.machine.HopperMachine;
@@ -95,6 +96,7 @@ public class GTCoreBlocks {
 
     @Nullable
     public static MaterialMachine IRONWOOD_ITEM_BARREL = null;
+    public static BookShelfMachine IRON_BOOKSHELF = new BookShelfMachine("iron_bookshelf", GTLibMaterials.Iron);
 
     public static BasicMachine ENDER_GARBAGE_BIN = new BasicMachine(GTCore.ID, "ender_garbage_bin").setBaseTexture(new Texture(GTCore.ID, "block/machine/base/ender_garbage_bin")).setTiers(Tier.NONE).setCustomModel().setItemModelParent(new ResourceLocation(GTCore.ID, "block/ender_garbage_bin_base")).addFlags(MachineFlag.ITEM, MachineFlag.FLUID, MachineFlag.UNCULLED, MachineFlag.GUI).removeFlags(MachineFlag.COVERABLE, MachineFlag.EU).setAllowsFrontIO().setNoOutputCover().setTile(BlockEntityTrashCan::new);
 

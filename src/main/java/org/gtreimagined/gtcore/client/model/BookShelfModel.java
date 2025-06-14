@@ -32,6 +32,7 @@ import java.util.stream.Stream;
 
 public class BookShelfModel implements IGTModel<BookShelfModel> {
     private final UnbakedModel baseModel;
+    static List<List<BakedQuad>> BOOK_MODELS = null;
 
     public BookShelfModel(UnbakedModel baseModel){
         this.baseModel = baseModel;

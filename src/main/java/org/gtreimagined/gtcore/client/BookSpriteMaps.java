@@ -24,6 +24,10 @@ public class BookSpriteMaps {
         return MATERIAL_MAP;
     }
 
+    public static Map<Item, Pair<TextureAtlasSprite, TextureAtlasSprite>> getSpriteMap() {
+        return SPRITE_MAP;
+    }
+
     public static void initMaterialMap(){
         if (MATERIAL_MAP == null){
             MATERIAL_MAP = new Object2ObjectOpenHashMap<>();

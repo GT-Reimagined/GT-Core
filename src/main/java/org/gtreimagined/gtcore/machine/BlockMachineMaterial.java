@@ -75,7 +75,7 @@ public class BlockMachineMaterial extends BlockMachine {
     }
 
     public void onItemModelBuild(ItemLike item, GTItemModelProvider prov) {
-        if (!(type instanceof MassStorageMachine) && !(type instanceof BarrelMachine)) {
+        if (!(type instanceof MassStorageMachine) && !(type instanceof BarrelMachine) && !(type instanceof BookShelfMachine)) {
             super.onItemModelBuild(item, prov);
             return;
         }
@@ -114,7 +114,7 @@ public class BlockMachineMaterial extends BlockMachine {
 
     @Override
     protected void buildModelsForState(GTBlockModelBuilder builder, MachineState state) {
-        if (!(getType() instanceof MassStorageMachine)){
+        if (!(getType() instanceof MassStorageMachine) && !(getType() instanceof BookShelfMachine)){
             super.buildModelsForState(builder, state);
             return;
         }
@@ -128,7 +128,9 @@ public class BlockMachineMaterial extends BlockMachine {
                 builder1.put("overlay" + suffix, type.getOverlayTextures(state, tier, i)[dir.get3DDataValue()].toString());
             }
             JLoaderModel obj = builder.addModelObject(JLoaderModel.modelKeepElements(), this.getType().getOverlayModel(state, dir).toString(), builder1.build());
-            if (dir == Direction.SOUTH) obj.loader("gtcore:icon");
+            if (getType() instanceof MassStorageMachine) {
+                if (dir == Direction.SOUTH) obj.loader("gtcore:icon");
+            } else if (dir == Direction.NORTH || dir == Direction.SOUTH) obj.loader("gtcore:bookshelf");
             arr.add(obj);
         }
 
