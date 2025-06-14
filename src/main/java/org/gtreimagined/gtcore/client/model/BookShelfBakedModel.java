@@ -70,7 +70,7 @@ public class BookShelfBakedModel extends GTBakedModel<BookShelfBakedModel> {
                     for (var entry : element.faces.entrySet()) {
                         Direction dir = entry.getKey();
                         BlockElementFace face = entry.getValue();
-                        TextureAtlasSprite sprite = dir == Direction.NORTH ? BookSpriteMaps.getSpriteMap().get(Items.ENCHANTED_BOOK).first() : BookSpriteMaps.getSpriteMap().get(Items.ENCHANTED_BOOK).second();
+                        TextureAtlasSprite sprite = dir == Direction.NORTH ? BookSpriteMaps.getSpriteMap().get(Items.BOOK).first() : BookSpriteMaps.getSpriteMap().get(Items.BOOK).second();
                         BakedQuad quad = FACE_BAKERY.bakeQuad(from, to, face, sprite, dir, new SimpleModelState(RenderHelper.faceRotation(Direction.SOUTH)), element.rotation, element.shade, new ResourceLocation(GTCore.ID, "bookshelf"));
                         bakedQuads.add(quad);
                     }
