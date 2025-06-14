@@ -79,13 +79,15 @@ public class BlockMachineMaterial extends BlockMachine {
             super.onItemModelBuild(item, prov);
             return;
         }
-        GTItemModelBuilder b = prov.getBuilder(item).parent(prov.existing("gtlib", "block/preset/layered")).texture("base", this.type.getBaseTexture(this.tier, MachineState.IDLE)[0]);
+        ResourceLocation existing = type instanceof BookShelfMachine ? new ResourceLocation(GTCore.ID, "block/bookshelf") : new ResourceLocation(Ref.ID, "block/preset/layered");
+        GTItemModelBuilder b = prov.getBuilder(item).parent(existing).texture("base", this.type.getBaseTexture(this.tier, MachineState.IDLE)[0]);
         Texture[] base = this.type.getBaseTexture(this.tier, MachineState.IDLE);
         if (base.length >= 6) {
             for(int s = 0; s < 6; ++s) {
                 b.texture("base" + Utils.coverRotateFacing(Ref.DIRS[s], Direction.NORTH).getSerializedName(), base[s]);
             }
         }
+        if (type instanceof BookShelfMachine) return;
         for (int i = 0; i < type.getOverlayLayers(); i++) {
             Texture[] overlays = type.getOverlayTextures(MachineState.IDLE, tier, i);
             for (int s = 0; s < 6; s++) {
