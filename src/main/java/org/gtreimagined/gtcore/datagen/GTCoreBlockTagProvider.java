@@ -31,32 +31,19 @@ public class GTCoreBlockTagProvider extends GTBlockTagProvider {
         this.tag(TagUtils.getForgelikeBlockTag("wg_stone")).add(BLACK_GRANITE.getState().getBlock(), RED_GRANITE.getState().getBlock(), MARBLE.getState().getBlock(), BASALT.getState().getBlock(), KOMATIITE.getState().getBlock(), LIMESTONE.getState().getBlock(), GREEN_SCHIST.getState().getBlock(), BLUE_SCHIST.getState().getBlock(), KIMBERLITE.getState().getBlock(), QUARTZITE.getState().getBlock(), SLATE.getState().getBlock(), SHALE.getState().getBlock());
         this.tag(TagUtils.getBlockTag(new ResourceLocation("minecraft","base_stone_overworld"))).add(BLACK_GRANITE.getState().getBlock(), RED_GRANITE.getState().getBlock(), MARBLE.getState().getBlock(), BASALT.getState().getBlock(), KOMATIITE.getState().getBlock(), LIMESTONE.getState().getBlock(), GREEN_SCHIST.getState().getBlock(), BLUE_SCHIST.getState().getBlock(), KIMBERLITE.getState().getBlock(), QUARTZITE.getState().getBlock(), SLATE.getState().getBlock(), SHALE.getState().getBlock());
         GTAPI.all(BlockMachineMaterial.class, cas -> {
-            if (cas.getMaterial().has(WOOD)){
-                this.tag(GTTools.AXE.getToolType()).add(cas);
-            } else {
-                this.tag(GTTools.WRENCH.getToolType()).add(cas);
-            }
+            this.tag(cas.getType().getToolTag()).add(cas);
         });
         GTAPI.all(BlockMaterialChest.class, cas -> {
-            if (cas.getMaterial().has(WOOD)){
-                this.tag(GTTools.AXE.getToolType()).add(cas);
-            } else {
-                this.tag(GTTools.WRENCH.getToolType()).add(cas);
-            }
+            this.tag(cas.getType().getToolTag()).add(cas);
         });
         GTAPI.all(BlockMultiMachineMaterial.class, cas -> {
+            this.tag(cas.getType().getToolTag()).add(cas);
             if (cas.getMaterial().has(WOOD)){
                 this.tag(GTTools.AXE.getToolType()).add(cas);
-            } else {
-                this.tag(GTTools.WRENCH.getToolType()).add(cas);
             }
         });
         GTAPI.all(BlockGTHopper.class, h -> {
-            if (h.getMaterial().has(WOOD)){
-                this.tag(GTTools.AXE.getToolType()).add(h);
-            } else {
-                this.tag(GTTools.WRENCH.getToolType()).add(h);
-            }
+            this.tag(h.getType().getToolTag()).add(h);
         });
         /*GTAPI.all(BlockNonSolidMachine.class, Ref.ID, cas -> {
             this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);

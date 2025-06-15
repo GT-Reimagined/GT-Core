@@ -3,12 +3,16 @@ package org.gtreimagined.gtcore.machine;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.shapes.Shapes;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityBookShelf;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.data.GTTools;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.material.Material;
@@ -49,6 +53,8 @@ public class BookShelfMachine extends MaterialMachine {
 
     public BookShelfMachine(String woodType, Texture woodTexture, Supplier<Block> woodBlockSupplier) {
         this(GTCore.ID, woodType + "_bookshelf", Material.NULL);
+        setToolTag(GTTools.AXE.getToolType());
+        setBlock((m, t) -> new BlockMachineMaterial(m, t, Properties.of(net.minecraft.world.level.material.Material.WOOD).strength(2.0f, 3.0f).sound(SoundType.WOOD).requiresCorrectToolForDrops()));
         setBaseTexture(woodTexture);
         this.woodType = woodType;
         this.woodBlockSupplier = woodBlockSupplier;
@@ -56,6 +62,8 @@ public class BookShelfMachine extends MaterialMachine {
 
     public BookShelfMachine(String woodType, String modid, Texture woodTexture, Supplier<Block> woodBlockSupplier) {
         this(GTCore.ID, modid + "/" + woodType + "_bookshelf", Material.NULL);
+        setToolTag(GTTools.AXE.getToolType());
+        setBlock((m, t) -> new BlockMachineMaterial(m, t, Properties.of(net.minecraft.world.level.material.Material.WOOD).strength(2.0f, 3.0f).sound(SoundType.WOOD).requiresCorrectToolForDrops()));
         setBaseTexture(woodTexture);
         this.woodType = woodType;
         this.woodBlockSupplier = woodBlockSupplier;

@@ -46,6 +46,7 @@ import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.block.BlockBasic;
 import org.gtreimagined.gtlib.data.GTLibMaterials;
+import org.gtreimagined.gtlib.data.GTTools;
 import org.gtreimagined.gtlib.machine.MachineFlag;
 import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.machine.types.BasicMachine;
@@ -179,13 +180,13 @@ public class GTCoreBlocks {
     }
 
     public static void initItemBarrels(){
-        WOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, GTLibMaterials.Wood, "item_storage", 5000).addFlags(MachineFlag.GUI);
+        WOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, GTLibMaterials.Wood, "item_storage", 5000).addFlags(MachineFlag.GUI).setToolTag(GTTools.AXE.getToolType());
         PLASTIC_STORAGE_BOX = new MassStorageMachine(GTCore.ID, Plastic, "storage_box", 128).setTile((type, pos, state) -> new BlockEntityPlasticBin((MassStorageMachine) type, pos, state)).addTooltipInfo((blockMachine, itemStack, blockGetter, list, tooltipFlag) -> {
             list.remove(1);
             list.add(1, Utils.translatable("machine.mass_storage.capacity", "Variable"));
-        });
+        }).setToolTag(GTTools.AXE.getToolType());
         if (GTAPI.isModLoaded("twilightforest")){
-            IRONWOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, Ironwood, "item_storage", 10000).addFlags(MachineFlag.GUI);
+            IRONWOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, Ironwood, "item_storage", 10000).addFlags(MachineFlag.GUI).setToolTag(GTTools.AXE.getToolType());
         }
     }
 
