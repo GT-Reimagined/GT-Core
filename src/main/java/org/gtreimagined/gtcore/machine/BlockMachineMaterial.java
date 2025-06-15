@@ -80,7 +80,8 @@ public class BlockMachineMaterial extends BlockMachine {
             return;
         }
         ResourceLocation existing = type instanceof BookShelfMachine ? new ResourceLocation(GTCore.ID, "block/bookshelf") : new ResourceLocation(Ref.ID, "block/preset/layered");
-        GTItemModelBuilder b = prov.getBuilder(item).parent(existing).texture("base", this.type.getBaseTexture(this.tier, MachineState.IDLE)[0]);
+        GTItemModelBuilder b = getId().contains("/") ? prov.getBuilder("item/" + getId()) : prov.getBuilder(item);
+        b.parent(existing).texture("base", this.type.getBaseTexture(this.tier, MachineState.IDLE)[0]);
         Texture[] base = this.type.getBaseTexture(this.tier, MachineState.IDLE);
         if (base.length >= 6) {
             for(int s = 0; s < 6; ++s) {

@@ -41,6 +41,7 @@ import org.gtreimagined.gtcore.tree.block.BlockRubberTrapDoor;
 import org.gtreimagined.gtcore.tree.block.BlockRubberWallSign;
 import org.gtreimagined.gtcore.tree.block.BlockRubberWood;
 import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.block.BlockBasic;
 import org.gtreimagined.gtlib.data.GTLibMaterials;
 import org.gtreimagined.gtlib.machine.MachineFlag;
@@ -50,8 +51,11 @@ import org.gtreimagined.gtlib.material.Material;
 import org.gtreimagined.gtlib.ore.CobbleStoneType;
 import org.gtreimagined.gtlib.ore.StoneType;
 import org.gtreimagined.gtlib.texture.Texture;
+import org.gtreimagined.gtlib.util.RegistryUtils;
 import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Function;
 
 import static org.gtreimagined.gtcore.data.GTCoreMaterials.*;
 
@@ -98,16 +102,6 @@ public class GTCoreBlocks {
     @Nullable
     public static MaterialMachine IRONWOOD_ITEM_BARREL = null;
 
-    public static BookShelfMachine OAK_BOOKSHELF = new BookShelfMachine("oak", new Texture("block/oak_planks"), () -> Blocks.OAK_PLANKS);
-    public static BookShelfMachine SPRUCE_BOOKSHELF = new BookShelfMachine("spruce", new Texture("block/spruce_planks"), () -> Blocks.SPRUCE_PLANKS);
-    public static BookShelfMachine BIRCH_BOOKSHELF = new BookShelfMachine("birch", new Texture("block/birch_planks"), () -> Blocks.BIRCH_PLANKS);
-    public static BookShelfMachine JUNGLE_BOOKSHELF = new BookShelfMachine("jungle", new Texture("block/jungle_planks"), () -> Blocks.JUNGLE_PLANKS);
-    public static BookShelfMachine ACACIA_BOOKSHELF = new BookShelfMachine("acacia", new Texture("block/acacia_planks"), () -> Blocks.ACACIA_PLANKS);
-    public static BookShelfMachine DARK_OAK_BOOKSHELF = new BookShelfMachine("dark_oak", new Texture("block/dark_oak_planks"), () -> Blocks.DARK_OAK_PLANKS);
-    public static BookShelfMachine CRIMSON_BOOKSHELF = new BookShelfMachine("crimson", new Texture("block/crimson_planks"), () -> Blocks.CRIMSON_PLANKS);
-    public static BookShelfMachine WARPED_BOOKSHELF = new BookShelfMachine("warped", new Texture("block/warped_planks"), () -> Blocks.WARPED_PLANKS);
-    public static BookShelfMachine RUBBER_BOOKSHELF = new BookShelfMachine("rubber", new Texture(GTCore.ID, "block/tree/rubber_planks"), () -> GTCoreBlocks.RUBBER_PLANKS);
-
     public static BasicMachine ENDER_GARBAGE_BIN = new BasicMachine(GTCore.ID, "ender_garbage_bin").setBaseTexture(new Texture(GTCore.ID, "block/machine/base/ender_garbage_bin")).setTiers(Tier.NONE).setCustomModel().setItemModelParent(new ResourceLocation(GTCore.ID, "block/ender_garbage_bin_base")).addFlags(MachineFlag.ITEM, MachineFlag.FLUID, MachineFlag.UNCULLED, MachineFlag.GUI).removeFlags(MachineFlag.COVERABLE, MachineFlag.EU).setAllowsFrontIO().setNoOutputCover().setTile(BlockEntityTrashCan::new);
 
     public static StoneType RED_GRANITE = GTAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "red_granite", RedGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
@@ -127,6 +121,16 @@ public class GTCoreBlocks {
     public static final BlockCasing REINFORCED_GLASS = new BlockCasing(GTCore.ID, "reinforced_glass", Block.Properties.of(net.minecraft.world.level.material.Material.GLASS).strength(15.0f, 150.0f).sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion().isValidSpawn(((blockState, blockGetter, blockPos, object) -> false)).isRedstoneConductor(GTCoreBlocks::isntSolid).isSuffocating(GTCoreBlocks::isntSolid).isViewBlocking(GTCoreBlocks::isntSolid));
     public static final BlockCasing REINFORCED_STONE = new BlockCasing(GTCore.ID, "reinforced_stone", Block.Properties.of(net.minecraft.world.level.material.Material.STONE).strength(80.0f, 150.0f).sound(SoundType.STONE).requiresCorrectToolForDrops());
 
+    public static BookShelfMachine OAK_BOOKSHELF = new BookShelfMachine("oak", new Texture("block/oak_planks"), () -> Blocks.OAK_PLANKS);
+    public static BookShelfMachine SPRUCE_BOOKSHELF = new BookShelfMachine("spruce", new Texture("block/spruce_planks"), () -> Blocks.SPRUCE_PLANKS);
+    public static BookShelfMachine BIRCH_BOOKSHELF = new BookShelfMachine("birch", new Texture("block/birch_planks"), () -> Blocks.BIRCH_PLANKS);
+    public static BookShelfMachine JUNGLE_BOOKSHELF = new BookShelfMachine("jungle", new Texture("block/jungle_planks"), () -> Blocks.JUNGLE_PLANKS);
+    public static BookShelfMachine ACACIA_BOOKSHELF = new BookShelfMachine("acacia", new Texture("block/acacia_planks"), () -> Blocks.ACACIA_PLANKS);
+    public static BookShelfMachine DARK_OAK_BOOKSHELF = new BookShelfMachine("dark_oak", new Texture("block/dark_oak_planks"), () -> Blocks.DARK_OAK_PLANKS);
+    public static BookShelfMachine CRIMSON_BOOKSHELF = new BookShelfMachine("crimson", new Texture("block/crimson_planks"), () -> Blocks.CRIMSON_PLANKS);
+    public static BookShelfMachine WARPED_BOOKSHELF = new BookShelfMachine("warped", new Texture("block/warped_planks"), () -> Blocks.WARPED_PLANKS);
+    public static BookShelfMachine RUBBER_BOOKSHELF = new BookShelfMachine("rubber", new Texture(GTCore.ID, "block/tree/rubber_planks"), () -> GTCoreBlocks.RUBBER_PLANKS);
+
     public static Boolean isntSolid(BlockState state, BlockGetter reader, BlockPos pos) {
         return false;
     }
@@ -138,7 +142,23 @@ public class GTCoreBlocks {
         } else {
             initTFC();
         }
+        initWoodBookShelves();
         GTAPI.register(BlockEntityType.class, "sap_bag", GTCore.ID, SAP_BAG_BLOCK_ENTITY);
+    }
+
+    private static void initWoodBookShelves() {
+        if (GTAPI.isModLoaded(Ref.MOD_TWILIGHT)){
+            Function<String, Block> f = s -> RegistryUtils.getBlockFromId(Ref.MOD_TWILIGHT, s);
+            new BookShelfMachine("towerwood", Ref.MOD_TWILIGHT, new Texture(Ref.MOD_TWILIGHT, "block/towerwood"), () -> f.apply("towerwood"));
+            new BookShelfMachine("twilight_oak", Ref.MOD_TWILIGHT, new Texture(Ref.MOD_TWILIGHT, "block/wood/planks_twilight_oak_0"), () -> f.apply("twilight_oak_planks"));
+            new BookShelfMachine("canopy", Ref.MOD_TWILIGHT, new Texture(Ref.MOD_TWILIGHT,"block/wood/planks_canopy_0"), () -> f.apply("canopy_planks"));
+            new BookShelfMachine("mangrove", Ref.MOD_TWILIGHT, new Texture(Ref.MOD_TWILIGHT, "block/wood/planks_mangrove_0"), () -> f.apply("mangrove_planks"));
+            new BookShelfMachine("darkwood", Ref.MOD_TWILIGHT, new Texture(Ref.MOD_TWILIGHT, "block/wood/planks_darkwood_0"), () -> f.apply("dark_planks"));
+            new BookShelfMachine("timewood", Ref.MOD_TWILIGHT, new Texture(Ref.MOD_TWILIGHT, "block/wood/planks_time_0"), () -> f.apply("time_planks"));
+            new BookShelfMachine("transwood", Ref.MOD_TWILIGHT, new Texture(Ref.MOD_TWILIGHT, "block/wood/planks_trans_0"), () -> f.apply("transformation_planks"));
+            new BookShelfMachine("minewood", Ref.MOD_TWILIGHT, new Texture(Ref.MOD_TWILIGHT, "block/wood/planks_mine_0"), () -> f.apply("mining_planks"));
+            new BookShelfMachine("sortingwood", Ref.MOD_TWILIGHT, new Texture(Ref.MOD_TWILIGHT, "block/wood/planks_sort_0"), () -> f.apply("sorting_planks"));
+        }
     }
 
     public static void initItemBarrels(){
@@ -218,5 +238,13 @@ public class GTCoreBlocks {
             return machine;
         }
         return new HopperMachine(GTCore.ID, material, slots);
+    }
+
+    public static BookShelfMachine createBookShelf(Material material){
+        BookShelfMachine machine = GTAPI.get(BookShelfMachine.class, material.getId() + "_bookshelf", GTCore.ID);
+        if (machine != null){
+            return machine;
+        }
+        return new BookShelfMachine(material);
     }
 }

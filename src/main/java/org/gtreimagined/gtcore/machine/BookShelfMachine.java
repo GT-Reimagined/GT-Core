@@ -4,6 +4,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityBookShelf;
+import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.material.Material;
@@ -33,6 +34,7 @@ public class BookShelfMachine extends MaterialMachine {
                 add(SlotType.STORAGE, 26 + (18 * x), 8 + (18 * y));
             }
         }
+        GTAPI.register(BookShelfMachine.class, this);
     }
 
     public BookShelfMachine(Material material) {
