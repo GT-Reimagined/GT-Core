@@ -66,6 +66,15 @@ public class BookRegistration {
         registerBookTexture(GTCoreItems.FALDuctTapeEmpty, "tape_black");
         registerBookTexture(GTCoreItems.EmptyBlueprint, "folder");
         registerBookTexture(GTCoreItems.Blueprint, "folder_blue");
+        if (GTAPI.isModLoaded(Ref.MOD_TWILIGHT)){
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_TWILIGHT, "magic_map"), "folder");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_TWILIGHT, "maze_map"), "folder");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_TWILIGHT, "ore_map"), "folder");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_TWILIGHT, "filled_magic_map"), "folder_red");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_TWILIGHT, "filled_maze_map"), "folder_red");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_TWILIGHT, "filled_ore_map"), "folder_red");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_TWILIGHT, "tower_key"), "book_vanilla");
+        }
         if (GTAPI.isModLoaded(Ref.MOD_AE)){
             registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "biometric_card"), "id");
             registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "memory_card"),"ae_handheld");
