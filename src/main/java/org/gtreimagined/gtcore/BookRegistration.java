@@ -75,9 +75,49 @@ public class BookRegistration {
                 registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "portable_fluid_cell_" + type), "ae_handheld");
                 registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "item_storage_cell_" + type), "ae_cell");
                 registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "fluid_storage_cell_" + type), "ae_cell");
+                if (GTAPI.isModLoaded("megacells")){
+                    registerBookTexture(RegistryUtils.getItemFromID("megacells", "portable_item_cell_" + type.replace('k', 'm')), "ae_handheld");
+                    registerBookTexture(RegistryUtils.getItemFromID("megacells", "portable_fluid_cell_" + type.replace('k', 'm')), "ae_handheld");
+                    registerBookTexture(RegistryUtils.getItemFromID("megacells", "item_storage_cell_" + type.replace('k', 'm')), "ae_cell");
+                    registerBookTexture(RegistryUtils.getItemFromID("megacells", "fluid_storage_cell_" + type.replace('k', 'm')), "ae_cell");
+                }
+                if (GTAPI.isModLoaded("appbot")){
+                    registerBookTexture(RegistryUtils.getItemFromID("appbot", "portable_mana_storage_cell_" + type), "ae_handheld");
+                    registerBookTexture(RegistryUtils.getItemFromID("appbot", "mana_storage_cell_" + type), "ae_cell");
+                    if (GTAPI.isModLoaded("megacells")){
+                        registerBookTexture(RegistryUtils.getItemFromID("megacells", "portable_mana_cell_" + type.replace('k', 'm')), "ae_handheld");
+                        registerBookTexture(RegistryUtils.getItemFromID("megacells", "mana_storage_cell_" + type.replace('k', 'm')), "ae_cell");
+                    }
+                }
+                if (GTAPI.isModLoaded("appmek")){
+                    registerBookTexture(RegistryUtils.getItemFromID("appmek", "portable_chemical_storage_cell_" + type), "ae_handheld");
+                    registerBookTexture(RegistryUtils.getItemFromID("appmek", "chemical_storage_cell_" + type), "ae_cell");
+                    if (GTAPI.isModLoaded("megacells")){
+                        registerBookTexture(RegistryUtils.getItemFromID("megacells", "portable_chemical_cell_" + type.replace('k', 'm')), "ae_handheld");
+                        registerBookTexture(RegistryUtils.getItemFromID("megacells", "chemical_storage_cell_" + type.replace('k', 'm')), "ae_cell");
+                    }
+                }
             }
             for (DyeColor color : DyeColor.values()){
                 registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "memory_card_" + color.getSerializedName()), "ae_handheld");
+            }
+            if (GTAPI.isModLoaded("megacells")){
+                registerBookTexture(RegistryUtils.getItemFromID("megacells", "mega_item_cell_housing"), "ae_cell");
+                registerBookTexture(RegistryUtils.getItemFromID("megacells", "mega_fluid_cell_housing"), "ae_cell");
+            }
+            if (GTAPI.isModLoaded("appbot")){
+                registerBookTexture(RegistryUtils.getItemFromID("appbot", "mana_cell_housing"), "ae_cell");
+                registerBookTexture(RegistryUtils.getItemFromID("appbot", "creative_mana_cell"), "ae_cell");
+                if (GTAPI.isModLoaded("megacells")){
+                    registerBookTexture(RegistryUtils.getItemFromID("megacells", "mega_mana_cell_housing"), "ae_cell");
+                }
+            }
+            if (GTAPI.isModLoaded("appmek")){
+                registerBookTexture(RegistryUtils.getItemFromID("appmek", "chemical_cell_housing"), "ae_cell");
+                registerBookTexture(RegistryUtils.getItemFromID("appmek", "creative_chemical_cell"), "ae_cell");
+                if (GTAPI.isModLoaded("megacells")){
+                    registerBookTexture(RegistryUtils.getItemFromID("megacells", "mega_chemical_cell_housing"), "ae_cell");
+                }
             }
             registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "creative_item_cell"), "ae_cell");
             registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "creative_fluid_cell"), "ae_cell");
