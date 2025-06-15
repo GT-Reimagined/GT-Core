@@ -9,12 +9,25 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.blockentity.BlockEntityMachine;
+import org.gtreimagined.gtlib.capability.item.TrackedItemHandler;
+import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
+import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.machine.types.Machine;
 import org.jetbrains.annotations.NotNull;
 
 public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShelf> {
     public BlockEntityBookShelf(Machine<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
+        this.itemHandler.set(() -> new MachineItemHandler<>(this){
+            @Override
+            protected TrackedItemHandler<BlockEntityBookShelf> createTrackedHandler(SlotType<?> type, BlockEntityBookShelf tile) {
+                if (type == SlotType.STORAGE){
+                    int count = tile.getMachineType().getCount(tile.getMachineTier(), type);
+                    return new TrackedItemHandler<>(tile, type, count, type.output, type.input, type.tester, 1);
+                }
+                return super.createTrackedHandler(type, tile);
+            }
+        });
     }
 
     @Override
