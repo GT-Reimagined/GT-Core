@@ -4,18 +4,21 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.IItemHandler;
+import org.gtreimagined.gtcore.BookRegistration;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.blockentity.BlockEntityMachine;
+import org.gtreimagined.gtlib.capability.IFilterableHandler;
 import org.gtreimagined.gtlib.capability.item.TrackedItemHandler;
 import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.machine.types.Machine;
 import org.jetbrains.annotations.NotNull;
 
-public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShelf> {
+public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShelf> implements IFilterableHandler {
     public BlockEntityBookShelf(Machine<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         this.itemHandler.set(() -> new MachineItemHandler<>(this){
@@ -62,5 +65,10 @@ public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShel
     @Override
     public boolean canPlayerOpenGui(Player playerEntity) {
         return playerEntity.isCreative();
+    }
+
+    @Override
+    public boolean test(SlotType<?> slotType, int i, ItemStack itemStack) {
+        return BookRegistration.getTextureMap().containsKey(itemStack.getItem());
     }
 }
