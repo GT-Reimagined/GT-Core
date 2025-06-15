@@ -1,9 +1,13 @@
 package org.gtreimagined.gtcore.machine;
 
+import net.minecraft.core.Direction.Axis;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.shapes.Shapes;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityBookShelf;
+import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.machine.Tier;
@@ -34,6 +38,7 @@ public class BookShelfMachine extends MaterialMachine {
                 add(SlotType.STORAGE, 26 + (18 * x), 8 + (18 * y));
             }
         }
+        setCustomShape((s, w, p, c) -> s.getValue(BlockStateProperties.HORIZONTAL_FACING).getAxis() == Axis.Z ? GTCoreBlocks.BOOKSHELF_Z_SHAPE : GTCoreBlocks.BOOKSHELF_X_SHAPE);
         GTAPI.register(BookShelfMachine.class, this);
     }
 

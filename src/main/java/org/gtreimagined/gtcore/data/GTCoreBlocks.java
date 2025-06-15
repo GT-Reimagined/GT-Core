@@ -10,6 +10,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.BlockCasing;
 import org.gtreimagined.gtcore.block.BlockSapBag;
@@ -60,6 +62,21 @@ import java.util.function.Function;
 import static org.gtreimagined.gtcore.data.GTCoreMaterials.*;
 
 public class GTCoreBlocks {
+
+    private static final VoxelShape BOOKSHELF_TOP = Shapes.box(0, 0.9375, 0, 1, 1, 1);
+    private static final VoxelShape BOOKSHELF_BOTTOM = Shapes.box(0, 0, 0, 1, 0.0625, 1);
+    private static final VoxelShape BOOKSHELF_Z_SHAPE_CENTER = Shapes.box(0, 0, 0.0625, 1, 1, 0.9375);
+    public static final VoxelShape BOOKSHELF_Z_SHAPE = Shapes.or(BOOKSHELF_Z_SHAPE_CENTER,
+            BOOKSHELF_TOP,
+            BOOKSHELF_BOTTOM,
+            Shapes.box(0, 0, 0, 0.0625, 1, 1),
+            Shapes.box(0.9375, 0, 0, 1, 1, 1));
+    private static final VoxelShape BOOKSHELF_X_SHAPE_CENTER = Shapes.box(0.0625, 0, 0, 0.9375, 1, 1);
+    public static final VoxelShape BOOKSHELF_X_SHAPE = Shapes.or(BOOKSHELF_X_SHAPE_CENTER,
+            BOOKSHELF_TOP,
+            BOOKSHELF_BOTTOM,
+            Shapes.box(0, 0, 0, 1, 1, 0.0625),
+            Shapes.box(0, 0, 0.9375, 1, 1, 1));
 
     public static WoodType RUBBER_WOOD_TYPE = new WoodType("rubber"){};
 
