@@ -5,12 +5,15 @@ import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.gtreimagined.gtcore.item.ItemSelectorTag;
 import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.item.ItemBasic;
+import org.gtreimagined.gtlib.util.RegistryUtils;
 
 import java.util.Map;
 
@@ -63,5 +66,34 @@ public class BookRegistration {
         registerBookTexture(GTCoreItems.FALDuctTapeEmpty, "tape_black");
         registerBookTexture(GTCoreItems.EmptyBlueprint, "folder");
         registerBookTexture(GTCoreItems.Blueprint, "folder_blue");
+        if (GTAPI.isModLoaded(Ref.MOD_AE)){
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "biometric_card"), "id");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "memory_card"),"ae_handheld");
+            String[] types = {"1k", "4k", "16k", "64k", "256k"};
+            for (String type : types){
+                registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "portable_item_cell_" + type), "ae_handheld");
+                registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "portable_fluid_cell_" + type), "ae_handheld");
+                registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "item_storage_cell_" + type), "ae_cell");
+                registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "fluid_storage_cell_" + type), "ae_cell");
+            }
+            for (DyeColor color : DyeColor.values()){
+                registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "memory_card_" + color.getSerializedName()), "ae_handheld");
+            }
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "creative_item_cell"), "ae_cell");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "creative_fluid_cell"), "ae_cell");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "item_cell_housing"), "ae_cell");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "fluid_cell_housing"), "ae_cell");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "view_cell"), "ae_handheld");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "wireless_terminal"), "ae_handheld");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "wireless_crafting_terminal"), "ae_handheld");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "spatial_storage_cell_2"), "ae_cell");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "spatial_storage_cell_16"), "ae_cell");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "spatial_storage_cell_128"), "ae_cell");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "calculation_processor_press"), "ae_press");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "engineering_processor_press"), "ae_press");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "logic_processor_press"), "ae_press");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "silicon_press"), "ae_press");
+            registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "name_press"), "ae_press");
+        }
     }
 }
