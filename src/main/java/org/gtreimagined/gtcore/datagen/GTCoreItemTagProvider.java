@@ -55,6 +55,8 @@ public class GTCoreItemTagProvider extends GTItemTagProvider {
         this.tag(ItemTags.WOODEN_STAIRS).add(GTCoreBlocks.RUBBER_STAIRS.asItem());
         this.tag(ItemTags.WOODEN_TRAPDOORS).add(GTCoreBlocks.RUBBER_TRAPDOOR.asItem());
         this.tag(INGOTS_MIXED_METAL).add(MixedMetalIngot);
+        this.tag(BOOKS_NORMAL).add(Items.BOOK, Items.WRITABLE_BOOK, Items.WRITTEN_BOOK);
+        this.tag(BOOKS_ENCHANTED).add(Items.ENCHANTED_BOOK);
         this.tag(GTLibTags.RADIATION_PROOF).add(UniversalHazardSuitMask, UniversalHazardSuitShirt, UniversalHazardSuitPants, UniversalHazardSuitBoots);
         if (GTAPI.isModLoaded("farmersdelight")) {
             this.tag(TagUtils.getItemTag(new ResourceLocation("farmersdelight:tools/knives"))).addTag(GTTools.KNIFE.getTag());

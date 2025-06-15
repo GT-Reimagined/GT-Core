@@ -34,6 +34,8 @@ public class GTCoreTags {
     public static TagKey<Item> MAGNETIC_TOOL = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "magnetic_tool"));
     public static TagKey<Item> INGOTS_MIXED_METAL = getTag("ingots/mixed_metal");
     public static final TagKey<Item> RUBBER_LOGS = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "rubber_logs"));
+    public static final TagKey<Item> BOOKS_NORMAL = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "books/normal"));
+    public static final TagKey<Item> BOOKS_ENCHANTED = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "books/enchanted"));
 
     public static TagKey<Item> getTag(String id){
         return TagUtils.getForgelikeItemTag(id);

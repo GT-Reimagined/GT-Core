@@ -7,11 +7,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.blockentity.BlockEntityBookShelf;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtlib.Ref;
@@ -138,5 +140,11 @@ public class BlockMachineMaterial extends BlockMachine {
         }
 
         builder.property(state.toString().toLowerCase(), arr);
+    }
+
+    @Override
+    public float getEnchantPowerBonus(BlockState state, LevelReader level, BlockPos pos) {
+        if (level.getBlockEntity(pos) instanceof BlockEntityBookShelf bookShelf) return bookShelf.getEnchantmentPowerBonus();
+        return super.getEnchantPowerBonus(state, level, pos);
     }
 }

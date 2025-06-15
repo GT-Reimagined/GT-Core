@@ -14,6 +14,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.BookRegistration;
+import org.gtreimagined.gtcore.data.GTCoreTags;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.blockentity.BlockEntityMachine;
 import org.gtreimagined.gtlib.capability.IFilterableHandler;
@@ -155,5 +156,21 @@ public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShel
     @Override
     public boolean test(SlotType<?> slotType, int i, ItemStack itemStack) {
         return BookRegistration.getTextureMap().containsKey(itemStack.getItem());
+    }
+
+    public int getEnchantmentPowerBonus(){
+        return itemHandler.map(i -> {
+            int total = 0;
+            IItemHandler handler = i.getHandler(SlotType.STORAGE);
+            for (int j = 0; j < handler.getSlots(); j++) {
+                if (handler.getStackInSlot(j).is(GTCoreTags.BOOKS_ENCHANTED)){
+                    total +=2;
+                }
+                if (handler.getStackInSlot(j).is(GTCoreTags.BOOKS_NORMAL)){
+                    total++;
+                }
+            }
+            return total;
+        }).orElse(0);
     }
 }
