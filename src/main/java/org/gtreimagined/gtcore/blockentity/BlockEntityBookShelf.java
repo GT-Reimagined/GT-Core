@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.blockentity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.entity.player.Player;
@@ -13,7 +14,9 @@ import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.blockentity.BlockEntityMachine;
 import org.gtreimagined.gtlib.capability.IFilterableHandler;
 import org.gtreimagined.gtlib.capability.item.TrackedItemHandler;
+import org.gtreimagined.gtlib.capability.machine.MachineCoverHandler;
 import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
+import org.gtreimagined.gtlib.cover.ICover;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.machine.types.Machine;
 import org.jetbrains.annotations.NotNull;
@@ -31,6 +34,19 @@ public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShel
                 return super.createTrackedHandler(type, tile);
             }
         });
+        this.coverHandler.set(() -> new MachineCoverHandler<>(this){
+            @Override
+            public boolean placeCover(Player player, Direction side, ItemStack stack, ICover cover) {
+                if (side == this.getTileFacing() || side == this.getTileFacing().getOpposite()) return false;
+                return super.placeCover(player, side, stack, cover);
+            }
+        });
+    }
+
+    @Override
+    public boolean setFacing(Direction side) {
+        if (coverHandler.map(c -> !c.get(side).isEmpty()).orElse(false)) return false;
+        return super.setFacing(side);
     }
 
     @Override
