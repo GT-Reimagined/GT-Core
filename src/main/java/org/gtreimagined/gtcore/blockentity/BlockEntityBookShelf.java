@@ -4,22 +4,32 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.BookRegistration;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.blockentity.BlockEntityMachine;
 import org.gtreimagined.gtlib.capability.IFilterableHandler;
+import org.gtreimagined.gtlib.capability.item.ITrackedHandler;
 import org.gtreimagined.gtlib.capability.item.TrackedItemHandler;
 import org.gtreimagined.gtlib.capability.machine.MachineCoverHandler;
 import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
 import org.gtreimagined.gtlib.cover.ICover;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.machine.types.Machine;
+import org.gtreimagined.gtlib.tool.GTToolType;
+import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import static org.gtreimagined.gtcore.GTCoreCodeUtils.*;
 
 public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShelf> implements IFilterableHandler {
     public BlockEntityBookShelf(Machine<?> type, BlockPos pos, BlockState state) {
@@ -41,6 +51,65 @@ public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShel
                 return super.placeCover(player, side, stack, cover);
             }
         });
+    }
+
+    @Override
+    public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable GTToolType type) {
+        Direction face = hit.getDirection();
+        Vec3 vec = hit.getLocation();
+        var handler = itemHandler.map(i -> i.getHandler(SlotType.STORAGE)).orElse(null);
+        if ((face == this.getFacing() || face == this.getFacing().getOpposite()) && handler != null) {
+            double[] coords = getFacingCoordsClicked(face, vec.x()-hit.getBlockPos().getX(), vec.y()-hit.getBlockPos().getY(), vec.z() - hit.getBlockPos().getZ());
+            if (coords[0] >= PX_P[1] && coords[0] <= PX_N[1] && coords[1] >= PX_P[1] && coords[1] <= PX_N[1]) {
+                if (face == this.getFacing()) {
+                    int slot = (coords[1] < PX_P[8]? 0:7)+(int) bind_(0, 6, (long)(8 * (coords[0] - PX_P[1])));
+                    if (switchBooks(player, slot, handler, hand)) {
+                        return InteractionResult.SUCCESS;
+                    }
+                }
+                if (face == this.getFacing().getOpposite()) {
+                    int slot = (coords[1] < PX_P[8]?14:21)+(int)bind_(0, 6, (long)(8*(coords[0]-PX_P[1])));
+                    if (switchBooks(player, slot, handler, hand)) {
+                        return InteractionResult.SUCCESS;
+                    }
+                }
+            }
+        }
+        return super.onInteractServer(state, world, pos, player, hand, hit, type);
+    }
+
+    private boolean switchBooks(Player player, int slot, ITrackedHandler handler, InteractionHand hand) {
+        ItemStack current = handler.getStackInSlot(slot);
+        if (!current.isEmpty()){
+            if (!player.isCrouching()){
+                /*if (OD.button.is(slot(aSlot))) {
+                    mRedstoneDelay = 120;
+                    causeBlockUpdate();
+                    playClick();
+                    return T;
+                }
+                if (OD.lever.is(slot(aSlot)) || ST.equal(slot(aSlot), Blocks.redstone_torch)) {
+                    if (mRedstoneDelay == 0) mRedstoneDelay = -1; else mRedstoneDelay = 0;
+                    causeBlockUpdate();
+                    playClick();
+                    return T;
+                }*/
+            }
+            if (player.addItem(current.copy())){
+                handler.setStackInSlot(slot, ItemStack.EMPTY);
+                sidedSync(true);
+                return true;
+            }
+        } else {
+            ItemStack held = player.getItemInHand(hand);
+            if (!held.isEmpty() && BookRegistration.getTextureMap().containsKey(held.getItem())){
+                handler.setStackInSlot(slot, Utils.ca(1, held));
+                held.shrink(1);
+                sidedSync(true);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
