@@ -48,6 +48,7 @@ public class GTCoreLang {
             add("machine.gtcore.hopper.screwdriver", "Use screwdriver to configure output amount");
             add("tooltip.gtcore.redstone_wire_range", "Range: %s");
             add("tooltip.gtcore.redstone_wire_light", "Emits light");
+            add("tooltip.gtcore.bookshelf_item", "Can be placed inside a GT Bookshelf");
             add(GTCoreBlocks.RUBBER_LEAVES, "Rubber Leaves");
             add(GTCoreBlocks.RUBBER_LOG, "Rubber Log");
             add(GTCoreBlocks.STRIPPED_RUBBER_LOG, "Stripped Rubber Log");

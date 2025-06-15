@@ -1,5 +1,6 @@
 package org.gtreimagined.gtcore.events;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.TextComponent;
@@ -8,6 +9,8 @@ import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import org.gtreimagined.gtcore.BookRegistration;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 import org.gtreimagined.gtcore.machine.BlockMultiMachineMaterial;
 import org.gtreimagined.gtlib.block.BlockStorage;
@@ -121,6 +124,12 @@ public class GTCommonEvents {
                     }
                 }
             }
+        }
+    }
+
+    public static void onTooltipAdd(ItemTooltipEvent event){
+        if (BookRegistration.getTextureMap().containsKey(event.getItemStack().getItem())){
+            event.getToolTip().add(1, Utils.translatable("tooltip.gtcore.bookshelf_item").withStyle(ChatFormatting.DARK_GRAY));
         }
     }
 }

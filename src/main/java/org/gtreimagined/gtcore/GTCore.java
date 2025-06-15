@@ -116,6 +116,7 @@ public class GTCore extends GTMod {
         eventBus.addListener(this::onCraftingEvent);
         MinecraftForge.EVENT_BUS.addListener(this::onChunkWatch);
         MinecraftForge.EVENT_BUS.addListener(this::onItemUse);
+        MinecraftForge.EVENT_BUS.addListener(GTCommonEvents::onTooltipAdd);
         eventBus.addGenericListener(FoliagePlacerType.class, this::onRegistration);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             eventBus.addListener(this::clientSetup);
