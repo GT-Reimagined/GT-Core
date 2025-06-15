@@ -34,10 +34,18 @@ public class BookRegistration {
         registerBookTexture(Items.WRITTEN_BOOK, "book_vanilla");
         registerBookTexture(Items.WRITABLE_BOOK, "book_vanilla");
         registerBookTexture(Items.ENCHANTED_BOOK, "book_enchanted");
+        registerBookTexture(Items.PAINTING, "frame");
         registerBookTexture(Items.PAPER, "folder");
         registerBookTexture(Items.NAME_TAG, "folder");
         registerBookTexture(Items.MAP, "folder");
         registerBookTexture(Items.FILLED_MAP, "folder_red");
+        registerBookTexture(Items.ITEM_FRAME, "frame");
+        Item[] records = new Item[]{Items.MUSIC_DISC_13, Items.MUSIC_DISC_CAT, Items.MUSIC_DISC_BLOCKS, Items.MUSIC_DISC_CHIRP, Items.MUSIC_DISC_FAR,
+        Items.MUSIC_DISC_MALL, Items.MUSIC_DISC_MELLOHI, Items.MUSIC_DISC_STAL, Items.MUSIC_DISC_STRAD, Items.MUSIC_DISC_WARD, Items.MUSIC_DISC_11,
+        Items.MUSIC_DISC_WAIT, Items.MUSIC_DISC_OTHERSIDE, Items.MUSIC_DISC_PIGSTEP};
+        for (Item item : records) {
+            registerBookTexture(item, "record");
+        }
         registerBookTexture(GTCoreItems.EmptyShape, "extruder_shape");
         GTAPI.all(ItemBasic.class, GTCore.ID).forEach(i -> {
             if (i.getId().endsWith("_shape") || i.getId().endsWith("_mold")){
@@ -47,5 +55,13 @@ public class BookRegistration {
         GTAPI.all(ItemSelectorTag.class, GTCore.ID).forEach(i -> {
             registerBookTexture(i, "tablet_computer_metallic");
         });
+        registerBookTexture(GTCoreItems.Tape, "tape_white");
+        registerBookTexture(GTCoreItems.TapeEmpty, "tape_white");
+        registerBookTexture(GTCoreItems.DuctTape, "tape_gray");
+        registerBookTexture(GTCoreItems.DuctTapeEmpty, "tape_gray");
+        registerBookTexture(GTCoreItems.FALDuctTape, "tape_black");
+        registerBookTexture(GTCoreItems.FALDuctTapeEmpty, "tape_black");
+        registerBookTexture(GTCoreItems.EmptyBlueprint, "folder");
+        registerBookTexture(GTCoreItems.Blueprint, "folder_blue");
     }
 }
