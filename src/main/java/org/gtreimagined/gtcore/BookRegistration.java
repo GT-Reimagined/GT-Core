@@ -66,6 +66,7 @@ public class BookRegistration {
         registerBookTexture(GTCoreItems.FALDuctTapeEmpty, "tape_black");
         registerBookTexture(GTCoreItems.EmptyBlueprint, "folder");
         registerBookTexture(GTCoreItems.Blueprint, "folder_blue");
+        if (GTAPI.isModLoaded("bic_clipboard")) registerBookTexture(RegistryUtils.getItemFromID("bic_clipboard", "clipboard"), "clipboard");
         if (GTAPI.isModLoaded(Ref.MOD_TWILIGHT)){
             registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_TWILIGHT, "magic_map"), "folder");
             registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_TWILIGHT, "maze_map"), "folder");
