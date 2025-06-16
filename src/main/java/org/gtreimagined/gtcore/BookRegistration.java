@@ -76,6 +76,14 @@ public class BookRegistration {
             registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_TWILIGHT, "filled_ore_map"), "folder_red");
             registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_TWILIGHT, "tower_key"), "book_vanilla");
         }
+        if (GTAPI.isModLoaded("computercraft")){
+            registerBookTexture(RegistryUtils.getItemFromID("computercraft", "pocket_computer_normal"), "tablet_computer_metallic");
+            registerBookTexture(RegistryUtils.getItemFromID("computercraft", "pocket_computer_advanced"), "tablet_computer_gold");
+            registerBookTexture(RegistryUtils.getItemFromID("computercraft", "disk"), "floppy");
+            registerBookTexture(RegistryUtils.getItemFromID("computercraft", "printed_page"), "folder_red");
+            registerBookTexture(RegistryUtils.getItemFromID("computercraft", "printed_pages"), "folder_red");
+            registerBookTexture(RegistryUtils.getItemFromID("computercraft", "printed_book"), "book_vanilla");
+        }
         if (GTAPI.isModLoaded(Ref.MOD_AE)){
             registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "biometric_card"), "id");
             registerBookTexture(RegistryUtils.getItemFromID(Ref.MOD_AE, "memory_card"),"ae_handheld");

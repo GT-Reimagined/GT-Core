@@ -21,6 +21,7 @@ import org.gtreimagined.gtlib.pipe.PipeSize;
 import org.gtreimagined.gtlib.pipe.types.Cable;
 import org.gtreimagined.gtlib.pipe.types.Wire;
 import org.gtreimagined.gtlib.tool.IGTTool;
+import org.gtreimagined.gtlib.util.RegistryUtils;
 import org.gtreimagined.gtlib.util.TagUtils;
 
 import java.util.Objects;
@@ -57,6 +58,9 @@ public class GTCoreItemTagProvider extends GTItemTagProvider {
         this.tag(INGOTS_MIXED_METAL).add(MixedMetalIngot);
         this.tag(BOOKS_NORMAL).add(Items.BOOK, Items.WRITABLE_BOOK, Items.WRITTEN_BOOK);
         this.tag(BOOKS_ENCHANTED).add(Items.ENCHANTED_BOOK);
+        if (GTAPI.isModLoaded("computercraft")){
+            this.tag(BOOKS_NORMAL).add(RegistryUtils.getItemFromID("computercraft", "printed_book"));
+        }
         this.tag(GTLibTags.RADIATION_PROOF).add(UniversalHazardSuitMask, UniversalHazardSuitShirt, UniversalHazardSuitPants, UniversalHazardSuitBoots);
         if (GTAPI.isModLoaded("farmersdelight")) {
             this.tag(TagUtils.getItemTag(new ResourceLocation("farmersdelight:tools/knives"))).addTag(GTTools.KNIFE.getTag());
