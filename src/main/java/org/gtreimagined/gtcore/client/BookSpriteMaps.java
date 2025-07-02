@@ -6,6 +6,8 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -15,7 +17,8 @@ import org.gtreimagined.gtlib.client.ModelUtils;
 
 import java.util.Map;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = GTCore.ID)
+@OnlyIn(Dist.CLIENT)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = GTCore.ID, value = Dist.CLIENT)
 public class BookSpriteMaps {
     private static final Map<Item, Pair<TextureAtlasSprite, TextureAtlasSprite>> SPRITE_MAP = new Object2ObjectOpenHashMap<>();
     private static Map<Item, Pair<Material, Material>> MATERIAL_MAP = null;
