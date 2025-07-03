@@ -38,6 +38,11 @@ public class BlockEntityRedstoneWire<T extends RedstoneWire<T>> extends BlockEnt
     }
 
     @Override
+    public BlockEntity getBlockEntity() {
+        return this;
+    }
+
+    @Override
     public void onFirstTickServer(Level level, BlockPos pos, BlockState state) {
         super.onFirstTickServer(level, pos, state);
         updateConnectionStatus();

@@ -13,12 +13,12 @@ import org.gtreimagined.gtlib.material.Material;
 import org.gtreimagined.gtlib.registration.IColorHandler;
 import org.gtreimagined.gtlib.texture.Texture;
 import org.gtreimagined.gtlib.util.Utils;
+import org.gtreimagined.tesseract.TesseractCapUtils;
+import org.gtreimagined.tesseract.api.context.TesseractItemContext;
+import org.gtreimagined.tesseract.api.eu.IEnergyHandlerItem;
+import org.gtreimagined.tesseract.api.eu.IEnergyItem;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import tesseract.TesseractCapUtils;
-import tesseract.api.context.TesseractItemContext;
-import tesseract.api.gt.IEnergyHandlerItem;
-import tesseract.api.gt.IEnergyItem;
 
 import java.util.ArrayList;
 import java.util.List;

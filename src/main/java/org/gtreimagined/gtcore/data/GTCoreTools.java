@@ -39,10 +39,10 @@ import org.gtreimagined.gtlib.tool.behaviour.BehaviourTorchPlacing;
 import org.gtreimagined.gtlib.tool.behaviour.BehaviourTreeFelling;
 import org.gtreimagined.gtlib.util.TagUtils;
 import org.gtreimagined.gtlib.util.Utils;
+import org.gtreimagined.tesseract.TesseractCapUtils;
+import org.gtreimagined.tesseract.api.eu.IEnergyHandler;
+import org.gtreimagined.tesseract.api.eu.IEnergyHandlerItem;
 import org.jetbrains.annotations.Nullable;
-import tesseract.TesseractCapUtils;
-import tesseract.api.gt.IEnergyHandlerItem;
-import tesseract.api.gt.IGTNode;
 
 import java.util.List;
 
@@ -182,8 +182,8 @@ public class GTCoreTools {
 
     public static Tuple<Long, Long> getEnergy(ItemStack stack){
         if (stack.getItem() instanceof ItemBattery battery){
-            long energy = TesseractCapUtils.INSTANCE.getEnergyHandlerItem(stack).map(IGTNode::getEnergy).orElse((long)0);
-            long maxEnergy = TesseractCapUtils.INSTANCE.getEnergyHandlerItem(stack).map(IGTNode::getCapacity).orElse(battery.getCapacity());
+            long energy = TesseractCapUtils.INSTANCE.getEnergyHandlerItem(stack).map(IEnergyHandler::getEnergy).orElse((long)0);
+            long maxEnergy = TesseractCapUtils.INSTANCE.getEnergyHandlerItem(stack).map(IEnergyHandler::getCapacity).orElse(battery.getCapacity());
             return new Tuple<>(energy, maxEnergy);
         }
         if (stack.getItem() instanceof IGTTool tool){

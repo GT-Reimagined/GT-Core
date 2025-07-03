@@ -10,7 +10,7 @@ import org.gtreimagined.gtcore.gui.slots.SlotUnlimited;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.gui.slot.AbstractSlot;
 import org.gtreimagined.gtlib.tool.IGTTool;
-import tesseract.TesseractCapUtils;
+import org.gtreimagined.tesseract.TesseractCapUtils;
 
 public class SlotTypes {
     public static SlotType<AbstractSlot<?>> TOOLS = new SlotType<>("tools", (type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i, d.getX(), d.getY()), (t, i) -> i.getItem() instanceof IGTTool || i.getItem().canBeDepleted());
