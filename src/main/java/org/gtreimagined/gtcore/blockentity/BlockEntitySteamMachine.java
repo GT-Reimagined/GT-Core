@@ -47,7 +47,7 @@ public class BlockEntitySteamMachine extends BlockEntityMachine<BlockEntitySteam
         }
 
         @Override
-        public boolean consumeResourceForRecipe(boolean simulate) {
+        public boolean consumePower(boolean simulate) {
             return tile.fluidHandler.map(t -> t.consumeTaggedInput(STEAM, (int) getPower(), simulate).getAmount() > 0)
                     .orElse(false);
         }
@@ -106,11 +106,6 @@ public class BlockEntitySteamMachine extends BlockEntityMachine<BlockEntitySteam
         @Override
         public boolean accepts(FluidStack stack) {
             return super.accepts(stack) || stack.getFluid().builtInRegistryHolder().is(STEAM);
-        }
-
-        @Override
-        protected boolean consumeGeneratorResources(boolean simulate) {
-            return isSteamClear && super.consumeGeneratorResources(simulate);
         }
 
         @Override
