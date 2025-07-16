@@ -36,6 +36,8 @@ public class GTCoreTags {
     public static final TagKey<Item> RUBBER_LOGS = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "rubber_logs"));
     public static final TagKey<Item> BOOKS_NORMAL = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "books/normal"));
     public static final TagKey<Item> BOOKS_ENCHANTED = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "books/enchanted"));
+    public static final TagKey<Item> STONE_ROCKS = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "rocks/stone"));
+    public static final TagKey<Item> ORE_ROCKS = TagUtils.getItemTag(new ResourceLocation(GTCore.ID, "rocks/ore"));
 
     public static TagKey<Item> getTag(String id){
         return TagUtils.getForgelikeItemTag(id);

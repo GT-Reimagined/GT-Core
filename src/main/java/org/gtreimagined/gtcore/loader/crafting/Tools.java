@@ -9,6 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.GTCoreConfig;
+import org.gtreimagined.gtcore.data.GTCoreTags;
 import org.gtreimagined.gtcore.data.GTCoreTools;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.Ref;
@@ -265,11 +266,11 @@ public class Tools {
     }
 
     private static void vanillaToolRecipes(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider){
-        provider.addItemRecipe(consumer, GTCore.ID, "stone_pickaxe", "tools", Items.STONE_PICKAXE, of('R', ROCK.getTag(), 'S', Items.STICK), "RRR", " S ");
-        provider.addItemRecipe(consumer, GTCore.ID, "stone_axe", "tools", Items.STONE_AXE, of('R', ROCK.getTag(), 'S', Items.STICK), "RR", "RS");
-        provider.addItemRecipe(consumer, GTCore.ID, "stone_shovel", "tools", Items.STONE_SHOVEL, of('R', ROCK.getTag(), 'S', Items.STICK), "R", "S");
-        provider.addItemRecipe(consumer, GTCore.ID, "stone_hoe", "tools", Items.STONE_HOE, of('R', ROCK.getTag(), 'S', Items.STICK), "RR", " S");
-        provider.addItemRecipe(consumer, GTCore.ID, "stone_sword", "tools", Items.STONE_SWORD, of('R', ROCK.getTag(), 'S', Items.STICK), "R", "R", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "stone_pickaxe", "tools", Items.STONE_PICKAXE, of('R', GTCoreTags.STONE_ROCKS, 'S', Items.STICK), "RRR", " S ");
+        provider.addItemRecipe(consumer, GTCore.ID, "stone_axe", "tools", Items.STONE_AXE, of('R', GTCoreTags.STONE_ROCKS, 'S', Items.STICK), "RR", "RS");
+        provider.addItemRecipe(consumer, GTCore.ID, "stone_shovel", "tools", Items.STONE_SHOVEL, of('R', GTCoreTags.STONE_ROCKS, 'S', Items.STICK), "R", "S");
+        provider.addItemRecipe(consumer, GTCore.ID, "stone_hoe", "tools", Items.STONE_HOE, of('R', GTCoreTags.STONE_ROCKS, 'S', Items.STICK), "RR", " S");
+        provider.addItemRecipe(consumer, GTCore.ID, "stone_sword", "tools", Items.STONE_SWORD, of('R', GTCoreTags.STONE_ROCKS, 'S', Items.STICK), "R", "R", "S");
     }
 
     private static void toolPartRecipes(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider){

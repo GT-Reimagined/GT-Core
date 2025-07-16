@@ -30,7 +30,7 @@ import java.util.Set;
 import static org.gtreimagined.gtcore.data.GTCoreItems.*;
 import static org.gtreimagined.gtcore.data.GTCoreMaterials.*;
 import static org.gtreimagined.gtcore.data.GTCoreTags.*;
-import static org.gtreimagined.gtlib.data.GTMaterialTypes.PLATE;
+import static org.gtreimagined.gtlib.data.GTMaterialTypes.*;
 import static org.gtreimagined.gtlib.material.MaterialTags.*;
 
 public class GTCoreItemTagProvider extends GTItemTagProvider {
@@ -108,6 +108,10 @@ public class GTCoreItemTagProvider extends GTItemTagProvider {
                         GTTools.WRENCH_ALT.getToolItem(material), GTTools.SHOVEL.getToolItem(material), GTTools.AXE.getToolItem(material));
             }
         }
+        ROCK.all().forEach(r -> {
+            var type = r.has(ORE_STONE) ? ORE_ROCKS : STONE_ROCKS;
+            this.tag(type).add(ROCK.get(r));
+        });
     }
 
     protected void processSubtags() {
