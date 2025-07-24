@@ -63,7 +63,7 @@ public class BlockEntityGTHopper extends BlockEntityMaterial<BlockEntityGTHopper
         BlockPos above = pos.above();
         BlockState aboveState = level.getBlockState(above);
         if (aboveState.isAir() && level.getGameTime() % 10 == 0){
-            List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, new AABB(pos), EntitySelector.ENTITY_STILL_ALIVE);
+            List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, new AABB(above));
             for (ItemEntity item : items){
                 if (addItem(this.itemHandler.get().getHandler(SlotType.STORAGE), item)){
                     return;
@@ -106,7 +106,7 @@ public class BlockEntityGTHopper extends BlockEntityMaterial<BlockEntityGTHopper
         int i = destination.getSlots();
 
         for(int j = 0; j < i && !stack.isEmpty(); ++j) {
-            stack = destination.insertItem(i, stack, false);
+            stack = destination.insertItem(j, stack, false);
         }
 
         return stack;
