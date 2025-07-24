@@ -13,6 +13,11 @@ public class BlockEntityMaterial<T extends BlockEntityMaterial<T>> extends Block
         material = type.getMaterial();
     }
 
+    @Override
+    protected void disableMachine() {
+       //NOOP
+    }
+
     public Material getMaterial() {
         return material;
     }
