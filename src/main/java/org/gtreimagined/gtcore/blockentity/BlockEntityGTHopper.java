@@ -4,16 +4,24 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.machine.HopperItemHandler;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
 import org.gtreimagined.gtlib.data.GTTools;
@@ -21,6 +29,8 @@ import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.tool.GTToolType;
 import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class BlockEntityGTHopper extends BlockEntityMaterial<BlockEntityGTHopper> implements ILimitedOutputTile{
     protected int stackLimit = 0;
@@ -50,6 +60,16 @@ public class BlockEntityGTHopper extends BlockEntityMaterial<BlockEntityGTHopper
     public void serverTick(Level level, BlockPos pos, BlockState state) {
         super.serverTick(level, pos, state);
         if (disabled || level.getGameTime() % 2 != 0) return;
+        BlockPos above = pos.above();
+        BlockState aboveState = level.getBlockState(above);
+        if (aboveState.isAir() && level.getGameTime() % 10 == 0){
+            List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, new AABB(pos), EntitySelector.ENTITY_STILL_ALIVE);
+            for (ItemEntity item : items){
+                if (addItem(this.itemHandler.get().getHandler(SlotType.STORAGE), item)){
+                    return;
+                }
+            }
+        }
         if (this.itemHandler.map(i -> !i.getHandler(SlotType.STORAGE).isEmpty()).orElse(false)) {
             BlockEntity neighbor = getCachedBlockEntity(this.getFacing());
             if (neighbor != null) {
@@ -58,14 +78,38 @@ public class BlockEntityGTHopper extends BlockEntityMaterial<BlockEntityGTHopper
                 });
             }
         }
-        BlockEntity above = getCachedBlockEntity(Direction.UP);
-        if (above != null) {
+        BlockEntity aboveBE = getCachedBlockEntity(Direction.UP);
+        if (aboveBE != null) {
             this.itemHandler.ifPresent(to -> {
-                above.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.DOWN).ifPresent(from -> {
+                aboveBE.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.DOWN).ifPresent(from -> {
                     Utils.transferItems(from, to.getHandler(SlotType.STORAGE), true);
                 });
             });
         }
+    }
+
+    public static boolean addItem(IItemHandler container, ItemEntity itemEntity) {
+        boolean flag = false;
+        ItemStack itemstack = itemEntity.getItem().copy();
+        ItemStack itemstack1 = addItem(container, itemstack);
+        if (itemstack1.isEmpty()) {
+            flag = true;
+            itemEntity.discard();
+        } else {
+            itemEntity.setItem(itemstack1);
+        }
+
+        return flag;
+    }
+
+    public static ItemStack addItem(IItemHandler destination, ItemStack stack) {
+        int i = destination.getSlots();
+
+        for(int j = 0; j < i && !stack.isEmpty(); ++j) {
+            stack = destination.insertItem(i, stack, false);
+        }
+
+        return stack;
     }
 
     @Override
