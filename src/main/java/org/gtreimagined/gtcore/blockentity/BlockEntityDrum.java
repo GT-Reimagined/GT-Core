@@ -18,10 +18,13 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import org.gtreimagined.gtcore.data.GTCoreMaterials;
+import org.gtreimagined.gtcore.data.GTCoreTags;
 import org.gtreimagined.gtcore.machine.DrumMachine;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.capability.fluid.FluidTanks;
 import org.gtreimagined.gtlib.capability.machine.MachineFluidHandler;
+import org.gtreimagined.gtlib.data.GTLibMaterials;
 import org.gtreimagined.gtlib.data.GTLibTags;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.tool.GTToolType;
@@ -186,6 +189,13 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
 
         @Override
         public int fill(FluidStack fluid, FluidAction action) {
+            if (fluid.getFluid().is(GTCoreTags.STEAM)) {
+                if (fluid.getAmount() >= 160) {
+                    int toFill = fluid.getAmount() / 160;
+                    return fill(GTLibMaterials.Water.getLiquid(toFill), action);
+                }
+                return 0;
+            }
             if (tile.getMachineType() instanceof DrumMachine drumMachine && !drumMachine.isAcidProof() && fluid.getFluid().is(GTLibTags.ACID)){
                 int insert = super.fill(fluid, FluidAction.SIMULATE);
                 if (insert > 0){

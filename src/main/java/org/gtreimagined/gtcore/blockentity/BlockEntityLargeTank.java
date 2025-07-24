@@ -16,6 +16,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import org.gtreimagined.gtcore.data.GTCoreTags;
 import org.gtreimagined.gtcore.machine.MultiblockTankMachine;
 import org.gtreimagined.gtlib.capability.CoverHandler;
 import org.gtreimagined.gtlib.capability.fluid.FluidHandlerSidedWrapper;
@@ -23,6 +24,7 @@ import org.gtreimagined.gtlib.capability.fluid.FluidTanks;
 import org.gtreimagined.gtlib.capability.fluid.IFluidNode;
 import org.gtreimagined.gtlib.capability.machine.MachineFluidHandler;
 import org.gtreimagined.gtlib.cover.ICover;
+import org.gtreimagined.gtlib.data.GTLibMaterials;
 import org.gtreimagined.gtlib.data.GTLibTags;
 import org.gtreimagined.gtlib.util.FluidUtils;
 import org.gtreimagined.gtlib.util.Utils;
@@ -110,6 +112,13 @@ public class BlockEntityLargeTank extends BlockEntityMaterialBasicMultiMachine<B
 
         @Override
         public int fill(FluidStack fluid, FluidAction action) {
+            if (fluid.getFluid().is(GTCoreTags.STEAM)) {
+                if (fluid.getAmount() >= 160) {
+                    int toFill = fluid.getAmount() / 160;
+                    return fill(GTLibMaterials.Water.getLiquid(toFill), action);
+                }
+                return 0;
+            }
             if (!tile.tankMachine.isGasProof()){
                 if (FluidUtils.isFluidGaseous(fluid.getFluid())) {
                     int inserted = super.fill(fluid, FluidAction.SIMULATE);
