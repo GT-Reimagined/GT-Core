@@ -5,9 +5,11 @@ import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ProfilePublicKey;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.gtreimagined.gtcore.data.GTCoreData;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,8 +20,9 @@ import java.util.List;
 @Mixin(AbstractClientPlayer.class)
 public abstract class AbstractClientPlayerEntityMixin extends Player {
 
-    public AbstractClientPlayerEntityMixin(Level p_i241920_1_, BlockPos p_i241920_2_, float p_i241920_3_, GameProfile p_i241920_4_) {
-        super(p_i241920_1_, p_i241920_2_, p_i241920_3_, p_i241920_4_);
+
+    public AbstractClientPlayerEntityMixin(Level level, BlockPos pos, float yRot, GameProfile gameProfile, @Nullable ProfilePublicKey profilePublicKey) {
+        super(level, pos, yRot, gameProfile, profilePublicKey);
     }
 
     @Inject(method = "getCloakTextureLocation", at = @At(value = "HEAD"), cancellable = true)

@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.item.ItemTape;
@@ -161,21 +161,21 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         if (type == GTTools.WIRE_CUTTER){
             outputOverflow = !outputOverflow;
             //TODO: translation component
-            player.sendMessage(Utils.literal(outputOverflow ? "Outputs overflow" : "Doesn't output overflow"), player.getUUID());
+            player.displayClientMessage(Utils.literal(outputOverflow ? "Outputs overflow" : "Doesn't output overflow"),false);
             Utils.damageStack(player.getItemInHand(hand), hand, player);
             return InteractionResult.SUCCESS;
         }
         if (type == GTTools.WRENCH_ALT){
             output = !output;
             //TODO: translation component
-            player.sendMessage(Utils.literal(output ? "Auto output on" : "Auto output off"), player.getUUID());
+            player.displayClientMessage(Utils.literal(output ? "Auto output on" : "Auto output off"),false);
             Utils.damageStack(player.getItemInHand(hand), hand, player);
             return InteractionResult.SUCCESS;
         }
         if (type == GTTools.SCREWDRIVER && coverHandler.map(c -> c.get(Utils.getInteractSide(hit)).isEmpty()).orElse(true)){
             keepFilter = !keepFilter;
             //TODO: translation component
-            player.sendMessage(Utils.literal("Filter " + (keepFilter ? "Stays" : "Resets") + " when empty"), player.getUUID());
+            player.displayClientMessage(Utils.literal("Filter " + (keepFilter ? "Stays" : "Resets") + " when empty"),false);
             Utils.damageStack(player.getItemInHand(hand), hand, player);
             if (!keepFilter) itemHandler.ifPresent(i -> i.getHandler(SlotType.DISPLAY).setStackInSlot(0, ItemStack.EMPTY));
             return InteractionResult.SUCCESS;
@@ -337,12 +337,12 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         BlockEntity adjTile = getCachedBlockEntity(outputDir);
         if (adjTile == null) return;
         if (!itemStack.isEmpty()) {
-            adjTile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, outputDir.getOpposite()).ifPresent(adjHandler -> {
+            adjTile.getCapability(ForgeCapabilities.ITEM_HANDLER, outputDir.getOpposite()).ifPresent(adjHandler -> {
                 ItemStack transferred = Utils.insertItem(adjHandler, itemStack.copy(), simulate);
                 itemStack.shrink(itemStack.getCount() - transferred.getCount());
             });
         } else if (!simulate){
-            adjTile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, outputDir.getOpposite()).ifPresent(adjHandler -> {
+            adjTile.getCapability(ForgeCapabilities.ITEM_HANDLER, outputDir.getOpposite()).ifPresent(adjHandler -> {
                 this.itemHandler.ifPresent(h -> Utils.transferItems(h.getHandler(SlotTypes.UNLIMITED), adjHandler,true));
             });
         }

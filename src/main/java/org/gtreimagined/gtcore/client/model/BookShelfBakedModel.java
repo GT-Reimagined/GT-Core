@@ -12,6 +12,7 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockAndTintGetter;
@@ -81,7 +82,7 @@ public class BookShelfBakedModel extends GTBakedModel<BookShelfBakedModel> {
     }
 
     @Override
-    public List<BakedQuad> getBlockQuads(BlockState state, @Nullable Direction direction, @NotNull Random rand, @NotNull BlockAndTintGetter level, @NotNull BlockPos pos) {
+    public List<BakedQuad> getBlockQuads(BlockState state, @Nullable Direction direction, @NotNull RandomSource rand, @NotNull BlockAndTintGetter level, @NotNull BlockPos pos) {
         List<BakedQuad> quads = new ObjectArrayList<>();
         quads.addAll(ModelUtils.getQuadsFromBaked(baseModel, state, direction, rand, level, pos));
         if (direction != Direction.SOUTH && direction != Direction.NORTH) return quads;

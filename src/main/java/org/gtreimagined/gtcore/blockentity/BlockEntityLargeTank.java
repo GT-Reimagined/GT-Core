@@ -11,9 +11,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import org.gtreimagined.gtcore.data.GTCoreTags;
@@ -68,7 +68,7 @@ public class BlockEntityLargeTank extends BlockEntityMaterialBasicMultiMachine<B
 
     @Override
     public <U> LazyOptional<U> getCapabilityFromFake(@NotNull Capability<U> cap, @Nullable Direction side, ICover cover) {
-        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && side == this.getFacing()) {
+        if (cap == ForgeCapabilities.FLUID_HANDLER && side == this.getFacing()) {
             return fakeFacingWrapper.cast();
         }
         return super.getCapabilityFromFake(cap, side, cover);

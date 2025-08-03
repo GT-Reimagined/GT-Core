@@ -3,6 +3,7 @@ package org.gtreimagined.gtcore.tree;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
@@ -50,7 +51,7 @@ public class RubberTree extends AbstractTreeGrower {
 
 
     @Override
-    public boolean growTree(ServerLevel world, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, Random rand) {
+    public boolean growTree(ServerLevel world, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, RandomSource rand) {
         Holder<Biome> biome = world.getBiome(pos);
         ConfiguredFeature<TreeConfiguration, ?> configuredFeature;
         if (biome.is(Biomes.JUNGLE)) {
@@ -70,7 +71,7 @@ public class RubberTree extends AbstractTreeGrower {
     }
 
     @Override
-    protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(Random rand,
+    protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource rand,
             boolean b) {
         return RubberTreeWorldGen.TREE_FEATURE_CONFIG;
     }

@@ -48,13 +48,6 @@ public class RubberTreeWorldGen {
     public static Holder<ConfiguredFeature<TreeConfiguration, ?>> TREE_FEATURE_SWAMP_CONFIG;
     public static Holder<ConfiguredFeature<TreeConfiguration, ?>> TREE_FEATURE_JUNGLE_CONFIG;
 
-    /*@Override
-    public Predicate<Biome> getValidBiomes() {
-        return getValidBiomesStatic();
-    }*/
-
-
-    
     final static TreeConfiguration RUBBER_TREE_CONFIG_SWAMP =
             (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2), BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
                     new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator(0.25f))).build();

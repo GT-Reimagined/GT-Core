@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BookShelfModelLoader extends GTModelLoader<BookShelfModel> {
     static List<BlockElement> BOOK_REFERENCE_SOUTH = null;
@@ -27,24 +28,27 @@ public class BookShelfModelLoader extends GTModelLoader<BookShelfModel> {
     }
 
     @Override
-    public BookShelfModel read(JsonDeserializationContext jsonDeserializationContext, JsonObject jsonObject) {
+    public BookShelfModel read(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {
         JsonObject copy = jsonObject.deepCopy();
         copy.remove("loader");
         UnbakedModel model = jsonDeserializationContext.deserialize(copy, BlockModel.class);
         if (BOOK_REFERENCE_SOUTH == null) {
             try {
                 BOOK_REFERENCE_SOUTH = new ArrayList<>();
-                Resource resource = ModelUtils.getModelBakery().resourceManager.getResource(new ResourceLocation(GTCore.ID, "models/block/machine/overlay/bookshelf/book_south.json"));
-                InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8);
-                JsonReader jsonReader = new JsonReader(reader);
-                JsonElement element = Streams.parse(jsonReader);
-                if (element.isJsonObject()) {
-                    JsonObject obj = element.getAsJsonObject();
-                    UnbakedModel numberModel = jsonDeserializationContext.deserialize(obj, BlockModel.class);
-                    if (numberModel instanceof BlockModel blockModel){
-                        BOOK_REFERENCE_SOUTH.addAll(blockModel.getElements());
+                Optional<Resource> resource = ModelUtils.getModelBakery().resourceManager.getResource(new ResourceLocation(GTCore.ID, "models/block/machine/overlay/bookshelf/book_south.json"));
+                if (resource.isPresent()){
+                    InputStreamReader reader = new InputStreamReader(resource.get().open(), StandardCharsets.UTF_8);
+                    JsonReader jsonReader = new JsonReader(reader);
+                    JsonElement element = Streams.parse(jsonReader);
+                    if (element.isJsonObject()) {
+                        JsonObject obj = element.getAsJsonObject();
+                        UnbakedModel numberModel = jsonDeserializationContext.deserialize(obj, BlockModel.class);
+                        if (numberModel instanceof BlockModel blockModel){
+                            BOOK_REFERENCE_SOUTH.addAll(blockModel.getElements());
+                        }
                     }
                 }
+
             } catch (Exception e) {
                 GTCore.LOGGER.error(e);
             }
@@ -52,15 +56,17 @@ public class BookShelfModelLoader extends GTModelLoader<BookShelfModel> {
         if (BOOK_REFERENCE_NORTH == null) {
             try {
                 BOOK_REFERENCE_NORTH = new ArrayList<>();
-                Resource resource = ModelUtils.getModelBakery().resourceManager.getResource(new ResourceLocation(GTCore.ID, "models/block/machine/overlay/bookshelf/book_north.json"));
-                InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8);
-                JsonReader jsonReader = new JsonReader(reader);
-                JsonElement element = Streams.parse(jsonReader);
-                if (element.isJsonObject()) {
-                    JsonObject obj = element.getAsJsonObject();
-                    UnbakedModel numberModel = jsonDeserializationContext.deserialize(obj, BlockModel.class);
-                    if (numberModel instanceof BlockModel blockModel){
-                        BOOK_REFERENCE_NORTH.addAll(blockModel.getElements());
+                Optional<Resource> resource = ModelUtils.getModelBakery().resourceManager.getResource(new ResourceLocation(GTCore.ID, "models/block/machine/overlay/bookshelf/book_north.json"));
+                if (resource.isPresent()){
+                    InputStreamReader reader = new InputStreamReader(resource.get().open(), StandardCharsets.UTF_8);
+                    JsonReader jsonReader = new JsonReader(reader);
+                    JsonElement element = Streams.parse(jsonReader);
+                    if (element.isJsonObject()) {
+                        JsonObject obj = element.getAsJsonObject();
+                        UnbakedModel numberModel = jsonDeserializationContext.deserialize(obj, BlockModel.class);
+                        if (numberModel instanceof BlockModel blockModel){
+                            BOOK_REFERENCE_NORTH.addAll(blockModel.getElements());
+                        }
                     }
                 }
             } catch (Exception e) {

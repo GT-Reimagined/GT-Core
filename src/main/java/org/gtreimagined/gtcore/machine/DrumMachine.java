@@ -3,8 +3,8 @@ package org.gtreimagined.gtcore.machine;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityDrum;
 import org.gtreimagined.gtcore.item.ItemBlockDrum;
@@ -35,7 +35,7 @@ public class DrumMachine extends MaterialMachine{
                 tooltip.add(Utils.translatable("gtlib.tooltip.acid_proof"));
             }
             CompoundTag nbt = stack.getTag();
-            FluidStack fluid = nbt != null && nbt.contains("Fluid") ? FluidUtils.fromTag(nbt.getCompound("Fluid")) : stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).map(fi -> fi.getFluidInTank(0)).orElse(FluidStack.EMPTY);
+            FluidStack fluid = nbt != null && nbt.contains("Fluid") ? FluidUtils.fromTag(nbt.getCompound("Fluid")) : stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).map(fi -> fi.getFluidInTank(0)).orElse(FluidStack.EMPTY);
             if (!fluid.isEmpty()){
                 tooltip.add(Utils.translatable("machine.drum.fluid", fluid.getAmount(), FluidUtils.getFluidDisplayName(fluid)).withStyle(ChatFormatting.AQUA));
             }

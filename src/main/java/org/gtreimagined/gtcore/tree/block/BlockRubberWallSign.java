@@ -13,7 +13,7 @@ import org.gtreimagined.gtlib.registration.IItemBlockProvider;
 
 public class BlockRubberWallSign extends TerraformWallSignBlock implements IGTObject, IItemBlockProvider {
     public BlockRubberWallSign() {
-        super(new ResourceLocation(GTCore.ID, "entity/signs/rubber"), Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD));
+        super(Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), GTCoreBlocks.RUBBER_WOOD_TYPE);
         GTAPI.register(BlockRubberWallSign.class, this);
     }
 

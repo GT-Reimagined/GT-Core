@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -38,7 +39,7 @@ public class RubberTrunkPlacer extends StraightTrunkPlacer {
     }
 
     @Override
-    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, Random random, int freeTreeHeight, BlockPos pos, TreeConfiguration config) {
+    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, RandomSource random, int freeTreeHeight, BlockPos pos, TreeConfiguration config) {
         if (!GTAPI.isModLoaded("tfc")) setDirtAt(level, blockSetter, random, pos.below(), config);
 
         for(int i = 0; i < freeTreeHeight; ++i) {
@@ -55,7 +56,7 @@ public class RubberTrunkPlacer extends StraightTrunkPlacer {
         });
     }
 
-    protected static void setDirtAt(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, Random random, BlockPos pos, TreeConfiguration config) {
+    protected static void setDirtAt(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, RandomSource random, BlockPos pos, TreeConfiguration config) {
         if (config.forceDirt || !isDirt(level, pos)) {
 
             blockSetter.accept(pos, config.dirtProvider.getState(random, pos));
@@ -63,7 +64,7 @@ public class RubberTrunkPlacer extends StraightTrunkPlacer {
 
     }
 
-    protected static void placeLog(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, Random random, BlockPos pos, TreeConfiguration config, Function<BlockState, BlockState> propertySetter, int i) {
+    protected static void placeLog(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, RandomSource random, BlockPos pos, TreeConfiguration config, Function<BlockState, BlockState> propertySetter, int i) {
         if (TreeFeature.validTreePos(level, pos)) {
             BlockState state = null;
             if (i > 0){

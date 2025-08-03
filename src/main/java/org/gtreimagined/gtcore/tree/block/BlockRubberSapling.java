@@ -3,6 +3,8 @@ package org.gtreimagined.gtcore.tree.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -61,8 +63,8 @@ public class BlockRubberSapling extends SaplingBlock implements IGTObject, IMode
     }
 
     @Override
-    public void advanceTree(ServerLevel world, BlockPos pos, BlockState state, Random random) {
-        if (Biome.getBiomeCategory(world.getBiome(pos)) != Biome.BiomeCategory.NETHER && Biome.getBiomeCategory(world.getBiome(pos)) != Biome.BiomeCategory.THEEND)
+    public void advanceTree(ServerLevel world, BlockPos pos, BlockState state, RandomSource random) {
+        if (!world.getBiome(pos).is(BiomeTags.IS_NETHER) && !world.getBiome(pos).is(BiomeTags.IS_END))
             super.advanceTree(world, pos, state, random);
     }
 }

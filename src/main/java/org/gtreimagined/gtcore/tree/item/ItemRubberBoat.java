@@ -24,9 +24,9 @@ public class ItemRubberBoat extends TerraformBoatItem implements IGTObject, ITex
     static TerraformBoatType RUBBER_BOAT_TYPE;
 
     public ItemRubberBoat() {
-        super(() -> RUBBER_BOAT_TYPE, new Properties().tab(Ref.TAB_ITEMS).stacksTo(1));
+        super(() -> RUBBER_BOAT_TYPE, false, new Properties().tab(Ref.TAB_ITEMS).stacksTo(1));
         GTAPI.register(ItemRubberBoat.class, this);
-        TerraformBoatItemHelper.registerBoatDispenserBehavior(this, () -> RUBBER_BOAT_TYPE);
+        TerraformBoatItemHelper.registerBoatDispenserBehavior(this, () -> RUBBER_BOAT_TYPE, false);
         RUBBER_BOAT_TYPE = new TerraformBoatType.Builder().item(this).build();
         Registry.register(TerraformBoatTypeRegistry.INSTANCE, new ResourceLocation(GTCore.ID, "rubber"), RUBBER_BOAT_TYPE);
     }

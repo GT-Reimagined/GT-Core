@@ -41,7 +41,7 @@ public abstract class MixinBlock {
             state.getDrops(lootContextBuilder).forEach((stack) -> {
                 gtcore$popResource(serverlevel, blockpos, stack, player);
             });
-            state.spawnAfterBreak(serverlevel, blockpos, ItemStack.EMPTY);
+            state.spawnAfterBreak(serverlevel, blockpos, ItemStack.EMPTY, true);
             ci.cancel();
         }
 
@@ -53,7 +53,7 @@ public abstract class MixinBlock {
             getDrops(state, serverLevel, pos, blockEntity, entity, tool).forEach((itemStack) -> {
                 gtcore$popResource(level, pos, itemStack, player);
             });
-            state.spawnAfterBreak((ServerLevel)level, pos, tool);
+            state.spawnAfterBreak((ServerLevel)level, pos, tool, true);
             ci.cancel();
         }
 
