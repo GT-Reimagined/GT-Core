@@ -71,28 +71,22 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation("org.jetbrains:annotations:26.0.1")
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
-    modImplementation("org.gt-reimagined:gt-lib:${gtlib_version}")
-    modImplementation("org.gt-reimagined:tesseract-forge:${tesseract_version}")
+    modImplementation("org.gt-reimagined:gt-lib:${gtlib_version}-${project.minecraft_version}")
+    modImplementation("org.gt-reimagined:tesseract-forge:${tesseract_version}-${project.minecraft_version}")
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
-    modCompileOnly("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}")
-    modCompileOnly("curse.maven:terrafirmacraft-302973:4723717")
-    modImplementation("curse.maven:curios-309927:4985315")
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems-forge:${project.rei_version}")
+    modCompileOnly("curse.maven:terrafirmacraft-302973:${project.tfc_version}")
+    modImplementation("curse.maven:curios-309927:${project.curios_version}")
     modImplementation("com.teamresourceful.resourcefullib:resourcefullib-forge-1.18.2:${project.resourcefullib_version}")
-    modImplementation("dev.trinsdar:terraform-wood-api-v1:${project.terraform_version_forge}")
-    jarJar("dev.trinsdar:terraform-wood-api-v1:${project.terraform_version_forge}"){
-        version{
-            strictly("[3.1.5,)")
-            prefer(project.terraform_version_forge)
-        }
-    }
+    modImplementation(jarJar("dev.trinsdar:terraform-wood-api-v1:${project.terraform_version}"))
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
-    modImplementation("maven.modrinth:carbon-config:${project.carbon_config_forge_version}")
-    modRuntimeOnly("curse.maven:the-twilight-forest-227639:4337390")
-    implementation("mezz.jei:jei-${rootProject.minecraft_version}-common-api:${rootProject.jei_version}")
-    modImplementation("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
-    modImplementation("curse.maven:the-one-probe-245211:3965688")
+    modImplementation("maven.modrinth:carbon-config:${project.carbon_config_version}")
+    modRuntimeOnly("curse.maven:the-twilight-forest-227639:${project.twilight_version}")
+    implementation("mezz.jei:jei-${project.minecraft_version}-common-api:${project.jei_version}")
+    modImplementation("mezz.jei:jei-${project.minecraft_version}-forge:${project.jei_version}")
+    modImplementation("curse.maven:the-one-probe-245211:${project.top_version}")
     modImplementation("org.gt-reimagined:structurelib-forge:${project.structurelib_version}-${project.minecraft_version}")
-    modImplementation("curse.maven:jade-324717:5079263")
+    modImplementation("curse.maven:jade-324717:${project.jade_version}")
 }
 
 
