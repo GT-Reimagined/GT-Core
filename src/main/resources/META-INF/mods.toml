@@ -14,13 +14,13 @@ description='''Core Items and blocks used by both gt5r and gt4r.'''
 [[dependencies.gtcore]]
     modId="forge"
     mandatory=true
-    versionRange="[40.1.0,)"
+    versionRange="[42.2.0,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.gtcore]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.2]"
+    versionRange="[1.19.2]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.gtcore]]
