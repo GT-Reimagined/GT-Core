@@ -57,11 +57,11 @@ public class RubberTreeWorldGen {
     
     final static TreeConfiguration RUBBER_TREE_CONFIG_SWAMP =
             (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2), BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
-                    new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator(0.5f))).build();
+                    new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator(0.25f))).build();
 
     final static TreeConfiguration RUBBER_TREE_CONFIG_JUNGLE =
             (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(7, 2, 2), BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
-                    new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator(0.5f))).build();
+                    new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator(0.25f))).build();
 
     final static TreeConfiguration RUBBER_TREE_CONFIG_NORMAL =
             (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2),BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
