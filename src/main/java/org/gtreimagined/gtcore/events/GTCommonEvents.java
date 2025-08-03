@@ -3,7 +3,6 @@ package org.gtreimagined.gtcore.events;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.BlockItem;
@@ -23,6 +22,7 @@ import org.gtreimagined.gtlib.pipe.BlockPipe;
 import org.gtreimagined.gtlib.tool.IGTTool;
 import org.gtreimagined.gtlib.util.Utils;
 
+import java.awt.*;
 import java.util.UUID;
 
 public class GTCommonEvents {
@@ -59,22 +59,22 @@ public class GTCommonEvents {
                         if (player2 == null) continue;
                         if (player2 == player) {
                             if (player2.blockPosition().getY() < 30) {
-                                player2.sendMessage(new TextComponent("Stop making Holes in the Ground, Bear!"), player2.getUUID());
+                                player2.displayClientMessage(Utils.literal("Stop making Holes in the Ground, Bear!"), false);
                             } else {
                                 // Bear does not like being called these names, so lets annoy him. XD
                                 switch (tEmptySlots) {
-                                    case 0:
-                                        player2.sendMessage(new TextComponent("Alright Buttercup, your Inventory is full, time to go home."), player2.getUUID());
-                                        break;
-                                    case 1:
-                                        player2.sendMessage(new TextComponent("Your Inventory is starting to get full, Buttercup"), player2.getUUID());
-                                        break;
-                                    case 2:
-                                        player2.sendMessage(new TextComponent("Your Inventory is starting to get full, Bean989Sr"), player2.getUUID());
-                                        break;
-                                    case 3:
-                                        player2.sendMessage(new TextComponent("Your Inventory is starting to get full, Mr. Bear"), player2.getUUID());
-                                        break;
+                                    case 0 -> {
+                                        player2.displayClientMessage(Utils.literal("Alright Buttercup, your Inventory is full, time to go home."), false);
+                                    }
+                                    case 1 -> {
+                                        player2.displayClientMessage(Utils.literal("Your Inventory is starting to get full, Buttercup"), false);
+                                    }
+                                    case 2 -> {
+                                        player2.displayClientMessage(Utils.literal("Your Inventory is starting to get full, Bean989Sr"), false);
+                                    }
+                                    case 3 -> {
+                                        player2.displayClientMessage(Utils.literal("Your Inventory is starting to get full, Mr. Bear"), false);
+                                    }
                                 }
                             }
                         } else if (player2.getUUID().equals(new UUID(0x06c2928890db44c5L, 0xa642db906b52eb59L))) {
@@ -82,24 +82,24 @@ public class GTCommonEvents {
                             ListTag list = new ListTag();
                             list.add(new CompoundTag());
                             cookie.getOrCreateTag().put("Enchantments", list);
-                            cookie.setHoverName(new TextComponent("Jr. Cookie"));
+                            cookie.setHoverName(Utils.literal("Jr. Cookie"));
                             if (!player2.addItem(cookie)){
                                 player2.drop(cookie, true);
                             }
-                            player2.sendMessage(new TextComponent("Have a Jr. Cookie. Please tell Fatass to clean his Inventory, or smack him with it."), player2.getUUID());
+                            player2.displayClientMessage(Utils.literal("Have a Jr. Cookie. Please tell Fatass to clean his Inventory, or smack him with it."), false);
                         } else if (player2.getUUID().equals(new UUID(0xd84f965487ea46a9L, 0x881fc6aa45dd5af8L))) {
-                            player2.sendMessage(new TextComponent("I'm not trying to tell you what to do, but please don't hurt Bear."), player2.getUUID());
+                            player2.displayClientMessage(Utils.literal("I'm not trying to tell you what to do, but please don't hurt Bear."), false);
                         } else if (player2.getUUID().equals(new UUID(0xf6728edb5a16449bL, 0xa8af8ae43bf79d63L))) {
-                            player2.sendMessage(new TextComponent("Please moo at Bear989 to clean his inventory."), player2.getUUID());
+                            player2.displayClientMessage(Utils.literal("Please moo at Bear989 to clean his inventory."), false);
                         } else if (player2.getUUID().equals(new UUID(0xd8c0b6bd45504970L, 0xb7c00c4f8d8187c6L))) {
-                            player2.sendMessage(new TextComponent("Could you tell Bear989Sr very gently, that his Inventory is a fucking mess again?"), player2.getUUID());
+                            player2.displayClientMessage(Utils.literal("Could you tell Bear989Sr very gently, that his Inventory is a fucking mess again?"), false);
                         } else if (player2.getUUID().equals(new UUID(0x91a59513e8ea45a4L, 0xb8afc275085b0451L))) {
-                            player2.sendMessage(new TextComponent("Here is your special Message to make you tell Bear989Sr to clean his Inventory."), player2.getUUID());
+                            player2.displayClientMessage(Utils.literal("Here is your special Message to make you tell Bear989Sr to clean his Inventory."), false);
                         } else if (player2.getUUID().equals(new UUID(0x7c042366854c4582L, 0x8d2c6831646ba5c7L))) {
-                            player2.sendMessage(new TextComponent("Let the mother fucker know he's full of shit."), player2.getUUID());
+                            player2.displayClientMessage(Utils.literal("Let the mother fucker know he's full of shit."), false);
                         } else {
                             if (player2.blockPosition().closerThan(player.blockPosition(), 100D)) {
-                                player2.sendMessage(new TextComponent("There is this fella called Bear-Nine-Eight-Nine, needing be reminded of his Inventory being a major Pine."), player2.getUUID());
+                                player2.displayClientMessage(Utils.literal("There is this fella called Bear-Nine-Eight-Nine, needing be reminded of his Inventory being a major Pine."), false);
                             }
                         }
                     }

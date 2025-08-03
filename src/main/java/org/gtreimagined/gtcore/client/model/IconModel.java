@@ -13,7 +13,7 @@ import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.client.model.IModelConfiguration;
+import net.minecraftforge.client.model.geometry.IGeometryBakingContext;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtlib.client.IGTModel;
 import org.gtreimagined.gtlib.client.ModelUtils;
@@ -46,7 +46,7 @@ public class IconModel implements IGTModel<IconModel> {
     }
 
     @Override
-    public BakedModel bakeModel(IModelConfiguration configuration, ModelBakery modelBakery, Function<Material, TextureAtlasSprite> function, ModelState modelState, ItemOverrides overrides, ResourceLocation resourceLocation) {
+    public BakedModel bakeModel(IGeometryBakingContext configuration, ModelBakery modelBakery, Function<Material, TextureAtlasSprite> function, ModelState modelState, ItemOverrides overrides, ResourceLocation resourceLocation) {
         if (SPRITE_MAP == null) {
             SPRITE_MAP = new Object2ObjectOpenHashMap<>();
             for (String icon : TEXTURE_MAP.keySet()) {
@@ -58,7 +58,7 @@ public class IconModel implements IGTModel<IconModel> {
     }
 
     @Override
-    public Collection<Material> getTextures(IModelConfiguration iModelConfiguration, Function<ResourceLocation, UnbakedModel> function, Set<Pair<String, String>> set) {
+    public Collection<Material> getMaterials(IGeometryBakingContext iModelConfiguration, Function<ResourceLocation, UnbakedModel> function, Set<Pair<String, String>> set) {
         Set<Material> materials = new HashSet<>();
         materials.addAll(baseModel.getMaterials(function, set));
         materials.addAll(TEXTURE_MAP.values());

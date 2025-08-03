@@ -14,8 +14,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import org.gtreimagined.gtcore.data.GTCoreMaterials;
@@ -56,7 +56,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
                 success[0] = true;
                 player.playNotifySound(Ref.WRENCH, SoundSource.BLOCKS, 1.0f, 1.0f);
                 // TODO: Replace by new TranslationTextComponent()
-                player.sendMessage(Utils.literal((dF.isOutput() ? "Will" : "Won't") + " fill adjacent Tanks"), player.getUUID());
+                player.displayClientMessage(Utils.literal((dF.isOutput() ? "Will" : "Won't") + " fill adjacent Tanks"),false);
             }
         });
         if (success[0]){
@@ -79,7 +79,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         if (!drops.isEmpty()){
             ItemStack stack = drops.get(0);
             if (!getDrop().isEmpty()){
-                stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).ifPresent(f -> f.fill(drop, FluidAction.EXECUTE));
+                stack.getCapability(ForgeCapabilities.FLUID_HANDLER).ifPresent(f -> f.fill(drop, FluidAction.EXECUTE));
             }
             if (isOutput()){
                 CompoundTag nbt = stack.getOrCreateTag();
@@ -93,7 +93,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         super.onPlacedBy(world, pos, state, placer, stack);
         CompoundTag nbt = stack.getTag();
         this.fluidHandler.ifPresent(f -> {
-            FluidStack fluid = nbt != null && nbt.contains("Fluid") ? FluidUtils.fromTag(nbt.getCompound("Fluid")) : stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).map(fi -> fi.getFluidInTank(0)).orElse(FluidStack.EMPTY);
+            FluidStack fluid = nbt != null && nbt.contains("Fluid") ? FluidUtils.fromTag(nbt.getCompound("Fluid")) : stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).map(fi -> fi.getFluidInTank(0)).orElse(FluidStack.EMPTY);
             if (!fluid.isEmpty()){
                 f.fill(fluid, FluidAction.EXECUTE);
             }

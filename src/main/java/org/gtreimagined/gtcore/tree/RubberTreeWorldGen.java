@@ -9,9 +9,11 @@ import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -51,27 +53,15 @@ public class RubberTreeWorldGen {
         return getValidBiomesStatic();
     }*/
 
-    public static Predicate<Biome.BiomeCategory> getValidBiomesStatic() {
-        final Set<Biome.BiomeCategory> blacklist = new ObjectOpenHashSet<>();
-        blacklist.add(Biome.BiomeCategory.DESERT);
-        blacklist.add(Biome.BiomeCategory.TAIGA);
-        blacklist.add(Biome.BiomeCategory.EXTREME_HILLS);
-        blacklist.add(Biome.BiomeCategory.ICY);
-        blacklist.add(Biome.BiomeCategory.THEEND);
-        blacklist.add(Biome.BiomeCategory.OCEAN);
-        blacklist.add(Biome.BiomeCategory.NETHER);
-        blacklist.add(Biome.BiomeCategory.PLAINS);
-        return b -> !blacklist.contains(b);
-    }
 
     
     final static TreeConfiguration RUBBER_TREE_CONFIG_SWAMP =
             (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2), BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
-                    new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator())).build();
+                    new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator(0.5f))).build();
 
     final static TreeConfiguration RUBBER_TREE_CONFIG_JUNGLE =
             (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(7, 2, 2), BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
-                    new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator())).build();
+                    new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator(0.5f))).build();
 
     final static TreeConfiguration RUBBER_TREE_CONFIG_NORMAL =
             (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2),BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
@@ -95,13 +85,13 @@ public class RubberTreeWorldGen {
 
 
         @Override
-        public Stream<BlockPos> getPositions(PlacementContext context, Random random, BlockPos pos) {
+        public Stream<BlockPos> getPositions(PlacementContext context, RandomSource random, BlockPos pos) {
             BiomeAccessor biome = ((BiomeAccessor)(Object)context.getLevel().getBiome(pos).value());
             if (context.getLevel().getBiome(pos).is(TagUtils.getBiomeTag(new ResourceLocation(GTCore.ID, "is_invalid_rubber")))) return Stream.empty();
             float p = 0.15F;
-            if (biome.getClimateSettings().temperature > 0.8f) {
+            if (biome.getClimateSettings().temperature() > 0.8f) {
                 p = 0.04F;
-                if (biome.getClimateSettings().precipitation == Biome.Precipitation.RAIN)
+                if (biome.getClimateSettings().precipitation() == Biome.Precipitation.RAIN)
                     p += 0.04F;
             }
             float finalp = p;

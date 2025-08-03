@@ -79,10 +79,8 @@ public class GTCoreBlocks {
             Shapes.box(0, 0, 0, 1, 1, 0.0625),
             Shapes.box(0, 0, 0.9375, 1, 1, 1));
 
-    public static WoodType RUBBER_WOOD_TYPE = new WoodType("rubber"){};
 
-
-
+    public static WoodType RUBBER_WOOD_TYPE = WoodType.register(WoodType.create(GTCore.ID + ":rubber"));
     public static Block RUBBER_LEAVES;
     public static final BlockRubberLog RUBBER_LOG = new BlockRubberLog(GTCore.ID, "rubber_log");
     public static final BlockRubberLog STRIPPED_RUBBER_LOG = new BlockRubberLog(GTCore.ID, "stripped_rubber_log");

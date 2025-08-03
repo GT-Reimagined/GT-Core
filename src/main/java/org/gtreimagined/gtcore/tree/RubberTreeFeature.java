@@ -34,7 +34,7 @@ public class RubberTreeFeature extends TreeFeature implements IGTFeature {
     }
 
     @Override
-    public void build(ResourceLocation name, Biome.ClimateSettings climate, Biome.BiomeCategory category, BiomeSpecialEffects effects, BiomeGenerationSettings.Builder gen, MobSpawnSettings.Builder spawns) {
+    public void build(ResourceLocation name, Biome.ClimateSettings climate, BiomeSpecialEffects effects, BiomeGenerationSettings.Builder gen, MobSpawnSettings.Builder spawns) {
         if (GTAPI.isModLoaded("tfc")) return;
         if (name.equals(Biomes.SWAMP.location())) {
             gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTreeWorldGen.TREE_SWAMP);

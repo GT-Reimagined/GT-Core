@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.proxy;
 
-import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -34,7 +33,7 @@ import java.util.function.Consumer;
 public class ClientHandler {
 
     public static void init(){
-        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new Material(Sheets.SIGN_SHEET, GTCoreBlocks.RUBBER_SIGN.getTexture()));
+        Sheets.addWoodType(GTCoreBlocks.RUBBER_WOOD_TYPE);
         GTAPI.all(BlockMachineMaterial.class, b -> {
             if (b.getType() instanceof MassStorageMachine) {
                 BlockEntityRenderers.register((BlockEntityType<BlockEntityMassStorage>) b.getType().getTileType(), c -> new MassStorageRenderer<>());

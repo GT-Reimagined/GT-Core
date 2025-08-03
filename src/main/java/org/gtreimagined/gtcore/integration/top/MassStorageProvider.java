@@ -11,7 +11,6 @@ import mcjty.theoneprobe.apiimpl.styles.LayoutStyle;
 import mcjty.theoneprobe.config.Config;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -23,6 +22,9 @@ import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.integration.top.TheOneProbePlugin;
+import org.gtreimagined.gtlib.util.Utils;
+
+import java.awt.*;
 
 public class MassStorageProvider implements IProbeInfoProvider {
 
@@ -49,7 +51,7 @@ public class MassStorageProvider implements IProbeInfoProvider {
                 IProbeInfo horizontal = vertical.horizontal((new LayoutStyle()).spacing(10).alignment(ElementAlignment.ALIGN_CENTER));
                 ItemStack stack = handler.getStackInSlot(0);
                 if (stack.getCount() > 0){
-                    MutableComponent text = new TextComponent("").append(stack.getHoverName());
+                    MutableComponent text = Utils.literal("").append(stack.getHoverName());
                     if (stack.hasCustomHoverName()) text.withStyle(ChatFormatting.ITALIC);
                     horizontal.item(stack, new ItemStyle().width(16).height(16)).text(CompoundText.create().text(text));
                 }

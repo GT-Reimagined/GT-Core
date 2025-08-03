@@ -10,7 +10,7 @@ import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
-import net.minecraftforge.client.model.IModelConfiguration;
+import net.minecraftforge.client.model.geometry.IGeometryBakingContext;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.client.model.BookShelfModelLoader;
 import org.gtreimagined.gtcore.client.model.IconModelLoader;
@@ -32,10 +32,10 @@ public class BakedModels {
         new BookShelfModelLoader(LOADER_BOOKSHELF);
         new DynamicModelLoader(LOADER_SAP_BAG) {
             @Override
-            public DynamicModel read(JsonDeserializationContext context, JsonObject json) {
-                return new DynamicModel(super.read(context, json)) {
+            public DynamicModel read(JsonObject json, JsonDeserializationContext context) {
+                return new DynamicModel(super.read(json, context)) {
                     @Override
-                    public BakedModel bakeModel(IModelConfiguration configuration, ModelBakery bakery, Function<Material, TextureAtlasSprite> getter, ModelState transform, ItemOverrides overrides, ResourceLocation loc) {
+                    public BakedModel bakeModel(IGeometryBakingContext configuration, ModelBakery bakery, Function<Material, TextureAtlasSprite> getter, ModelState transform, ItemOverrides overrides, ResourceLocation loc) {
                         return new SapBagBakedModel(getter.apply(new Material(InventoryMenu.BLOCK_ATLAS, particle)), getBakedConfigs(configuration, bakery, getter, transform, overrides, loc));
                     }
                 };

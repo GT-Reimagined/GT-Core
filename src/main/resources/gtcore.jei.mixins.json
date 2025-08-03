@@ -5,6 +5,5 @@
   "minVersion": "0.8",
   "plugin": "org.gtreimagined.gtcore.mixin.jei.JEIMixinPlugin",
   "mixins": [
-    "FocusInputHandlerMixin"
   ]
 }

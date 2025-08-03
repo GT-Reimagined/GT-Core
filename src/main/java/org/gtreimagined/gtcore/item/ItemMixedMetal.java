@@ -3,7 +3,6 @@ package org.gtreimagined.gtcore.item;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -16,9 +15,11 @@ import org.gtreimagined.gtlib.item.ItemBasic;
 import org.gtreimagined.gtlib.material.Material;
 import org.gtreimagined.gtlib.registration.IColorHandler;
 import org.gtreimagined.gtlib.texture.Texture;
+import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.awt.*;
 import java.util.List;
 
 import static org.gtreimagined.gtlib.material.Material.NULL;
@@ -52,15 +53,15 @@ public class ItemMixedMetal extends ItemBasic<ItemMixedMetal> implements IColorH
         Material t = Material.get(nbt.getString("tm"));
         Material m = Material.get(nbt.getString("mm"));
         Material b = Material.get(nbt.getString("bm"));
-        tooltip.add(new TextComponent("Top Material: " + t.getDisplayName().getString()));
-        tooltip.add(new TextComponent("Middle Material: " + m.getDisplayName().getString()));
-        tooltip.add(new TextComponent("Bottom Material: " + b.getDisplayName().getString()));
+        tooltip.add(Utils.literal("Top Material: " + t.getDisplayName().getString()));
+        tooltip.add(Utils.literal("Middle Material: " + m.getDisplayName().getString()));
+        tooltip.add(Utils.literal("Bottom Material: " + b.getDisplayName().getString()));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 
     @Override
     public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        if (this.allowdedIn(group)) {
+        if (this.allowedIn(group)) {
             ItemStack itemStack = getDefaultInstance();
             items.add(itemStack);
         }
