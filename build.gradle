@@ -77,7 +77,7 @@ dependencies {
     modCompileOnly("me.shedaniel:RoughlyEnoughItems-forge:${project.rei_version}")
     modCompileOnly("curse.maven:terrafirmacraft-302973:${project.tfc_version}")
     modImplementation("curse.maven:curios-309927:${project.curios_version}")
-    modImplementation("com.teamresourceful.resourcefullib:resourcefullib-forge-1.18.2:${project.resourcefullib_version}")
+    modImplementation("com.teamresourceful.resourcefullib:resourcefullib-forge-${project.minecraft_version}:${project.resourcefullib_version}")
     modImplementation(jarJar("dev.trinsdar:terraform-wood-api-v1:${project.terraform_version}"))
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
     modImplementation("maven.modrinth:carbon-config:${project.carbon_config_version}")
