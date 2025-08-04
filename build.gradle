@@ -19,7 +19,7 @@ version = "${project.mod_version}-${project.minecraft_version}"
 archivesBaseName = "${project.archive_base_name}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-apply from: 'https://raw.githubusercontent.com/GregTech-Intergalactical/GradleSripts/main/repositories.gradle'
+apply from: 'https://raw.githubusercontent.com/GT-Reimagined/GradleScripts/main/repositories.gradle'
 
 def isCI = System.getenv("GITHUB_ACTION")
 def isRELEASE = System.getenv("GITHUB_RELEASE")
