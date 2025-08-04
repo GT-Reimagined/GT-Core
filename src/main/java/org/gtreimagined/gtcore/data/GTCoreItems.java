@@ -22,12 +22,14 @@ import org.gtreimagined.gtlib.material.Material;
 import org.gtreimagined.gtlib.recipe.ingredient.RecipeIngredient;
 import org.gtreimagined.gtlib.texture.Texture;
 
+import java.util.function.Supplier;
+
 import static org.gtreimagined.gtlib.data.GTLibMaterials.Diamond;
 
 
 public class GTCoreItems {
 
-    public static final ImmutableMap<Integer, RecipeIngredient> SELECTOR_TAG_INGREDIENTS;
+    public static final ImmutableMap<Integer, Supplier<RecipeIngredient>> SELECTOR_TAG_INGREDIENTS;
     public static final ImmutableMap<Integer, Item> SELECTOR_TAG_ITEMS;
     public static final ImmutableMap<Integer, CoverFactory> SELECTOR_TAG_COVERS;
 
@@ -134,12 +136,12 @@ public class GTCoreItems {
 
     static {
         {
-            ImmutableMap.Builder<Integer, RecipeIngredient> ingredientBuilder = ImmutableMap.builder();
+            ImmutableMap.Builder<Integer, Supplier<RecipeIngredient>> ingredientBuilder = ImmutableMap.builder();
             ImmutableMap.Builder<Integer, Item> itemBuilder = ImmutableMap.builder();
             ImmutableMap.Builder<Integer, CoverFactory> coverBuilder = ImmutableMap.builder();
             for (int i = 0; i <= 24; i++) {
                 ItemSelectorTag selectorTag = new ItemSelectorTag(GTCore.ID, "selector_tag_"+i,i);
-                ingredientBuilder.put(i, RecipeIngredient.of(selectorTag,1).setNoConsume());
+                ingredientBuilder.put(i, () -> RecipeIngredient.of(selectorTag,1).setNoConsume());
                 itemBuilder.put(i, selectorTag);
                 if (i > 15) continue;
                 int finalI = i;
