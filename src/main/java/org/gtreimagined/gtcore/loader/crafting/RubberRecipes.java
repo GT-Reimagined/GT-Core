@@ -58,6 +58,7 @@ public class RubberRecipes {
         provider.addStackRecipe(consumer, GTCore.ID, "", "rubber_wood", new ItemStack(GTCoreBlocks.RUBBER_DOOR, doorAmount), ImmutableMap.of('R', lumber), "RR", "RR", "RR");
         provider.addStackRecipe(consumer, GTCore.ID, "", "rubber_wood", new ItemStack(GTCoreBlocks.RUBBER_TRAPDOOR, trapdoorAmount), ImmutableMap.of('R', lumber), "RRR", "RRR");
         provider.addStackRecipe(consumer, GTCore.ID, "", "rubber_wood", new ItemStack(GTCoreItems.RubberBoat), ImmutableMap.of('R', GTCoreBlocks.RUBBER_PLANKS), "R R", "RRR");
+        provider.shapeless(consumer, GTCore.ID, "", "rubber_wood", new ItemStack(GTCoreItems.RubberChestBoat), Tags.Items.CHESTS_WOODEN, GTCoreItems.RubberBoat);
         provider.shapeless(consumer, GTCore.ID, "", "rubber_wood", new ItemStack(GTCoreBlocks.RUBBER_BUTTON), GTCoreBlocks.RUBBER_PLANKS);
         provider.addStackRecipe(consumer, GTCore.ID, "sapbag", "blocks",
                 new ItemStack(SAP_BAG), of('L', Tags.Items.LEATHER, 'S', SAW.getTag(), 's', Items.STICK), "sss", "LSL", "LLL");
