@@ -34,7 +34,8 @@ public class GTCoreItems {
     public static final ImmutableMap<Integer, CoverFactory> SELECTOR_TAG_COVERS;
 
     public static ItemBasic<?> StickyResin = new ItemBasic<>(GTCore.ID, "sticky_resin");
-    public static ItemRubberBoat RubberBoat = new ItemRubberBoat();
+    public static ItemRubberBoat RubberBoat = new ItemRubberBoat(false);
+    public static ItemRubberBoat RubberChestBoat = new ItemRubberBoat(true);
 
 
     public static ItemBasic<?> CompressedFireClay = new ItemBasic<>(GTCore.ID, "compressed_fire_clay").tip("Brick Shaped");
@@ -156,6 +157,6 @@ public class GTCoreItems {
     }
 
     public static void init(){
-
+        ItemRubberBoat.initBoatType();
     }
 }
