@@ -98,6 +98,8 @@ public class GTCoreLang {
                     .replace("Iv", "(IV)")));
             GTAPI.all(BlockCasing.class).forEach(b -> this.add(b, lowerUnderscoreToUpperSpaced(b.getId())));
             GTAPI.all(ItemHazmatArmor.class, domain).forEach(i -> this.add(i, lowerUnderscoreToUpperSpaced(i.getId())));
+            add("config.jade.plugin_gtcore.mass_storage", "GTCore plugin for Mass Storages");
+            add("config.jade.plugin_gtcore.redstone_wire", "GTCore plugin for Redstone wires like Red Alloy Wire");
         }
 
         @Override
