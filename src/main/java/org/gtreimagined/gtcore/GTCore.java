@@ -122,7 +122,7 @@ public class GTCore extends GTMod {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             eventBus.addListener(this::clientSetup);
             eventBus.addListener(this::onStitch);
-            TerraformBoatClientHelper.registerModelLayer(new ResourceLocation(GTCore.ID, "rubber"), false);
+            TerraformBoatClientHelper.registerModelLayers(new ResourceLocation(GTCore.ID, "rubber"));
         });
         if (GTAPI.isModLoaded("curios")) eventBus.addListener(CurioPlugin::loadIMC);
         GTLibDynamics.clientProvider(ID, () -> new GTBlockStateProvider(ID, NAME + " BlockStates"));
