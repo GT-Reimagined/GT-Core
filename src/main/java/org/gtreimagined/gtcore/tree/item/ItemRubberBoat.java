@@ -33,7 +33,8 @@ public class ItemRubberBoat extends TerraformBoatItem implements IGTObject, ITex
         super(() -> RUBBER_BOAT_TYPE, chest, new Properties().tab(Ref.TAB_ITEMS).stacksTo(1));
         this.chest = chest;
         GTAPI.register(ItemRubberBoat.class, this);
-        TerraformBoatItemHelper.registerBoatDispenserBehavior(this, () -> RUBBER_BOAT_TYPE, false);
+        if (!chest) GTAPI.register(IRegistryEntryProvider.class, this);
+        TerraformBoatItemHelper.registerBoatDispenserBehavior(this, () -> RUBBER_BOAT_TYPE, chest);
     }
 
     public static void initBoatType(){
@@ -58,7 +59,7 @@ public class ItemRubberBoat extends TerraformBoatItem implements IGTObject, ITex
 
     @Override
     public void onRegistryBuild(ResourceKey<? extends Registry<?>> resourceKey) {
-        if (resourceKey == Keys.ITEMS && RUBBER_BOAT_TYPE == null){
+        if (resourceKey == Keys.ENCHANTMENTS && RUBBER_BOAT_TYPE == null){
             ItemRubberBoat.initBoatType();
         }
     }
