@@ -143,6 +143,7 @@ public class GTCoreBlocks {
     public static BookShelfMachine JUNGLE_BOOKSHELF = new BookShelfMachine("jungle", new Texture("block/jungle_planks"), () -> Blocks.JUNGLE_PLANKS);
     public static BookShelfMachine ACACIA_BOOKSHELF = new BookShelfMachine("acacia", new Texture("block/acacia_planks"), () -> Blocks.ACACIA_PLANKS);
     public static BookShelfMachine DARK_OAK_BOOKSHELF = new BookShelfMachine("dark_oak", new Texture("block/dark_oak_planks"), () -> Blocks.DARK_OAK_PLANKS);
+    public static BookShelfMachine MQNGROVE_BOOKWHELF = new BookShelfMachine("mangrove", new Texture("block/mangrove_planks"), () -> Blocks.MANGROVE_PLANKS);
     public static BookShelfMachine CRIMSON_BOOKSHELF = new BookShelfMachine("crimson", new Texture("block/crimson_planks"), () -> Blocks.CRIMSON_PLANKS);
     public static BookShelfMachine WARPED_BOOKSHELF = new BookShelfMachine("warped", new Texture("block/warped_planks"), () -> Blocks.WARPED_PLANKS);
     public static BookShelfMachine RUBBER_BOOKSHELF = new BookShelfMachine("rubber", new Texture(GTCore.ID, "block/tree/rubber_planks"), () -> GTCoreBlocks.RUBBER_PLANKS);
