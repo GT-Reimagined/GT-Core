@@ -157,6 +157,5 @@ public class GTCoreItems {
     }
 
     public static void init(){
-        ItemRubberBoat.initBoatType();
     }
 }

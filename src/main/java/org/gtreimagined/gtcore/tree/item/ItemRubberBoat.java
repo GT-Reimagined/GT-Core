@@ -5,9 +5,11 @@ import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import com.terraformersmc.terraform.boat.impl.item.TerraformBoatItem;
 import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
+import net.minecraftforge.registries.ForgeRegistries.Keys;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.data.GTCoreItems;
@@ -15,12 +17,13 @@ import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.registration.IGTObject;
 import org.gtreimagined.gtlib.registration.IModelProvider;
+import org.gtreimagined.gtlib.registration.IRegistryEntryProvider;
 import org.gtreimagined.gtlib.registration.ITextureProvider;
 import org.gtreimagined.gtlib.texture.Texture;
 
 import java.util.function.Predicate;
 
-public class ItemRubberBoat extends TerraformBoatItem implements IGTObject, ITextureProvider, IModelProvider {
+public class ItemRubberBoat extends TerraformBoatItem implements IGTObject, ITextureProvider, IModelProvider, IRegistryEntryProvider {
     private static final Predicate<Entity> RIDERS = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
 
     static TerraformBoatType RUBBER_BOAT_TYPE;
@@ -51,5 +54,12 @@ public class ItemRubberBoat extends TerraformBoatItem implements IGTObject, ITex
     @Override
     public Texture[] getTextures() {
         return new Texture[]{new Texture(GTCore.ID, "item/basic/rubber" + (chest ? "_chest" : "") + "_boat")};
+    }
+
+    @Override
+    public void onRegistryBuild(ResourceKey<? extends Registry<?>> resourceKey) {
+        if (resourceKey == Keys.ITEMS && RUBBER_BOAT_TYPE == null){
+            ItemRubberBoat.initBoatType();
+        }
     }
 }
