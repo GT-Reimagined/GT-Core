@@ -264,7 +264,6 @@ public class GTCore extends GTMod {
             }
             case DATA_READY -> {
                 WoodType.register(GTCoreBlocks.RUBBER_WOOD_TYPE);
-                GTCoreRemapping.init();
                 CommonHandler.setup();
                 BookRegistration.registerBooks();
                 GTLibXEIPlugin.addItemsToHide(l -> {
