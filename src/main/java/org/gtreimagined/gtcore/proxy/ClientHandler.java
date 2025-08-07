@@ -61,12 +61,12 @@ public class ClientHandler {
     }
 
     public static void onStitch(TextureAtlas atlas, Consumer<ResourceLocation> spriteFunction) {
-        if (!atlas.location().equals(Sheets.CHEST_SHEET)) {
-            return;
+        if (atlas.location().equals(Sheets.CHEST_SHEET)) {
+            spriteFunction.accept(MaterialChestRenderer.MATERIAL_CHEST_BASE);
+            spriteFunction.accept(MaterialChestRenderer.MATERIAL_CHEST_OVERLAY);
+        } else if (atlas.location().equals(Sheets.SIGN_SHEET)){
+            spriteFunction.accept(new ResourceLocation(GTCore.ID, "entity/signs/rubber"));
         }
-
-        spriteFunction.accept(MaterialChestRenderer.MATERIAL_CHEST_BASE);
-        spriteFunction.accept(MaterialChestRenderer.MATERIAL_CHEST_OVERLAY);
     }
 
     private static void writeResourcePack(String writeName, String readName){
