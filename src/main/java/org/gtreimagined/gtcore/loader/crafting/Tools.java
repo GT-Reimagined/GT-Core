@@ -357,14 +357,14 @@ public class Tools {
                         of('P', plate, 'H', HAMMER.getTag(), 'F', FILE.getTag()), "PP", "FH");
             }
         });
-        KNIFE_HEAD.all().forEach(m -> {
+        KNIFE_BLADE.all().forEach(m -> {
             if (m == Flint) return;
             if (m.has(GEM)){
-                provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", KNIFE_HEAD.get(m),
+                provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", KNIFE_BLADE.get(m),
                         of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "G", "F");
             } else if (m.has(INGOT)){
                 TagKey<Item> plate = m.has(PLATE) ? PLATE.getMaterialTag(m) : INGOT.getMaterialTag(m);
-                provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", KNIFE_HEAD.get(m),
+                provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", KNIFE_BLADE.get(m),
                         of('P', plate, 'H', HAMMER.getTag(), 'F', FILE.getTag()), "H", "P", "F");
             }
         });
