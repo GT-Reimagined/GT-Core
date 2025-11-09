@@ -91,6 +91,7 @@ import org.gtreimagined.gtlib.util.RegistryUtils;
 import org.gtreimagined.gtlib.util.TagUtils;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.BiConsumer;
 
 import static com.google.common.collect.ImmutableMap.of;
@@ -281,6 +282,9 @@ public class GTCore extends GTMod {
                     }
                     if (!GTCoreConfig.VILLAGER_TRADE_REPLACEMENTS.get()){
                         l.add(GTCoreItems.GTCredit);
+                    }
+                    if (!GTAPI.isModLoaded(Ref.MOD_TFC)){
+                        l.addAll(List.of(GTCoreItems.ChiselHeadShape, GTCoreItems.JavelinHeadShape, GTCoreItems.PropickHeadShape, GTCoreItems.MaceHeadShape));
                     }
                     for (int i = 1; i < 25; i++) {
                         l.add(GTCoreItems.SELECTOR_TAG_ITEMS.get(i));
