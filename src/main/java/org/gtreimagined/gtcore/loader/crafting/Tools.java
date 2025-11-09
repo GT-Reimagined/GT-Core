@@ -39,8 +39,10 @@ public class Tools {
         provider.removeRecipe(new ResourceLocation("farmersdelight", "golden_knife"));
         provider.removeRecipe(new ResourceLocation("farmersdelight", "diamond_knife"));
 
-        toolPartRecipes(consumer, provider);
-        vanillaToolRecipes(consumer, provider);
+        if (!GTAPI.isModLoaded("tfc")){
+            toolPartRecipes(consumer, provider);
+            vanillaToolRecipes(consumer, provider);
+        }
 
         if (GTAPI.isModLoaded(Ref.MOD_TOP)) {
             ARMOR.getAll().forEach((m, a) ->{
@@ -67,6 +69,7 @@ public class Tools {
             provider.addStackRecipe(consumer, Ref.ID, "", "gt_armor", GTTools.BOOTS.getToolStack(m),
                     builder.build(), strings);
         });
+        if (GTAPI.isModLoaded("tfc")) return;
         TOOLS.getAll().forEach((m, t) -> {
            TagKey<Item> rod = t.handleMaterial().has(ROD) ? ROD.getMaterialTag(t.handleMaterial()) : ROD.getMaterialTag(Wood);
            GTToolType[] toolHeadTypes = new GTToolType[]{PICKAXE, AXE, SWORD, SHOVEL, HOE, FILE, SAW, HAMMER, SCREWDRIVER, SCYTHE, KNIFE};
@@ -248,10 +251,8 @@ public class Tools {
 
                if (t.toolTypes().contains(KNIFE)){
                    if (m.has(FLINT)){
-                       if (!GTAPI.isModLoaded("tfc")) {
-                           provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
-                                   of('R', rod, 'P', ingotGem), "RP");
-                       }
+                       provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
+                               of('R', rod, 'P', ingotGem), "RP");
                    } else if (m.has(GEM)){
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
                                of('R', rod, 'P', plateGem,'F', GTTools.FILE.getTag()), "FP", " R");
