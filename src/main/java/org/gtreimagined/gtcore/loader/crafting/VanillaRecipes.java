@@ -72,7 +72,7 @@ public class VanillaRecipes {
             }
             provider.addItemRecipe(consumer, "misc", Items.CANDLE, of('S', Items.STRING, 'W', DUST.getMaterialTag(Beeswax)), "S", "W");
         }
-        if (!GTCoreConfig.VANILLA_OVERRIDES.get()) return;
+        if (!GTCoreConfig.VANILLA_OVERRIDES.get() || GTAPI.isModLoaded("tfc")) return;
         provider.addStackRecipe(consumer, "minecraft", "", "misc", new ItemStack(Items.IRON_BARS, 8), of('R', ROD.getMaterialTag(Iron), 'H', HAMMER.getTag()), " H ", "RRR", "RRR");
         provider.addItemRecipe(consumer, "minecraft", "", "misc",
                 Items.BUCKET, of('I', PLATE.getMaterialTag(Iron), 'H', HAMMER.getTag()), "IHI", " I ");
