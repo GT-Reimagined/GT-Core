@@ -3,7 +3,7 @@ package org.gtreimagined.gtcore.integration.tfc;
 import com.google.common.collect.ImmutableMap;
 import net.dries007.tfc.client.TFCColors;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
-import net.dries007.tfc.common.blocks.TFCMaterials;
+import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.wood.FallenLeavesBlock;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider;
 import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
@@ -22,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class BlockFallenRubberLeaves extends FallenLeavesBlock implements IGTObject, IModelProvider, IColorHandler {
     public BlockFallenRubberLeaves() {
-        super(ExtendedProperties.of(TFCMaterials.GROUNDCOVER).noCollission().strength(0.05F, 0.0F).noOcclusion().sound(SoundType.CROP).flammableLikeWool());
+        super(ExtendedProperties.of().strength(0.05F, 0.0F).noOcclusion().noCollission().isViewBlocking(TFCBlocks::never).sound(SoundType.CROP).flammableLikeWool(), () -> GTCoreBlocks.RUBBER_LEAVES);
         GTAPI.register(BlockFallenRubberLeaves.class, this);
     }
 

@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityBookShelf;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
@@ -34,13 +35,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.gtreimagined.gtlib.Data.WRENCH_MATERIAL;
 import static org.gtreimagined.gtlib.material.Material.NULL;
 
 public class BlockMachineMaterial extends BlockMachine {
     Material material = NULL;
     public BlockMachineMaterial(Machine<?> type, Tier tier) {
-        this(type, tier, Properties.of(WRENCH_MATERIAL).strength(1.0f, 10.0f).sound(SoundType.METAL).requiresCorrectToolForDrops());
+        this(type, tier, Properties.of().mapColor(MapColor.METAL).strength(1.0f, 10.0f).sound(SoundType.METAL).requiresCorrectToolForDrops());
     }
 
     public BlockMachineMaterial(Machine<?> type, Tier tier, Properties properties) {

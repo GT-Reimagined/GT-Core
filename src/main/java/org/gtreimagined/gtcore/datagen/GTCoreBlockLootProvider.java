@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.datagen;
 
-import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.BlockGTHopper;
@@ -36,11 +35,11 @@ public class GTCoreBlockLootProvider extends GTBlockLootProvider {
         this.add(GTCoreBlocks.RUBBER_PRESSURE_PLATE);
         this.add(GTCoreBlocks.RUBBER_BUTTON);
         this.add(GTCoreBlocks.RUBBER_STAIRS);
-        tables.put(GTCoreBlocks.RUBBER_SLAB, BlockLoot::createSlabItemTable);
-        tables.put(GTCoreBlocks.RUBBER_DOOR, BlockLoot::createDoorTable);
+        tables.put(GTCoreBlocks.RUBBER_SLAB, this::createSlabItemTable);
+        tables.put(GTCoreBlocks.RUBBER_DOOR, this::createDoorTable);
         this.add(GTCoreBlocks.RUBBER_TRAPDOOR);
-        tables.put(GTCoreBlocks.RUBBER_SIGN, b -> BlockLoot.createSingleItemTable(GTCoreBlocks.RUBBER_SIGN.asItem()));
-        tables.put(GTCoreBlocks.RUBBER_WALL_SIGN, b -> BlockLoot.createSingleItemTable(GTCoreBlocks.RUBBER_SIGN.asItem()));
+        tables.put(GTCoreBlocks.RUBBER_SIGN, b -> this.createSingleItemTable(GTCoreBlocks.RUBBER_SIGN.asItem()));
+        tables.put(GTCoreBlocks.RUBBER_WALL_SIGN, b -> this.createSingleItemTable(GTCoreBlocks.RUBBER_SIGN.asItem()));
         this.add(GTCoreBlocks.SAP_BAG);
         if (GTAPI.isModLoaded("tfc")) {
             this.add(GTAPI.get(Block.class, "rubber_twig", GTCore.ID));

@@ -21,7 +21,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
@@ -43,7 +44,7 @@ public class BlockRubberLog extends BlockRubberWood {
     private static final double CHANCE_FILL = 0.3;
 
     public BlockRubberLog(String domain, String id) {
-        super(domain, id, Properties.of(Material.WOOD).strength(2.0F).sound(SoundType.WOOD).randomTicks());
+        super(domain, id, Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).randomTicks());
         registerDefaultState(defaultBlockState().setValue(ResinState.INSTANCE, ResinState.NONE).setValue(RESIN_FACING, Direction.NORTH).setValue(AXIS, Direction.Axis.Y));
     }
 

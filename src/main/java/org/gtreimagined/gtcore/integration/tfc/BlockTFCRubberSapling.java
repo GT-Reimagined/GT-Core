@@ -7,8 +7,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtlib.GTAPI;
@@ -21,7 +21,7 @@ import org.gtreimagined.gtlib.texture.Texture;
 
 public class BlockTFCRubberSapling extends TFCSaplingBlock implements IGTObject, IModelProvider, ITextureProvider {
     public BlockTFCRubberSapling() {
-        super(new TFCRubberTree(), ExtendedProperties.of(Material.PLANT, MaterialColor.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).flammableLikeLeaves().blockEntity(TFCBlockEntities.TICK_COUNTER), 7);
+        super(new TFCRubberTree(), ExtendedProperties.of(MapColor.PLANT).pushReaction(PushReaction.DESTROY).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).flammableLikeLeaves().blockEntity(TFCBlockEntities.TICK_COUNTER), 7);
         GTAPI.register(BlockTFCRubberSapling.class, this);
     }
 

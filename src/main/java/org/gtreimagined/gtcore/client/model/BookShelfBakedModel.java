@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.client.model;
 
-import com.mojang.math.Vector3f;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -21,15 +20,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityBookShelf;
 import org.gtreimagined.gtcore.client.BookSpriteMaps;
-import org.gtreimagined.gtcore.client.ReTexturedQuad;
 import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.gtreimagined.gtlib.client.ModelUtils;
 import org.gtreimagined.gtlib.client.RenderHelper;
 import org.gtreimagined.gtlib.client.SimpleModelState;
 import org.gtreimagined.gtlib.client.baked.GTBakedModel;
+import org.gtreimagined.gtlib.client.quad.RetexturedBakedQuad;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +99,7 @@ public class BookShelfBakedModel extends GTBakedModel<BookShelfBakedModel> {
             List<BakedQuad> list = BOOK_MODELS.get(i);
             for (BakedQuad quad : list) {
                 TextureAtlasSprite sprite = quad.getDirection() == Direction.SOUTH || quad.getDirection() == Direction.NORTH ? spritePair.first() : spritePair.second();
-                quads.add(new ReTexturedQuad(sprite, quad));
+                quads.add(new RetexturedBakedQuad(quad, sprite));
             }
         }
         return quads;

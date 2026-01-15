@@ -2,7 +2,7 @@ package org.gtreimagined.gtcore.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -64,7 +64,7 @@ public class MaterialChestRenderer<T extends BlockEntityChest> implements BlockE
             pMatrixStack.pushPose();
             float f = blockstate.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot();
             pMatrixStack.translate(0.5D, 0.5D, 0.5D);
-            pMatrixStack.mulPose(Vector3f.YP.rotationDegrees(-f));
+            pMatrixStack.mulPose(Axis.YP.rotationDegrees(-f));
             pMatrixStack.translate(-0.5D, -0.5D, -0.5D);
 
             DoubleBlockCombiner.NeighborCombineResult<? extends BlockEntityChest> iCallbackWrapper;

@@ -3,11 +3,9 @@ package org.gtreimagined.gtcore.integration.tfc;
 import com.google.common.collect.ImmutableMap;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.GroundcoverBlock;
-import net.dries007.tfc.common.blocks.TFCMaterials;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider;
@@ -18,7 +16,7 @@ import org.gtreimagined.gtlib.texture.Texture;
 
 public class BlockRubberTwig extends GroundcoverBlock implements IModelProvider, IGTObject {
     public BlockRubberTwig() {
-        super(ExtendedProperties.of(TFCMaterials.GROUNDCOVER).strength(0.05F, 0.0F).sound(SoundType.WOOD).noCollission().flammableLikeWool(), TWIG, null);
+        super(ExtendedProperties.of().strength(0.05F, 0.0F).sound(SoundType.WOOD).noCollission().flammableLikeWool(), TWIG, null);
         GTAPI.register(BlockRubberTwig.class, this);
     }
 

@@ -3,6 +3,7 @@ package org.gtreimagined.gtcore.machine;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import org.gtreimagined.gtcore.GTCore;
@@ -15,7 +16,6 @@ import org.gtreimagined.gtlib.texture.Texture;
 import org.gtreimagined.gtlib.util.FluidUtils;
 import org.gtreimagined.gtlib.util.Utils;
 
-import static org.gtreimagined.gtlib.Data.WRENCH_MATERIAL;
 
 
 public class DrumMachine extends MaterialMachine{
@@ -27,7 +27,7 @@ public class DrumMachine extends MaterialMachine{
         this.maxCapacity = maxCapacity;
         setTiers(Tier.NONE);
         this.setTile(((materialMachine, blockPos, blockState) -> new BlockEntityDrum(this, blockPos, blockState)));
-        setBlock((type, tier) -> new BlockMachineMaterial(type, tier, BlockBehaviour.Properties.of(WRENCH_MATERIAL).strength(1.0f, 10.0f)));
+        setBlock((type, tier) -> new BlockMachineMaterial(type, tier, BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(1.0f, 10.0f)));
         setItemBlock(ItemBlockDrum::new);
         addTooltipInfo((machine, stack, world, tooltip, flag) -> {
             tooltip.add(Utils.translatable("machine.drum.capacity", maxCapacity).withStyle(ChatFormatting.AQUA));

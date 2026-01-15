@@ -3,7 +3,8 @@ package org.gtreimagined.gtcore.data;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.common.SoundActions;
 import net.minecraftforge.fluids.FluidType;
@@ -31,7 +32,7 @@ public class GTCoreFluids {
     }
 
     private static Block.Properties prepareLavaProperties() {
-        return Block.Properties.of(Material.LAVA).strength(100.0F).noLootTable().lightLevel(s -> 9);
+        return Block.Properties.of().mapColor(MapColor.FIRE).replaceable().pushReaction(PushReaction.DESTROY).liquid().strength(100.0F).noLootTable().lightLevel(s -> 9);
     }
 
     private static FluidType.Properties prepareFluidType(boolean lava) {
@@ -41,6 +42,6 @@ public class GTCoreFluids {
     }
 
     private static Block.Properties prepareProperties() {
-        return Block.Properties.of(net.minecraft.world.level.material.Material.WATER).strength(100.0F).noLootTable();
+        return Block.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().pushReaction(PushReaction.DESTROY).liquid().strength(100.0F).noLootTable();
     }
 }

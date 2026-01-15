@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -80,7 +81,8 @@ public class GTCoreBlocks {
             Shapes.box(0, 0, 0.9375, 1, 1, 1));
 
 
-    public static WoodType RUBBER_WOOD_TYPE = WoodType.register(WoodType.create(GTCore.ID + ":rubber"));
+    public static BlockSetType RUBBER_SET_TYPE = BlockSetType.register(new BlockSetType(GTCore.ID + ":rubber"));
+    public static WoodType RUBBER_WOOD_TYPE = WoodType.register(new WoodType(GTCore.ID + ":rubber", RUBBER_SET_TYPE));
     public static Block RUBBER_LEAVES;
     public static final BlockRubberLog RUBBER_LOG = new BlockRubberLog(GTCore.ID, "rubber_log");
     public static final BlockRubberLog STRIPPED_RUBBER_LOG = new BlockRubberLog(GTCore.ID, "stripped_rubber_log");

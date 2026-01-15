@@ -4,8 +4,9 @@ import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.tree.item.ItemRubberSign;
@@ -16,7 +17,7 @@ import org.gtreimagined.gtlib.registration.IItemBlockProvider;
 public class BlockRubberSign extends TerraformSignBlock implements IGTObject, IItemBlockProvider {
 
     public BlockRubberSign() {
-        super(Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), GTCoreBlocks.RUBBER_WOOD_TYPE);
+        super(Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).sound(SoundType.WOOD), GTCoreBlocks.RUBBER_WOOD_TYPE);
         GTAPI.register(BlockRubberSign.class, this);
     }
 

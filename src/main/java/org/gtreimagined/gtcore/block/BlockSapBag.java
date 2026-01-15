@@ -21,9 +21,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
@@ -57,7 +57,7 @@ public class BlockSapBag extends BlockDynamic implements SimpleWaterloggedBlock,
     final VoxelShape[] SHAPES;
     final Texture[] TEXTURES;
     public BlockSapBag() {
-        super(GTCore.ID, "sap_bag", Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_RED).noOcclusion().strength(0.5F).sound(SoundType.WOOL));
+        super(GTCore.ID, "sap_bag", Properties.of().mapColor(MapColor.TERRACOTTA_RED).noOcclusion().strength(0.5F).sound(SoundType.WOOL));
         SHAPES = setBlockBounds2();
         TEXTURES = new Texture[]{new Texture(GTCore.ID, "block/sapbag/bottom"), new Texture(GTCore.ID, "block/sapbag/top"), new Texture(GTCore.ID, "block/sapbag/side"), new Texture(GTCore.ID, "block/sapbag/top_filled")};
     }
@@ -134,7 +134,7 @@ public class BlockSapBag extends BlockDynamic implements SimpleWaterloggedBlock,
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
         List<ItemStack> list = super.getDrops(state, builder);
         BlockEntity tileentity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
         if (tileentity instanceof BlockEntitySapBag){

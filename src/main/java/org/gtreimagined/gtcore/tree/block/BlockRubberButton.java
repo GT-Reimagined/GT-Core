@@ -1,21 +1,25 @@
 package org.gtreimagined.gtcore.tree.block;
 
+import net.dries007.tfc.common.blocks.wood.TFCWoodButtonBlock;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.WoodButtonBlock;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.material.PushReaction;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider;
 import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
 import org.gtreimagined.gtlib.registration.IGTObject;
 import org.gtreimagined.gtlib.registration.IModelProvider;
 
-public class BlockRubberButton extends WoodButtonBlock implements IGTObject, IModelProvider {
+public class BlockRubberButton extends ButtonBlock implements IGTObject, IModelProvider {
     public BlockRubberButton() {
-        super(Properties.of(Material.DECORATION).noCollission().strength(0.5f).sound(SoundType.WOOD));
+        super(Properties.of().pushReaction(PushReaction.DESTROY).noCollission().strength(0.5f).sound(SoundType.WOOD), GTCoreBlocks.RUBBER_SET_TYPE, 30, true);
         GTAPI.register(BlockRubberButton.class, this);
     }
 

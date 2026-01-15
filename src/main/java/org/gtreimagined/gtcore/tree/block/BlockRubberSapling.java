@@ -12,7 +12,8 @@ import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.tree.RubberTree;
 import org.gtreimagined.gtlib.GTAPI;
@@ -28,7 +29,7 @@ import java.util.Random;
 public class BlockRubberSapling extends SaplingBlock implements IGTObject, IModelProvider, ITextureProvider {
 
     public BlockRubberSapling() {
-        super(new RubberTree(), Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).instabreak());
+        super(new RubberTree(), Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).instabreak());
         GTAPI.register(BlockRubberSapling.class, this);
     }
 
