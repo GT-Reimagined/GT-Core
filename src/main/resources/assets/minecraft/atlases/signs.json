@@ -1,0 +1,12 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "gtcore:entity/signs/rubber"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "gtcore:entity/signs/hanging/rubber"
+    }
+  ]
+}
