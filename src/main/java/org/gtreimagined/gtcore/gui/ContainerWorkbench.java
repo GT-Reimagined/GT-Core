@@ -107,7 +107,7 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
             if (optional.isPresent()) {
                 CraftingRecipe icraftingrecipe = optional.get();
                 if (craftResultInventory.setRecipeUsed(world, serverplayerentity, icraftingrecipe)) {
-                    itemstack = icraftingrecipe.assemble(craftingInventory);
+                    itemstack = icraftingrecipe.assemble(craftingInventory, world.registryAccess());
                 }
             }
 

@@ -2,6 +2,7 @@ package org.gtreimagined.gtcore.tree;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -52,13 +53,13 @@ public class RubberTree extends AbstractTreeGrower {
     @Override
     public boolean growTree(ServerLevel world, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, RandomSource rand) {
         Holder<Biome> biome = world.getBiome(pos);
-        ConfiguredFeature<TreeConfiguration, ?> configuredFeature;
+        ConfiguredFeature<?, ?> configuredFeature;
         if (biome.is(Biomes.JUNGLE)) {
-            configuredFeature = RubberTreeWorldGen.TREE_FEATURE_JUNGLE_CONFIG.value();
+            configuredFeature = world.registryAccess().lookup(Registries.CONFIGURED_FEATURE).get().getOrThrow(RubberTreeWorldGen.TREE_FEATURE_JUNGLE_CONFIG).value();
         } else if (biome.is(Biomes.SWAMP)) {
-            configuredFeature = RubberTreeWorldGen.TREE_FEATURE_SWAMP_CONFIG.value();
+            configuredFeature = world.registryAccess().lookup(Registries.CONFIGURED_FEATURE).get().getOrThrow(RubberTreeWorldGen.TREE_FEATURE_SWAMP_CONFIG).value();
         } else {
-            configuredFeature = RubberTreeWorldGen.TREE_FEATURE_CONFIG.value();
+            configuredFeature = world.registryAccess().lookup(Registries.CONFIGURED_FEATURE).get().getOrThrow(RubberTreeWorldGen.TREE_FEATURE_CONFIG).value();
         }
         world.setBlock(pos, Blocks.AIR.defaultBlockState(), 4);
         if (!configuredFeature.place(world, chunkGenerator, rand, pos)) {

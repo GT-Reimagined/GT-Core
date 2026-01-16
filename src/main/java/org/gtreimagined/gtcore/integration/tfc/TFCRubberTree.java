@@ -13,6 +13,6 @@ public class TFCRubberTree extends TFCTreeGrower {
 
     @Override
     public ConfiguredFeature<?, ?> getNormalFeature(Registry<ConfiguredFeature<?, ?>> registry) {
-        return RubberTreeWorldGen.TREE_FEATURE_CONFIG.value();
+        return registry.get(RubberTreeWorldGen.TREE_FEATURE_CONFIG);
     }
 }

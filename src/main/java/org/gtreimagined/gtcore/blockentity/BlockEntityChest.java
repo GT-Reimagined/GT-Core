@@ -80,7 +80,7 @@ public class BlockEntityChest extends BlockEntityMaterial<BlockEntityChest> impl
 
     @Override
     public boolean canPlayerOpenGui(Player playerEntity) {
-        return super.canPlayerOpenGui(playerEntity) && !isChestBlockedAt(playerEntity.level, this.getBlockPos());
+        return super.canPlayerOpenGui(playerEntity) && !isChestBlockedAt(playerEntity.level(), this.getBlockPos());
     }
 
     public static boolean isChestBlockedAt(LevelAccessor p_220108_0_, BlockPos p_220108_1_) {

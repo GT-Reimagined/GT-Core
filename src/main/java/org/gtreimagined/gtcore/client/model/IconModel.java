@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.ModelBaker;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.client.resources.model.UnbakedModel;
@@ -46,7 +47,7 @@ public class IconModel implements IGTModel<IconModel> {
     }
 
     @Override
-    public BakedModel bakeModel(IGeometryBakingContext configuration, ModelBakery modelBakery, Function<Material, TextureAtlasSprite> function, ModelState modelState, ItemOverrides overrides, ResourceLocation resourceLocation) {
+    public BakedModel bakeModel(IGeometryBakingContext configuration, ModelBaker modelBakery, Function<Material, TextureAtlasSprite> function, ModelState modelState, ItemOverrides overrides, ResourceLocation resourceLocation) {
         if (SPRITE_MAP == null) {
             SPRITE_MAP = new Object2ObjectOpenHashMap<>();
             for (String icon : TEXTURE_MAP.keySet()) {
@@ -55,13 +56,5 @@ public class IconModel implements IGTModel<IconModel> {
         }
         BakedModel base = baseModel.bake(modelBakery, function, modelState, resourceLocation);
         return new IconBakedModel(Objects.requireNonNull(base));
-    }
-
-    @Override
-    public Collection<Material> getMaterials(IGeometryBakingContext iModelConfiguration, Function<ResourceLocation, UnbakedModel> function, Set<Pair<String, String>> set) {
-        Set<Material> materials = new HashSet<>();
-        materials.addAll(baseModel.getMaterials(function, set));
-        materials.addAll(TEXTURE_MAP.values());
-        return materials;
     }
 }

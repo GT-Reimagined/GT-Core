@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtlib.client.ModelUtils;
 import org.gtreimagined.gtlib.client.model.loader.GTModelLoader;
@@ -35,20 +36,8 @@ public class BookShelfModelLoader extends GTModelLoader<BookShelfModel> {
         if (BOOK_REFERENCE_SOUTH == null) {
             try {
                 BOOK_REFERENCE_SOUTH = new ArrayList<>();
-                Optional<Resource> resource = ModelUtils.getModelBakery().resourceManager.getResource(new ResourceLocation(GTCore.ID, "models/block/machine/overlay/bookshelf/book_south.json"));
-                if (resource.isPresent()){
-                    InputStreamReader reader = new InputStreamReader(resource.get().open(), StandardCharsets.UTF_8);
-                    JsonReader jsonReader = new JsonReader(reader);
-                    JsonElement element = Streams.parse(jsonReader);
-                    if (element.isJsonObject()) {
-                        JsonObject obj = element.getAsJsonObject();
-                        UnbakedModel numberModel = jsonDeserializationContext.deserialize(obj, BlockModel.class);
-                        if (numberModel instanceof BlockModel blockModel){
-                            BOOK_REFERENCE_SOUTH.addAll(blockModel.getElements());
-                        }
-                    }
-                }
-
+                BlockModel numberModel = ModelUtils.getModelBakery().loadBlockModel(new ResourceLocation(GTCore.ID, "block/machine/overlay/bookshelf/book_south"));
+                BOOK_REFERENCE_SOUTH.addAll(numberModel.getElements());
             } catch (Exception e) {
                 GTCore.LOGGER.error(e);
             }
@@ -56,19 +45,8 @@ public class BookShelfModelLoader extends GTModelLoader<BookShelfModel> {
         if (BOOK_REFERENCE_NORTH == null) {
             try {
                 BOOK_REFERENCE_NORTH = new ArrayList<>();
-                Optional<Resource> resource = ModelUtils.getModelBakery().resourceManager.getResource(new ResourceLocation(GTCore.ID, "models/block/machine/overlay/bookshelf/book_north.json"));
-                if (resource.isPresent()){
-                    InputStreamReader reader = new InputStreamReader(resource.get().open(), StandardCharsets.UTF_8);
-                    JsonReader jsonReader = new JsonReader(reader);
-                    JsonElement element = Streams.parse(jsonReader);
-                    if (element.isJsonObject()) {
-                        JsonObject obj = element.getAsJsonObject();
-                        UnbakedModel numberModel = jsonDeserializationContext.deserialize(obj, BlockModel.class);
-                        if (numberModel instanceof BlockModel blockModel){
-                            BOOK_REFERENCE_NORTH.addAll(blockModel.getElements());
-                        }
-                    }
-                }
+                BlockModel numberModel = ModelUtils.getModelBakery().loadBlockModel(new ResourceLocation(GTCore.ID, "block/machine/overlay/bookshelf/book_north"));
+                BOOK_REFERENCE_NORTH.addAll(numberModel.getElements());
             } catch (Exception e) {
                 GTCore.LOGGER.error(e);
             }

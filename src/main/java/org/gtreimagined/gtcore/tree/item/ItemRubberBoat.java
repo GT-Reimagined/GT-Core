@@ -14,7 +14,6 @@ import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.gtreimagined.gtlib.GTAPI;
-import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.registration.IGTObject;
 import org.gtreimagined.gtlib.registration.IModelProvider;
 import org.gtreimagined.gtlib.registration.IRegistryEntryProvider;
@@ -26,15 +25,16 @@ import java.util.function.Predicate;
 public class ItemRubberBoat extends TerraformBoatItem implements IGTObject, ITextureProvider, IModelProvider, IRegistryEntryProvider {
     private static final Predicate<Entity> RIDERS = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
 
+    static ResourceKey<TerraformBoatType> RUBBER_BOAT_KEY = TerraformBoatTypeRegistry.createKey(new ResourceLocation(GTCore.ID, "rubber"));
     static TerraformBoatType RUBBER_BOAT_TYPE;
     private final boolean chest;
 
     public ItemRubberBoat(boolean chest) {
-        super(() -> RUBBER_BOAT_TYPE, chest, new Properties().stacksTo(1));
+        super(RUBBER_BOAT_KEY, chest, new Properties().stacksTo(1));
         this.chest = chest;
         GTAPI.register(ItemRubberBoat.class, this);
         if (!chest) GTAPI.register(IRegistryEntryProvider.class, this);
-        TerraformBoatItemHelper.registerBoatDispenserBehavior(this, () -> RUBBER_BOAT_TYPE, chest);
+        TerraformBoatItemHelper.registerBoatDispenserBehavior(this, RUBBER_BOAT_KEY, chest);
     }
 
     public static void initBoatType(){

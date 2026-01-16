@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.MapColor;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
 import org.gtreimagined.gtlib.Data;
 import org.gtreimagined.gtlib.Ref;
@@ -33,7 +34,7 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
     public static final IntegerProperty LIGHT = IntegerProperty.create("light", 0, 15);
     protected final StateDefinition<Block, BlockState> stateContainer;
     public BlockRedstoneWire(T type, PipeSize size) {
-        super(type.getId(), type, size, 2, Properties.of(Data.WRENCH_MATERIAL).strength(1.0f, 3.0f).requiresCorrectToolForDrops().emissiveRendering(((blockState, blockGetter, blockPos) -> isEmissive(size, blockState, blockGetter, blockPos))).lightLevel(BlockRedstoneWire::getLightEmission));
+        super(type.getId(), type, size, 2, Properties.of().mapColor(MapColor.COLOR_RED).strength(1.0f, 3.0f).requiresCorrectToolForDrops().emissiveRendering(((blockState, blockGetter, blockPos) -> isEmissive(size, blockState, blockGetter, blockPos))).lightLevel(BlockRedstoneWire::getLightEmission));
         String prefix = size == PipeSize.TINY ? "cable" : "wire";
         this.side = new Texture(Ref.ID, "block/pipe/" + prefix + "_side");
         this.faces = new Texture[]{

@@ -80,7 +80,7 @@ public class SlotUnlimited extends AbstractSlot<SlotUnlimited> implements IClick
                     return ItemStack.EMPTY;
                 }
 
-                for(ItemStack itemstack8 = container.quickMoveStack(pPlayer, this.index); !itemstack8.isEmpty() && ItemStack.isSame(this.getItem(), itemstack8); itemstack8 = container.quickMoveStack(pPlayer, this.index)) {
+                for(ItemStack itemstack8 = container.quickMoveStack(pPlayer, this.index); !itemstack8.isEmpty() && this.getItem().is(itemstack8.getItem()); itemstack8 = container.quickMoveStack(pPlayer, this.index)) {
                     itemstack = itemstack8.copy();
                 }
             } else {
@@ -114,7 +114,7 @@ public class SlotUnlimited extends AbstractSlot<SlotUnlimited> implements IClick
                             this.onTake(pPlayer, container.getCarried());
                         }
                     } else if (this.mayPlace(heldStack)) {
-                        if (ItemStack.isSame(containedStack, heldStack)) {
+                        if (containedStack.is(heldStack.getItem())) {
                             int l2 = pDragType == 0 ? heldStack.getCount() : 1;
                             if (l2 > this.getMaxStackSize(heldStack) - containedStack.getCount()) {
                                 l2 = this.getMaxStackSize(heldStack) - containedStack.getCount();
@@ -126,7 +126,7 @@ public class SlotUnlimited extends AbstractSlot<SlotUnlimited> implements IClick
                             this.set(heldStack);
                             container.setCarried(containedStack);
                         }
-                    } else if (heldStack.getMaxStackSize() > 1 && ItemStack.isSame(containedStack, heldStack) && !containedStack.isEmpty()) {
+                    } else if (heldStack.getMaxStackSize() > 1 && containedStack.is(heldStack.getItem()) && !containedStack.isEmpty()) {
                         int i3 = containedStack.getCount();
                         if (i3 + heldStack.getCount() <= heldStack.getMaxStackSize()) {
                             heldStack.grow(i3);

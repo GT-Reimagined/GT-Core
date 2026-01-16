@@ -6,8 +6,11 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
@@ -41,36 +44,18 @@ import java.util.stream.Stream;
 
 public class RubberTreeWorldGen {
 
-    public static Holder<PlacedFeature> TREE;
-    public static Holder<PlacedFeature> TREE_SWAMP;
-    public static Holder<PlacedFeature> TREE_JUNGLE;
-    public static Holder<ConfiguredFeature<TreeConfiguration, ?>> TREE_FEATURE_CONFIG;
-    public static Holder<ConfiguredFeature<TreeConfiguration, ?>> TREE_FEATURE_SWAMP_CONFIG;
-    public static Holder<ConfiguredFeature<TreeConfiguration, ?>> TREE_FEATURE_JUNGLE_CONFIG;
-
-    final static TreeConfiguration RUBBER_TREE_CONFIG_SWAMP =
-            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2), BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
-                    new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator(0.25f))).build();
-
-    final static TreeConfiguration RUBBER_TREE_CONFIG_JUNGLE =
-            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(7, 2, 2), BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
-                    new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().decorators(ImmutableList.of(new LeaveVineDecorator(0.25f))).build();
-
-    final static TreeConfiguration RUBBER_TREE_CONFIG_NORMAL =
-            (new TreeConfiguration.TreeConfigurationBuilder(RubberTree.TRUNK_BLOCKS, new RubberTrunkPlacer(5, 2, 2),BlockStateProvider.simple(GTCoreBlocks.RUBBER_LEAVES.defaultBlockState()),
-                    new RubberFoliagePlacer(),  new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().build();
+    public static ResourceKey<PlacedFeature> TREE = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(GTCore.ID, "rubber_tree"));
+    public static ResourceKey<PlacedFeature> TREE_SWAMP = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(GTCore.ID, "rubber_tree_swamp"));
+    public static ResourceKey<PlacedFeature> TREE_JUNGLE = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(GTCore.ID, "rubber_tree_jungle"));
+    public static ResourceKey<ConfiguredFeature<?, ?>> TREE_FEATURE_CONFIG = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(GTCore.ID, "rubber_tree_normal"));
+    public static ResourceKey<ConfiguredFeature<?, ?>> TREE_FEATURE_SWAMP_CONFIG = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(GTCore.ID, "rubber_tree_swamp"));
+    public static ResourceKey<ConfiguredFeature<?, ?>> TREE_FEATURE_JUNGLE_CONFIG = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(GTCore.ID, "rubber_tree_jungle"));
 
     public static final PlacementModifierType<RubberTreePlacementModifier> RUBBER_TREE_PLACEMENT_MODIFIER  = () -> RubberTreePlacementModifier.CODEC;
 
     public static void init(){
-        TREE_FEATURE_CONFIG = FeatureUtils.register("gtcore:rubber_tree_normal", RubberTree.TREE_FEATURE, RubberTreeWorldGen.RUBBER_TREE_CONFIG_NORMAL);
-        TREE_FEATURE_SWAMP_CONFIG = FeatureUtils.register("gtcore:rubber_tree_jungle", RubberTree.TREE_FEATURE, RubberTreeWorldGen.RUBBER_TREE_CONFIG_JUNGLE);
-        TREE_FEATURE_JUNGLE_CONFIG = FeatureUtils.register("gtcore:rubber_tree_swamp", RubberTree.TREE_FEATURE, RubberTreeWorldGen.RUBBER_TREE_CONFIG_SWAMP);
-        TREE = PlacementUtils.register("gtcore:rubber", RubberTreeWorldGen.TREE_FEATURE_CONFIG, new RubberTreePlacementModifier(), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(0), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTCoreBlocks.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
-        TREE_JUNGLE = PlacementUtils.register("gtcore:rubber_jungle", RubberTreeWorldGen.TREE_FEATURE_JUNGLE_CONFIG, new RubberTreePlacementModifier(), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(0), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTCoreBlocks.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
-        TREE_SWAMP = PlacementUtils.register("gtcore:rubber_swamp", RubberTreeWorldGen.TREE_FEATURE_SWAMP_CONFIG, new RubberTreePlacementModifier(), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(2), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(GTCoreBlocks.RUBBER_SAPLING.defaultBlockState(), BlockPos.ZERO)));
-        Registry.register(Registry.TRUNK_PLACER_TYPES, new ResourceLocation(GTCore.ID, "rubber_trunk_placer"), RubberTrunkPlacer.RUBBER);
-        Registry.register(Registry.PLACEMENT_MODIFIERS, new ResourceLocation(GTCore.ID, "rubber_tree_placement_modifier"), RUBBER_TREE_PLACEMENT_MODIFIER);
+        Registry.register(BuiltInRegistries.TRUNK_PLACER_TYPE, new ResourceLocation(GTCore.ID, "rubber_trunk_placer"), RubberTrunkPlacer.RUBBER);
+        Registry.register(BuiltInRegistries.PLACEMENT_MODIFIER_TYPE, new ResourceLocation(GTCore.ID, "rubber_tree_placement_modifier"), RUBBER_TREE_PLACEMENT_MODIFIER);
     }
 
     public static class RubberTreePlacementModifier extends PlacementModifier {
@@ -84,7 +69,7 @@ public class RubberTreeWorldGen {
             float p = 0.15F;
             if (biome.getClimateSettings().temperature() > 0.8f) {
                 p = 0.04F;
-                if (biome.getClimateSettings().precipitation() == Biome.Precipitation.RAIN)
+                if (biome.getClimateSettings().hasPrecipitation())
                     p += 0.04F;
             }
             float finalp = p;

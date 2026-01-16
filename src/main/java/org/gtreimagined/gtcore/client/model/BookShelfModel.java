@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.ModelBaker;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.client.resources.model.UnbakedModel;
@@ -33,16 +34,8 @@ public class BookShelfModel implements IGTModel<BookShelfModel> {
     }
 
     @Override
-    public BakedModel bakeModel(IGeometryBakingContext configuration, ModelBakery modelBakery, Function<Material, TextureAtlasSprite> function, ModelState modelState, ItemOverrides overrides, ResourceLocation resourceLocation) {
+    public BakedModel bakeModel(IGeometryBakingContext configuration, ModelBaker modelBakery, Function<Material, TextureAtlasSprite> function, ModelState modelState, ItemOverrides overrides, ResourceLocation resourceLocation) {
         BakedModel base = baseModel.bake(modelBakery, function, modelState, resourceLocation);
         return new BookShelfBakedModel(Objects.requireNonNull(base));
-    }
-
-    @Override
-    public Collection<Material> getMaterials(IGeometryBakingContext iModelConfiguration, Function<ResourceLocation, UnbakedModel> function, Set<Pair<String, String>> set) {
-        Set<Material> materials = new HashSet<>();
-        materials.addAll(baseModel.getMaterials(function, set));
-        materials.addAll(BookSpriteMaps.getMaterialMap().values().stream().flatMap(p -> Stream.of(p.first(), p.second())).collect(Collectors.toSet()));
-        return materials;
     }
 }

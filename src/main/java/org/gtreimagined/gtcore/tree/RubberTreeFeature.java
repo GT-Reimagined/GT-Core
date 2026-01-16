@@ -1,18 +1,25 @@
 package org.gtreimagined.gtcore.tree;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biome.ClimateSettings;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.biome.MobSpawnSettings.Builder;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.util.TagUtils;
 import org.gtreimagined.gtlib.worldgen.feature.IGTFeature;
@@ -34,15 +41,21 @@ public class RubberTreeFeature extends TreeFeature implements IGTFeature {
     }
 
     @Override
-    public void build(ResourceLocation name, Biome.ClimateSettings climate, BiomeSpecialEffects effects, BiomeGenerationSettings.Builder gen, MobSpawnSettings.Builder spawns) {
+    public void build(ResourceLocation name, ClimateSettings climate, BiomeSpecialEffects effects, BiomeGenerationSettingsBuilder gen, Builder spawns, Registry<PlacedFeature> registry) {
         if (GTAPI.isModLoaded("tfc")) return;
         if (name.equals(Biomes.SWAMP.location())) {
-            gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTreeWorldGen.TREE_SWAMP);
+            gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, getPlacedFeatureFromKey(registry, RubberTreeWorldGen.TREE_SWAMP));
         } else if (name.equals(Biomes.JUNGLE.location())) {
-            gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTreeWorldGen.TREE_JUNGLE);
+            gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, getPlacedFeatureFromKey(registry, RubberTreeWorldGen.TREE_JUNGLE));
         } else {
-            gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RubberTreeWorldGen.TREE);
+            gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, getPlacedFeatureFromKey(registry, RubberTreeWorldGen.TREE));
         }
+    }
+
+    protected Holder<PlacedFeature> getPlacedFeatureFromKey(Registry<PlacedFeature> registry, ResourceKey<PlacedFeature> key) {
+        PlacedFeature placedFeature = registry.get(key);
+        if (placedFeature == null) return null;
+        return Holder.direct(placedFeature);
     }
 
     @Override

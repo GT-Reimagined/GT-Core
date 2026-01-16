@@ -20,9 +20,8 @@ import java.util.List;
 @Mixin(AbstractClientPlayer.class)
 public abstract class AbstractClientPlayerEntityMixin extends Player {
 
-
-    public AbstractClientPlayerEntityMixin(Level level, BlockPos pos, float yRot, GameProfile gameProfile, @Nullable ProfilePublicKey profilePublicKey) {
-        super(level, pos, yRot, gameProfile, profilePublicKey);
+    public AbstractClientPlayerEntityMixin(Level level, BlockPos pos, float yRot, GameProfile gameProfile) {
+        super(level, pos, yRot, gameProfile);
     }
 
     @Inject(method = "getCloakTextureLocation", at = @At(value = "HEAD"), cancellable = true)

@@ -36,11 +36,11 @@ public class RubberFoliagePlacer extends FoliagePlacer {
     }
 
     @Override
-    protected void createFoliage(LevelSimulatedReader pLevel, BiConsumer<BlockPos, BlockState> pBlockSetter, RandomSource pRandom, TreeConfiguration pConfig, int pMaxFreeTreeHeight, FoliageAttachment pAttachment, int pFoliageHeight, int pFoliageRadius, int pOffset) {
+    protected void createFoliage(LevelSimulatedReader pLevel, FoliageSetter pBlockSetter, RandomSource pRandom, TreeConfiguration pConfig, int pMaxFreeTreeHeight, FoliageAttachment pAttachment, int pFoliageHeight, int pFoliageRadius, int pOffset) {
         generate(pLevel, pBlockSetter, pRandom, pConfig, pMaxFreeTreeHeight, pAttachment, pFoliageHeight, pFoliageRadius, pOffset);
     }
 
-    protected void generate(LevelSimulatedReader world,  BiConsumer<BlockPos, BlockState> pBlockSetter, RandomSource random, TreeConfiguration config, int trunkHeight, FoliageAttachment treeNode, int foliageHeight, int radius, int offset) {
+    protected void generate(LevelSimulatedReader world,  FoliageSetter pBlockSetter, RandomSource random, TreeConfiguration config, int trunkHeight, FoliageAttachment treeNode, int foliageHeight, int radius, int offset) {
         BlockPos center = treeNode.pos();
         BlockPos.MutableBlockPos pos = center.mutable();
 
@@ -57,7 +57,7 @@ public class RubberFoliagePlacer extends FoliagePlacer {
             pos.set(x, y + i, z);
             circle(pos.mutable(), treeRadius, position -> {
                 if (TreeFeature.isAirOrLeaves(world, position)) {
-                    pBlockSetter.accept(position, config.foliageProvider.getState(random, position));
+                    pBlockSetter.set(position, config.foliageProvider.getState(random, position));
                 }
             });
         }
@@ -66,7 +66,7 @@ public class RubberFoliagePlacer extends FoliagePlacer {
         for (int i = 0; i < spikeHeight; i++){
             BlockPos leaf = center.above(i);
             if (TreeFeature.isAirOrLeaves(world, leaf)) {
-                pBlockSetter.accept(leaf, config.foliageProvider.getState(random, leaf));
+                pBlockSetter.set(leaf, config.foliageProvider.getState(random, leaf));
             }
         }
 
