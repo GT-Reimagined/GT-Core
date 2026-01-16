@@ -19,7 +19,6 @@ import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
 import java.util.List;
 
 import static org.gtreimagined.gtlib.material.Material.NULL;

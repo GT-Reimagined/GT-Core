@@ -2,9 +2,7 @@ package org.gtreimagined.gtcore.data;
 
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtlib.GTAPI;
-import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.material.Material;
-import org.gtreimagined.gtlib.material.TextureSet;
 
 import static org.gtreimagined.gtlib.material.Element.*;
 import static org.gtreimagined.gtlib.material.TextureSet.*;

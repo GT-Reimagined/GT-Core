@@ -10,7 +10,6 @@ import net.minecraft.world.item.ItemStack;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.machine.WorkbenchMachine;
 import org.gtreimagined.gtlib.GTAPI;
-import org.gtreimagined.gtlib.GTLib;
 import org.gtreimagined.gtlib.Ref;
 
 import java.util.Optional;

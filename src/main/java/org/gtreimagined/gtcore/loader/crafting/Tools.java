@@ -15,7 +15,6 @@ import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.data.GTTools;
 import org.gtreimagined.gtlib.datagen.providers.GTRecipeProvider;
-import org.gtreimagined.gtlib.recipe.RecipeBuilders;
 import org.gtreimagined.gtlib.recipe.ingredient.PropertyIngredient;
 import org.gtreimagined.gtlib.tool.GTToolType;
 import org.gtreimagined.gtlib.util.RegistryUtils;

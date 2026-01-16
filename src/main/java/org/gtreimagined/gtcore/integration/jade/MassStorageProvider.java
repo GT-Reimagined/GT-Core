@@ -7,7 +7,6 @@ import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.util.Utils;
-import snownee.jade.Jade;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.ITooltip;

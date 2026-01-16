@@ -32,8 +32,6 @@ import org.gtreimagined.gtlib.datagen.builder.VariantBlockStateBuilder;
 import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider;
 import org.gtreimagined.gtlib.util.Utils;
 
-import java.util.Random;
-
 import static org.gtreimagined.gtlib.data.GTTools.KNIFE;
 
 

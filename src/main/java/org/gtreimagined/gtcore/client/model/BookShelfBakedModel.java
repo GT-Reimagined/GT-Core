@@ -20,7 +20,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityBookShelf;
 import org.gtreimagined.gtcore.client.BookSpriteMaps;
-import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.gtreimagined.gtlib.client.ModelUtils;
 import org.gtreimagined.gtlib.client.RenderHelper;
 import org.gtreimagined.gtlib.client.SimpleModelState;
@@ -33,7 +32,6 @@ import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.gtreimagined.gtcore.client.model.BookShelfModel.BOOK_MODELS;
 import static org.gtreimagined.gtcore.client.model.IconModel.FACE_BAKERY;

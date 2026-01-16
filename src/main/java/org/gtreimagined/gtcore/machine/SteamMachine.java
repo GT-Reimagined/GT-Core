@@ -1,7 +1,6 @@
 package org.gtreimagined.gtcore.machine;
 
 import net.minecraft.resources.ResourceLocation;
-import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntitySteamMachine;
 import org.gtreimagined.gtlib.Data;
 import org.gtreimagined.gtlib.gui.SlotData;

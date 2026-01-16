@@ -2,7 +2,6 @@ package org.gtreimagined.gtcore.loader.crafting;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -15,8 +14,6 @@ import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.gtreimagined.gtcore.data.GTCoreMaterials;
 import org.gtreimagined.gtcore.data.GTCoreTags;
 import org.gtreimagined.gtlib.GTAPI;
-import org.gtreimagined.gtlib.data.GTMaterialTypes;
-import org.gtreimagined.gtlib.data.GTTools;
 import org.gtreimagined.gtlib.datagen.builder.GTCookingRecipeBuilder;
 import org.gtreimagined.gtlib.datagen.providers.GTRecipeProvider;
 import org.gtreimagined.gtlib.util.TagUtils;

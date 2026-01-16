@@ -2,11 +2,8 @@ package org.gtreimagined.gtcore.blockentity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import org.gtreimagined.gtcore.data.GTCoreTags;
 import org.gtreimagined.gtcore.machine.SteamMachine;
 import org.gtreimagined.gtlib.blockentity.BlockEntityMachine;
 import org.gtreimagined.gtlib.capability.machine.MachineFluidHandler;
@@ -15,7 +12,6 @@ import org.gtreimagined.gtlib.machine.MachineState;
 import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.machine.types.Machine;
 import org.gtreimagined.gtlib.recipe.IRecipe;
-import org.gtreimagined.gtlib.util.TagUtils;
 
 import static org.gtreimagined.gtcore.data.GTCoreTags.STEAM;
 import static org.gtreimagined.gtlib.machine.Tier.BRONZE;

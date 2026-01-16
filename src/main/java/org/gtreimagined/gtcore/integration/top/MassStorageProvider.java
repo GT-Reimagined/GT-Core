@@ -24,8 +24,6 @@ import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.integration.top.TheOneProbePlugin;
 import org.gtreimagined.gtlib.util.Utils;
 
-import java.awt.*;
-
 public class MassStorageProvider implements IProbeInfoProvider {
 
     public static void createTopProvider(){

@@ -1,7 +1,6 @@
 package org.gtreimagined.gtcore.tree.block;
 
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;

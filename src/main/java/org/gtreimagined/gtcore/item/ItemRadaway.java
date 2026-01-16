@@ -5,7 +5,6 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.entity.IRadiationEntity;
 import org.gtreimagined.gtlib.item.ItemBasic;
 

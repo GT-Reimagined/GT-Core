@@ -22,7 +22,6 @@ import org.gtreimagined.gtlib.pipe.BlockPipe;
 import org.gtreimagined.gtlib.tool.IGTTool;
 import org.gtreimagined.gtlib.util.Utils;
 
-import java.awt.*;
 import java.util.UUID;
 
 public class GTCommonEvents {

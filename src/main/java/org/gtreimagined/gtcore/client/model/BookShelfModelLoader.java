@@ -1,25 +1,17 @@
 package org.gtreimagined.gtcore.client.model;
 
 import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.internal.Streams;
-import com.google.gson.stream.JsonReader;
 import net.minecraft.client.renderer.block.model.BlockElement;
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
-import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtlib.client.ModelUtils;
 import org.gtreimagined.gtlib.client.model.loader.GTModelLoader;
 
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class BookShelfModelLoader extends GTModelLoader<BookShelfModel> {
     static List<BlockElement> BOOK_REFERENCE_SOUTH = null;

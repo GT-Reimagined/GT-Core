@@ -1,7 +1,6 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.Tags;
 import org.gtreimagined.gtcore.GTCore;

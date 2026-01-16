@@ -2,9 +2,6 @@ package org.gtreimagined.gtcore.integration.jade;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
 import org.gtreimagined.gtlib.util.CodeUtils;

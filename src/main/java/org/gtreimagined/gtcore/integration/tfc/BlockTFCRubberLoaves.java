@@ -1,7 +1,6 @@
 package org.gtreimagined.gtcore.integration.tfc;
 
 import net.dries007.tfc.common.blocks.ExtendedProperties;
-import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.wood.TFCLeavesBlock;
 import net.minecraft.world.level.block.SoundType;

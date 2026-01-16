@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore.gui.screen;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMaterial;

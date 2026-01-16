@@ -3,7 +3,6 @@ package org.gtreimagined.gtcore.data;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.RedstoneWire;
 import org.gtreimagined.gtlib.GTAPI;
-import org.gtreimagined.gtlib.material.MaterialTags;
 import org.gtreimagined.gtlib.material.SubTag;
 
 import static org.gtreimagined.gtlib.material.MaterialTags.CABLE;

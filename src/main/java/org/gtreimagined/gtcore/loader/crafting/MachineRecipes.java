@@ -1,7 +1,6 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.Tags;
@@ -10,9 +9,7 @@ import org.gtreimagined.gtcore.machine.BookShelfMachine;
 import org.gtreimagined.gtcore.machine.DrumMachine;
 import org.gtreimagined.gtcore.machine.HopperMachine;
 import org.gtreimagined.gtlib.GTAPI;
-import org.gtreimagined.gtlib.data.GTTools;
 import org.gtreimagined.gtlib.datagen.providers.GTRecipeProvider;
-import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.material.Material;
 
 import java.util.function.Consumer;

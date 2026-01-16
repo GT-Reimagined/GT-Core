@@ -1,7 +1,6 @@
 package org.gtreimagined.gtcore.data;
 
 import com.google.common.collect.ImmutableMap;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.Item;
 import org.gtreimagined.gtcore.GTCore;
@@ -16,7 +15,6 @@ import org.gtreimagined.gtcore.item.ItemRadaway;
 import org.gtreimagined.gtcore.item.ItemSelectorTag;
 import org.gtreimagined.gtcore.item.ItemTape;
 import org.gtreimagined.gtcore.tree.item.ItemRubberBoat;
-import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.cover.CoverFactory;
 import org.gtreimagined.gtlib.item.ItemBasic;
 import org.gtreimagined.gtlib.material.Material;

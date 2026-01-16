@@ -2,7 +2,6 @@ package org.gtreimagined.gtcore.loader.crafting;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import org.gtreimagined.gtcore.GTCore;

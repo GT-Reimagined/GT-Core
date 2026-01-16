@@ -10,7 +10,6 @@ import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.item.ScannerItem;
 import org.gtreimagined.gtlib.material.Material;
 import org.gtreimagined.gtlib.registration.IColorHandler;
-import org.gtreimagined.gtlib.registration.ICreativeTabProvider;
 import org.gtreimagined.gtlib.texture.Texture;
 import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.NotNull;

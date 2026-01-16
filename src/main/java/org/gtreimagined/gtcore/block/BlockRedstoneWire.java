@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.MapColor;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
-import org.gtreimagined.gtlib.Data;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.blockentity.pipe.BlockEntityPipe;
 import org.gtreimagined.gtlib.data.GTTools;

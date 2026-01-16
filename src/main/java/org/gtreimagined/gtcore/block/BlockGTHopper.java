@@ -17,7 +17,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 import org.gtreimagined.gtlib.data.GTTools;

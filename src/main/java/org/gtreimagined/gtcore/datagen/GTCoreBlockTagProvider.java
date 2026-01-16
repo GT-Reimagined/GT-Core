@@ -11,7 +11,6 @@ import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 import org.gtreimagined.gtcore.machine.BlockMultiMachineMaterial;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.data.GTTools;
-import org.gtreimagined.gtlib.data.VanillaStoneTypes;
 import org.gtreimagined.gtlib.datagen.providers.GTBlockTagProvider;
 import org.gtreimagined.gtlib.util.TagUtils;
 

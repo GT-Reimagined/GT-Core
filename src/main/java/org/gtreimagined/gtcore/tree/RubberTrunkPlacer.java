@@ -20,7 +20,6 @@ import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.util.TagUtils;
 
 import java.util.List;
-import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 

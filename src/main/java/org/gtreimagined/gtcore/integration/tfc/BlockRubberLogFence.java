@@ -4,7 +4,6 @@ package org.gtreimagined.gtcore.integration.tfc;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.tree.block.BlockRubberFence;
 import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider;
