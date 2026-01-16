@@ -99,6 +99,8 @@ public class GTCoreBlocks {
 
     public static final BlockRubberSign RUBBER_SIGN = new BlockRubberSign();
     public static final BlockRubberWallSign RUBBER_WALL_SIGN = new BlockRubberWallSign();
+    public static final BlockRubberSign RUBBER_HANGING_SIGN = new BlockRubberSign();
+    public static final BlockRubberWallSign RUBBER_WALL_HANGING_SIGN = new BlockRubberWallSign();
     public static Block RUBBER_SAPLING;
     public static final BlockRubberButton RUBBER_BUTTON = new BlockRubberButton();
     public static final BlockRubberPressurePlate RUBBER_PRESSURE_PLATE = new BlockRubberPressurePlate();
