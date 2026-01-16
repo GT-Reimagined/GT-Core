@@ -2,6 +2,7 @@ package org.gtreimagined.gtcore.gui;
 
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.gtreimagined.gtcore.data.SlotTypes;
@@ -10,7 +11,7 @@ import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
 import org.gtreimagined.gtlib.network.GTLibNetwork;
 import org.jetbrains.annotations.NotNull;
 
-public class InventoryWorkbench extends CraftingContainer {
+public class InventoryWorkbench extends TransientCraftingContainer {
     private final int length;
     private final MachineItemHandler<?> projectTable;
     private final AbstractContainerMenu eventHandler;

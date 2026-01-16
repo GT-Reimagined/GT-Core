@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RepairItemRecipe;
@@ -16,8 +17,8 @@ import java.util.List;
 @Mixin(RepairItemRecipe.class)
 public class RepairItemRecipeMixin {
 
-    @Inject(method = "assemble(Lnet/minecraft/world/inventory/CraftingContainer;)Lnet/minecraft/world/item/ItemStack;", at = @At(value = "INVOKE", target = "Ljava/util/List;size()I", ordinal = 1), cancellable = true)
-    private void gtcore$injectAssemble(CraftingContainer inv, CallbackInfoReturnable<ItemStack> cir, @Local List<ItemStack> list){
+    @Inject(method = "assemble(Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;", at = @At(value = "INVOKE", target = "Ljava/util/List;size()I", ordinal = 1), cancellable = true)
+    private void gtcore$injectAssemble(CraftingContainer container, RegistryAccess registryAccess, CallbackInfoReturnable<ItemStack> cir, @Local(name = "list") List<ItemStack> list){
         if (list.size() == 2){
             ItemStack first = list.get(0);
             ItemStack second = list.get(1);

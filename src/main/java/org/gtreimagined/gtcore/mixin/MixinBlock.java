@@ -32,13 +32,13 @@ import static net.minecraft.world.level.block.Block.getDrops;
 @Mixin(Block.class)
 public abstract class MixinBlock {
 
-    @Inject(method = "dropResources(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/ItemStack;Z)V", at = @At("HEAD"), cancellable = true)
-    private static void injectDropResources(BlockState state, Level level, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack tool, boolean xp, CallbackInfo ci) {
+    @Inject(method = "dropResources(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/ItemStack;Z)V", at = @At("HEAD"), cancellable = true, remap = false)
+    private static void gtcore$injectDropResources(BlockState state, Level level, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack tool, boolean xp, CallbackInfo ci) {
         if (level instanceof ServerLevel serverLevel && entity instanceof Player player && tool.is(GTCoreTags.MAGNETIC_TOOL)) {
             getDrops(state, serverLevel, pos, blockEntity, entity, tool).forEach((itemStack) -> {
                 gtcore$popResource(level, pos, itemStack, player);
             });
-            state.spawnAfterBreak((ServerLevel)level, pos, tool, true);
+            state.spawnAfterBreak((ServerLevel)level, pos, tool, xp);
             ci.cancel();
         }
 
