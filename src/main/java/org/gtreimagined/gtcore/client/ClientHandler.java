@@ -10,9 +10,14 @@ import org.gtreimagined.gtcore.data.GTCoreBlocks;
 public class ClientHandler {
     public static void init() {
         Sheets.SIGN_MATERIALS.put(GTCoreBlocks.RUBBER_WOOD_TYPE, createSignMaterial(GTCoreBlocks.RUBBER_WOOD_TYPE));
+        Sheets.HANGING_SIGN_MATERIALS.put(GTCoreBlocks.RUBBER_WOOD_TYPE, createHangingSignMaterial(GTCoreBlocks.RUBBER_WOOD_TYPE));
     }
 
     private static Material createSignMaterial(WoodType woodType) {
         return new Material(Sheets.SIGN_SHEET, new ResourceLocation(GTCore.ID, "entity/signs/" + woodType.name()));
+    }
+
+    private static Material createHangingSignMaterial(WoodType woodType) {
+        return new Material(Sheets.SIGN_SHEET, new ResourceLocation(GTCore.ID, "entity/signs/hanging/" + woodType.name()));
     }
 }
