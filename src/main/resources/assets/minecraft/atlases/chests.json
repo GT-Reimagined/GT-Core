@@ -1,0 +1,12 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "gtcore:model/material_chest_base"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "gtcore:model/material_chest_overlay"
+    }
+  ]
+}

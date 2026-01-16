@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ItemTape extends ItemBasic<ItemTape> {
     public ItemTape(String domain, String id, int maxDurability) {
-        super(domain, id, new Item.Properties().tab(Ref.TAB_ITEMS).defaultDurability(maxDurability));
+        super(domain, id, new Item.Properties().defaultDurability(maxDurability));
     }
 
     public ItemTape(String domain, String id) {

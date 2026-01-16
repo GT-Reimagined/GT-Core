@@ -7,26 +7,28 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.Ref;
+import org.gtreimagined.gtlib.registration.ICreativeTabProvider;
 import org.gtreimagined.gtlib.registration.IGTObject;
 import org.gtreimagined.gtlib.registration.IModelProvider;
 import org.gtreimagined.gtlib.registration.ITextureProvider;
 import org.gtreimagined.gtlib.texture.Texture;
 import org.jetbrains.annotations.Nullable;
 
-public class ItemHazmatArmor extends ArmorItem implements IGTObject, ITextureProvider, IModelProvider {
+public class ItemHazmatArmor extends ArmorItem implements IGTObject, ITextureProvider, IModelProvider, ICreativeTabProvider {
     static ArmorMaterial HAZMAT = new ArmorMaterial() {
         @Override
-        public int getDurabilityForSlot(EquipmentSlot slot) {
+        public int getDurabilityForType(Type slot) {
             return 128;
         }
 
         @Override
-        public int getDefenseForSlot(EquipmentSlot slot) {
+        public int getDefenseForType(Type slot) {
             return 1;
         }
 
@@ -61,8 +63,8 @@ public class ItemHazmatArmor extends ArmorItem implements IGTObject, ITexturePro
         }
     };
     final String id;
-    public ItemHazmatArmor(EquipmentSlot slot, String id) {
-        super(HAZMAT, slot, new Properties().tab(Ref.TAB_ITEMS));
+    public ItemHazmatArmor(Type slot, String id) {
+        super(HAZMAT, slot, new Properties());
         this.id = id;
         GTAPI.register(ItemHazmatArmor.class, this);
     }
@@ -90,5 +92,10 @@ public class ItemHazmatArmor extends ArmorItem implements IGTObject, ITexturePro
             if (nbt != null && nbt.contains("theoneprobe") && nbt.getBoolean("theoneprobe")) extra = "_probe";
         }
         return GTCore.ID + ":textures/model/hazmat_" + (slot == EquipmentSlot.LEGS ? 2 : 1) + (type == null ? "" : "_" + type + extra) + ".png";
+    }
+
+    @Override
+    public boolean allowedIn(CreativeModeTab creativeModeTab) {
+        return creativeModeTab == Ref.TAB_ITEMS;
     }
 }

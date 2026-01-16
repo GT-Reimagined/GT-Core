@@ -11,7 +11,7 @@ import org.gtreimagined.gtlib.item.ItemBasic;
 
 public class ItemRadaway extends ItemBasic<ItemRadaway> {
     public ItemRadaway() {
-        super(GTCore.ID, "radaway", new Properties().food(new FoodProperties.Builder().nutrition(0).saturationMod(0).alwaysEat().build()).tab(Ref.TAB_ITEMS));
+        super(GTCore.ID, "radaway", new Properties().food(new FoodProperties.Builder().nutrition(0).saturationMod(0).alwaysEat().build()));
     }
 
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {

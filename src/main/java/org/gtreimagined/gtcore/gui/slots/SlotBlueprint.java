@@ -38,7 +38,7 @@ public class SlotBlueprint extends AbstractSlot<SlotBlueprint> implements IClick
                 Optional<CraftingRecipe> optional = level.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingGrid, level);
                 if (optional.isPresent()) {
                     CraftingRecipe recipe = optional.get();
-                    ItemStack result = recipe.assemble(craftingGrid);
+                    ItemStack result = recipe.assemble(craftingGrid, player.level().registryAccess());
                     if (!result.isEmpty()) {
                         ItemStack blueprint = new ItemStack(GTCoreItems.Blueprint, item.getCount()).setHoverName(result.getHoverName());
                         blueprint.getOrCreateTag().putString("recipeId", recipe.getId().toString());

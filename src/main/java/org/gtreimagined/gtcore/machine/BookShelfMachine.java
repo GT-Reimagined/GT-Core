@@ -7,6 +7,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.Shapes;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityBookShelf;
@@ -54,7 +56,7 @@ public class BookShelfMachine extends MaterialMachine {
     public BookShelfMachine(String woodType, Texture woodTexture, Supplier<Block> woodBlockSupplier) {
         this(GTCore.ID, woodType + "_bookshelf", Material.NULL);
         setToolTag(GTTools.AXE.getToolType());
-        setBlock((m, t) -> new BlockMachineMaterial(m, t, Properties.of(net.minecraft.world.level.material.Material.WOOD).strength(2.0f, 3.0f).sound(SoundType.WOOD).requiresCorrectToolForDrops()));
+        setBlock((m, t) -> new BlockMachineMaterial(m, t, Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0f, 3.0f).sound(SoundType.WOOD).requiresCorrectToolForDrops()));
         setBaseTexture(woodTexture);
         this.woodType = woodType;
         this.woodBlockSupplier = woodBlockSupplier;
@@ -63,7 +65,7 @@ public class BookShelfMachine extends MaterialMachine {
     public BookShelfMachine(String woodType, String modid, Texture woodTexture, Supplier<Block> woodBlockSupplier) {
         this(GTCore.ID, modid + "/" + woodType + "_bookshelf", Material.NULL);
         setToolTag(GTTools.AXE.getToolType());
-        setBlock((m, t) -> new BlockMachineMaterial(m, t, Properties.of(net.minecraft.world.level.material.Material.WOOD).strength(2.0f, 3.0f).sound(SoundType.WOOD).requiresCorrectToolForDrops()));
+        setBlock((m, t) -> new BlockMachineMaterial(m, t, Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0f, 3.0f).sound(SoundType.WOOD).requiresCorrectToolForDrops()));
         setBaseTexture(woodTexture);
         this.woodType = woodType;
         this.woodBlockSupplier = woodBlockSupplier;

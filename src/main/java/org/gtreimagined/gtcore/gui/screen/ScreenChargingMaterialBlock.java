@@ -11,8 +11,4 @@ public class ScreenChargingMaterialBlock<T extends BlockEntityMaterial<T>> exten
     public ScreenChargingMaterialBlock(ContainerMachine<T> container, Inventory inv, Component name, String location) {
         super(container, inv, name);
     }
-
-    @Override
-    protected void drawTitle(PoseStack stack, int mouseX, int mouseY) {
-    }
 }

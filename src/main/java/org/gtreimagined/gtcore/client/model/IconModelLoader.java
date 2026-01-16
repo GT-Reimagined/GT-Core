@@ -34,18 +34,9 @@ public class IconModelLoader extends GTModelLoader<IconModel> {
         if (BLOCK_ELEMENTS == null) {
             BLOCK_ELEMENTS = new ObjectArrayList<>();
             try {
-                Optional<Resource> resource = ModelUtils.getModelBakery().resourceManager.getResource(new ResourceLocation(GTCore.ID, "models/block/machine/overlay/mass_storage/icons.json"));
-                if (resource.isPresent()){
-                    InputStreamReader reader = new InputStreamReader(resource.get().open(), StandardCharsets.UTF_8);
-                    JsonReader jsonReader = new JsonReader(reader);
-                    JsonElement element = Streams.parse(jsonReader);
-                    if (element.isJsonObject()) {
-                        JsonObject obj = element.getAsJsonObject();
-                        UnbakedModel numberModel = jsonDeserializationContext.deserialize(obj, BlockModel.class);
-                        if (numberModel instanceof BlockModel blockModel){
-                            BLOCK_ELEMENTS.addAll(blockModel.getElements());
-                        }
-                    }
+                UnbakedModel numberModel = ModelUtils.getModelBakery().loadBlockModel(new ResourceLocation(GTCore.ID, "block/machine/overlay/mass_storage/icons"));
+                if (numberModel instanceof BlockModel blockModel){
+                    BLOCK_ELEMENTS.addAll(blockModel.getElements());
                 }
             } catch (Exception e) {
                 GTCore.LOGGER.error(e);

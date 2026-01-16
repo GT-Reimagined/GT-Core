@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.loader.crafting;
 
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -39,10 +40,10 @@ public class VanillaRecipes {
         }
 
         provider.addItemRecipe(consumer, GTCore.ID, "piston_sticky","gears", Blocks.STICKY_PISTON, of('S', GTCoreItems.StickyResin, 'P', Blocks.PISTON), "S", "P");
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(GTCoreBlocks.BASALT.getState().getBlock()), Items.BASALT).unlockedBy("has_basalt", provider.hasSafeItem(GTCoreBlocks.BASALT.getState().getBlock())).save(consumer, new ResourceLocation(GTCore.ID, "basalt_to_vanilla_basalt"));
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(GTCoreBlocks.BASALT.getState().getBlock()), Items.POLISHED_BASALT).unlockedBy("has_basalt", provider.hasSafeItem(GTCoreBlocks.BASALT.getState().getBlock())).save(consumer, new ResourceLocation(GTCore.ID, "basalt_to_vanilla_polished_basalt"));
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(GTCoreBlocks.BASALT.getState().getBlock()), Items.SMOOTH_BASALT).unlockedBy("has_basalt", provider.hasSafeItem(GTCoreBlocks.BASALT.getState().getBlock())).save(consumer, new ResourceLocation(GTCore.ID, "basalt_to_vanilla_smooth_basalt"));
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(Items.BASALT), GTCoreBlocks.BASALT.getState().getBlock().asItem()).unlockedBy("has_basalt", provider.hasSafeItem(Items.BASALT)).save(consumer, new ResourceLocation(GTCore.ID, "vanilla_basalt_to_basalt"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(GTCoreBlocks.BASALT.getState().getBlock()), RecipeCategory.DECORATIONS, Items.BASALT).unlockedBy("has_basalt", provider.hasSafeItem(GTCoreBlocks.BASALT.getState().getBlock())).save(consumer, new ResourceLocation(GTCore.ID, "basalt_to_vanilla_basalt"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(GTCoreBlocks.BASALT.getState().getBlock()), RecipeCategory.DECORATIONS, Items.POLISHED_BASALT).unlockedBy("has_basalt", provider.hasSafeItem(GTCoreBlocks.BASALT.getState().getBlock())).save(consumer, new ResourceLocation(GTCore.ID, "basalt_to_vanilla_polished_basalt"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(GTCoreBlocks.BASALT.getState().getBlock()), RecipeCategory.DECORATIONS, Items.SMOOTH_BASALT).unlockedBy("has_basalt", provider.hasSafeItem(GTCoreBlocks.BASALT.getState().getBlock())).save(consumer, new ResourceLocation(GTCore.ID, "basalt_to_vanilla_smooth_basalt"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(Items.BASALT), RecipeCategory.DECORATIONS, GTCoreBlocks.BASALT.getState().getBlock().asItem()).unlockedBy("has_basalt", provider.hasSafeItem(Items.BASALT)).save(consumer, new ResourceLocation(GTCore.ID, "vanilla_basalt_to_basalt"));
         loadOverrides(consumer, provider);
         loadWood(consumer, provider);
     }

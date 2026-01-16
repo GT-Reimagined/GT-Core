@@ -30,7 +30,7 @@ public class ItemRubberBoat extends TerraformBoatItem implements IGTObject, ITex
     private final boolean chest;
 
     public ItemRubberBoat(boolean chest) {
-        super(() -> RUBBER_BOAT_TYPE, chest, new Properties().tab(Ref.TAB_ITEMS).stacksTo(1));
+        super(() -> RUBBER_BOAT_TYPE, chest, new Properties().stacksTo(1));
         this.chest = chest;
         GTAPI.register(ItemRubberBoat.class, this);
         if (!chest) GTAPI.register(IRegistryEntryProvider.class, this);

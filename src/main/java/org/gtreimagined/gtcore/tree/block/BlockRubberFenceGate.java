@@ -12,7 +12,7 @@ import org.gtreimagined.gtlib.registration.IModelProvider;
 
 public class BlockRubberFenceGate extends FenceGateBlock implements IGTObject, IModelProvider {
     public BlockRubberFenceGate() {
-        super(Properties.copy(GTCoreBlocks.RUBBER_SLAB));
+        super(Properties.copy(GTCoreBlocks.RUBBER_SLAB), GTCoreBlocks.RUBBER_WOOD_TYPE);
         GTAPI.register(BlockRubberFenceGate.class, this);
     }
 

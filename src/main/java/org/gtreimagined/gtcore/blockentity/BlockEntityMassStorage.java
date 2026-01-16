@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -61,7 +62,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     }
 
     @Override
-    public void onDrop(BlockState state, LootContext.Builder builder, List<ItemStack> drops) {
+    public void onDrop(BlockState state, LootParams.Builder builder, List<ItemStack> drops) {
         if (!drops.isEmpty() && getMachineState() == MachineState.ACTIVE){
             ItemStack massStorage = drops.get(0);
             CompoundTag nbt = new CompoundTag();
@@ -88,7 +89,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     }
 
     @Override
-    public void dropInventory(BlockState state, LootContext.Builder builder, List<ItemStack> drops) {
+    public void dropInventory(BlockState state, LootParams.Builder builder, List<ItemStack> drops) {
         if (getMachineState() != MachineState.ACTIVE) {
             itemHandler.ifPresent(t -> {
                 ItemStack held = t.getHandler(SlotTypes.UNLIMITED).getStackInSlot(0);

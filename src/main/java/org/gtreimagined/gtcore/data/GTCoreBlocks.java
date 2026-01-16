@@ -10,7 +10,9 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.gtreimagined.gtcore.GTCore;
@@ -88,7 +90,7 @@ public class GTCoreBlocks {
     public static final BlockRubberLog STRIPPED_RUBBER_LOG = new BlockRubberLog(GTCore.ID, "stripped_rubber_log");
     public static final BlockRubberWood RUBBER_WOOD = new BlockRubberWood(GTCore.ID, "rubber_wood");
     public static final BlockRubberWood STRIPPED_RUBBER_WOOD = new BlockRubberWood(GTCore.ID, "stripped_rubber_wood");
-    public static final BlockBasic RUBBER_PLANKS = new BlockBasic(GTCore.ID, "rubber_planks", BlockBehaviour.Properties.of(net.minecraft.world.level.material.Material.WOOD).strength(2.0F).sound(SoundType.WOOD)){
+    public static final BlockBasic RUBBER_PLANKS = new BlockBasic(GTCore.ID, "rubber_planks", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)){
         @Override
         public Texture[] getTextures() {
             return new Texture[]{new Texture(domain, "block/tree/rubber_planks")};
@@ -136,8 +138,8 @@ public class GTCoreBlocks {
     public static StoneType SHALE = GTAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "shale", Shale, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(0.75f, 7.5f);
     public static StoneType SLATE = GTAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "slate", Slate, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(0.75f, 7.5f);
 
-    public static final BlockCasing REINFORCED_GLASS = new BlockCasing(GTCore.ID, "reinforced_glass", Block.Properties.of(net.minecraft.world.level.material.Material.GLASS).strength(15.0f, 150.0f).sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion().isValidSpawn(((blockState, blockGetter, blockPos, object) -> false)).isRedstoneConductor(GTCoreBlocks::isntSolid).isSuffocating(GTCoreBlocks::isntSolid).isViewBlocking(GTCoreBlocks::isntSolid));
-    public static final BlockCasing REINFORCED_STONE = new BlockCasing(GTCore.ID, "reinforced_stone", Block.Properties.of(net.minecraft.world.level.material.Material.STONE).strength(80.0f, 150.0f).sound(SoundType.STONE).requiresCorrectToolForDrops());
+    public static final BlockCasing REINFORCED_GLASS = new BlockCasing(GTCore.ID, "reinforced_glass", Block.Properties.of().mapColor(MapColor.NONE).instrument(NoteBlockInstrument.HAT).strength(15.0f, 150.0f).sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion().isValidSpawn(((blockState, blockGetter, blockPos, object) -> false)).isRedstoneConductor(GTCoreBlocks::isntSolid).isSuffocating(GTCoreBlocks::isntSolid).isViewBlocking(GTCoreBlocks::isntSolid));
+    public static final BlockCasing REINFORCED_STONE = new BlockCasing(GTCore.ID, "reinforced_stone", Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(80.0f, 150.0f).sound(SoundType.STONE).requiresCorrectToolForDrops());
 
     public static BookShelfMachine OAK_BOOKSHELF = new BookShelfMachine("oak", new Texture("block/oak_planks"), () -> Blocks.OAK_PLANKS);
     public static BookShelfMachine SPRUCE_BOOKSHELF = new BookShelfMachine("spruce", new Texture("block/spruce_planks"), () -> Blocks.SPRUCE_PLANKS);

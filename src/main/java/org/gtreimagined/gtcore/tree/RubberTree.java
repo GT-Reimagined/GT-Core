@@ -2,6 +2,7 @@ package org.gtreimagined.gtcore.tree;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.random.SimpleWeightedRandomList;
@@ -20,8 +21,6 @@ import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.tree.block.BlockRubberLog;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.worldgen.feature.IGTFeature;
-
-import java.util.Random;
 
 public class RubberTree extends AbstractTreeGrower {
 
@@ -71,8 +70,8 @@ public class RubberTree extends AbstractTreeGrower {
     }
 
     @Override
-    protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource rand,
-            boolean b) {
+    protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource rand,
+                                                                        boolean b) {
         return RubberTreeWorldGen.TREE_FEATURE_CONFIG;
     }
 }

@@ -54,8 +54,8 @@ public class GTCommonEvents {
                 if (--BEAR_INVENTORY_COOL_DOWN < 0 && tEmptySlots < 4) {
                     InventoryMenu playerContainer = player.inventoryMenu;
                     BEAR_INVENTORY_COOL_DOWN = 100;
-                    for (int i = 0; i < player.level.players().size(); i++) {
-                        Player player2 = player.level.players().get(i);
+                    for (int i = 0; i < player.level().players().size(); i++) {
+                        Player player2 = player.level().players().get(i);
                         if (player2 == null) continue;
                         if (player2 == player) {
                             if (player2.blockPosition().getY() < 30) {

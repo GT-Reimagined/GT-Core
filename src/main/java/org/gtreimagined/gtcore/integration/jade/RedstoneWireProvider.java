@@ -15,7 +15,7 @@ import snownee.jade.api.IServerDataProvider;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
 
-public class RedstoneWireProvider implements IBlockComponentProvider, IServerDataProvider<BlockEntity> {
+public class RedstoneWireProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
     private static final ResourceLocation ID = new ResourceLocation(GTCore.ID, "redstone_wire");
     public static final RedstoneWireProvider INSTANCE = new RedstoneWireProvider();
     @Override
@@ -32,8 +32,8 @@ public class RedstoneWireProvider implements IBlockComponentProvider, IServerDat
     }
 
     @Override
-    public void appendServerData(CompoundTag compoundTag, ServerPlayer serverPlayer, Level level, BlockEntity tile, boolean b) {
-        if (tile instanceof BlockEntityRedstoneWire<?> wire){
+    public void appendServerData(CompoundTag compoundTag, BlockAccessor blockAccessor) {
+        if (blockAccessor.getBlockEntity() instanceof BlockEntityRedstoneWire<?> wire){
             compoundTag.putLong("mRedstone", wire.mRedstone);
         }
     }

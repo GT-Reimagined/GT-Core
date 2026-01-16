@@ -2,6 +2,7 @@ package org.gtreimagined.gtcore.data;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.Item;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.cover.CoverSelectorTag;
@@ -61,15 +62,15 @@ public class GTCoreItems {
     public static ItemBasic<?> GTCredit = new ItemBasic<>(GTCore.ID, "gt_credit");
     public static ItemBasic<?> EmptyBlueprint = new ItemBasic<>(GTCore.ID, "empty_blueprint");
     public static ItemBasic<?> Blueprint = new ItemBasic<>(GTCore.ID, "blueprint");
-    public static ItemHazmatArmor UniversalHazardSuitMask = new ItemHazmatArmor(EquipmentSlot.HEAD, "universal_hazard_suit_mask");
-    public static ItemHazmatArmor UniversalHazardSuitShirt = new ItemHazmatArmor(EquipmentSlot.CHEST, "universal_hazard_suit_shirt");
-    public static ItemHazmatArmor UniversalHazardSuitPants = new ItemHazmatArmor(EquipmentSlot.LEGS, "universal_hazard_suit_pants");
-    public static ItemHazmatArmor UniversalHazardSuitBoots = new ItemHazmatArmor(EquipmentSlot.FEET, "universal_hazard_suit_boots");
+    public static ItemHazmatArmor UniversalHazardSuitMask = new ItemHazmatArmor(Type.HELMET, "universal_hazard_suit_mask");
+    public static ItemHazmatArmor UniversalHazardSuitShirt = new ItemHazmatArmor(Type.CHESTPLATE, "universal_hazard_suit_shirt");
+    public static ItemHazmatArmor UniversalHazardSuitPants = new ItemHazmatArmor(Type.LEGGINGS, "universal_hazard_suit_pants");
+    public static ItemHazmatArmor UniversalHazardSuitBoots = new ItemHazmatArmor(Type.BOOTS, "universal_hazard_suit_boots");
 
     public static ItemBasic<?> LighterEmpty = new ItemBasic<>(GTCore.ID, "lighter_empty");
-    public static ItemBasic<ItemMatch> Match = new ItemMatch(GTCore.ID, "match", new Item.Properties().tab(Ref.TAB_ITEMS));
-    public static ItemBasic<ItemMatch> MatchBook = new ItemMatch(GTCore.ID, "match_book", new Item.Properties().tab(Ref.TAB_ITEMS).defaultDurability(64));
-    public static ItemBasic<ItemMatch> Lighter = new ItemMatch(GTCore.ID, "lighter", new Item.Properties().tab(Ref.TAB_ITEMS).defaultDurability(100));
+    public static ItemBasic<ItemMatch> Match = new ItemMatch(GTCore.ID, "match", new Item.Properties());
+    public static ItemBasic<ItemMatch> MatchBook = new ItemMatch(GTCore.ID, "match_book", new Item.Properties().defaultDurability(64));
+    public static ItemBasic<ItemMatch> Lighter = new ItemMatch(GTCore.ID, "lighter", new Item.Properties().defaultDurability(100));
     public static ItemMagnifyingGlass GlassMagnifyingGlass = new ItemMagnifyingGlass(GTCoreMaterials.Glass, 64);
     public static ItemMagnifyingGlass DiamondMagnifyingGlass = new ItemMagnifyingGlass(Diamond, 1561);
 

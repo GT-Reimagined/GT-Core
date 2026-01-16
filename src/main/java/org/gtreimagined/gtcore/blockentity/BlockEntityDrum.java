@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
@@ -75,7 +76,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
     }
 
     @Override
-    public void onDrop(BlockState state, LootContext.Builder builder, List<ItemStack> drops) {
+    public void onDrop(BlockState state, LootParams.Builder builder, List<ItemStack> drops) {
         if (!drops.isEmpty()){
             ItemStack stack = drops.get(0);
             if (!getDrop().isEmpty()){

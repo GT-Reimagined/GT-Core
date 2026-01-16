@@ -57,7 +57,7 @@ public class BlockEntityLocker extends BlockEntityMaterial<BlockEntityLocker> {
                     }
                 }
             });
-            world.playSound(null, this.getBlockPos(), SoundEvents.UI_BUTTON_CLICK, SoundSource.PLAYERS, 1.0F, 1.0F);
+            world.playSound(null, this.getBlockPos(), SoundEvents.UI_BUTTON_CLICK.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
         }
         return super.onInteractServer(state, world, pos, player, hand, hit, type);

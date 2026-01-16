@@ -4,12 +4,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -169,8 +169,8 @@ public class BlockEntityLargeTank extends BlockEntityMaterialBasicMultiMachine<B
 
         public static boolean fire(Level aWorld, BlockPos pos, boolean aCheckFlammability) {
             BlockState tBlock = aWorld.getBlockState(pos);
-            if (tBlock.getMaterial() == Material.LAVA || tBlock.getMaterial() == Material.FIRE) return false;
-            if (tBlock.getMaterial() == Material.CLOTH_DECORATION || tBlock.getCollisionShape(aWorld, pos).isEmpty()) {
+            if (tBlock.is(BlockTags.FIRE) || tBlock.is(Blocks.LAVA)) return false;
+            if (tBlock.ignitedByLava() || tBlock.getCollisionShape(aWorld, pos).isEmpty()) {
                 if (tBlock.getFlammability(aWorld, pos, Direction.NORTH) > 0) return aWorld.setBlock(pos, Blocks.FIRE.defaultBlockState(), 3);
                 if (aCheckFlammability) {
                     for (Direction tSide : Direction.values()) {

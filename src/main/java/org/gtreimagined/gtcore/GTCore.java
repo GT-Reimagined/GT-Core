@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 import com.teamresourceful.resourcefullib.common.networking.base.NetworkDirection;
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
@@ -121,7 +121,6 @@ public class GTCore extends GTMod {
         eventBus.addListener(this::onRegistration);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             eventBus.addListener(this::clientSetup);
-            eventBus.addListener(this::onStitch);
             TerraformBoatClientHelper.registerModelLayers(new ResourceLocation(GTCore.ID, "rubber"));
         });
         if (GTAPI.isModLoaded("curios")) eventBus.addListener(CurioPlugin::loadIMC);
@@ -143,11 +142,6 @@ public class GTCore extends GTMod {
         ClientHandler.init();
     }
 
-    @OnlyIn(Dist.CLIENT)
-    private void onStitch(TextureStitchEvent.Pre event) {
-        ClientHandler.onStitch(event.getAtlas(), event::addSprite);
-    }
-
     private void onProvidersEvent(GTProvidersEvent event){
         final GTBlockTagProvider[] p = new GTBlockTagProvider[1];
         event.addProvider(() -> {
@@ -157,7 +151,7 @@ public class GTCore extends GTMod {
         event.addProvider(() -> new GTCoreItemTagProvider(ID, NAME.concat(" Item Tags"), false, p[0]));
 
         event.addProvider(() -> new GTCoreBlockLootProvider(ID, NAME.concat(" Loot generator")));
-        event.addProvider(() -> new GTTagProvider<>(BuiltinRegistries.BIOME, ID, NAME.concat(" Biome Tags"), "worldgen/biome") {
+        event.addProvider(() -> new GTTagProvider<>(Registries.BIOME, ID, NAME.concat(" Biome Tags"), "worldgen/biome", null) {
             @Override
             protected void processTags(String domain) {
                 GTTagBuilder<Biome> tags = this.tag(TagUtils.getBiomeTag(new ResourceLocation(ID, "is_invalid_rubber"))).addTag(BiomeTags.IS_TAIGA).addTag(BiomeTags.IS_MOUNTAIN).addTag(BiomeTags.IS_OCEAN).addTag(BiomeTags.IS_DEEP_OCEAN).addTag(BiomeTags.IS_NETHER).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_desert"))).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_plains")));
@@ -165,11 +159,11 @@ public class GTCore extends GTMod {
                 tags.addTag(TagUtils.getBiomeTag(new ResourceLocation("forge", "is_snowy")));
             }
         });
-        event.addProvider(() -> new GTTagProvider<>(BuiltinRegistries.CONFIGURED_FEATURE, ID, NAME.concat(" Configured Feature Tags"), "worldgen/configured_feature") {
+        event.addProvider(() -> new GTTagProvider<>(Registries.CONFIGURED_FEATURE, ID, NAME.concat(" Configured Feature Tags"), "worldgen/configured_feature", null) {
             @Override
             protected void processTags(String domain) {
                 if (GTAPI.isModLoaded("tfc")){
-                    this.tag(TagKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, new ResourceLocation("tfc", "forest_trees"))).add(ResourceKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, new ResourceLocation(GTCore.ID, "tree/rubber_entry")));
+                    this.tag(TagKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation("tfc", "forest_trees"))).add(ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(GTCore.ID, "tree/rubber_entry")));
                 }
             }
         });

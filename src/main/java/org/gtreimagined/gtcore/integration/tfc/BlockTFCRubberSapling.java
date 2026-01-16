@@ -21,7 +21,7 @@ import org.gtreimagined.gtlib.texture.Texture;
 
 public class BlockTFCRubberSapling extends TFCSaplingBlock implements IGTObject, IModelProvider, ITextureProvider {
     public BlockTFCRubberSapling() {
-        super(new TFCRubberTree(), ExtendedProperties.of(MapColor.PLANT).pushReaction(PushReaction.DESTROY).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).flammableLikeLeaves().blockEntity(TFCBlockEntities.TICK_COUNTER), 7);
+        super(new TFCRubberTree(), ExtendedProperties.of(MapColor.PLANT).pushReaction(PushReaction.DESTROY).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).flammableLikeLeaves().blockEntity(TFCBlockEntities.TICK_COUNTER), () -> 7, false);
         GTAPI.register(BlockTFCRubberSapling.class, this);
     }
 

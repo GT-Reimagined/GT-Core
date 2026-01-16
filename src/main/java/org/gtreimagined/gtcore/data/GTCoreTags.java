@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.data;
 
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -9,7 +10,7 @@ import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtlib.util.TagUtils;
 
 public class GTCoreTags {
-    public static final TagKey<Fluid> STEAM =  TagKey.create(Registry.FLUID_REGISTRY, new ResourceLocation("forge", "steam"));
+    public static final TagKey<Fluid> STEAM =  TagKey.create(Registries.FLUID, new ResourceLocation("forge", "steam"));
     public static TagKey<Item> PLATES_IRON_ALUMINIUM = getTag("plates/ironaluminium");
     public static TagKey<Item> CIRCUITS_BASIC = getTag("circuits/basic");
     public static TagKey<Item> CIRCUITS_GOOD = getTag("circuits/good");

@@ -45,7 +45,7 @@ public class SlotWorkTableResult extends ResultSlot {
 
     private ItemStack extractFromTable(ItemStack itemStack){
         for (int j = 0; j < projectTable.getHandler(SlotType.STORAGE).getSlots(); j++) {
-            if (projectTable.getHandler(SlotType.STORAGE).getStackInSlot(j).getItem().equals(itemStack.getItem()) && ItemStack.tagMatches(itemStack, projectTable.getHandler(SlotType.STORAGE).getStackInSlot(j))) {
+            if (ItemStack.isSameItemSameTags(projectTable.getHandler(SlotType.STORAGE).getStackInSlot(j), itemStack)) {
                 projectTable.getHandler(SlotType.STORAGE).extractFromInput(j, 1, false);
                 itemStack.setCount(itemStack.getCount() + 1);
                 break;

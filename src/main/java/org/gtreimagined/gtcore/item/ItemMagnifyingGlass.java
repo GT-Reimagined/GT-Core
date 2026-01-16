@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.item;
 
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
@@ -9,6 +10,7 @@ import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.item.ScannerItem;
 import org.gtreimagined.gtlib.material.Material;
 import org.gtreimagined.gtlib.registration.IColorHandler;
+import org.gtreimagined.gtlib.registration.ICreativeTabProvider;
 import org.gtreimagined.gtlib.texture.Texture;
 import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.NotNull;
@@ -17,8 +19,13 @@ import org.jetbrains.annotations.Nullable;
 public class ItemMagnifyingGlass extends ScannerItem implements IColorHandler {
     public final Material material;
     public ItemMagnifyingGlass(Material material, int durability) {
-        super(GTCore.ID, material.getId() + "_magnifying_glass", true, "magnifying_glass/", new Properties().defaultDurability(durability).tab(Ref.TAB_TOOLS));
+        super(GTCore.ID, material.getId() + "_magnifying_glass", true, "magnifying_glass/", new Properties().defaultDurability(durability));
         this.material = material;
+    }
+
+    @Override
+    public boolean allowedIn(CreativeModeTab tab) {
+        return tab == Ref.TAB_TOOLS;
     }
 
     @Override
