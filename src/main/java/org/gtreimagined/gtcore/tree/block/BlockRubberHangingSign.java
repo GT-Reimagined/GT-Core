@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
+import org.gtreimagined.gtcore.tree.item.ItemRubberHangingSign;
 import org.gtreimagined.gtcore.tree.item.ItemRubberSign;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.registration.IGTObject;
@@ -32,7 +33,7 @@ public class BlockRubberHangingSign extends TerraformHangingSignBlock implements
 
     @Override
     public BlockItem getItemBlock() {
-        return new ItemRubberSign();
+        return new ItemRubberHangingSign();
     }
 
     @Override

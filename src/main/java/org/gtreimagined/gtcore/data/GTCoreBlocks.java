@@ -35,6 +35,7 @@ import org.gtreimagined.gtcore.tree.block.BlockRubberButton;
 import org.gtreimagined.gtcore.tree.block.BlockRubberDoor;
 import org.gtreimagined.gtcore.tree.block.BlockRubberFence;
 import org.gtreimagined.gtcore.tree.block.BlockRubberFenceGate;
+import org.gtreimagined.gtcore.tree.block.BlockRubberHangingSign;
 import org.gtreimagined.gtcore.tree.block.BlockRubberLeaves;
 import org.gtreimagined.gtcore.tree.block.BlockRubberLog;
 import org.gtreimagined.gtcore.tree.block.BlockRubberPressurePlate;
@@ -43,6 +44,7 @@ import org.gtreimagined.gtcore.tree.block.BlockRubberSign;
 import org.gtreimagined.gtcore.tree.block.BlockRubberSlab;
 import org.gtreimagined.gtcore.tree.block.BlockRubberStairs;
 import org.gtreimagined.gtcore.tree.block.BlockRubberTrapDoor;
+import org.gtreimagined.gtcore.tree.block.BlockRubberWallHangingSign;
 import org.gtreimagined.gtcore.tree.block.BlockRubberWallSign;
 import org.gtreimagined.gtcore.tree.block.BlockRubberWood;
 import org.gtreimagined.gtlib.GTAPI;
@@ -99,8 +101,8 @@ public class GTCoreBlocks {
 
     public static final BlockRubberSign RUBBER_SIGN = new BlockRubberSign();
     public static final BlockRubberWallSign RUBBER_WALL_SIGN = new BlockRubberWallSign();
-    public static final BlockRubberSign RUBBER_HANGING_SIGN = new BlockRubberSign();
-    public static final BlockRubberWallSign RUBBER_WALL_HANGING_SIGN = new BlockRubberWallSign();
+    public static final BlockRubberHangingSign RUBBER_HANGING_SIGN = new BlockRubberHangingSign();
+    public static final BlockRubberWallHangingSign RUBBER_WALL_HANGING_SIGN = new BlockRubberWallHangingSign();
     public static Block RUBBER_SAPLING;
     public static final BlockRubberButton RUBBER_BUTTON = new BlockRubberButton();
     public static final BlockRubberPressurePlate RUBBER_PRESSURE_PLATE = new BlockRubberPressurePlate();

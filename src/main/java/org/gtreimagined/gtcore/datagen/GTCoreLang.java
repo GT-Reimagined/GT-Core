@@ -57,6 +57,7 @@ public class GTCoreLang {
             add(GTCoreBlocks.RUBBER_PLANKS, "Rubberwood Planks");
             add(GTCoreBlocks.RUBBER_SAPLING, "Rubberwood Sapling");
             add(GTCoreBlocks.RUBBER_SIGN, "Rubberwood Sign");
+            add(GTCoreBlocks.RUBBER_HANGING_SIGN, "Rubberwood Hanging Sign");
             add(GTCoreBlocks.RUBBER_DOOR, "Rubberwood Door");
             add(GTCoreBlocks.RUBBER_TRAPDOOR, "Rubberwood Trapdoor");
             add(GTCoreBlocks.RUBBER_BUTTON, "Rubberwood Button");

@@ -1,0 +1,140 @@
+{
+  "type": "gtlib:rubber_tree",
+  "config": {
+    "decorators": [
+      {
+        "type": "minecraft:leave_vine",
+        "probability": 0.25
+      }
+    ],
+    "dirt_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:dirt"
+      }
+    },
+    "foliage_placer": {
+      "type": "gtcore:rubber_foilage_placer",
+      "offset": 0,
+      "radius": 2
+    },
+    "foliage_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "gtcore:rubber_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "force_dirt": false,
+    "ignore_vines": true,
+    "minimum_size": {
+      "type": "minecraft:two_layers_feature_size",
+      "limit": 1,
+      "lower_size": 0,
+      "upper_size": 2
+    },
+    "trunk_placer": {
+      "type": "gtcore:rubber_trunk_placer",
+      "base_height": 7,
+      "height_rand_a": 2,
+      "height_rand_b": 2
+    },
+    "trunk_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "gtcore:rubber_log",
+            "Properties": {
+              "axis": "y",
+              "facing": "north",
+              "resin_state": "filled"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "gtcore:rubber_log",
+            "Properties": {
+              "axis": "y",
+              "facing": "north",
+              "resin_state": "empty"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "gtcore:rubber_log",
+            "Properties": {
+              "axis": "y",
+              "facing": "south",
+              "resin_state": "filled"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "gtcore:rubber_log",
+            "Properties": {
+              "axis": "y",
+              "facing": "south",
+              "resin_state": "empty"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "gtcore:rubber_log",
+            "Properties": {
+              "axis": "y",
+              "facing": "west",
+              "resin_state": "filled"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "gtcore:rubber_log",
+            "Properties": {
+              "axis": "y",
+              "facing": "west",
+              "resin_state": "empty"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "gtcore:rubber_log",
+            "Properties": {
+              "axis": "y",
+              "facing": "east",
+              "resin_state": "filled"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "gtcore:rubber_log",
+            "Properties": {
+              "axis": "y",
+              "facing": "east",
+              "resin_state": "empty"
+            }
+          },
+          "weight": 1
+        }
+      ]
+    }
+  }
+}
