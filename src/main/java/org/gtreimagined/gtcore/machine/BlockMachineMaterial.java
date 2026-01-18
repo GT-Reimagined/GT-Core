@@ -3,6 +3,7 @@ package org.gtreimagined.gtcore.machine;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Direction.Axis;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -87,7 +88,9 @@ public class BlockMachineMaterial extends BlockMachine {
         Texture[] base = this.type.getBaseTexture(this.tier, MachineState.IDLE);
         if (base.length >= 6) {
             for(int s = 0; s < 6; ++s) {
-                b.texture("base" + Utils.coverRotateFacing(Ref.DIRS[s], Direction.NORTH).getSerializedName(), base[s]);
+                Direction dir = Direction.from3DDataValue(s);
+                Direction newDir = dir.getAxis() == Axis.Y ? dir : dir.getOpposite();
+                b.texture("base" + newDir.getSerializedName(), base[s]);
             }
         }
         if (type instanceof BookShelfMachine) return;
@@ -95,7 +98,9 @@ public class BlockMachineMaterial extends BlockMachine {
             Texture[] overlays = type.getOverlayTextures(MachineState.IDLE, tier, i);
             for (int s = 0; s < 6; s++) {
                 String suffix = i == 0 ? "" : String.valueOf(i);
-                b.texture("overlay" + Utils.coverRotateFacing(Ref.DIRS[s], Direction.NORTH).getSerializedName() + suffix, overlays[s]);
+                Direction dir = Direction.from3DDataValue(s);
+                Direction newDir = dir.getAxis() == Axis.Y ? dir : dir.getOpposite();
+                b.texture("overlay" + newDir.getSerializedName() + suffix, overlays[s]);
             }
         }
         if (!(type instanceof MassStorageMachine)) return;
@@ -103,7 +108,9 @@ public class BlockMachineMaterial extends BlockMachine {
         b = prov.getBuilder(getId() + "_taped").parent(prov.existing("gtlib", "block/preset/layered")).texture("base", this.type.getBaseTexture(this.tier, MachineState.ACTIVE)[0]);
         if (base.length >= 6) {
             for(int s = 0; s < 6; ++s) {
-                b.texture("base" + Utils.coverRotateFacing(Ref.DIRS[s], Direction.NORTH).getSerializedName(), base[s]);
+                Direction dir = Direction.from3DDataValue(s);
+                Direction newDir = dir.getAxis() == Axis.Y ? dir : dir.getOpposite();
+                b.texture("base" + newDir.getSerializedName(), base[s]);
             }
         }
 
@@ -111,7 +118,9 @@ public class BlockMachineMaterial extends BlockMachine {
             Texture[] overlays = type.getOverlayTextures(MachineState.ACTIVE, tier, i);
             for (int s = 0; s < 6; s++) {
                 String suffix = i == 0 ? "" : String.valueOf(i);
-                b.texture("overlay" + Utils.coverRotateFacing(Ref.DIRS[s], Direction.NORTH).getSerializedName() + suffix, overlays[s]);
+                Direction dir = Direction.from3DDataValue(s);
+                Direction newDir = dir.getAxis() == Axis.Y ? dir : dir.getOpposite();
+                b.texture("overlay" + newDir.getSerializedName() + suffix, overlays[s]);
             }
         }
 
