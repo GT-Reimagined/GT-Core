@@ -186,10 +186,12 @@ public class GTCore extends GTMod {
                 object = new JsonObject();
                 object.addProperty("type", "tfc:forest_entry");
                 config = new JsonObject();
-                config.addProperty("min_rain", 250);
-                config.addProperty("max_rain", 400);
-                config.addProperty("min_temp", 15.0);
-                config.addProperty("max_temp", 40.0);
+                JsonObject climate = new JsonObject();
+                climate.addProperty("min_rain", 250);
+                climate.addProperty("max_rain", 400);
+                climate.addProperty("min_temp", 15.0);
+                climate.addProperty("max_temp", 40.0);
+                config.add("climate", climate);
                 JsonArray groundCover = new JsonArray();
                 JsonObject block = new JsonObject();
                 block.addProperty("block", "gtcore:rubber_twig");

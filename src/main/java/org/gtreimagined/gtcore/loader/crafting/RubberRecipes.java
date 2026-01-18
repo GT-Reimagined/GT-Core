@@ -16,6 +16,7 @@ import org.gtreimagined.gtcore.data.GTCoreTags;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.datagen.builder.GTCookingRecipeBuilder;
 import org.gtreimagined.gtlib.datagen.providers.GTRecipeProvider;
+import org.gtreimagined.gtlib.util.RegistryUtils;
 import org.gtreimagined.gtlib.util.TagUtils;
 
 import java.util.function.Consumer;
@@ -35,7 +36,11 @@ public class RubberRecipes {
         Item lumber = GTAPI.isModLoaded("tfc") ? GTAPI.get(Item.class, "rubber_lumber", GTCore.ID) : GTCoreBlocks.RUBBER_PLANKS.asItem();
         if (!GTAPI.isModLoaded("tfc")){
             addWoodRecipe(consumer, provider, GTCore.ID, GTCoreTags.RUBBER_LOGS, GTCoreBlocks.RUBBER_PLANKS.asItem());
+            provider.addStackRecipe(consumer, "rubber_wood", new ItemStack(GTCoreBlocks.RUBBER_HANGING_SIGN, 6),
+                    of('W', lumber, 'C', Items.CHAIN), "C C", "WWW", "WWW");
         } else if (GTAPI.isModLoaded("tfc")){
+            provider.addStackRecipe(consumer, "rubber_wood", new ItemStack(GTCoreBlocks.RUBBER_HANGING_SIGN, 3),
+                    of('W', lumber, 'C', RegistryUtils.getItemFromID("tfc", "metal/chain/wrought_iron")), "C C", "WWW", "WWW");
             provider.shapeless(consumer, GTCore.ID, "", "rubber_wood", new ItemStack(lumber, 8), GTCoreTags.RUBBER_LOGS, TagUtils.getItemTag(new ResourceLocation("tfc", "saws")));
             provider.addItemRecipe(consumer, "rubber_wood", GTCoreBlocks.RUBBER_PLANKS, of('R', lumber), "RR", "RR");
             provider.shapeless(consumer, GTCore.ID, "rubber_lumber_from_planks", "rubber_wood", new ItemStack(lumber, 4), GTCoreBlocks.RUBBER_PLANKS, TagUtils.getItemTag(new ResourceLocation("tfc", "saws")));
