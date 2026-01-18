@@ -1,8 +1,10 @@
 package org.gtreimagined.gtcore.client.model;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockElement;
+import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.renderer.block.model.FaceBakery;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -24,13 +26,14 @@ import java.util.Objects;
 import java.util.function.Function;
 
 public class IconModel implements IGTModel<IconModel> {
+    static List<BlockElement> BLOCK_ELEMENTS = null;
     private final UnbakedModel baseModel;
     static Map<String, Material> TEXTURE_MAP = null;
     static Map<String, TextureAtlasSprite> SPRITE_MAP = null;
     static List<Map<String, List<BakedQuad>>> ICON_MODELS = null;
     public static final FaceBakery FACE_BAKERY = new FaceBakery();
 
-    public IconModel(UnbakedModel baseModel, List<BlockElement> blockElements){
+    public IconModel(UnbakedModel baseModel){
         this.baseModel = baseModel;
         if (TEXTURE_MAP == null) {
             TEXTURE_MAP = new Object2ObjectOpenHashMap<>();
@@ -43,6 +46,17 @@ public class IconModel implements IGTModel<IconModel> {
 
     @Override
     public BakedModel bakeModel(IGeometryBakingContext configuration, ModelBaker modelBakery, Function<Material, TextureAtlasSprite> function, ModelState modelState, ItemOverrides overrides, ResourceLocation resourceLocation) {
+        if (BLOCK_ELEMENTS == null) {
+            BLOCK_ELEMENTS = new ObjectArrayList<>();
+            try {
+                UnbakedModel numberModel = ModelUtils.getModelBakery().loadBlockModel(new ResourceLocation(GTCore.ID, "block/machine/overlay/mass_storage/icons"));
+                if (numberModel instanceof BlockModel blockModel){
+                    BLOCK_ELEMENTS.addAll(blockModel.getElements());
+                }
+            } catch (Exception e) {
+                GTCore.LOGGER.error(e);
+            }
+        }
         if (SPRITE_MAP == null) {
             SPRITE_MAP = new Object2ObjectOpenHashMap<>();
             for (String icon : TEXTURE_MAP.keySet()) {
@@ -51,5 +65,10 @@ public class IconModel implements IGTModel<IconModel> {
         }
         BakedModel base = baseModel.bake(modelBakery, function, modelState, resourceLocation);
         return new IconBakedModel(Objects.requireNonNull(base));
+    }
+
+    @Override
+    public void resolveParents(Function<ResourceLocation, UnbakedModel> modelGetter, IGeometryBakingContext context) {
+        baseModel.resolveParents(modelGetter);
     }
 }

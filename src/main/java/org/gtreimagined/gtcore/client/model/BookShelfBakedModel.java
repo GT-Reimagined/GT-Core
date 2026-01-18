@@ -42,45 +42,12 @@ public class BookShelfBakedModel extends GTBakedModel<BookShelfBakedModel> {
     public BookShelfBakedModel(BakedModel baseModel) {
         super(baseModel.getParticleIcon());
         this.baseModel = baseModel;
-        if (BOOK_MODELS == null){
-            BOOK_MODELS = new ObjectArrayList<>();
-            for (int i = 0; i < BookShelfModelLoader.BOOK_REFERENCE_SOUTH.size(); i++) {
-                BlockElement element = BookShelfModelLoader.BOOK_REFERENCE_SOUTH.get(i);
-                for (int j = 0; j < 7; j++) {
-                    List<BakedQuad> bakedQuads = new ArrayList<>();
-                    Vector3f from = new Vector3f(element.from.x() + (j * 2), element.from.y(), element.from.z());
-                    Vector3f to  = new Vector3f(element.to.x() + (j * 2), element.to.y(), element.to.z());
-                    for (var entry : element.faces.entrySet()) {
-                        Direction dir = entry.getKey();
-                        BlockElementFace face = entry.getValue();
-                        TextureAtlasSprite sprite = dir == Direction.SOUTH ? BookSpriteMaps.getSpriteMap().get(Items.BOOK).first() : BookSpriteMaps.getSpriteMap().get(Items.BOOK).second();
-                        BakedQuad quad = FACE_BAKERY.bakeQuad(from, to, face, sprite, dir, new SimpleModelState(RenderHelper.faceRotation(Direction.SOUTH)), element.rotation, element.shade, new ResourceLocation(GTCore.ID, "bookshelf"));
-                        bakedQuads.add(quad);
-                    }
-                    BOOK_MODELS.add(bakedQuads);
-                }
-            }
-            for (int i = 0; i < BookShelfModelLoader.BOOK_REFERENCE_NORTH.size(); i++) {
-                BlockElement element = BookShelfModelLoader.BOOK_REFERENCE_NORTH.get(i);
-                for (int j = 0; j < 7; j++) {
-                    List<BakedQuad> bakedQuads = new ArrayList<>();
-                    Vector3f from = new Vector3f(element.from.x() - (j * 2), element.from.y(), element.from.z());
-                    Vector3f to  = new Vector3f(element.to.x() - (j * 2), element.to.y(), element.to.z());
-                    for (var entry : element.faces.entrySet()) {
-                        Direction dir = entry.getKey();
-                        BlockElementFace face = entry.getValue();
-                        TextureAtlasSprite sprite = dir == Direction.NORTH ? BookSpriteMaps.getSpriteMap().get(Items.BOOK).first() : BookSpriteMaps.getSpriteMap().get(Items.BOOK).second();
-                        BakedQuad quad = FACE_BAKERY.bakeQuad(from, to, face, sprite, dir, new SimpleModelState(RenderHelper.faceRotation(Direction.SOUTH)), element.rotation, element.shade, new ResourceLocation(GTCore.ID, "bookshelf"));
-                        bakedQuads.add(quad);
-                    }
-                    BOOK_MODELS.add(bakedQuads);
-                }
-            }
-        }
+
     }
 
     @Override
     public List<BakedQuad> getBlockQuads(BlockState state, @Nullable Direction direction, @NotNull RandomSource rand, @NotNull BlockAndTintGetter level, @NotNull BlockPos pos) {
+        initBookQuads();
         List<BakedQuad> quads = new ObjectArrayList<>();
         quads.addAll(ModelUtils.getQuadsFromBaked(baseModel, state, direction, rand, level, pos));
         if (direction != Direction.SOUTH && direction != Direction.NORTH) return quads;
@@ -101,6 +68,44 @@ public class BookShelfBakedModel extends GTBakedModel<BookShelfBakedModel> {
             }
         }
         return quads;
+    }
+
+    private void initBookQuads(){
+        if (BOOK_MODELS == null){
+            BOOK_MODELS = new ObjectArrayList<>();
+            for (int i = 0; i < BookShelfModel.BOOK_REFERENCE_SOUTH.size(); i++) {
+                BlockElement element = BookShelfModel.BOOK_REFERENCE_SOUTH.get(i);
+                for (int j = 0; j < 7; j++) {
+                    List<BakedQuad> bakedQuads = new ArrayList<>();
+                    Vector3f from = new Vector3f(element.from.x() + (j * 2), element.from.y(), element.from.z());
+                    Vector3f to  = new Vector3f(element.to.x() + (j * 2), element.to.y(), element.to.z());
+                    for (var entry : element.faces.entrySet()) {
+                        Direction dir = entry.getKey();
+                        BlockElementFace face = entry.getValue();
+                        TextureAtlasSprite sprite = dir == Direction.SOUTH ? BookSpriteMaps.getSpriteMap().get(Items.BOOK).first() : BookSpriteMaps.getSpriteMap().get(Items.BOOK).second();
+                        BakedQuad quad = FACE_BAKERY.bakeQuad(from, to, face, sprite, dir, new SimpleModelState(RenderHelper.faceRotation(Direction.SOUTH)), element.rotation, element.shade, new ResourceLocation(GTCore.ID, "bookshelf"));
+                        bakedQuads.add(quad);
+                    }
+                    BOOK_MODELS.add(bakedQuads);
+                }
+            }
+            for (int i = 0; i < BookShelfModel.BOOK_REFERENCE_NORTH.size(); i++) {
+                BlockElement element = BookShelfModel.BOOK_REFERENCE_NORTH.get(i);
+                for (int j = 0; j < 7; j++) {
+                    List<BakedQuad> bakedQuads = new ArrayList<>();
+                    Vector3f from = new Vector3f(element.from.x() - (j * 2), element.from.y(), element.from.z());
+                    Vector3f to  = new Vector3f(element.to.x() - (j * 2), element.to.y(), element.to.z());
+                    for (var entry : element.faces.entrySet()) {
+                        Direction dir = entry.getKey();
+                        BlockElementFace face = entry.getValue();
+                        TextureAtlasSprite sprite = dir == Direction.NORTH ? BookSpriteMaps.getSpriteMap().get(Items.BOOK).first() : BookSpriteMaps.getSpriteMap().get(Items.BOOK).second();
+                        BakedQuad quad = FACE_BAKERY.bakeQuad(from, to, face, sprite, dir, new SimpleModelState(RenderHelper.faceRotation(Direction.SOUTH)), element.rotation, element.shade, new ResourceLocation(GTCore.ID, "bookshelf"));
+                        bakedQuads.add(quad);
+                    }
+                    BOOK_MODELS.add(bakedQuads);
+                }
+            }
+        }
     }
 
     @Override

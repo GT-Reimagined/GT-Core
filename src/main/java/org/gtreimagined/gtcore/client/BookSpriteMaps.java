@@ -44,6 +44,7 @@ public class BookSpriteMaps {
     @SubscribeEvent
     public static void onTextureStitchPost(TextureStitchEvent.Post event) {
         if (!event.getAtlas().location().equals(TextureAtlas.LOCATION_BLOCKS)) return;
+        initMaterialMap();
         BookRegistration.getTextureMap().forEach((i, p) -> {
             SPRITE_MAP.put(i, Pair.of(event.getAtlas().getSprite(p.first()), event.getAtlas().getSprite(p.second())));
         });

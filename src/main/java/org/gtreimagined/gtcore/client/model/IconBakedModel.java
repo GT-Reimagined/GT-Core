@@ -40,31 +40,11 @@ public class IconBakedModel extends GTBakedModel<IconBakedModel> {
     public IconBakedModel(BakedModel baseModel) {
         super(baseModel.getParticleIcon());
         this.baseModel = baseModel;
-        if (ICON_MODELS == null){
-            ICON_MODELS = new ObjectArrayList<>();
-            String[] icons = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "percent"};
-            for (int i = 0; i < IconModelLoader.BLOCK_ELEMENTS.size(); i++) {
-                BlockElement element = IconModelLoader.BLOCK_ELEMENTS.get(i);
-                Map<String, List<BakedQuad>> map = new Object2ObjectOpenHashMap<>();
-                for (String icon : icons) {
-                    if (i > 1 && icon.equals("percent")) continue;
-                    List<BakedQuad> bakedQuads = new ArrayList<>();
-                    for (var entry : element.faces.entrySet()){
-                        Direction dir = entry.getKey();
-                        BlockElementFace face = entry.getValue();
-                        TextureAtlasSprite sprite = IconModel.SPRITE_MAP.get(icon);
-                        BakedQuad quad = FACE_BAKERY.bakeQuad(element.from, element.to, face, sprite, dir, new SimpleModelState(RenderHelper.faceRotation(Direction.SOUTH)), element.rotation, element.shade, new ResourceLocation(GTCore.ID, "item_storage"));
-                        bakedQuads.add(quad);
-                    }
-                    map.put(icon, bakedQuads);
-                }
-                ICON_MODELS.add(map);
-            }
-        }
     }
 
     @Override
     public List<BakedQuad> getBlockQuads(BlockState state, @Nullable Direction direction, @NotNull RandomSource rand, @NotNull BlockAndTintGetter level, @NotNull BlockPos pos) {
+        initIconModels();
         List<BakedQuad> quads = new ObjectArrayList<>();
         quads.addAll(ModelUtils.getQuadsFromBaked(baseModel, state, direction, rand, level, pos));
         if (direction != Direction.SOUTH) return quads;
@@ -87,6 +67,30 @@ public class IconBakedModel extends GTBakedModel<IconBakedModel> {
             }
         }
         return quads;
+    }
+
+    private void initIconModels(){
+        if (ICON_MODELS == null){
+            ICON_MODELS = new ObjectArrayList<>();
+            String[] icons = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "percent"};
+            for (int i = 0; i < IconModel.BLOCK_ELEMENTS.size(); i++) {
+                BlockElement element = IconModel.BLOCK_ELEMENTS.get(i);
+                Map<String, List<BakedQuad>> map = new Object2ObjectOpenHashMap<>();
+                for (String icon : icons) {
+                    if (i > 1 && icon.equals("percent")) continue;
+                    List<BakedQuad> bakedQuads = new ArrayList<>();
+                    for (var entry : element.faces.entrySet()){
+                        Direction dir = entry.getKey();
+                        BlockElementFace face = entry.getValue();
+                        TextureAtlasSprite sprite = IconModel.SPRITE_MAP.get(icon);
+                        BakedQuad quad = FACE_BAKERY.bakeQuad(element.from, element.to, face, sprite, dir, new SimpleModelState(RenderHelper.faceRotation(Direction.SOUTH)), element.rotation, element.shade, new ResourceLocation(GTCore.ID, "item_storage"));
+                        bakedQuads.add(quad);
+                    }
+                    map.put(icon, bakedQuads);
+                }
+                ICON_MODELS.add(map);
+            }
+        }
     }
 
     @Override
