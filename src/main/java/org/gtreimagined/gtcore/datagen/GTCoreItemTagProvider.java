@@ -114,7 +114,7 @@ public class GTCoreItemTagProvider extends GTItemTagProvider {
     }
 
     protected void processSubtags() {
-        for (PipeSize value : PipeSize.values()) {
+        for (PipeSize value : PipeSize.VALUES) {
             Set<Material> mats = WIRE.allSub(GTCoreCables.TIN_WIRE);
             if (mats.size() > 0) {
                 this.tag(TagUtils.getItemTag(new ResourceLocation(Ref.ID, GTCoreCables.TIN_WIRE.getId() + "_" + value.getId()))).add(mats.stream().map(t ->
