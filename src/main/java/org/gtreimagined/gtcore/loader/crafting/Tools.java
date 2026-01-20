@@ -38,8 +38,10 @@ public class Tools {
         provider.removeRecipe(new ResourceLocation("farmersdelight", "golden_knife"));
         provider.removeRecipe(new ResourceLocation("farmersdelight", "diamond_knife"));
 
-        toolPartRecipes(consumer, provider);
-        vanillaToolRecipes(consumer, provider);
+        if (!GTAPI.isModLoaded("tfc")){
+            toolPartRecipes(consumer, provider);
+            vanillaToolRecipes(consumer, provider);
+        }
 
         if (GTAPI.isModLoaded(Ref.MOD_TOP)) {
             ARMOR.getAll().forEach((m, a) ->{
@@ -66,9 +68,10 @@ public class Tools {
             provider.addStackRecipe(consumer, Ref.ID, "", "gt_armor", GTTools.BOOTS.getToolStack(m),
                     builder.build(), strings);
         });
-       TOOLS.getAll().forEach((m, t) -> {
+        if (GTAPI.isModLoaded("tfc")) return;
+        TOOLS.getAll().forEach((m, t) -> {
            TagKey<Item> rod = t.handleMaterial().has(ROD) ? ROD.getMaterialTag(t.handleMaterial()) : ROD.getMaterialTag(Wood);
-           GTToolType[] toolHeadTypes = new GTToolType[]{PICKAXE, AXE, SWORD, SHOVEL, HOE, FILE, SAW, HAMMER, SCREWDRIVER, SCYTHE};
+           GTToolType[] toolHeadTypes = new GTToolType[]{PICKAXE, AXE, SWORD, SHOVEL, HOE, FILE, SAW, HAMMER, SCREWDRIVER, SCYTHE, KNIFE};
            Arrays.stream(toolHeadTypes).forEach(type -> {
                if (type == SCYTHE && GTAPI.isModLoaded("gtspartan")) return;
                if (t.toolTypes().contains(type)){
@@ -247,10 +250,8 @@ public class Tools {
 
                if (t.toolTypes().contains(KNIFE)){
                    if (m.has(FLINT)){
-                       if (!GTAPI.isModLoaded("tfc")) {
-                           provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
-                                   of('R', rod, 'P', ingotGem), "RP");
-                       }
+                       provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
+                               of('R', rod, 'P', ingotGem), "RP");
                    } else if (m.has(GEM)){
                        provider.addStackRecipe(consumer, GTCore.ID, "", "", KNIFE.getToolStack(m),
                                of('R', rod, 'P', plateGem,'F', GTTools.FILE.getTag()), "FP", " R");
@@ -274,6 +275,7 @@ public class Tools {
 
     private static void toolPartRecipes(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider){
         PICKAXE_HEAD.all().forEach(m -> {
+            if (m == Flint) return;
             if (m.has(GEM)){
                 provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", PICKAXE_HEAD.get(m),
                         of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "GGG", "F  ");
@@ -284,6 +286,7 @@ public class Tools {
             }
         });
         AXE_HEAD.all().forEach(m -> {
+            if (m == Flint) return;
             if (m.has(GEM)){
                 provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", AXE_HEAD.get(m),
                         of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "GG", "G ", "F ");
@@ -294,6 +297,7 @@ public class Tools {
             }
         });
         SHOVEL_HEAD.all().forEach(m -> {
+            if (m == Flint) return;
             if (m.has(GEM)){
                 provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SHOVEL_HEAD.get(m),
                         of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "FG");
@@ -304,6 +308,7 @@ public class Tools {
             }
         });
         HOE_HEAD.all().forEach(m -> {
+            if (m == Flint) return;
             if (m.has(GEM)){
                 provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", HOE_HEAD.get(m),
                         of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "GG", "F ");
@@ -314,6 +319,7 @@ public class Tools {
             }
         });
         SWORD_BLADE.all().forEach(m -> {
+            if (m == Flint) return;
             if (m.has(GEM)){
                 provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SWORD_BLADE.get(m),
                         of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "FG", " G");
@@ -324,6 +330,7 @@ public class Tools {
             }
         });
         HAMMER_HEAD.all().forEach(m -> {
+            if (m == Flint) return;
             if (!m.has(GEM) && !m.has(INGOT)) return;
             TagKey<Item> input = m.has(GEM) ? GEM.getMaterialTag(m) : INGOT.getMaterialTag(m);
             TagKey<Item> tool = m.has(GEM) ? FILE.getTag() : HAMMER.getTag();
@@ -331,6 +338,7 @@ public class Tools {
                     of('I', input, 'H', tool), "II ", "IIH", "II ");
         });
         FILE_HEAD.all().forEach(m -> {
+            if (m == Flint) return;
             if (!m.has(GEM) && !m.has(INGOT)) return;
             TagKey<Item> input = m.has(GEM) ? GEM.getMaterialTag(m) : m.has(PLATE) ? PLATE.getMaterialTag(m) : INGOT.getMaterialTag(m);
             TagKey<Item> tool = m.has(GEM) ? FILE.getTag() : KNIFE.getTag();
@@ -338,6 +346,7 @@ public class Tools {
                     of('I', input, 'H', tool), "I ", "IH");
         });
         SAW_BLADE.all().forEach(m -> {
+            if (m == Flint) return;
             if (m.has(GEM)){
                 provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SAW_BLADE.get(m),
                         of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "GG", "F ");
@@ -347,13 +356,26 @@ public class Tools {
                         of('P', plate, 'H', HAMMER.getTag(), 'F', FILE.getTag()), "PP", "FH");
             }
         });
+        KNIFE_BLADE.all().forEach(m -> {
+            if (m == Flint) return;
+            if (m.has(GEM)){
+                provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", KNIFE_BLADE.get(m),
+                        of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "G", "F");
+            } else if (m.has(INGOT)){
+                TagKey<Item> plate = m.has(PLATE) ? PLATE.getMaterialTag(m) : INGOT.getMaterialTag(m);
+                provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", KNIFE_BLADE.get(m),
+                        of('P', plate, 'H', HAMMER.getTag(), 'F', FILE.getTag()), "H", "P", "F");
+            }
+        });
         SCREWDRIVER_TIP.all().forEach(m -> {
+            if (m == Flint) return;
             if (!m.has(ROD)) return;
             provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCREWDRIVER_TIP.get(m),
                     of('R', ROD.getMaterialTag(m), 'F', FILE.getTag(), 'H', HAMMER.getTag()), "HR", "RF");
         });
         if (!GTAPI.isModLoaded("gtspartan")) {
             SCYTHE_BLADE.all().forEach(m -> {
+                if (m == Flint) return;
                 if (m.has(GEM)){
                     provider.addItemRecipe(consumer, GTCore.ID, "", "tool_heads", SCYTHE_BLADE.get(m),
                             of('G', GEM.getMaterialTag(m), 'F', FILE.getTag()), "GGG", " F ");
