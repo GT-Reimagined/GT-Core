@@ -1,0 +1,16 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "gtcore:model/material_chest_base_inventory"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "gtcore:model/material_chest_overlay_inventory"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "gtcore:model/material_chest_particle"
+    }
+  ]
+}
