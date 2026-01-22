@@ -150,7 +150,7 @@ public class GTCore extends GTMod {
             @Override
             protected void processTags(String domain) {
                 GTTagBuilder<Biome> tags = this.tag(TagUtils.getBiomeTag(new ResourceLocation(ID, "is_invalid_rubber"))).addTag(BiomeTags.IS_TAIGA).addTag(BiomeTags.IS_MOUNTAIN).addTag(BiomeTags.IS_OCEAN).addTag(BiomeTags.IS_DEEP_OCEAN).addTag(BiomeTags.IS_NETHER).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_desert"))).addTag(TagUtils.getBiomeTag(new ResourceLocation("is_plains")));
-                tags.addTag(TagUtils.getBiomeTag(new ResourceLocation("forge", "is_end")));
+                tags.addTag(BiomeTags.IS_END);
                 tags.addTag(TagUtils.getBiomeTag(new ResourceLocation("forge", "is_snowy")));
             }
         });
