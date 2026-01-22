@@ -5,8 +5,10 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biome.ClimateSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.Biomes;
@@ -38,11 +40,11 @@ public class RubberTreeFeature extends TreeFeature implements IGTFeature {
     }
 
     @Override
-    public void build(ResourceLocation name, ClimateSettings climate, BiomeSpecialEffects effects, BiomeGenerationSettingsBuilder gen, Builder spawns, Registry<PlacedFeature> registry) {
+    public void build(Holder<Biome> biomeHolder, ClimateSettings climate, BiomeSpecialEffects effects, BiomeGenerationSettingsBuilder gen, Builder spawns, Registry<PlacedFeature> registry) {
         if (GTAPI.isModLoaded("tfc")) return;
-        if (name.equals(Biomes.SWAMP.location())) {
+        if (biomeHolder.is(Biomes.SWAMP) || biomeHolder.is(Biomes.MANGROVE_SWAMP)) {
             gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, getPlacedFeatureFromKey(registry, RubberTreeWorldGen.TREE_SWAMP));
-        } else if (name.equals(Biomes.JUNGLE.location())) {
+        } else if (biomeHolder.is(BiomeTags.IS_JUNGLE)) {
             gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, getPlacedFeatureFromKey(registry, RubberTreeWorldGen.TREE_JUNGLE));
         } else {
             gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, getPlacedFeatureFromKey(registry, RubberTreeWorldGen.TREE));
