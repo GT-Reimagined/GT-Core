@@ -65,4 +65,10 @@ public class RedstoneWire<T extends RedstoneWire<T>> extends PipeType<T> {
     public boolean isEmitsLight() {
         return emitsLight;
     }
+
+    @Override
+    public String createId(PipeSize size, String suffix) {
+        suffix = size == PipeSize.VTINY ? "wire" : "cable";
+        return material.getId() + "_" + suffix;
+    }
 }
