@@ -1,11 +1,13 @@
 package org.gtreimagined.gtcore.item;
 
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtlib.GTCreativeTabs;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.item.ScannerItem;
 import org.gtreimagined.gtlib.material.Material;
@@ -23,8 +25,8 @@ public class ItemMagnifyingGlass extends ScannerItem implements IColorHandler {
     }
 
     @Override
-    public boolean allowedIn(CreativeModeTab tab) {
-        return tab == Ref.TAB_TOOLS;
+    public boolean allowedIn(ResourceKey<CreativeModeTab> tab) {
+        return tab == GTCreativeTabs.TOOLS.getKey();
     }
 
     @Override

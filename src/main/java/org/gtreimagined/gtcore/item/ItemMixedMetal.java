@@ -3,6 +3,7 @@ package org.gtreimagined.gtcore.item;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -59,7 +60,7 @@ public class ItemMixedMetal extends ItemBasic<ItemMixedMetal> implements IColorH
     }
 
     @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
+    public void fillItemCategory(ResourceKey<CreativeModeTab> group, NonNullList<ItemStack> items) {
         if (this.allowedIn(group)) {
             ItemStack itemStack = getDefaultInstance();
             items.add(itemStack);

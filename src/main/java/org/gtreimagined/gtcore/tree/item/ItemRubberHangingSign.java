@@ -1,10 +1,12 @@
 package org.gtreimagined.gtcore.tree.item;
 
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.SignItem;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
+import org.gtreimagined.gtlib.GTCreativeTabs;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.registration.ICreativeTabProvider;
 import org.gtreimagined.gtlib.registration.IGTObject;
@@ -33,7 +35,7 @@ public class ItemRubberHangingSign extends HangingSignItem implements IGTObject,
     }
 
     @Override
-    public boolean allowedIn(CreativeModeTab creativeModeTab) {
-        return creativeModeTab == Ref.TAB_ITEMS;
+    public boolean allowedIn(ResourceKey<CreativeModeTab> creativeModeTab) {
+        return creativeModeTab == GTCreativeTabs.ITEMS.getKey();
     }
 }

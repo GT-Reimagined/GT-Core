@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.item;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
@@ -12,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.GTCreativeTabs;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.registration.ICreativeTabProvider;
 import org.gtreimagined.gtlib.registration.IGTObject;
@@ -95,7 +97,7 @@ public class ItemHazmatArmor extends ArmorItem implements IGTObject, ITexturePro
     }
 
     @Override
-    public boolean allowedIn(CreativeModeTab creativeModeTab) {
-        return creativeModeTab == Ref.TAB_ITEMS;
+    public boolean allowedIn(ResourceKey<CreativeModeTab> creativeModeTab) {
+        return creativeModeTab == GTCreativeTabs.ITEMS.getKey();
     }
 }

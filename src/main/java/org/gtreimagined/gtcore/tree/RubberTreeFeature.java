@@ -19,6 +19,7 @@ import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
+import net.minecraftforge.common.world.BiomeModifier.Phase;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.util.TagUtils;
 import org.gtreimagined.gtlib.worldgen.feature.IGTFeature;
@@ -40,8 +41,8 @@ public class RubberTreeFeature extends TreeFeature implements IGTFeature {
     }
 
     @Override
-    public void build(Holder<Biome> biomeHolder, ClimateSettings climate, BiomeSpecialEffects effects, BiomeGenerationSettingsBuilder gen, Builder spawns, Registry<PlacedFeature> registry) {
-        if (GTAPI.isModLoaded("tfc")) return;
+    public void build(Phase phase, Holder<Biome> biomeHolder, ClimateSettings climate, BiomeSpecialEffects effects, BiomeGenerationSettingsBuilder gen, Builder spawns, Registry<PlacedFeature> registry) {
+        if (GTAPI.isModLoaded("tfc") || phase != Phase.ADD) return;
         if (biomeHolder.is(Biomes.SWAMP) || biomeHolder.is(Biomes.MANGROVE_SWAMP)) {
             gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, getPlacedFeatureFromKey(registry, RubberTreeWorldGen.TREE_SWAMP));
         } else if (biomeHolder.is(BiomeTags.IS_JUNGLE)) {
