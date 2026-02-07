@@ -161,6 +161,7 @@ public class VanillaRecipes {
                     "cocobolo", "zebrawood"));
             List<String> fireProofPlanks = new ArrayList<>(modWoods.get(domain));
             fireProofPlanks.addAll(modWoods.get("minecraft"));
+            fireProofPlanks.removeAll(List.of("mangrove", "crimson", "warped"));
             for (String wood : fireProofPlanks){
                 String suffix = customSuffixes.getOrDefault(wood, "logs");
                 ResourceLocation planks = new ResourceLocation(domain, wood + "_fireproof_planks");
