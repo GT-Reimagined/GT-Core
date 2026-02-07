@@ -167,7 +167,7 @@ public class VanillaRecipes {
                 ResourceLocation planks = new ResourceLocation(domain, wood + "_fireproof_planks");
                 addWoodRecipe(consumer, provider, domain, TagUtils.getItemTag(new ResourceLocation(domain, "fireproof_" + wood + "_" + suffix)), RegistryUtils.getItemFromID(planks));
                 ResourceLocation slab = new ResourceLocation(domain, wood + "_fireproof_slab");
-                provider.addItemRecipe(consumer, GTCore.ID, slab.getPath() + "_to_" + planks.getPath(), "slabs", RegistryUtils.getItemFromID(planks), of('S', RegistryUtils.getItemFromID(slab)), "S", "S");
+                provider.addItemRecipe(consumer, domain, slab.getPath() + "_to_" + planks.getPath(), "slabs", RegistryUtils.getItemFromID(planks), of('S', RegistryUtils.getItemFromID(slab)), "S", "S");
             }
 
         }
@@ -178,7 +178,7 @@ public class VanillaRecipes {
                 ResourceLocation planks = new ResourceLocation(domain, wood + "_planks");
                 addWoodRecipe(consumer, provider, domain, TagUtils.getItemTag(new ResourceLocation(domain, wood + "_" + suffix)), RegistryUtils.getItemFromID(planks));
                 ResourceLocation slab = new ResourceLocation(domain, wood + "_slab");
-                provider.addItemRecipe(consumer, GTCore.ID, slab.getPath() + "_to_" + planks.getPath(), "slabs", RegistryUtils.getItemFromID(planks), of('S', RegistryUtils.getItemFromID(slab)), "S", "S");
+                provider.addItemRecipe(consumer, domain, slab.getPath() + "_to_" + planks.getPath(), "slabs", RegistryUtils.getItemFromID(planks), of('S', RegistryUtils.getItemFromID(slab)), "S", "S");
             }
         });
 
