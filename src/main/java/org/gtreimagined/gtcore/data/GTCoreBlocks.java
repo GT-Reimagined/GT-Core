@@ -17,6 +17,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.BlockCasing;
+import org.gtreimagined.gtcore.block.BlockMortar;
 import org.gtreimagined.gtcore.block.BlockSapBag;
 import org.gtreimagined.gtcore.blockentity.BlockEntityPlasticBin;
 import org.gtreimagined.gtcore.blockentity.BlockEntitySapBag;
@@ -116,6 +117,7 @@ public class GTCoreBlocks {
     public static final BlockRubberFenceGate RUBBER_FENCE_GATE = new BlockRubberFenceGate();
 
     public static final BlockSapBag SAP_BAG = new BlockSapBag();
+    public static final BlockMortar MORTAR = new BlockMortar(GTLibMaterials.Iron);
 
 
     public static final BlockEntityType<?> SAP_BAG_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntitySapBag::new, SAP_BAG).build(null);

@@ -9,6 +9,7 @@ import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.BlockCasing;
 import org.gtreimagined.gtcore.block.BlockGTHopper;
 import org.gtreimagined.gtcore.block.BlockMaterialChest;
+import org.gtreimagined.gtcore.block.BlockMortar;
 import org.gtreimagined.gtcore.blockentity.BlockEntityChest;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
 import org.gtreimagined.gtcore.client.MassStorageRenderer;
@@ -47,6 +48,7 @@ public class ClientHandler {
             GTAPI.all(BlockMaterialChest.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
             GTAPI.all(BlockGTHopper.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
             GTAPI.all(BlockCasing.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
+            GTAPI.all(BlockMortar.class, b -> ModelUtils.setRenderLayer(b, RenderType.cutout()));
             ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_SAPLING, RenderType.cutout());
             ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_LEAVES, RenderType.cutout());
             ModelUtils.setRenderLayer(GTCoreBlocks.RUBBER_TRAPDOOR, RenderType.cutout());
