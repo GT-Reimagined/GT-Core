@@ -29,42 +29,6 @@ public class MaterialRecipes {
 
     public static void loadMaterialRecipes(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider){
         int craftingMultiplier = GTCoreConfig.LOSSY_PART_CRAFTING.get() ? 1 : 2;
-        if (!GTAPI.isModLoaded("tfc")) {
-            DUST.all().forEach(m -> {
-                if (m.has(GTMaterialTypes.INGOT)) {
-                    provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_grind_ingot", "gt_material",
-                            DUST.get(m, 1), ImmutableMap.<Character, Object>builder()
-                                    .put('M', GTTools.MORTAR.getTag())
-                                    .put('I', GTMaterialTypes.INGOT.getMaterialTag(m))
-                                    .build(),
-                            "MI");
-                }
-                if (m.has(ROCK)) {
-                    provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_grind_rock", "gt_material",
-                            DUST.get(m, 1), ImmutableMap.<Character, Object>builder()
-                                    .put('M', GTTools.MORTAR.getTag())
-                                    .put('I', ROCK.getMaterialTag(m))
-                                    .build(),
-                            "II ", "IIM");
-                    provider.shapeless(consumer, GTCore.ID, m.getId() + "_grind_rock_2", "gt_material", SMALL_DUST.get(m, 1),
-                            GTTools.MORTAR.getTag(), ROCK.getMaterialTag(m));
-                }
-                if (m.has(GTMaterialTypes.BEARING_ROCK)) {
-                    provider.addStackRecipe(consumer, GTCore.ID, m.getId() + "_grind_bearing_rock", "gt_material",
-                            DUST.get(m, 1), ImmutableMap.<Character, Object>builder()
-                                    .put('M', GTTools.MORTAR.getTag())
-                                    .put('I', GTMaterialTypes.BEARING_ROCK.getMaterialTag(m))
-                                    .build(),
-                            "II ", "IIM");
-                    provider.shapeless(consumer, GTCore.ID, m.getId() + "_grind_bearing_rock_2", "gt_material", SMALL_DUST.get(m, 1),
-                            GTTools.MORTAR.getTag(), GTMaterialTypes.BEARING_ROCK.getMaterialTag(m));
-                }
-                if (m.has(CRUSHED_ORE)){
-                    provider.shapeless(consumer, GTCore.ID, m.getId() + "_grind_crushed", "gt_material", IMPURE_DUST.get(m, 1),
-                            GTTools.MORTAR.getTag(), CRUSHED_ORE.getMaterialTag(m));
-                }
-            });
-        }
         BLOCK.all().forEach(m -> {
             boolean blockReplacement = BLOCK.getReplacements().containsKey(m);
             int output = m.has(QUARTZ_LIKE_BLOCKS) ? 4 : 9;

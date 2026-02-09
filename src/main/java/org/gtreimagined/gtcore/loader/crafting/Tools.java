@@ -111,10 +111,6 @@ public class Tools {
                    provider.addStackRecipe(consumer, GTCore.ID, "", "", SOFT_HAMMER.getToolStack(m),
                            of('R', rod, 'P', ingotGem1), "PP ", "PPR", "PP ");
                }
-               if (t.toolTypes().contains(MORTAR)){
-                   provider.addStackRecipe(consumer, GTCore.ID, "", "", MORTAR.getToolStack(m),
-                           of('S', TagUtils.getForgelikeItemTag("stone"), 'P', ingotGem), " P ", "SPS", "SSS");
-               }
                if (t.toolTypes().contains(FILE)){
                    provider.addStackRecipe(consumer, GTCore.ID, "", "", FILE.getToolStack(m),
                            of('R', rod, 'P', plateGem), "P", "P", "R");

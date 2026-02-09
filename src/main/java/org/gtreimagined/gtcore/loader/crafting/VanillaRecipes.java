@@ -42,9 +42,6 @@ import static org.gtreimagined.gtlib.data.GTTools.*;
 public class VanillaRecipes {
     public static void loadRecipes(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider) {
         provider.addStackRecipe(consumer, GTCore.ID, "lead_from_resin", "", new ItemStack(Items.LEAD, 2), of('S', Items.STRING, 'R', GTCoreItems.StickyResin), "SS ", "SR ", "  S");
-        if (!GTAPI.isModLoaded(Ref.MOD_TFC)) {
-            provider.shapeless(consumer, "gravel_to_flint", "mortar_recipes", new ItemStack(Items.FLINT), GTTools.MORTAR.getTag(), Items.GRAVEL);
-        }
 
         provider.addItemRecipe(consumer, GTCore.ID, "piston_sticky","gears", Blocks.STICKY_PISTON, of('S', GTCoreItems.StickyResin, 'P', Blocks.PISTON), "S", "P");
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(GTCoreBlocks.BASALT.getState().getBlock()), RecipeCategory.DECORATIONS, Items.BASALT).unlockedBy("has_basalt", provider.hasSafeItem(GTCoreBlocks.BASALT.getState().getBlock())).save(consumer, new ResourceLocation(GTCore.ID, "basalt_to_vanilla_basalt"));

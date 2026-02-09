@@ -14,6 +14,5 @@ public class GTCoreRecipeMaps {
         GTLibXEIPlugin.addWorkstations(MORTAR.getLoc(), l -> {
             GTAPI.all(BlockMortar.class).forEach(b -> l.add(b.asItem()));
         });
-        GTAPI.register(RecipeMap.class, MORTAR);
     }
 }
