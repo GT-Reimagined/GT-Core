@@ -117,7 +117,7 @@ public class GTCoreBlocks {
     public static final BlockRubberFenceGate RUBBER_FENCE_GATE = new BlockRubberFenceGate();
 
     public static final BlockSapBag SAP_BAG = new BlockSapBag();
-    public static final BlockMortar MORTAR = new BlockMortar(GTLibMaterials.Iron);
+    public static final BlockMortar IRON_MORTAR = new BlockMortar(GTLibMaterials.Iron);
 
 
     public static final BlockEntityType<?> SAP_BAG_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntitySapBag::new, SAP_BAG).build(null);

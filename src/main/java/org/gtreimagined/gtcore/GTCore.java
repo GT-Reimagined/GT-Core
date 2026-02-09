@@ -36,6 +36,7 @@ import org.gtreimagined.gtcore.data.GTCoreData;
 import org.gtreimagined.gtcore.data.GTCoreFluids;
 import org.gtreimagined.gtcore.data.GTCoreItems;
 import org.gtreimagined.gtcore.data.GTCoreMaterials;
+import org.gtreimagined.gtcore.data.GTCoreRecipeMaps;
 import org.gtreimagined.gtcore.data.GTCoreTools;
 import org.gtreimagined.gtcore.data.Guis;
 import org.gtreimagined.gtcore.data.MenuHandlers;
@@ -49,6 +50,7 @@ import org.gtreimagined.gtcore.events.GTCommonEvents;
 import org.gtreimagined.gtcore.integration.curio.CurioPlugin;
 import org.gtreimagined.gtcore.integration.top.MassStorageProvider;
 import org.gtreimagined.gtcore.integration.top.RedstoneWireProvider;
+import org.gtreimagined.gtcore.loader.MortarLoader;
 import org.gtreimagined.gtcore.loader.crafting.MachineRecipes;
 import org.gtreimagined.gtcore.loader.crafting.MaterialRecipes;
 import org.gtreimagined.gtcore.loader.crafting.MiscRecipes;
@@ -77,6 +79,7 @@ import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
 import org.gtreimagined.gtlib.datagen.providers.GTTagProvider;
 import org.gtreimagined.gtlib.datagen.providers.GTWorldgenProvider;
 import org.gtreimagined.gtlib.event.GTCraftingEvent;
+import org.gtreimagined.gtlib.event.GTLoaderEvent;
 import org.gtreimagined.gtlib.event.GTProvidersEvent;
 import org.gtreimagined.gtlib.event.MaterialEvent;
 import org.gtreimagined.gtlib.integration.xei.GTLibXEIPlugin;
@@ -113,6 +116,7 @@ public class GTCore extends GTMod {
         eventBus.addListener(this::onCraftingEvent);
         MinecraftForge.EVENT_BUS.addListener(this::onItemUse);
         MinecraftForge.EVENT_BUS.addListener(GTCommonEvents::onTooltipAdd);
+        MinecraftForge.EVENT_BUS.addListener(this::onLoadersEvent);
         eventBus.addListener(this::onRegistration);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             eventBus.addListener(this::clientSetup);
@@ -222,6 +226,10 @@ public class GTCore extends GTMod {
         event.addLoader(MiscRecipes::loadRecipes);
     }
 
+    private void onLoadersEvent(GTLoaderEvent event){
+        event.registrat.add(GTCore.ID, "mortar", MortarLoader::init);
+    }
+
     private void onRegistration(final RegisterEvent event){
         if (event.getRegistryKey() == Keys.FOLIAGE_PLACER_TYPES){
             ForgeRegistries.FOLIAGE_PLACER_TYPES.register(new ResourceLocation(GTCore.ID, "rubber_foilage_placer"), RubberFoliagePlacer.RUBBER);
@@ -235,6 +243,7 @@ public class GTCore extends GTMod {
                 SlotTypes.init();
                 MenuHandlers.init();
                 GTCoreData.init();
+                GTCoreRecipeMaps.init();
                 GTCoreCovers.init();
                 GTCoreBlocks.init();
                 GTCoreItems.init();

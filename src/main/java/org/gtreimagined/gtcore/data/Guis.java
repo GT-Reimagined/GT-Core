@@ -9,6 +9,8 @@ import static org.gtreimagined.gtlib.gui.SlotType.*;
 
 
 public class Guis {
+    public static GuiData SIMPLE_DISPLAY = new GuiData(GTCore.ID, "simple_display").setSlots(ISlotProvider.DEFAULT()
+            .add(IT_IN, 53, 25).add(IT_OUT, 107, 25));
     public static GuiData MULTI_DISPLAY = new GuiData(GTCore.ID, "multi_display").setSlots(ISlotProvider.DEFAULT()
             .add(IT_IN, 17, 16).add(IT_IN, 35, 16).add(IT_IN, 53, 16).add(IT_IN, 17, 34).add(IT_IN, 35, 34)
             .add(IT_IN, 53, 34).add(IT_OUT, 107, 16).add(IT_OUT, 125, 16).add(IT_OUT, 143, 16).add(IT_OUT, 107, 34)

@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.BlockGTHopper;
 import org.gtreimagined.gtcore.block.BlockMaterialChest;
+import org.gtreimagined.gtcore.block.BlockMortar;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 import org.gtreimagined.gtcore.machine.BlockMultiMachineMaterial;
@@ -23,6 +24,7 @@ public class GTCoreBlockLootProvider extends GTBlockLootProvider {
         GTAPI.all(BlockMultiMachineMaterial.class, this::add);
         GTAPI.all(BlockMaterialChest.class, this::add);
         GTAPI.all(BlockGTHopper.class, this::add);
+        GTAPI.all(BlockMortar.class, this::add);
         tables.put(GTCoreBlocks.RUBBER_LEAVES, b -> createLeavesDrops(GTCoreBlocks.RUBBER_LEAVES, GTCoreBlocks.RUBBER_SAPLING, 0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F));
         this.add(GTCoreBlocks.RUBBER_LOG);
         this.add(GTCoreBlocks.RUBBER_SAPLING);

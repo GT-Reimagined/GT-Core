@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.block.BlockGTHopper;
 import org.gtreimagined.gtcore.block.BlockMaterialChest;
+import org.gtreimagined.gtcore.block.BlockMortar;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 import org.gtreimagined.gtcore.machine.BlockMultiMachineMaterial;
@@ -44,6 +45,7 @@ public class GTCoreBlockTagProvider extends GTBlockTagProvider {
         GTAPI.all(BlockGTHopper.class, h -> {
             this.tag(h.getType().getToolTag()).add(h);
         });
+        GTAPI.all(BlockMortar.class, m -> this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(m));
         /*GTAPI.all(BlockNonSolidMachine.class, Ref.ID, cas -> {
             this.tag(AntimatterDefaultTools.WRENCH.getToolType()).add(cas);
         });
