@@ -83,7 +83,9 @@ public class BlockMortar extends BlockBasic implements IColorHandler {
         double z = location.z() - pos.getZ();
         if (hit.getDirection() == Direction.UP){
             if (x > 0.125 && x < 0.25 && z > 0.125 && z < 0.25){
-                GTLibXEIPlugin.showCategories(GTCoreRecipeMaps.MORTAR.getLoc());
+                if (level.isClientSide()) {
+                    GTLibXEIPlugin.showCategories(GTCoreRecipeMaps.MORTAR.getLoc());
+                }
                 return InteractionResult.sidedSuccess(level.isClientSide());
             }
         }
