@@ -11,8 +11,5 @@ public class GTCoreRecipeMaps {
     public static final RecipeMap<RecipeBuilder> MORTAR = new RecipeMap<>(GTCore.ID, "mortar", new RecipeBuilder());
     public static void init() {
         MORTAR.setIcon(() -> GTCoreBlocks.IRON_MORTAR).setGuiData(Guis.SIMPLE_DISPLAY);
-        GTLibXEIPlugin.addWorkstations(MORTAR.getLoc(), l -> {
-            GTAPI.all(BlockMortar.class).forEach(b -> l.add(b.asItem()));
-        });
     }
 }
