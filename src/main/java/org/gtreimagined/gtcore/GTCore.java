@@ -28,6 +28,7 @@ import net.minecraftforge.registries.ForgeRegistries.Keys;
 import net.minecraftforge.registries.RegisterEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.gtreimagined.gtcore.block.BlockMortar;
 import org.gtreimagined.gtcore.client.BakedModels;
 import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtcore.data.GTCoreCables;
@@ -265,6 +266,9 @@ public class GTCore extends GTMod {
             case DATA_READY -> {
                 WoodType.register(GTCoreBlocks.RUBBER_WOOD_TYPE);
                 CommonHandler.setup();
+                GTAPI.all(BlockMortar.class, b -> {
+                    GTLibXEIPlugin.registerCategoryWorkstation(GTCoreRecipeMaps.MORTAR, b.getLoc());
+                });
                 BookRegistration.registerBooks();
                 GTLibXEIPlugin.addItemsToHide(l -> {
                     l.add(GTAPI.get(IGTTool.class, "electric_wrench_alt_lv", GTCore.ID).getItem());
