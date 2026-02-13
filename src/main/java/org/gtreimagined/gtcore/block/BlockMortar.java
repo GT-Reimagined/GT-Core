@@ -100,6 +100,7 @@ public class BlockMortar extends BlockBasic implements IColorHandler {
                 }
                 stack.shrink(recipe.getInputItems().get(0).getItems()[0].getCount());
                 level.playSound(null, pos, SoundEvents.STONE_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+                player.causeFoodExhaustion(1f);
             }
             return InteractionResult.sidedSuccess(level.isClientSide());
         }
