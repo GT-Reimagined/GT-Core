@@ -2,6 +2,7 @@ package org.gtreimagined.gtcore.data;
 
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.material.Material;
 
 import static org.gtreimagined.gtlib.material.Element.*;
@@ -41,8 +42,10 @@ public class GTCoreMaterials {
     public static Material Vanadium = GTAPI.register(Material.class, new Material(GTCore.ID, "vanadium", 0x323232, METALLIC, V));
     public static Material Chromium = GTAPI.register(Material.class, new Material(GTCore.ID, "chromium", 0xffe6e6, SHINY, Cr));
     public static Material Manganese = GTAPI.register(Material.class, new Material(GTCore.ID, "manganese", 0xfafafa, DULL, Mn));
+    public static Material Iron = GTAPI.register(Material.class, new Material(GTCore.ID, "iron", 0xc8c8c8, METALLIC, Fe));
     public static Material Cobalt = GTAPI.register(Material.class, new Material(GTCore.ID, "cobalt", 0x5050fa, METALLIC, Co));
     public static Material Nickel = GTAPI.register(Material.class, new Material(GTCore.ID, "nickel", 0xc8c8fa, METALLIC, Ni));
+    public static Material Copper = GTAPI.register(Material.class, new Material(Ref.ID, "copper", 0xff6400, SHINY, Cu));
     public static Material Zinc = GTAPI.register(Material.class, new Material(GTCore.ID, "zinc", 0xfaf0f0, METALLIC, Zn));
     public static Material Gallium = GTAPI.register(Material.class, new Material(GTCore.ID, "gallium", 0xdcdcff, SHINY, Ga));
     public static Material Germanium = GTAPI.register(Material.class, new Material(GTCore.ID, "germanium", 0xb2a57b, SHINY, Ge));
@@ -91,6 +94,7 @@ public class GTCoreMaterials {
     public static Material Osmium = GTAPI.register(Material.class, new Material(GTCore.ID, "osmium", 0x3232ff, METALLIC, Os));
     public static Material Iridium = GTAPI.register(Material.class, new Material(GTCore.ID, "iridium", 0xf0f0f5, DULL, Ir));
     public static Material Platinum = GTAPI.register(Material.class, new Material(GTCore.ID, "platinum", 0xffffc8, SHINY, Pt));
+    public static Material Gold = GTAPI.register(Material.class, new Material(Ref.ID, "gold", 0xffe650, SHINY, Au));
     public static Material Mercury = GTAPI.register(Material.class, new Material(GTCore.ID, "mercury", 0xffdcdc, SHINY, Hg));
     public static Material Thallium = GTAPI.register(Material.class, new Material(GTCore.ID, "thallium", 0xB6B6D2, SHINY, Tl));
     public static Material Lead = GTAPI.register(Material.class, new Material(GTCore.ID, "lead", 0x3c286e, DULL, Pb));
@@ -154,6 +158,7 @@ public class GTCoreMaterials {
     public static Material TungstenCarbide = GTAPI.register(Material.class, new Material(GTCore.ID, "tungsten_carbide", 0x330066, METALLIC));
     public static Material TungstenSteel = GTAPI.register(Material.class, new Material(GTCore.ID, "tungstensteel", 0x6464a0, METALLIC));
     public static Material WroughtIron = GTAPI.register(Material.class, new Material(GTCore.ID, "wrought_iron", 0xc8b4b4, METALLIC));
+    public static Material Netherite = GTAPI.register(Material.class, new Material(Ref.ID, "netherite", 0x504650, DULL));
 
     public static Material Signalum = GTAPI.register(Material.class, new Material(GTCore.ID, "signalum", 0xFF4000, SHINY));
     public static Material Lumium = GTAPI.register(Material.class, new Material(GTCore.ID, "lumium", 0xffff50, SHINY));
@@ -179,6 +184,17 @@ public class GTCoreMaterials {
      ** Gems
      **/
     public static Material Glass = GTAPI.register(Material.class, new Material(GTCore.ID, "glass", 0xfafafa, SHINY));
+    public static Material Flint = GTAPI.register(Material.class, new Material(Ref.ID, "flint", 0x002040, FLINT));
+    public static Material Charcoal = GTAPI.register(Material.class, new Material(Ref.ID, "charcoal", 0x644646, LIGNITE));
+    public static Material Coal = GTAPI.register(Material.class, new Material(Ref.ID, "coal", 0x464646, LIGNITE)).setMassMultiplierAndDivider(2, 1);
+    public static Material Diamond = GTAPI.register(Material.class, new Material(Ref.ID, "diamond", /*0x3de0e5*/0xc8ffff, DIAMOND)).setMassMultiplierAndDivider(64, 1);
+    public static Material Emerald = GTAPI.register(Material.class, new Material(Ref.ID, "emerald", 0x50ff50, GEM_V));
+    public static Material EnderPearl = GTAPI.register(Material.class, new Material(Ref.ID, "enderpearl", 0x6cdcc8, SHINY));
+    public static Material EnderEye = GTAPI.register(Material.class, new Material(Ref.ID, "endereye", 0xa0fae6, SHINY)).setMassMultiplierAndDivider(2, 1);
+    public static Material Lapis = GTAPI.register(Material.class, new Material(Ref.ID, "lapis", 0x4646dc, LAPIS));
+    public static Material Redstone = GTAPI.register(Material.class, new Material(Ref.ID, "redstone", 0xc80000, REDSTONE));
+    public static Material Quartz = GTAPI.register(Material.class, new Material(Ref.ID, "quartz", 0xe6d2d2, NONE));
+    public static Material NetherizedDiamond = GTAPI.register(Material.class, new Material(Ref.ID, "netherized_diamond", 0x5a505a, DIAMOND));
 
     /**
      ** Plastic
@@ -203,6 +219,13 @@ public class GTCoreMaterials {
     public static Material RedGranite = GTAPI.register(Material.class, new Material(GTCore.ID, "red_granite", 0xff0080, ROUGH));
     public static Material Shale = GTAPI.register(Material.class, new Material(GTCore.ID, "shale", 0x8E8EA8, NONE));
     public static Material Slate = GTAPI.register(Material.class, new Material(GTCore.ID, "slate", 0x94979C, NONE));
+
+    //Vanilla Dusts
+    public static Material Glowstone = GTAPI.register(Material.class, new Material(Ref.ID, "glowstone", 0xffff00, SHINY));
+    public static Material Sugar = GTAPI.register(Material.class, new Material(Ref.ID, "sugar", 0xfafafa, DULL));
+    public static Material Bone = GTAPI.register(Material.class, new Material(Ref.ID, "bone", 0xb3b3b3, DULL));
+    public static Material Blaze = GTAPI.register(Material.class, new Material(Ref.ID, "blaze", 0xffc800, NONE)).setMassMultiplierAndDivider(3,2);
+    public static Material NetheriteScrap = GTAPI.register(Material.class, new Material(Ref.ID, "netherite_scrap", 0x6e505a, ROUGH));
 
     public static void init() {
     }
