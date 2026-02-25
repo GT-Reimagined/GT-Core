@@ -23,7 +23,7 @@ import org.gtreimagined.gtlib.texture.Texture;
 
 import java.util.function.Supplier;
 
-import static org.gtreimagined.gtlib.data.GTLibMaterials.Diamond;
+import static org.gtreimagined.gtcore.data.GTCoreMaterials.Diamond;
 
 
 public class GTCoreItems {

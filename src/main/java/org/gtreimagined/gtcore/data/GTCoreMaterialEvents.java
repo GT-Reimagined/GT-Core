@@ -34,7 +34,7 @@ public class GTCoreMaterialEvents {
         event.setMaterial(GTCoreMaterials.Plastic).flags(RUBBERTOOLS);
         event.setMaterial(GTCoreMaterials.Beeswax).asDust();
         event.setMaterial(GTCoreMaterials.FierySteel).asMetal().tool().toolDamage(4).toolSpeed(9).toolDurability(1024).toolQuality(4)
-                .toolEnchantments(ImmutableMap.of(Enchantments.FIRE_ASPECT, 2)).handleMaterial(GTLibMaterials.Blaze)
+                .toolEnchantments(ImmutableMap.of(Enchantments.FIRE_ASPECT, 2)).handleMaterial(GTCoreMaterials.Blaze)
                 .blacklistToolTypes(PICKAXE, SWORD).build();
         event.setMaterial(GTCoreMaterials.Knightmetal).asMetal().tool().toolDamage(3).toolSpeed(8).toolDurability(512).toolQuality(3)
                 .blacklistToolTypes(AXE, PICKAXE, SWORD).build();

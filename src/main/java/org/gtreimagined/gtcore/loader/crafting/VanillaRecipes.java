@@ -33,9 +33,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import static com.google.common.collect.ImmutableMap.of;
-import static org.gtreimagined.gtcore.data.GTCoreMaterials.Beeswax;
-import static org.gtreimagined.gtlib.data.GTLibMaterials.Gold;
-import static org.gtreimagined.gtlib.data.GTLibMaterials.Iron;
+import static org.gtreimagined.gtcore.data.GTCoreMaterials.*;
 import static org.gtreimagined.gtlib.data.GTMaterialTypes.*;
 import static org.gtreimagined.gtlib.data.GTTools.*;
 
