@@ -170,7 +170,7 @@ public class GTCoreMaterialEvents {
         event.setMaterial(GTCoreMaterials.Charcoal).asDust(GTMaterialTypes.BLOCK);
         event.setMaterial(GTCoreMaterials.Coal).asGemBasic(false).asOre(0, 2, true, GTMaterialTypes.ORE_STONE);
         event.setMaterial(GTCoreMaterials.Diamond).asGemBasic(false, PICKAXE_HEAD, AXE_HEAD, SHOVEL_HEAD, HOE_HEAD, SWORD_BLADE).asOre(3, 7, true)
-                .tool().toolDamage(DIAMOND.getAttackDamageBonus()).toolSpeed(DIAMOND.getSpeed()).toolDurability(DIAMOND.getUses()).toolQuality(DIAMOND.getLevel()).build();
+                .tool().toolDamage(DIAMOND.getAttackDamageBonus()).toolSpeed(DIAMOND.getSpeed()).toolDurability(1280).toolQuality(DIAMOND.getLevel()).build();
         event.setMaterial(GTCoreMaterials.Emerald).asGemBasic(false).asOre(3, 7, true).harvestLevel(2);
         event.setMaterial(GTCoreMaterials.EnderPearl).asGemBasic(false);
         event.setMaterial(GTCoreMaterials.EnderEye).asGemBasic(false);
@@ -180,7 +180,7 @@ public class GTCoreMaterialEvents {
         event.setMaterial(GTCoreMaterials.Netherite).asMetal(2246, PLATE, ROD);
         //.addTools(3.0F, 10, 500, NETHERITE.getLevel(), of(Enchantments.FIRE_ASPECT, 3)).addArmor(new int[]{0, 1, 1, 0}, 0.5F, 0.1F, 20);
         event.setMaterial(GTCoreMaterials.NetherizedDiamond).asGemBasic(false)
-                .tool().toolDamage(4).toolSpeed(12).toolDurability(NETHERITE.getUses()).toolQuality(NETHERITE.getLevel()).toolEnchantments(of(Enchantments.FIRE_ASPECT, 3, Enchantments.SHARPNESS, 4)).build()
+                .tool().toolDamage(4).toolSpeed(12).toolDurability(2560).toolQuality(NETHERITE.getLevel()).toolEnchantments(of(Enchantments.FIRE_ASPECT, 3, Enchantments.SHARPNESS, 4)).build()
                 .addArmor(new int[]{1, 1, 2, 1}, 3.0F, 0.1F, 37, of(Enchantments.ALL_DAMAGE_PROTECTION, 4));
         event.setMaterial(GTCoreMaterials.NetheriteScrap).asDust(GTMaterialTypes.CRUSHED_ORE, GTMaterialTypes.RAW_ORE);
 
