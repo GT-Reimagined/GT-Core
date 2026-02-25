@@ -10,7 +10,8 @@
     "MixinHoneycombItem",
     "MixinMerchantOffer",
     "NearestAttackableTargetMixin",
-    "RepairItemRecipeMixin"
+    "RepairItemRecipeMixin",
+    "TiersMixin"
   ],
   "client": [
     "AbstractClientPlayerEntityMixin"
