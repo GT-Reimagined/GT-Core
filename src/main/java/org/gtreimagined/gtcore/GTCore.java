@@ -36,6 +36,7 @@ import org.gtreimagined.gtcore.data.GTCoreCovers;
 import org.gtreimagined.gtcore.data.GTCoreData;
 import org.gtreimagined.gtcore.data.GTCoreFluids;
 import org.gtreimagined.gtcore.data.GTCoreItems;
+import org.gtreimagined.gtcore.data.GTCoreMaterialEvents;
 import org.gtreimagined.gtcore.data.GTCoreMaterials;
 import org.gtreimagined.gtcore.data.GTCoreRecipeMaps;
 import org.gtreimagined.gtcore.data.GTCoreTools;
@@ -311,54 +312,6 @@ public class GTCore extends GTMod {
 
     @Override
     public void onMaterialEvent(MaterialEvent event) {
-        event.setMaterial(GTCoreMaterials.Rubber).asSolid(295, PLATE, RING);
-        event.setMaterial(GTCoreMaterials.Plastic).flags(RUBBERTOOLS);
-        event.setMaterial(GTCoreMaterials.Beeswax).asDust();
-        event.setMaterial(GTCoreMaterials.FierySteel).asMetal().tool().toolDamage(4).toolSpeed(9).toolDurability(1024).toolQuality(4)
-                .toolEnchantments(ImmutableMap.of(Enchantments.FIRE_ASPECT, 2)).handleMaterial(GTLibMaterials.Blaze)
-                .blacklistToolTypes(PICKAXE, SWORD).build();
-        event.setMaterial(GTCoreMaterials.Knightmetal).asMetal().tool().toolDamage(3).toolSpeed(8).toolDurability(512).toolQuality(3)
-                .blacklistToolTypes(AXE, PICKAXE, SWORD).build();
-        event.setMaterial(GTCoreMaterials.Ironwood).asMetal(WOOD).tool().toolDamage(2).toolSpeed(6.5f).toolDurability(512).toolQuality(2)
-                .toolEnchantments(ImmutableMap.of(Enchantments.KNOCKBACK, 1))
-                .blacklistToolTypes(AXE, PICKAXE, SHOVEL, SWORD, HOE).build();
-        event.setMaterial(GTCoreMaterials.Steeleaf).asMetal().tool().toolDamage(4).toolSpeed(8).toolDurability(131).toolQuality(3)
-                .toolEnchantments(ImmutableMap.of(Enchantments.MOB_LOOTING, 2, Enchantments.BLOCK_FORTUNE, 2))
-                .blacklistToolTypes(AXE, PICKAXE, SHOVEL, SWORD, HOE).build();
-        if (GTAPI.isModLoaded("twilightforest")){
-            INGOT.replacement(GTCoreMaterials.Ironwood, () -> RegistryUtils.getItemFromID("twilightforest", "ironwood_ingot"));
-            BLOCK.replacement(GTCoreMaterials.Ironwood, () -> RegistryUtils.getItemFromID("twilightforest", "ironwood_block"));
-            INGOT.replacement(GTCoreMaterials.Knightmetal, () -> RegistryUtils.getItemFromID("twilightforest", "knightmetal_ingot"));
-            BLOCK.replacement(GTCoreMaterials.Knightmetal, () -> RegistryUtils.getItemFromID("twilightforest", "knightmetal_block"));
-            INGOT.replacement(GTCoreMaterials.Steeleaf, () -> RegistryUtils.getItemFromID("twilightforest", "steeleaf_ingot"));
-            BLOCK.replacement(GTCoreMaterials.Steeleaf, () -> RegistryUtils.getItemFromID("twilightforest", "steeleaf_block"));
-            INGOT.replacement(GTCoreMaterials.FierySteel, () -> RegistryUtils.getItemFromID("twilightforest", "fiery_ingot"));
-            BLOCK.replacement(GTCoreMaterials.FierySteel, () -> RegistryUtils.getItemFromID("twilightforest", "fiery_block"));
-        }
-        event.setMaterial(GTCoreMaterials.Signalum).asMetal(1353).mats(of(Copper, 1, Silver, 2, RedAlloy, 5));
-        event.setMaterial(GTCoreMaterials.Lumium).asMetal(593).mats(of(Tin, 3, Silver, 1, Glowstone, 4));
-        event.setMaterial(GTCoreMaterials.Enderium).asMetal(1071).mats(of(Tin, 2, Silver, 1, Platinum, 1, EnderPearl, 4));
-        if (GTAPI.isModLoaded("thermal")){
-            INGOT.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_ingot"));
-            DUST.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_dust"));
-            NUGGET.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_nugget"));
-            BLOCK.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_block"));
-            GEAR.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_gear"));
-            PLATE.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_plate"));
-            INGOT.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_ingot"));
-            DUST.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_dust"));
-            NUGGET.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_nugget"));
-            BLOCK.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_block"));
-            GEAR.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_gear"));
-            PLATE.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_plate"));
-            INGOT.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_ingot"));
-            DUST.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_dust"));
-            NUGGET.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_nugget"));
-            BLOCK.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_block"));
-            GEAR.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_gear"));
-            PLATE.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_plate"));
-        }
-        GTCoreBlocks.initItemBarrels();
-        Guis.init();
+        GTCoreMaterialEvents.onMaterialEvent(event);
     }
 }
