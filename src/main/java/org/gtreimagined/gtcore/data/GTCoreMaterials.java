@@ -139,6 +139,7 @@ public class GTCoreMaterials {
      ** Metals
      **/
 
+    public static Material BlueAlloy = GTAPI.register(Material.class, new Material(GTCore.ID, "blue_alloy", 0x64B4FF, DULL)).setMassMultiplierAndDivider(5, 4);
     public static Material Brass = GTAPI.register(Material.class, new Material(GTCore.ID, "brass", 0xffb400, METALLIC));
     public static Material Bronze = GTAPI.register(Material.class, new Material(GTCore.ID, "bronze", 0xff8000, METALLIC));
     public static Material Cupronickel = GTAPI.register(Material.class, new Material(GTCore.ID, "cupronickel", 0xe39680, METALLIC));
@@ -150,6 +151,7 @@ public class GTCoreMaterials {
     public static Material NeodymiumMagnetic = GTAPI.register(Material.class, new Material(GTCore.ID, "magnetic_neodymium", 0x646464, MAGNETIC)).setMassMultiplierAndDivider(51, 50);
     public static Material Nichrome = GTAPI.register(Material.class, new Material(GTCore.ID, "nichrome", 0xcdcef6, METALLIC));
     public static Material Osmiridium = GTAPI.register(Material.class, new Material(GTCore.ID, "osmiridium", 0x6464ff, METALLIC));
+    public static Material PurpleAlloy = GTAPI.register(Material.class, new Material(GTCore.ID, "purple_alloy", 0xff78ff, DULL));
     public static Material RedAlloy = GTAPI.register(Material.class, new Material(GTCore.ID, "red_alloy", 0xc80000, DULL)).setMassMultiplierAndDivider(5, 4);
     public static Material SolderingAlloy = GTAPI.register(Material.class, new Material(GTCore.ID, "soldering_alloy", 0xdcdce6, DULL));
     public static Material Steel = GTAPI.register(Material.class, new Material(GTCore.ID, "steel", 0x808080, METALLIC)).setMassMultiplierAndDivider(51, 50);
