@@ -44,6 +44,7 @@ public class GTCoreMaterialEvents {
         event.setMaterial(GTCoreMaterials.Steeleaf).asMetal().tool().toolDamage(4).toolSpeed(8).toolDurability(131).toolQuality(3)
                 .toolEnchantments(ImmutableMap.of(Enchantments.MOB_LOOTING, 2, Enchantments.BLOCK_FORTUNE, 2))
                 .blacklistToolTypes(AXE, PICKAXE, SHOVEL, SWORD, HOE).build();
+        event.setMaterial(Teslatite).asOre(1, 5, true);
         if (GTAPI.isModLoaded("twilightforest")){
             INGOT.replacement(GTCoreMaterials.Ironwood, () -> RegistryUtils.getItemFromID("twilightforest", "ironwood_ingot"));
             BLOCK.replacement(GTCoreMaterials.Ironwood, () -> RegistryUtils.getItemFromID("twilightforest", "ironwood_block"));
@@ -57,26 +58,7 @@ public class GTCoreMaterialEvents {
         event.setMaterial(GTCoreMaterials.Signalum).asMetal(1353).mats(of(Copper, 1, Silver, 2, RedAlloy, 5));
         event.setMaterial(GTCoreMaterials.Lumium).asMetal(593).mats(of(Tin, 3, Silver, 1, Glowstone, 4));
         event.setMaterial(GTCoreMaterials.Enderium).asMetal(1071).mats(of(Tin, 2, Silver, 1, Platinum, 1, EnderPearl, 4));
-        if (GTAPI.isModLoaded("thermal")){
-            INGOT.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_ingot"));
-            DUST.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_dust"));
-            NUGGET.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_nugget"));
-            BLOCK.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_block"));
-            GEAR.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_gear"));
-            PLATE.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_plate"));
-            INGOT.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_ingot"));
-            DUST.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_dust"));
-            NUGGET.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_nugget"));
-            BLOCK.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_block"));
-            GEAR.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_gear"));
-            PLATE.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_plate"));
-            INGOT.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_ingot"));
-            DUST.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_dust"));
-            NUGGET.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_nugget"));
-            BLOCK.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_block"));
-            GEAR.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_gear"));
-            PLATE.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_plate"));
-        }
+
         GTCoreBlocks.initItemBarrels();
         Guis.init();
     }
@@ -141,6 +123,31 @@ public class GTCoreMaterialEvents {
         ORE.replacement(GTCoreMaterials.Diamond, VanillaStoneTypes.STONE, () -> Items.DIAMOND_ORE);
         ORE.replacement(GTCoreMaterials.Diamond, VanillaStoneTypes.DEEPSLATE, () -> Items.DEEPSLATE_DIAMOND_ORE);
         ORE.replacement(GTCoreMaterials.Quartz, VanillaStoneTypes.NETHERRACK, () -> Items.NETHER_QUARTZ_ORE);
+        if (GTAPI.isModLoaded("thermal")){
+            INGOT.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_ingot"));
+            DUST.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_dust"));
+            NUGGET.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_nugget"));
+            BLOCK.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_block"));
+            GEAR.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_gear"));
+            PLATE.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_plate"));
+            INGOT.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_ingot"));
+            DUST.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_dust"));
+            NUGGET.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_nugget"));
+            BLOCK.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_block"));
+            GEAR.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_gear"));
+            PLATE.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_plate"));
+            INGOT.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_ingot"));
+            DUST.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_dust"));
+            NUGGET.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_nugget"));
+            BLOCK.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_block"));
+            GEAR.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_gear"));
+            PLATE.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_plate"));
+        }
+        if (GTAPI.isModLoaded("bluepower")){
+            DUST.replacement(Teslatite, () -> RegistryUtils.getItemFromID("bluepower", "teslatite"));
+            ORE.replacement(Teslatite, VanillaStoneTypes.STONE, () -> RegistryUtils.getItemFromID("bluepower", "teslatite_ore"));
+            ORE.replacement(Teslatite, VanillaStoneTypes.DEEPSLATE, () -> RegistryUtils.getItemFromID("bluepower", "teslatite_deepslate"));
+        }
     }
 
     public static void vanillaMaterials(MaterialEvent<?> event) {

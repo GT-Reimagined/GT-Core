@@ -192,9 +192,14 @@ public class GTCoreMaterials {
     public static Material EnderPearl = GTAPI.register(Material.class, new Material(Ref.ID, "enderpearl", 0x6cdcc8, SHINY));
     public static Material EnderEye = GTAPI.register(Material.class, new Material(Ref.ID, "endereye", 0xa0fae6, SHINY)).setMassMultiplierAndDivider(2, 1);
     public static Material Lapis = GTAPI.register(Material.class, new Material(Ref.ID, "lapis", 0x4646dc, LAPIS));
-    public static Material Redstone = GTAPI.register(Material.class, new Material(Ref.ID, "redstone", 0xc80000, REDSTONE));
     public static Material Quartz = GTAPI.register(Material.class, new Material(Ref.ID, "quartz", 0xe6d2d2, NONE));
     public static Material NetherizedDiamond = GTAPI.register(Material.class, new Material(Ref.ID, "netherized_diamond", 0x5a505a, DIAMOND));
+
+    /**
+     * Redstone
+     */
+    public static Material Redstone = GTAPI.register(Material.class, new Material(Ref.ID, "redstone", 0xc80000, REDSTONE));
+    public static Material Teslatite = GTAPI.register(Material.class, new Material(Ref.ID, "teslatite", 0x3CB4C8, REDSTONE));
 
     /**
      ** Plastic
