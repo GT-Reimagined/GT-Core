@@ -144,7 +144,7 @@ public class GTCoreMaterialEvents {
             PLATE.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_plate"));
         }
         if (GTAPI.isModLoaded("bluepower")){
-            DUST.replacement(Teslatite, () -> RegistryUtils.getItemFromID("bluepower", "teslatite"));
+            DUST.replacement(Teslatite, () -> RegistryUtils.getItemFromID("bluepower", "teslatite_dust"));
             ORE.replacement(Teslatite, VanillaStoneTypes.STONE, () -> RegistryUtils.getItemFromID("bluepower", "teslatite_ore"));
             ORE.replacement(Teslatite, VanillaStoneTypes.DEEPSLATE, () -> RegistryUtils.getItemFromID("bluepower", "teslatite_deepslate"));
         }
