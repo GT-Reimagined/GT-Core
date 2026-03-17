@@ -37,11 +37,11 @@ public class WorkbenchMachine extends ChargingMachine{
         this.add(SlotTypes.BLUEPRINT, 136, 28);
         this.add(SlotTypes.EXPORT, 154, 28);
         this.add(SlotTypes.PARK, 154, 64);
-        this.addGuiCallback(t -> {
+        /*this.addGuiCallback(t -> {
             t.addButton(136, 46, new ButtonOverlay(GTCore.ID, "to_inv", 18, 18));
             t.addButton(154, 46, new ButtonOverlay(GTCore.ID, "to_player", 18, 18));
             t.addWidget(SlotWidget.build(new SlotData<>(STORAGE, 136, 64, new ResourceLocation(GTCore.ID, "textures/gui/slots/crafting_output.png"))));
-        });
+        });*/
         this.removeFlags(COVERABLE);
         GTAPI.register(WorkbenchMachine.class, this);
     }

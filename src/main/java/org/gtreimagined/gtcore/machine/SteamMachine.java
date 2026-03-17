@@ -30,7 +30,7 @@ public class SteamMachine extends Machine<SteamMachine> {
         addFlags(BASIC, STEAM, COVERABLE);
         setGUI(Data.BASIC_MENU_HANDLER);
         setClientTicking();
-        getGuiData().getMachineData().setMachineStateLocation(BRONZE, "bronze_machine_state").setMachineStateLocation(STEEL, "steel_machine_state");
+        /*getGuiData().getMachineData().setMachineStateLocation(BRONZE, "bronze_machine_state").setMachineStateLocation(STEEL, "steel_machine_state");
         String suffix = id.contains("furnace") || id.contains("smelter") || id.contains("boiler") ? "default" : id.replace("steam_", "");
         getGuiData().getMachineData().setProgressLocation(BRONZE, "bronze_" + suffix).setProgressLocation(STEEL, "steel_" + suffix);
         String bSuffix = id.contains("macerator") || id.contains("forge_hammer") ? id.replace("steam", "") : "";
@@ -38,7 +38,7 @@ public class SteamMachine extends Machine<SteamMachine> {
             getGuiData().setBackgroundTexture(BRONZE, id + "_bronze").setBackgroundTexture(STEEL, id + "_steel");
         } else {
             getGuiData().setBackgroundTexture(BRONZE, "machine_bronze" + bSuffix).setBackgroundTexture(STEEL, "machine_steel" + bSuffix);
-        }
+        }*/
     }
 
     public int getDurationMultiplier() {
@@ -70,7 +70,7 @@ public class SteamMachine extends Machine<SteamMachine> {
         });
     }
 
-    @Override
+    /*@Override
     public Machine<SteamMachine> add(ISlotProvider<?> provider) {
         List<SlotData<?>> list = provider.getAnySlots();
         for (SlotData<?> slot : list) {
@@ -87,5 +87,5 @@ public class SteamMachine extends Machine<SteamMachine> {
         add(BRONZE, type, x, y, new ResourceLocation(domain, "bronze_"+suffix));
         add(STEEL, type, x, y, new ResourceLocation(domain, "steel_"+suffix));
         return this;
-    }
+    }*/
 }

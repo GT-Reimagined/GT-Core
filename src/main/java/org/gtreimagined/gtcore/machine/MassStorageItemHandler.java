@@ -15,8 +15,8 @@ public class MassStorageItemHandler extends MachineItemHandler<BlockEntityMassSt
 
     public MassStorageItemHandler(BlockEntityMassStorage tile) {
         super(tile);
-        inventories.put(SlotType.DISPLAY, new FakeTrackedItemHandler<>(tile, SlotType.DISPLAY, 1, SlotType.DISPLAY.output, SlotType.DISPLAY.input, SlotType.DISPLAY.tester));
-        inventories.put(SlotTypes.UNLIMITED, new InfiniteSlotTrackedHandler<>(tile, SlotTypes.UNLIMITED, 1, SlotTypes.UNLIMITED.output, SlotTypes.UNLIMITED.input, SlotTypes.UNLIMITED.tester, ((MassStorageMachine)tile.getMachineType()).getCapacity()));
+        inventories.put(SlotType.DISPLAY, new FakeTrackedItemHandler<>(tile, SlotType.DISPLAY, 1, SlotType.DISPLAY.isOutput(), SlotType.DISPLAY.isInput(), SlotType.DISPLAY.getTester()));
+        inventories.put(SlotTypes.UNLIMITED, new InfiniteSlotTrackedHandler<>(tile, SlotTypes.UNLIMITED, 1, SlotTypes.UNLIMITED.isOutput(), SlotTypes.UNLIMITED.isInput(), SlotTypes.UNLIMITED.getTester(), ((MassStorageMachine)tile.getMachineType()).getCapacity()));
     }
 
     /*public void drawInfo(MatrixStack stack, FontRenderer renderer, int left, int top) {

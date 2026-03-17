@@ -15,7 +15,7 @@ public class HopperItemHandler extends MachineItemHandler<BlockEntityGTHopper> {
     protected TrackedItemHandler<BlockEntityGTHopper> createTrackedHandler(SlotType<?> type, BlockEntityGTHopper tile) {
         if (type == SlotType.STORAGE) {
             int count = tile.getMachineType().getCount(tile.getMachineTier(), SlotType.STORAGE);
-            return new LimitedOutputTrackedHandler<>(tile, SlotType.STORAGE, count, type.output, type.input, type.tester);
+            return new LimitedOutputTrackedHandler<>(tile, SlotType.STORAGE, count, type.isOutput(), type.isInput(), type.getTester());
         }
         return super.createTrackedHandler(type, tile);
     }
