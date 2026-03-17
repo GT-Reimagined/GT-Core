@@ -6,6 +6,7 @@ import org.gtreimagined.gtcore.mui.GTCoreGuiTextures;
 import org.gtreimagined.gtlib.gui.GuiProperties;
 import org.gtreimagined.gtlib.gui.SlotData;
 import org.gtreimagined.gtlib.gui.slot.ISlotProvider;
+import org.gtreimagined.gtlib.machine.IPanelFunction;
 
 import static org.gtreimagined.gtlib.gui.SlotType.*;
 
@@ -33,6 +34,11 @@ public class Guis {
                 GTCoreBlocks.ENDER_GARBAGE_BIN.add("", new SlotData<>(STORAGE, 62 + (x * 18), 17 + (y * 18), GTCoreGuiTextures.BLANK_SLOT, null));
             }
         }
+        IPanelFunction oldFunction = GTCoreBlocks.ENDER_GARBAGE_BIN.getBackgroundFunction();;
+        GTCoreBlocks.ENDER_GARBAGE_BIN.setBackgroundFunction((modularPanel, machine, guiData, syncManager, settings) -> {
+            oldFunction.modifyPanel(modularPanel, machine, guiData, syncManager, settings);
+            modularPanel.child(GTCoreGuiTextures.TRASH_CAN.asWidget().pos(56, 4).size(64, 68));
+        });
         GTCoreBlocks.ENDER_GARBAGE_BIN.getGuiProperties().setTheme("mui:test_theme");
     }
 }
