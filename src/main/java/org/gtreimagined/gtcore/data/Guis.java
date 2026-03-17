@@ -33,7 +33,6 @@ public class Guis {
                 GTCoreBlocks.ENDER_GARBAGE_BIN.add("", new SlotData<>(STORAGE, 62 + (x * 18), 17 + (y * 18), GTCoreGuiTextures.BLANK_SLOT, null));
             }
         }
-        GTCoreBlocks.ENDER_GARBAGE_BIN.getGuiProperties().setBackgroundTexture("ender_garbage_bin");
-
+        GTCoreBlocks.ENDER_GARBAGE_BIN.getGuiProperties().setTheme("mui:test_theme");
     }
 }

@@ -1,13 +1,18 @@
 package org.gtreimagined.gtcore.data;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.gui.InventoryWorkbench;
 import org.gtreimagined.gtcore.gui.slots.SlotBlueprint;
 import org.gtreimagined.gtcore.gui.slots.SlotCrafting;
 import org.gtreimagined.gtcore.gui.slots.SlotUnlimited;
+import org.gtreimagined.gtcore.gui.slots.SlotWorkTableResult;
 import org.gtreimagined.gtcore.mui.GTCoreGuiTextures;
+import org.gtreimagined.gtlib.blockentity.BlockEntityMachine;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.gui.slot.AbstractSlot;
 import org.gtreimagined.gtlib.tool.IGTTool;
@@ -23,7 +28,7 @@ public class SlotTypes {
         return true;
     }).overlay(GTCoreGuiTextures.ELECTRIC_TOOL_SLOT_OVERLAY).build();
     public static SlotType<SlotCrafting> CRAFTING = SlotType.<SlotCrafting>builder().id("crafting").slotSupplier((type, gui, item, i, d) -> new SlotCrafting(type, gui, item.getOrDefault(type, new EmptyHandler()), i, d.getX(), d.getY()))
-            .input(false).build();
+            .output(false).build();
     public static SlotType<AbstractSlot<?>> PARK = SlotType.<AbstractSlot<?>>builder().id("park")
             .slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i, d.getX(), d.getY()))
             .output(false).overlay(GTCoreGuiTextures.PARK_SLOT_OVERLAY).build();
@@ -34,6 +39,12 @@ public class SlotTypes {
     public static SlotType<AbstractSlot<?>> EXPORT = SlotType.<AbstractSlot<?>>builder().id("export")
             .slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i, d.getX(), d.getY()))
             .overlay(GTCoreGuiTextures.EXPORT_SLOT_OVERLAY).build();
+    public static SlotType<SlotWorkTableResult> CRAFTING_RESULT = SlotType.<SlotWorkTableResult>builder().id("crafting_result").slotSupplier((type, tile, slots, index, data) -> {
+        if (tile instanceof BlockEntityMachine<?> machine) {
+            return new SlotWorkTableResult(machine.itemHandler.map(m -> m).orElse(null), slots.getOrDefault(type, new EmptyHandler()), (IItemHandlerModifiable) slots.getOrDefault(CRAFTING, new EmptyHandler()), index, data.getX(), data.getY());
+        }
+        return null;
+    }).input(false).overlay(GTCoreGuiTextures.CRAFTING_OUTPUT_SLOT_OVERLAY).build();
 
     public static SlotType<SlotUnlimited> UNLIMITED = SlotType.<SlotUnlimited>builder().id("unlimited")
             .slotSupplier((type, gui, item, i, d) -> new SlotUnlimited(type, gui, item.getOrDefault(type, new EmptyHandler()), i, d.getX(), d.getY()))

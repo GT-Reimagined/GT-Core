@@ -37,7 +37,7 @@ public class ContainerWorkbench<T extends BlockEntityMaterial<T>> extends Contai
     protected void addSlots(BlockEntityMachine<?> tile) {
         craftResult =  new ResultContainer();
         craftingGrid = new InventoryWorkbench(this, tile.itemHandler.map(m -> m).orElse(null), 3, 3);
-        addSlot(new SlotWorkTableResult(tile.itemHandler.map(m -> m).orElse(null), playerInv.player, craftingGrid, craftResult, 0, 136, 64));
+        //addSlot(new SlotWorkTableResult(tile.itemHandler.map(m -> m).orElse(null), playerInv.player, craftingGrid, craftResult, 0, 136, 64));
         Object2IntMap<String> slotIndexMap = new Object2IntOpenHashMap<>();
         int i = 1;
         for (SlotData slot : tile.getMachineType().getSlots(tile.getMachineTier())) {

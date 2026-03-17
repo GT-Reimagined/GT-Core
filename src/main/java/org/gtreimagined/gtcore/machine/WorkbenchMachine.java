@@ -1,10 +1,13 @@
 package org.gtreimagined.gtcore.machine;
 
+import brachy.modularui.api.widget.Interactable.Result;
+import brachy.modularui.widgets.ButtonWidget;
 import net.minecraft.resources.ResourceLocation;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityWorkbench;
 import org.gtreimagined.gtcore.data.MenuHandlers;
 import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.mui.GTCoreGuiTextures;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.gui.ButtonOverlay;
 import org.gtreimagined.gtlib.gui.SlotData;
@@ -34,14 +37,27 @@ public class WorkbenchMachine extends ChargingMachine{
         for (int x = 0; x < 5; x++){
             this.add(charge ? SlotTypes.TOOL_CHARGE : SlotTypes.TOOLS, 82 + (x * 18), 8);
         }
+        this.add(SlotTypes.CRAFTING_RESULT, 136, 64);
         this.add(SlotTypes.BLUEPRINT, 136, 28);
         this.add(SlotTypes.EXPORT, 154, 28);
         this.add(SlotTypes.PARK, 154, 64);
-        /*this.addGuiCallback(t -> {
-            t.addButton(136, 46, new ButtonOverlay(GTCore.ID, "to_inv", 18, 18));
-            t.addButton(154, 46, new ButtonOverlay(GTCore.ID, "to_player", 18, 18));
-            t.addWidget(SlotWidget.build(new SlotData<>(STORAGE, 136, 64, new ResourceLocation(GTCore.ID, "textures/gui/slots/crafting_output.png"))));
-        });*/
+        this.getGuiFunctions().add((modularPanel, machine, guiData, syncManager, settings) -> {
+            modularPanel.child(new ButtonWidget<>()
+                    .onMousePressed((x, y, mouseButton) -> {
+                        //TODO
+                        return true;
+                    })
+                    .overlay(GTCoreGuiTextures.TO_INV_BUTTON)
+                    .pos(136, 46));
+            modularPanel.child(new ButtonWidget<>()
+                    .onMousePressed((x, y, mouseButton) -> {
+                        //TODO
+                        return true;
+                    })
+                    .overlay(GTCoreGuiTextures.TO_PLAYER_BUTTON)
+                    .pos(154, 46));
+        });
+        this.getGuiProperties().setHasGTIcon(false);
         this.removeFlags(COVERABLE);
         GTAPI.register(WorkbenchMachine.class, this);
     }
