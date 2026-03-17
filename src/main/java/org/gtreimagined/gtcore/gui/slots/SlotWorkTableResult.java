@@ -1,26 +1,42 @@
 package org.gtreimagined.gtcore.gui.slots;
 
+import brachy.modularui.widgets.slot.CraftingContainerWrapper;
+import brachy.modularui.widgets.slot.ModularCraftingSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.ResultSlot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.jetbrains.annotations.Nullable;
 
-public class SlotWorkTableResult extends ResultSlot {
-    private final CraftingContainer craftMatrix;
+public class SlotWorkTableResult extends ModularCraftingSlot {
+    private @Nullable CraftingContainer craftMatrix;
+    private final IItemHandlerModifiable craftingInventory;
     private final MachineItemHandler<?> projectTable;
-    public SlotWorkTableResult(MachineItemHandler<?> table, Player player, CraftingContainer craftingInventory, ResultContainer result, int slotIndex, int xPosition, int yPosition) {
-        super(player, craftingInventory, result, slotIndex, xPosition, yPosition);
+    public SlotWorkTableResult(MachineItemHandler<?> table, IItemHandler handler, IItemHandlerModifiable craftingInventory, int slotIndex, int xPosition, int yPosition) {
+        super(handler, slotIndex);
+        this.craftingInventory = craftingInventory;
         projectTable = table;
-        craftMatrix = craftingInventory;
     }
 
     @Override
     public void onQuickCraft(ItemStack p_75220_1_, ItemStack p_75220_2_) {
 
     }
+
+    //requires unfinished branch of mui
+    /*@Override
+    public CraftingContainerWrapper getCraftSlots() {
+        if (craftMatrix == null) {
+            craftMatrix = new CraftingContainerWrapper(this, 3,3, craftingInventory, 0);
+            ((CraftingContainerWrapper)craftMatrix).notifyContainer();
+        }
+        return (CraftingContainerWrapper) craftMatrix;
+    }*/
 
     @Override
     public void onTake(Player thePlayer, ItemStack stack) {
@@ -31,10 +47,10 @@ public class SlotWorkTableResult extends ResultSlot {
     private boolean extractedFromTable(){
         boolean remaining = true;
         for (int i = 0; i < 10; i++) {
-            ItemStack itemStack = craftMatrix.getItem(i);
+            ItemStack itemStack = craftingInventory.getStackInSlot(i);
             if (itemStack.getCount() == 1 && itemStack.getMaxStackSize() > 1) {
                 extractFromTable(itemStack);
-                craftMatrix.setItem(i, itemStack);
+                craftingInventory.setStackInSlot(i, itemStack);
             }
             if (itemStack.getCount() == 1) {
                 remaining  =  false;
