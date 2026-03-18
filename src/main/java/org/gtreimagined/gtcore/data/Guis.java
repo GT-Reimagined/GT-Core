@@ -39,6 +39,5 @@ public class Guis {
             oldFunction.modifyPanel(modularPanel, machine, guiData, syncManager, settings);
             modularPanel.child(GTCoreGuiTextures.TRASH_CAN.asWidget().pos(56, 4).size(64, 68));
         });
-        GTCoreBlocks.ENDER_GARBAGE_BIN.getGuiProperties().setTheme("mui:test_theme");
     }
 }
