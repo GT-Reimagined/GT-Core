@@ -47,6 +47,7 @@ public class ChestMachine extends MaterialMachine {
                 }
             }
         }
+        getGuiProperties().setHasGTIcon(false);
         GTAPI.register(ChestMachine.class, this);
     }
 }
