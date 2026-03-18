@@ -36,5 +36,7 @@ public class GTCoreGuiTextures {
 
     public static final UITexture TO_INV_BUTTON = UITexture.builder().location(GTCore.ID, "textures/gui/button/to_inv.png").defaultColorType().build();
     public static final UITexture TO_PLAYER_BUTTON = UITexture.builder().location(GTCore.ID, "textures/gui/button/to_player.png").defaultColorType().build();
+    public static final UITexture BRONZE_MACHINE_STATE = UITexture.builder().location(GTCore.ID, "textures/gui/icons/bronze_machine_state.png").imageSize(36, 18).build();
+    public static final UITexture STEEL_MACHINE_STATE = UITexture.builder().location(GTCore.ID, "textures/gui/icons/steel_machine_state.png").imageSize(36, 18).build();
 
 }

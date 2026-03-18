@@ -2,6 +2,8 @@ package org.gtreimagined.gtcore.machine;
 
 import net.minecraft.resources.ResourceLocation;
 import org.gtreimagined.gtcore.blockentity.BlockEntitySteamMachine;
+import org.gtreimagined.gtcore.mui.GTCoreGuiTextures;
+import org.gtreimagined.gtcore.mui.GTCoreThemes;
 import org.gtreimagined.gtlib.Data;
 import org.gtreimagined.gtlib.gui.SlotData;
 import org.gtreimagined.gtlib.gui.SlotType;
@@ -11,6 +13,7 @@ import org.gtreimagined.gtlib.gui.widget.MachineStateWidget;
 import org.gtreimagined.gtlib.gui.widget.ProgressWidget;
 import org.gtreimagined.gtlib.gui.widget.TextWidget;
 import org.gtreimagined.gtlib.gui.widget.WidgetSupplier;
+import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.machine.types.Machine;
 
 import java.util.List;
@@ -30,15 +33,8 @@ public class SteamMachine extends Machine<SteamMachine> {
         addFlags(BASIC, STEAM, COVERABLE);
         setGUI(Data.BASIC_MENU_HANDLER);
         setClientTicking();
-        /*getGuiData().getMachineData().setMachineStateLocation(BRONZE, "bronze_machine_state").setMachineStateLocation(STEEL, "steel_machine_state");
-        String suffix = id.contains("furnace") || id.contains("smelter") || id.contains("boiler") ? "default" : id.replace("steam_", "");
-        getGuiData().getMachineData().setProgressLocation(BRONZE, "bronze_" + suffix).setProgressLocation(STEEL, "steel_" + suffix);
-        String bSuffix = id.contains("macerator") || id.contains("forge_hammer") ? id.replace("steam", "") : "";
-        if (id.contains("boiler")){
-            getGuiData().setBackgroundTexture(BRONZE, id + "_bronze").setBackgroundTexture(STEEL, id + "_steel");
-        } else {
-            getGuiData().setBackgroundTexture(BRONZE, "machine_bronze" + bSuffix).setBackgroundTexture(STEEL, "machine_steel" + bSuffix);
-        }*/
+        getGuiProperties().setTheme(BRONZE, GTCoreThemes.BRONZE_THEME_ID).setTheme(STEEL, GTCoreThemes.STEEL_THEME_ID);
+        getGuiProperties().getMachineData().setMachineStateLocation(BRONZE, GTCoreGuiTextures.BRONZE_MACHINE_STATE).setMachineStateLocation(STEEL, GTCoreGuiTextures.STEEL_MACHINE_STATE);
     }
 
     public int getDurationMultiplier() {
@@ -69,23 +65,4 @@ public class SteamMachine extends Machine<SteamMachine> {
             }
         });
     }
-
-    /*@Override
-    public Machine<SteamMachine> add(ISlotProvider<?> provider) {
-        List<SlotData<?>> list = provider.getAnySlots();
-        for (SlotData<?> slot : list) {
-            String suffix = slot.getType() == SlotType.FL_IN ? "fluid" : "item";
-            add(BRONZE, slot.getType(), slot.getX(), slot.getY(), new ResourceLocation(domain, "bronze_"+suffix));
-            add(STEEL, slot.getType(), slot.getX(), slot.getY(), new ResourceLocation(domain, "steel_"+suffix));
-        }
-        return this;
-    }
-
-    @Override
-    public Machine<SteamMachine> add(SlotType<?> type, int x, int y) {
-        String suffix = type == SlotType.FL_IN ? "fluid" : "item";
-        add(BRONZE, type, x, y, new ResourceLocation(domain, "bronze_"+suffix));
-        add(STEEL, type, x, y, new ResourceLocation(domain, "steel_"+suffix));
-        return this;
-    }*/
 }
