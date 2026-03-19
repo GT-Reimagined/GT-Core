@@ -78,7 +78,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         if (!drops.isEmpty()){
             ItemStack stack = drops.get(0);
             if (!getDrop().isEmpty()){
-                stack.getCapability(ForgeCapabilities.FLUID_HANDLER).ifPresent(f -> f.fill(drop, FluidAction.EXECUTE));
+                stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(f -> f.fill(drop, FluidAction.EXECUTE));
             }
             if (isOutput()){
                 CompoundTag nbt = stack.getOrCreateTag();
