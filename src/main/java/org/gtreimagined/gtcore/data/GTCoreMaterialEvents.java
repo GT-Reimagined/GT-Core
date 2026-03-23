@@ -130,18 +130,21 @@ public class GTCoreMaterialEvents {
             BLOCK.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_block"));
             GEAR.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_gear"));
             PLATE.replacement(GTCoreMaterials.Signalum, () -> RegistryUtils.getItemFromID("thermal", "signalum_plate"));
+            Signalum.flags(ROD);
             INGOT.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_ingot"));
             DUST.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_dust"));
             NUGGET.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_nugget"));
             BLOCK.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_block"));
             GEAR.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_gear"));
             PLATE.replacement(Lumium, () -> RegistryUtils.getItemFromID("thermal", "lumium_plate"));
+            Lumium.flags(ROD);
             INGOT.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_ingot"));
             DUST.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_dust"));
             NUGGET.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_nugget"));
             BLOCK.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_block"));
             GEAR.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_gear"));
             PLATE.replacement(GTCoreMaterials.Enderium, () -> RegistryUtils.getItemFromID("thermal", "enderium_plate"));
+            Enderium.flags(ROD);
         }
         if (GTAPI.isModLoaded("bluepower")){
             DUST.replacement(Teslatite, () -> RegistryUtils.getItemFromID("bluepower", "teslatite_dust"));
