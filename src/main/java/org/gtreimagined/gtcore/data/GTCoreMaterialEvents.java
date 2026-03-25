@@ -33,12 +33,12 @@ public class GTCoreMaterialEvents {
         event.setMaterial(GTCoreMaterials.Rubber).asSolid(295, PLATE, RING);
         event.setMaterial(GTCoreMaterials.Plastic).flags(RUBBERTOOLS);
         event.setMaterial(GTCoreMaterials.Beeswax).asDust();
-        event.setMaterial(GTCoreMaterials.FierySteel).asMetal().tool().toolDamage(4).toolSpeed(9).toolDurability(1024).toolQuality(4)
+        event.setMaterial(GTCoreMaterials.FierySteel).asMetal(MAGIC).tool().toolDamage(4).toolSpeed(9).toolDurability(1024).toolQuality(4)
                 .toolEnchantments(ImmutableMap.of(Enchantments.FIRE_ASPECT, 2)).handleMaterial(GTCoreMaterials.Blaze)
                 .blacklistToolTypes(PICKAXE, SWORD).build();
-        event.setMaterial(GTCoreMaterials.Knightmetal).asMetal().tool().toolDamage(3).toolSpeed(8).toolDurability(512).toolQuality(3)
+        event.setMaterial(GTCoreMaterials.Knightmetal).asMetal(MAGIC).tool().toolDamage(3).toolSpeed(8).toolDurability(512).toolQuality(3)
                 .blacklistToolTypes(AXE, PICKAXE, SWORD).build();
-        event.setMaterial(GTCoreMaterials.Ironwood).asMetal(WOOD).tool().toolDamage(2).toolSpeed(6.5f).toolDurability(512).toolQuality(2)
+        event.setMaterial(GTCoreMaterials.Ironwood).asMetal(WOOD, MAGIC).tool().toolDamage(2).toolSpeed(6.5f).toolDurability(512).toolQuality(2)
                 .toolEnchantments(ImmutableMap.of(Enchantments.KNOCKBACK, 1))
                 .blacklistToolTypes(AXE, PICKAXE, SHOVEL, SWORD, HOE).build();
         event.setMaterial(GTCoreMaterials.Steeleaf).asMetal().tool().toolDamage(4).toolSpeed(8).toolDurability(131).toolQuality(3)
