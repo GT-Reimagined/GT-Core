@@ -46,6 +46,7 @@ import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.data.client.ScreenFactories;
 import org.gtreimagined.gtcore.datagen.GTCoreBlockLootProvider;
 import org.gtreimagined.gtcore.datagen.GTCoreBlockTagProvider;
+import org.gtreimagined.gtcore.datagen.GTCoreFluidTagProvider;
 import org.gtreimagined.gtcore.datagen.GTCoreItemTagProvider;
 import org.gtreimagined.gtcore.datagen.GTCoreLang;
 import org.gtreimagined.gtcore.events.GTCommonEvents;
@@ -150,7 +151,7 @@ public class GTCore extends GTMod {
             return p[0];
         });
         event.addProvider(() -> new GTCoreItemTagProvider(ID, NAME.concat(" Item Tags"), false, p[0]));
-
+        event.addProvider(() -> new GTCoreFluidTagProvider(ID, NAME.concat(" Fluid Tags"), false));
         event.addProvider(() -> new GTCoreBlockLootProvider(ID, NAME.concat(" Loot generator")));
         event.addProvider(() -> new GTTagProvider<>(Registries.BIOME, ID, NAME.concat(" Biome Tags"), "worldgen/biome", null) {
             @Override
