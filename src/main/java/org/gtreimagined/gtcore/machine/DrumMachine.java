@@ -21,6 +21,7 @@ import org.gtreimagined.gtlib.util.Utils;
 public class DrumMachine extends MaterialMachine{
     public final int maxCapacity;
     private boolean acidProof = false;
+    private boolean magicProof = false;
     public DrumMachine(String domain, Material material, int maxCapacity) {
         super(domain, material.getId() + "_drum", material);
         GTAPI.register(DrumMachine.class, this);
@@ -33,6 +34,9 @@ public class DrumMachine extends MaterialMachine{
             tooltip.add(Utils.translatable("machine.drum.capacity", maxCapacity).withStyle(ChatFormatting.AQUA));
             if (acidProof){
                 tooltip.add(Utils.translatable("gtlib.tooltip.acid_proof"));
+            }
+            if (magicProof){
+                tooltip.add(Utils.translatable("gtlib.tooltip.magic_proof"));
             }
             CompoundTag nbt = stack.getTag();
             FluidStack fluid = nbt != null && nbt.contains("Fluid") ? FluidUtils.fromTag(nbt.getCompound("Fluid")) : stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).map(fi -> fi.getFluidInTank(0)).orElse(FluidStack.EMPTY);
@@ -66,7 +70,16 @@ public class DrumMachine extends MaterialMachine{
         return this;
     }
 
+    public DrumMachine magicProof(){
+        this.magicProof = true;
+        return this;
+    }
+
     public boolean isAcidProof() {
         return acidProof;
+    }
+
+    public boolean isMagicProof() {
+        return magicProof;
     }
 }
