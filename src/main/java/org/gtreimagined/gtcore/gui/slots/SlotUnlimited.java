@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class SlotUnlimited extends AbstractSlot<SlotUnlimited> implements IClickableSlot {
     public SlotUnlimited(SlotType<SlotUnlimited> type, IGuiHandler tile, IItemHandler stackHandler, int index, int x, int y) {
-        super(type, tile, stackHandler, index, x, y);
+        super(type, tile, stackHandler, index);
     }
 
     @Override

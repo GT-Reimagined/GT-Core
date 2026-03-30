@@ -1,12 +1,8 @@
 package org.gtreimagined.gtcore.data;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.EmptyHandler;
-import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.gui.InventoryWorkbench;
 import org.gtreimagined.gtcore.gui.slots.SlotBlueprint;
 import org.gtreimagined.gtcore.gui.slots.SlotCrafting;
 import org.gtreimagined.gtcore.gui.slots.SlotUnlimited;
@@ -19,9 +15,9 @@ import org.gtreimagined.gtlib.tool.IGTTool;
 import org.gtreimagined.tesseract.TesseractCapUtils;
 
 public class SlotTypes {
-    public static SlotType<AbstractSlot<?>> TOOLS = SlotType.<AbstractSlot<?>>builder().id("tools").slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i, d.getX(), d.getY()))
+    public static SlotType<AbstractSlot<?>> TOOLS = SlotType.<AbstractSlot<?>>builder().id("tools").slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i))
             .tester((t, i) -> i.getItem() instanceof IGTTool || i.getItem().canBeDepleted()).build();
-    public static SlotType<AbstractSlot<?>> TOOL_CHARGE = SlotType.<AbstractSlot<?>>builder().id("tool_charge").slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type,gui, item.getOrDefault(type, new EmptyHandler()), i, d.getX(), d.getY())).tester((t, i) -> {
+    public static SlotType<AbstractSlot<?>> TOOL_CHARGE = SlotType.<AbstractSlot<?>>builder().id("tool_charge").slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type,gui, item.getOrDefault(type, new EmptyHandler()), i)).tester((t, i) -> {
         if (t instanceof BlockEntity tile) {
             return TesseractCapUtils.INSTANCE.getEnergyHandler(tile, null).map(eh -> TesseractCapUtils.INSTANCE.getEnergyHandlerItem(i).map(inner -> ((inner.getInputVoltage() | inner.getOutputVoltage()) <= (eh.getInputVoltage() | eh.getOutputVoltage()) )).orElse(false)).orElse(false) || i.getItem() instanceof IGTTool || i.getItem().canBeDepleted();
         }
@@ -30,14 +26,14 @@ public class SlotTypes {
     public static SlotType<SlotCrafting> CRAFTING = SlotType.<SlotCrafting>builder().id("crafting").slotSupplier((type, gui, item, i, d) -> new SlotCrafting(type, gui, item.getOrDefault(type, new EmptyHandler()), i, d.getX(), d.getY()))
             .output(false).build();
     public static SlotType<AbstractSlot<?>> PARK = SlotType.<AbstractSlot<?>>builder().id("park")
-            .slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i, d.getX(), d.getY()))
+            .slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i))
             .output(false).overlay(GTCoreGuiTextures.PARK_SLOT_OVERLAY).build();
     public static SlotType<SlotBlueprint> BLUEPRINT = SlotType.<SlotBlueprint>builder().id("blueprint")
             .slotSupplier((type, gui, item, i, d) -> new SlotBlueprint(type, gui, item.getOrDefault(type, new EmptyHandler()), i, d.getX(), d.getY()))
             .tester((t, i) -> i.getItem() == GTCoreItems.Blueprint || i.getItem() == GTCoreItems.EmptyBlueprint)
             .output(false).overlay(GTCoreGuiTextures.BLUEPRINT_SLOT_OVERLAY).build();
     public static SlotType<AbstractSlot<?>> EXPORT = SlotType.<AbstractSlot<?>>builder().id("export")
-            .slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i, d.getX(), d.getY()))
+            .slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i))
             .overlay(GTCoreGuiTextures.EXPORT_SLOT_OVERLAY).build();
     public static SlotType<SlotWorkTableResult> CRAFTING_RESULT = SlotType.<SlotWorkTableResult>builder().id("crafting_result").slotSupplier((type, tile, slots, index, data) -> {
         if (tile instanceof BlockEntityMachine<?> machine) {

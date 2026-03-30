@@ -20,7 +20,7 @@ public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkben
         this.itemHandler.set(() -> new MachineItemHandler<>(this){
             @Override
             protected TrackedItemHandler<BlockEntityWorkbench> createTrackedHandler(SlotType<?> type, BlockEntityWorkbench tile) {
-                int count = tile.getMachineType().getCount(tile.getMachineTier(), type);
+                int count = tile.getMachineType().getCount(tile.getMachineTier(), type) + (type == SlotType.STORAGE ? 36 : 0);
                 return !type.isPhantom() ? new TrackedItemHandler<>(tile, type, count, type == SlotTypes.EXPORT, type.isInput(), type.getTester()) : new FakeTrackedItemHandler<>(tile, type, count, type.isOutput(), type.isInput(), type.getTester());
             }
         });

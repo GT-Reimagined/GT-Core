@@ -7,6 +7,6 @@ import org.gtreimagined.gtlib.gui.slot.AbstractSlot;
 
 public class SlotCrafting extends AbstractSlot<SlotCrafting> {
     public SlotCrafting(SlotType<SlotCrafting> type, IGuiHandler handler, IItemHandler itemHandler, int index, int xPosition, int yPosition) {
-        super(type, handler, itemHandler, index, xPosition, yPosition);
+        super(type, handler, itemHandler, index);
     }
 }

@@ -129,6 +129,8 @@ public class GTCoreBlocks {
     public static MaterialMachine IRONWOOD_ITEM_BARREL = null;
 
     public static BasicMachine ENDER_GARBAGE_BIN = new BasicMachine(GTCore.ID, "ender_garbage_bin").setBaseTexture(new Texture(GTCore.ID, "block/machine/base/ender_garbage_bin")).setTiers(Tier.NONE).setCustomModel().setItemModelParent(new ResourceLocation(GTCore.ID, "block/ender_garbage_bin_base")).addFlags(MachineFlag.ITEM, MachineFlag.FLUID, MachineFlag.UNCULLED, MachineFlag.GUI).removeFlags(MachineFlag.COVERABLE, MachineFlag.EU).setAllowsFrontIO().setNoOutputCover().setTile(BlockEntityTrashCan::new);
+    public static WorkbenchMachine IRON_WORKBENCH = new WorkbenchMachine(GTCore.ID, Iron, false);
+    public static ChestMachine IRON_CHEST = GTCoreBlocks.createChest(Iron);
 
     public static StoneType RED_GRANITE = GTAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "red_granite", RedGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);
     public static StoneType BLACK_GRANITE = GTAPI.register(StoneType.class, new CobbleStoneType(GTCore.ID, "black_granite", BlackGranite, "block/stone/", SoundType.STONE, true)).setHardnessAndResistance(4.5F, 60.0F).setHarvestLevel(3);

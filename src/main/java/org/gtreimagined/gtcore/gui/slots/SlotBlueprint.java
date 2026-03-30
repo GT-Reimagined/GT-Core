@@ -22,7 +22,7 @@ import java.util.Optional;
 
 public class SlotBlueprint extends AbstractSlot<SlotBlueprint> implements IClickableSlot {
     public SlotBlueprint(SlotType<SlotBlueprint> type, IGuiHandler tile, IItemHandler stackHandler, int index, int x, int y) {
-        super(type, tile, stackHandler, index, x, y);
+        super(type, tile, stackHandler, index);
     }
 
 
