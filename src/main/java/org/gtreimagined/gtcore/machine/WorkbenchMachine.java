@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.machine;
 
 import brachy.modularui.widgets.ButtonWidget;
+import brachy.modularui.widgets.SlotGroupWidget;
 import brachy.modularui.widgets.slot.ItemSlot;
 import net.minecraft.core.Direction;
 import net.minecraftforge.items.wrapper.EmptyHandler;
@@ -63,18 +64,15 @@ public class WorkbenchMachine extends ChargingMachine{
                 slotFunction.modifyPanel(modularPanel, machine, guiData, syncManager, settings);
                 return;
             }
-            int i = 16;
-            for (int y = 0; y < 4; y++) {
-                for (int x = 0; x < 9; x++) {
-                    int xPos = 8 + (x * 18);
-                    int yPos = 8 + (y * 18);
-                    modularPanel.child(new ItemSlot()
+            syncManager.registerSlotGroup("storage", 9);
+            modularPanel.child(SlotGroupWidget
+                    .builder()
+                    .matrix("IIIIIIIII", "IIIIIIIII", "IIIIIIIII", "IIIIIIIII")
+                    .key('I', i -> new ItemSlot()
                             .slot(new AbstractSlot<>(STORAGE, machine, machine.itemHandler.map(item ->
-                                    item.getAll().get(STORAGE)).orElse(new EmptyHandler()), i))
-                            .pos(xPos - 1, yPos - 1));
-                    i++;
-                }
-            }
+                                    item.getAll().get(STORAGE)).orElse(new EmptyHandler()), i + 16)))
+                    .slotGroup("storage")
+                    .build().pos(7, 7));
         }));
         this.getGuiProperties().setHasGTIcon(false);
         this.removeFlags(COVERABLE);
