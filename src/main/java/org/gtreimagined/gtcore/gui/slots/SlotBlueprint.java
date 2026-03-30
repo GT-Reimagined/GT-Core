@@ -21,7 +21,7 @@ import org.gtreimagined.gtlib.gui.slot.IClickableSlot;
 import java.util.Optional;
 
 public class SlotBlueprint extends AbstractSlot<SlotBlueprint> implements IClickableSlot {
-    public SlotBlueprint(SlotType<SlotBlueprint> type, IGuiHandler tile, IItemHandler stackHandler, int index, int x, int y) {
+    public SlotBlueprint(SlotType<SlotBlueprint> type, IGuiHandler tile, IItemHandler stackHandler, int index) {
         super(type, tile, stackHandler, index);
     }
 

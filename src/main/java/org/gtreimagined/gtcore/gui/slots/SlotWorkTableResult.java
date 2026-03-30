@@ -1,11 +1,8 @@
 package org.gtreimagined.gtcore.gui.slots;
 
-import brachy.modularui.widgets.slot.CraftingContainerWrapper;
 import brachy.modularui.widgets.slot.ModularCraftingSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.CraftingContainer;
-import net.minecraft.world.inventory.ResultContainer;
-import net.minecraft.world.inventory.ResultSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -17,7 +14,7 @@ public class SlotWorkTableResult extends ModularCraftingSlot {
     private @Nullable CraftingContainer craftMatrix;
     private final IItemHandlerModifiable craftingInventory;
     private final MachineItemHandler<?> projectTable;
-    public SlotWorkTableResult(MachineItemHandler<?> table, IItemHandler handler, IItemHandlerModifiable craftingInventory, int slotIndex, int xPosition, int yPosition) {
+    public SlotWorkTableResult(MachineItemHandler<?> table, IItemHandler handler, IItemHandlerModifiable craftingInventory, int slotIndex) {
         super(handler, slotIndex);
         this.craftingInventory = craftingInventory;
         projectTable = table;

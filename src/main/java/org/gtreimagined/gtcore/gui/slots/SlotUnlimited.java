@@ -14,7 +14,7 @@ import org.gtreimagined.gtlib.gui.slot.IClickableSlot;
 import org.jetbrains.annotations.NotNull;
 
 public class SlotUnlimited extends AbstractSlot<SlotUnlimited> implements IClickableSlot {
-    public SlotUnlimited(SlotType<SlotUnlimited> type, IGuiHandler tile, IItemHandler stackHandler, int index, int x, int y) {
+    public SlotUnlimited(SlotType<SlotUnlimited> type, IGuiHandler tile, IItemHandler stackHandler, int index) {
         super(type, tile, stackHandler, index);
     }
 
