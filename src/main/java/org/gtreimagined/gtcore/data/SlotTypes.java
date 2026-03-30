@@ -27,14 +27,14 @@ public class SlotTypes {
             .output(false).build();
     public static SlotType<AbstractSlot<?>> PARK = SlotType.<AbstractSlot<?>>builder().id("park")
             .slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i))
-            .output(false).overlay(GTCoreGuiTextures.PARK_SLOT_OVERLAY).build();
+            .output(false).slotGroup(false).overlay(GTCoreGuiTextures.PARK_SLOT_OVERLAY).build();
     public static SlotType<SlotBlueprint> BLUEPRINT = SlotType.<SlotBlueprint>builder().id("blueprint")
             .slotSupplier((type, gui, item, i, d) -> new SlotBlueprint(type, gui, item.getOrDefault(type, new EmptyHandler()), i, d.getX(), d.getY()))
             .tester((t, i) -> i.getItem() == GTCoreItems.Blueprint || i.getItem() == GTCoreItems.EmptyBlueprint)
             .output(false).overlay(GTCoreGuiTextures.BLUEPRINT_SLOT_OVERLAY).build();
     public static SlotType<AbstractSlot<?>> EXPORT = SlotType.<AbstractSlot<?>>builder().id("export")
             .slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i))
-            .overlay(GTCoreGuiTextures.EXPORT_SLOT_OVERLAY).build();
+            .slotGroup(false).overlay(GTCoreGuiTextures.EXPORT_SLOT_OVERLAY).build();
     public static SlotType<SlotWorkTableResult> CRAFTING_RESULT = SlotType.<SlotWorkTableResult>builder().id("crafting_result").slotSupplier((type, tile, slots, index, data) -> {
         if (tile instanceof BlockEntityMachine<?> machine) {
             return new SlotWorkTableResult(machine.itemHandler.map(m -> m).orElse(null), slots.getOrDefault(type, new EmptyHandler()), (IItemHandlerModifiable) slots.getOrDefault(CRAFTING, new EmptyHandler()), index, data.getX(), data.getY());
