@@ -120,6 +120,18 @@ dependencies {
     modImplementation("curse.maven:the-one-probe-245211:${project.top_version}")
     modImplementation("org.gt-reimagined:structurelib-forge:${project.structurelib_version}-${project.minecraft_version}")
     modImplementation("curse.maven:jade-324717:${project.jade_version}")
+
+    modRuntimeOnly("dev.trinsdar:terraform-config-api-v1:${project.terraform_version}")
+    modRuntimeOnly("dev.trinsdar:terraform-dirt-api-v1:${project.terraform_version}")
+    modRuntimeOnly("dev.trinsdar:terraform-shapes-api-v1:${project.terraform_version}")
+    modRuntimeOnly("dev.trinsdar:terraform-surfaces-api-v1:${project.terraform_version}")
+    modRuntimeOnly("dev.trinsdar:terraform-tree-api-v1:${project.terraform_version}")
+    modRuntimeOnly("dev.trinsdar:terraform-utils-v1:${project.terraform_version}")
+
+    // Biolith and TerraBlender for the worldgen API modules
+    modImplementation("com.terraformersmc:biolith-forge:1.0.1-alpha.1")
+    modRuntimeOnly("curse.maven:terrestria-reforged-525277:7605911")
+    modRuntimeOnly("curse.maven:traverse-reforged-267769:6545261")
 }
 
 

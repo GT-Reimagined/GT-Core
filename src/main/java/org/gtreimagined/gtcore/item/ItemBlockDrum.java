@@ -30,6 +30,7 @@ public class ItemBlockDrum extends GTItemBlock implements IFluidItem {
     public Predicate<FluidStack> getFilter() {
         return (f) -> {
             if (machine != null && !machine.isAcidProof() && f.getFluid().is(GTLibTags.ACID)) return false;
+            if (machine != null && !machine.isMagicProof() && f.getFluid().is(GTLibTags.MAGIC)) return false;
             return true;
         };
     }
