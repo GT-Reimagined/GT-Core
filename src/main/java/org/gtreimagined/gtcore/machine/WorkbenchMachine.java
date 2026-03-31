@@ -8,6 +8,7 @@ import net.minecraftforge.items.wrapper.EmptyHandler;
 import org.gtreimagined.gtcore.blockentity.BlockEntityWorkbench;
 import org.gtreimagined.gtcore.data.MenuHandlers;
 import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.gui.slots.SlotCraftingOutput;
 import org.gtreimagined.gtcore.mui.GTCoreGuiTextures;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.gui.slot.AbstractSlot;
@@ -62,6 +63,10 @@ public class WorkbenchMachine extends ChargingMachine{
         this.setSlotFunction(((modularPanel, machine, guiData, syncManager, settings) -> {
             if (guiData.getSide() == Direction.UP) {
                 slotFunction.modifyPanel(modularPanel, machine, guiData, syncManager, settings);
+                syncManager.getSlotGroup("crafting").addSlotChangeListener(s -> {
+                    SlotCraftingOutput craftingOutput = (SlotCraftingOutput) syncManager.getSlotGroup("crafting_result").getSlots().get(0);
+                    craftingOutput.updateCraftResult(s);
+                });
                 return;
             }
             syncManager.registerSlotGroup("storage", 9);
