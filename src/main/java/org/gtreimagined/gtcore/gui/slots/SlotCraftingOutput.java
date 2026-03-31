@@ -10,11 +10,11 @@ import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.jetbrains.annotations.Nullable;
 
-public class SlotWorkTableResult extends ModularCraftingSlot {
+public class SlotCraftingOutput extends ModularCraftingSlot {
     private @Nullable CraftingContainer craftMatrix;
     private final IItemHandlerModifiable craftingInventory;
     private final MachineItemHandler<?> projectTable;
-    public SlotWorkTableResult(MachineItemHandler<?> table, IItemHandler handler, IItemHandlerModifiable craftingInventory, int slotIndex) {
+    public SlotCraftingOutput(MachineItemHandler<?> table, IItemHandler handler, IItemHandlerModifiable craftingInventory, int slotIndex) {
         super(handler, slotIndex);
         this.craftingInventory = craftingInventory;
         projectTable = table;

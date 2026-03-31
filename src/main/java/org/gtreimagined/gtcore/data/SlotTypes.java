@@ -6,7 +6,7 @@ import net.minecraftforge.items.wrapper.EmptyHandler;
 import org.gtreimagined.gtcore.gui.slots.SlotBlueprint;
 import org.gtreimagined.gtcore.gui.slots.SlotCrafting;
 import org.gtreimagined.gtcore.gui.slots.SlotUnlimited;
-import org.gtreimagined.gtcore.gui.slots.SlotWorkTableResult;
+import org.gtreimagined.gtcore.gui.slots.SlotCraftingOutput;
 import org.gtreimagined.gtcore.mui.GTCoreGuiTextures;
 import org.gtreimagined.gtlib.blockentity.BlockEntityMachine;
 import org.gtreimagined.gtlib.gui.SlotType;
@@ -35,9 +35,9 @@ public class SlotTypes {
     public static SlotType<AbstractSlot<?>> EXPORT = SlotType.<AbstractSlot<?>>builder().id("export")
             .slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i))
             .slotGroup(false).overlay(GTCoreGuiTextures.EXPORT_SLOT_OVERLAY).build();
-    public static SlotType<SlotWorkTableResult> CRAFTING_RESULT = SlotType.<SlotWorkTableResult>builder().id("crafting_result").slotSupplier((type, tile, slots, index, data) -> {
+    public static SlotType<SlotCraftingOutput> CRAFTING_RESULT = SlotType.<SlotCraftingOutput>builder().id("crafting_result").slotSupplier((type, tile, slots, index, data) -> {
         if (tile instanceof BlockEntityMachine<?> machine) {
-            return new SlotWorkTableResult(machine.itemHandler.map(m -> m).orElse(null), slots.getOrDefault(type, new EmptyHandler()), (IItemHandlerModifiable) slots.getOrDefault(CRAFTING, new EmptyHandler()), index);
+            return new SlotCraftingOutput(machine.itemHandler.map(m -> m).orElse(null), slots.getOrDefault(type, new EmptyHandler()), (IItemHandlerModifiable) slots.getOrDefault(CRAFTING, new EmptyHandler()), index);
         }
         return null;
     }).input(false).overlay(GTCoreGuiTextures.CRAFTING_OUTPUT_SLOT_OVERLAY).build();

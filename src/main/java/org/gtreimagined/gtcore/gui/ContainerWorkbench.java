@@ -16,7 +16,6 @@ import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMaterial;
-import org.gtreimagined.gtcore.gui.slots.SlotWorkTableResult;
 import org.gtreimagined.gtlib.blockentity.BlockEntityMachine;
 import org.gtreimagined.gtlib.gui.MenuHandlerMachine;
 import org.gtreimagined.gtlib.gui.SlotData;
