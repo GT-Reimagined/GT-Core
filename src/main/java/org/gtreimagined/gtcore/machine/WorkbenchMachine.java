@@ -99,9 +99,9 @@ public class WorkbenchMachine extends ChargingMachine{
                         .slot(new AbstractSlot<>(SlotTypes.PARK, machine, machine.itemHandler.map(item -> item.getAll().get(SlotTypes.PARK)).orElse(new EmptyHandler()), 0))
                         .background(new GTDrawableStack(null, SlotTypes.PARK.getOverlay())));
                 syncManager.registerSyncedAction("inventorySend", packet -> {
+                    boolean toPlayer = packet.readBoolean();
                     for (int i = 0; i < 9; i++) {
                         int finalI = i;
-                        boolean toPlayer = packet.readBoolean();
                         IItemHandler inventory = toPlayer ? new PlayerMainInvWrapper(syncManager.getPlayer().getInventory()) : machine.itemHandler.map(item -> item.getAll().get(STORAGE)).orElse(new EmptyHandler());
                         ItemStack leftover = ItemHandlerHelper.insertItem(inventory, machine.itemHandler.map(item -> item.getHandler(SlotTypes.CRAFTING).getStackInSlot(finalI)).orElse(ItemStack.EMPTY), false);
                         machine.itemHandler.ifPresent(item -> item.getHandler(SlotTypes.CRAFTING).setStackInSlot(finalI, leftover.copy()));
