@@ -8,9 +8,11 @@ import brachy.modularui.widgets.slot.SlotGroup;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.EmptyHandler;
+import net.minecraftforge.items.wrapper.PlayerMainInvWrapper;
 import org.gtreimagined.gtcore.blockentity.BlockEntityWorkbench;
 import org.gtreimagined.gtcore.data.MenuHandlers;
 import org.gtreimagined.gtcore.data.SlotTypes;
@@ -96,22 +98,26 @@ public class WorkbenchMachine extends ChargingMachine{
                         .pos(153, 63)
                         .slot(new AbstractSlot<>(SlotTypes.PARK, machine, machine.itemHandler.map(item -> item.getAll().get(SlotTypes.PARK)).orElse(new EmptyHandler()), 0))
                         .background(new GTDrawableStack(null, SlotTypes.PARK.getOverlay())));
-
+                syncManager.registerSyncedAction("inventorySend", packet -> {
+                    for (int i = 0; i < 9; i++) {
+                        int finalI = i;
+                        boolean toPlayer = packet.readBoolean();
+                        IItemHandler inventory = toPlayer ? new PlayerMainInvWrapper(syncManager.getPlayer().getInventory()) : machine.itemHandler.map(item -> item.getAll().get(STORAGE)).orElse(new EmptyHandler());
+                        ItemStack leftover = ItemHandlerHelper.insertItem(inventory, machine.itemHandler.map(item -> item.getHandler(SlotTypes.CRAFTING).getStackInSlot(finalI)).orElse(ItemStack.EMPTY), false);
+                        machine.itemHandler.ifPresent(item -> item.getHandler(SlotTypes.CRAFTING).setStackInSlot(finalI, leftover.copy()));
+                        output.updateCraftResult(null);
+                    }
+                });
                 modularPanel.child(new ButtonWidget<>()
                         .onMousePressed((x, y, mouseButton) -> {
-                            for (int i = 0; i < 9; i++) {
-                                int finalI = i;
-                                ItemStack leftover = ItemHandlerHelper.insertItem(machine.itemHandler.map(item -> item.getAll().get(STORAGE)).orElse(new EmptyHandler()), machine.itemHandler.map(item -> item.getHandler(SlotTypes.CRAFTING).getStackInSlot(finalI)).orElse(ItemStack.EMPTY), false);
-                                machine.itemHandler.ifPresent(item -> item.getHandler(SlotTypes.CRAFTING).setStackInSlot(finalI, leftover.copy()));
-                                output.updateCraftResult(null);
-                            }
+                            syncManager.callSyncedAction("inventorySend", b -> b.writeBoolean(false));
                             return true;
                         })
                         .overlay(GTCoreGuiTextures.TO_INV_BUTTON)
                         .pos(136, 46));
                 modularPanel.child(new ButtonWidget<>()
                         .onMousePressed((x, y, mouseButton) -> {
-                            //TODO
+                            syncManager.callSyncedAction("inventorySend", b -> b.writeBoolean(true));
                             return true;
                         })
                         .overlay(GTCoreGuiTextures.TO_PLAYER_BUTTON)
