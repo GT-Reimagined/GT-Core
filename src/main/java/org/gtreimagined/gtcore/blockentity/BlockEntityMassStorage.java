@@ -349,7 +349,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     }
 
     @Override
-    public boolean canPlayerOpenGui(Player playerEntity) {
+    public boolean canPlayerOpenGui(Player playerEntity, Direction side) {
         return playerEntity.isCreative();
     }
 

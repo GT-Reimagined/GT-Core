@@ -149,7 +149,7 @@ public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShel
     }
 
     @Override
-    public boolean canPlayerOpenGui(Player playerEntity) {
+    public boolean canPlayerOpenGui(Player playerEntity, Direction side) {
         return playerEntity.isCreative();
     }
 

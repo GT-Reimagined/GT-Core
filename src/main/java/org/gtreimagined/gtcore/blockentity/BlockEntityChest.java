@@ -2,6 +2,7 @@ package org.gtreimagined.gtcore.blockentity;
 
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -79,8 +80,8 @@ public class BlockEntityChest extends BlockEntityMaterial<BlockEntityChest> impl
 
 
     @Override
-    public boolean canPlayerOpenGui(Player playerEntity) {
-        return super.canPlayerOpenGui(playerEntity) && !isChestBlockedAt(playerEntity.level(), this.getBlockPos());
+    public boolean canPlayerOpenGui(Player playerEntity, Direction side) {
+        return super.canPlayerOpenGui(playerEntity, side) && !isChestBlockedAt(playerEntity.level(), this.getBlockPos());
     }
 
     public static boolean isChestBlockedAt(LevelAccessor p_220108_0_, BlockPos p_220108_1_) {
