@@ -34,6 +34,11 @@ public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkben
     }
 
     @Override
+    public boolean canPlayerOpenGui(Player playerEntity, Direction side) {
+        return side == Direction.UP || side == this.getFacing() || side == this.getFacing().getOpposite();
+    }
+
+    @Override
     public void onGuiEvent(IGuiEvent event, Player playerEntity) {
         super.onGuiEvent(event, playerEntity);
         if (event.getFactory() == GuiEvents.EXTRA_BUTTON && !openContainers.isEmpty()){
