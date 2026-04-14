@@ -7,34 +7,28 @@ import brachy.modularui.widgets.slot.ModularSlot;
 import brachy.modularui.widgets.slot.SlotGroup;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUtils;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import net.minecraftforge.items.wrapper.PlayerMainInvWrapper;
 import org.gtreimagined.gtcore.blockentity.BlockEntityWorkbench;
-import org.gtreimagined.gtcore.data.MenuHandlers;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.gui.slots.SlotBlueprint;
 import org.gtreimagined.gtcore.gui.slots.SlotCrafting;
 import org.gtreimagined.gtcore.gui.slots.SlotCraftingOutput;
-import org.gtreimagined.gtcore.gui.slots.SlotCraftingOutput.WrappedCraftingInventory;
 import org.gtreimagined.gtcore.mui.GTCoreGuiTextures;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
 import org.gtreimagined.gtlib.gui.SlotData;
 import org.gtreimagined.gtlib.gui.SlotType;
-import org.gtreimagined.gtlib.gui.SlotType.ISlotSupplier;
 import org.gtreimagined.gtlib.gui.slot.AbstractSlot;
-import org.gtreimagined.gtlib.machine.IPanelFunction;
 import org.gtreimagined.gtlib.material.Material;
 import org.gtreimagined.gtlib.mui.GTGuiTextures;
 import org.gtreimagined.gtlib.mui.drawable.GTDrawableStack;
 
 import java.util.Map;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 import static org.gtreimagined.gtlib.gui.SlotType.STORAGE;
 import static org.gtreimagined.gtlib.machine.MachineFlag.*;
@@ -43,12 +37,8 @@ import static org.gtreimagined.gtlib.machine.MachineFlag.*;
 public class WorkbenchMachine extends ChargingMachine{
     public WorkbenchMachine(String domain, Material material, boolean charge) {
         super(domain, material, "workbench", charge);
-        setGUI(MenuHandlers.WORKBENCH_HANDLER);
         this.addFlags(ITEM, GUI);
         this.setTile(BlockEntityWorkbench::new);
-        this.getGuiFunctions().add((modularPanel, machine, guiData, syncManager, settings) -> {
-            if (guiData.getSide() != Direction.UP) return;
-        });
         this.setSlotFunction(((modularPanel, machine, guiData, syncManager, settings) -> {
             if (guiData.getSide() == Direction.UP) {
                 syncManager.registerSlotGroup("storage", 4)

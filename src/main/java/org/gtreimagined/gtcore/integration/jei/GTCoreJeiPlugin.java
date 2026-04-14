@@ -28,7 +28,7 @@ public class GTCoreJeiPlugin implements IModPlugin {
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
         if (GTAPI.isModLoaded(Ref.MOD_REI)) return;
-        registration.addRecipeTransferHandler(new GTCoreRecipeTransferInfo());
+        //registration.addRecipeTransferHandler(new GTCoreRecipeTransferInfo());
     }
 
     @Override

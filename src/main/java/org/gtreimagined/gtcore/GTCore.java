@@ -1,6 +1,5 @@
 package org.gtreimagined.gtcore;
 
-import com.google.common.collect.ImmutableMap;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.teamresourceful.resourcefullib.common.networking.base.NetworkDirection;
@@ -12,7 +11,6 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -40,10 +38,7 @@ import org.gtreimagined.gtcore.data.GTCoreMaterialEvents;
 import org.gtreimagined.gtcore.data.GTCoreMaterials;
 import org.gtreimagined.gtcore.data.GTCoreRecipeMaps;
 import org.gtreimagined.gtcore.data.GTCoreTools;
-import org.gtreimagined.gtcore.data.Guis;
-import org.gtreimagined.gtcore.data.MenuHandlers;
 import org.gtreimagined.gtcore.data.SlotTypes;
-import org.gtreimagined.gtcore.data.client.ScreenFactories;
 import org.gtreimagined.gtcore.datagen.GTCoreBlockLootProvider;
 import org.gtreimagined.gtcore.datagen.GTCoreBlockTagProvider;
 import org.gtreimagined.gtcore.datagen.GTCoreFluidTagProvider;
@@ -73,7 +68,6 @@ import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.GTMod;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.common.event.PlayerTickCallback;
-import org.gtreimagined.gtlib.data.GTLibMaterials;
 import org.gtreimagined.gtlib.datagen.GTLibDynamics;
 import org.gtreimagined.gtlib.datagen.builder.GTTagBuilder;
 import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider;
@@ -89,20 +83,14 @@ import org.gtreimagined.gtlib.integration.xei.GTLibXEIPlugin;
 import org.gtreimagined.gtlib.network.GTLibNetwork;
 import org.gtreimagined.gtlib.registration.RegistrationEvent;
 import org.gtreimagined.gtlib.tool.IGTTool;
-import org.gtreimagined.gtlib.util.RegistryUtils;
 import org.gtreimagined.gtlib.util.TagUtils;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.BiConsumer;
 
 import static com.google.common.collect.ImmutableMap.of;
 import static org.gtreimagined.gtcore.data.GTCoreMaterials.*;
-import static org.gtreimagined.gtlib.data.GTLibMaterials.*;
 import static org.gtreimagined.gtlib.data.GTMaterialTypes.*;
-import static org.gtreimagined.gtlib.data.GTTools.*;
-import static org.gtreimagined.gtlib.material.MaterialTags.RUBBERTOOLS;
-import static org.gtreimagined.gtlib.material.MaterialTags.WOOD;
 
 @Mod(GTCore.ID)
 public class GTCore extends GTMod {
@@ -244,7 +232,6 @@ public class GTCore extends GTMod {
         switch (event) {
             case DATA_INIT -> {
                 SlotTypes.init();
-                MenuHandlers.init();
                 GTCoreData.init();
                 GTCoreRecipeMaps.init();
                 GTCoreCovers.init();
@@ -301,7 +288,6 @@ public class GTCore extends GTMod {
             }
             case CLIENT_DATA_INIT -> {
                 BakedModels.init();
-                ScreenFactories.init();
             }
         }
     }
