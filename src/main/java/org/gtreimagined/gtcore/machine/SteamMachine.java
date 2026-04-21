@@ -1,5 +1,6 @@
 package org.gtreimagined.gtcore.machine;
 
+import brachy.modularui.value.sync.DoubleSyncValue;
 import net.minecraft.resources.ResourceLocation;
 import org.gtreimagined.gtcore.blockentity.BlockEntitySteamMachine;
 import org.gtreimagined.gtcore.mui.GTCoreGuiTextures;
@@ -15,6 +16,8 @@ import org.gtreimagined.gtlib.gui.widget.TextWidget;
 import org.gtreimagined.gtlib.gui.widget.WidgetSupplier;
 import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.machine.types.Machine;
+import org.gtreimagined.gtlib.mui.widgets.GTProgressWidget;
+import org.gtreimagined.gtlib.util.int2;
 
 import java.util.List;
 
@@ -31,7 +34,6 @@ public class SteamMachine extends Machine<SteamMachine> {
         super(domain, id);
         setTile(BlockEntitySteamMachine::new);
         addFlags(BASIC, STEAM, COVERABLE);
-        setGUI(Data.BASIC_MENU_HANDLER);
         setClientTicking();
         getGuiProperties().setTheme(BRONZE, GTCoreThemes.BRONZE_THEME_ID).setTheme(STEEL, GTCoreThemes.STEEL_THEME_ID);
         getGuiProperties().getMachineData().setMachineStateLocation(BRONZE, GTCoreGuiTextures.BRONZE_MACHINE_STATE).setMachineStateLocation(STEEL, GTCoreGuiTextures.STEEL_MACHINE_STATE);
@@ -57,12 +59,21 @@ public class SteamMachine extends Machine<SteamMachine> {
 
     protected void setupGui() {
         super.setupGui();
-        addGuiCallback(t -> {
-            t.addWidget(WidgetSupplier.build((a, b) -> TextWidget.build(((GTContainerScreen<?>) b).getTitle().getString(), 4210752, false).build(a, b)).setPos(9, 5).clientSide());
-            if (has(RECIPE) && !getId().contains("boiler")) {
-                t.addWidget(ProgressWidget.build())
-                        .addWidget(MachineStateWidget.build());
+        getGuiFunctions().add(((modularPanel, machine, guiData, syncManager, settings) -> {
+            if (has(RECIPE)) {
+                int2 size = guiProperties.getMachineData().getMachineStateSize();
+                modularPanel.child(new org.gtreimagined.gtlib.mui.widgets.MachineStateWidget(machine.getMachineTier(), this.has(RECIPE), machine::getMachineState,
+                        guiProperties.getMachineData().getMachineStateTexture(machine.getMachineTier()))
+                        .pos(guiProperties.getMachineData().getMachineStatePos().x, guiProperties.getMachineData().getMachineStatePos().y)
+                        .size(size.x, size.y));
+
+                syncManager.syncValue("progress", new DoubleSyncValue(() -> machine.recipeHandler.map(r -> guiProperties.getMachineData().getProgressPercentFunction().apply(r.getCurrentProgress(), r.getMaxProgress())).orElse(0f)));
+                modularPanel.child(new GTProgressWidget(machine.getMachineType(), machine.getMachineTier())
+                        .texture(guiProperties.getMachineData().getProgressTexture(machine.getMachineTier()), guiProperties.getMachineData().getProgressSize().x)
+                        .direction(guiProperties.getMachineData().getDirection())
+                        .syncHandler("progress")
+                        .pos(guiProperties.getMachineData().getProgressPos().x + 6, guiProperties.getMachineData().getProgressPos().y + 6));
             }
-        });
+        }));
     }
 }
