@@ -1,25 +1,16 @@
 package org.gtreimagined.gtcore.machine;
 
+import brachy.modularui.drawable.UITexture;
+import brachy.modularui.drawable.progress.CompositeProgress;
 import brachy.modularui.value.sync.DoubleSyncValue;
-import net.minecraft.resources.ResourceLocation;
+import brachy.modularui.widgets.ProgressWidget;
 import org.gtreimagined.gtcore.blockentity.BlockEntitySteamMachine;
 import org.gtreimagined.gtcore.mui.GTCoreGuiTextures;
 import org.gtreimagined.gtcore.mui.GTCoreThemes;
-import org.gtreimagined.gtlib.Data;
-import org.gtreimagined.gtlib.gui.SlotData;
-import org.gtreimagined.gtlib.gui.SlotType;
-import org.gtreimagined.gtlib.gui.screen.GTContainerScreen;
-import org.gtreimagined.gtlib.gui.slot.ISlotProvider;
-import org.gtreimagined.gtlib.gui.widget.MachineStateWidget;
-import org.gtreimagined.gtlib.gui.widget.ProgressWidget;
-import org.gtreimagined.gtlib.gui.widget.TextWidget;
-import org.gtreimagined.gtlib.gui.widget.WidgetSupplier;
-import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.machine.types.Machine;
+import org.gtreimagined.gtlib.mui.BarDir;
 import org.gtreimagined.gtlib.mui.widgets.GTProgressWidget;
 import org.gtreimagined.gtlib.util.int2;
-
-import java.util.List;
 
 import static org.gtreimagined.gtlib.machine.MachineFlag.*;
 import static org.gtreimagined.gtlib.machine.Tier.BRONZE;
@@ -68,11 +59,22 @@ public class SteamMachine extends Machine<SteamMachine> {
                         .size(size.x, size.y));
 
                 syncManager.syncValue("progress", new DoubleSyncValue(() -> machine.recipeHandler.map(r -> guiProperties.getMachineData().getProgressPercentFunction().apply(r.getCurrentProgress(), r.getMaxProgress())).orElse(0f)));
-                modularPanel.child(new GTProgressWidget(machine.getMachineType(), machine.getMachineTier())
-                        .texture(guiProperties.getMachineData().getProgressTexture(machine.getMachineTier()), guiProperties.getMachineData().getProgressSize().x)
-                        .direction(guiProperties.getMachineData().getDirection())
+                syncManager.syncValue("progress", new DoubleSyncValue(() -> machine.recipeHandler.map(r -> guiProperties.getMachineData().getProgressPercentFunction().apply(r.getCurrentProgress(), r.getMaxProgress())).orElse(0f)));
+                BarDir direction = guiProperties.getMachineData().getDir();
+                UITexture texture = guiProperties.getMachineData().getProgressTexture(machine.getMachineTier());
+                ProgressWidget progressWidget = new GTProgressWidget(machine.getMachineType(), machine.getMachineTier())
                         .syncHandler("progress")
-                        .pos(guiProperties.getMachineData().getProgressPos().x + 6, guiProperties.getMachineData().getProgressPos().y + 6));
+                        .pos(guiProperties.getMachineData().getProgressPos().x + 6, guiProperties.getMachineData().getProgressPos().y + 6);
+                modularPanel.child(progressWidget);
+                if (!direction.isCircular()) {
+                    progressWidget.texture(texture, direction.toRegularDirection());
+                } else {
+                    progressWidget.progress(CompositeProgress.circularLike4Slice(
+                            texture.getSubArea(0.0f, 0.0f, 1f, 0.5f),
+                            texture.getSubArea(0f, 0.5f,1f, 1f),
+                            direction.toCircularDirection()
+                    ));
+                }
             }
         }));
     }
