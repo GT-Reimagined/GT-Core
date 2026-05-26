@@ -52,28 +52,31 @@ public class SteamMachine extends Machine<SteamMachine> {
         super.setupGui();
         getGuiFunctions().add(((modularPanel, machine, guiData, syncManager, settings) -> {
             if (has(RECIPE)) {
-                int2 size = guiProperties.getMachineData().getMachineStateSize();
-                modularPanel.child(new org.gtreimagined.gtlib.mui.widgets.MachineStateWidget(machine.getMachineTier(), this.has(RECIPE), machine::getMachineState,
-                        guiProperties.getMachineData().getMachineStateTexture(machine.getMachineTier()))
-                        .pos(guiProperties.getMachineData().getMachineStatePos().x, guiProperties.getMachineData().getMachineStatePos().y)
-                        .size(size.x, size.y));
+                if (guiProperties.getMachineData().hasMachineStateWidget()){
+                    int2 size = guiProperties.getMachineData().getMachineStateSize();
+                    modularPanel.child(new org.gtreimagined.gtlib.mui.widgets.MachineStateWidget(machine.getMachineTier(), this.has(RECIPE), machine::getMachineState,
+                            guiProperties.getMachineData().getMachineStateTexture(machine.getMachineTier()))
+                            .pos(guiProperties.getMachineData().getMachineStatePos().x, guiProperties.getMachineData().getMachineStatePos().y)
+                            .size(size.x, size.y));
+                }
 
-                syncManager.syncValue("progress", new DoubleSyncValue(() -> machine.recipeHandler.map(r -> guiProperties.getMachineData().getProgressPercentFunction().apply(r.getCurrentProgress(), r.getMaxProgress())).orElse(0f)));
-                syncManager.syncValue("progress", new DoubleSyncValue(() -> machine.recipeHandler.map(r -> guiProperties.getMachineData().getProgressPercentFunction().apply(r.getCurrentProgress(), r.getMaxProgress())).orElse(0f)));
-                BarDir direction = guiProperties.getMachineData().getDir();
-                UITexture texture = guiProperties.getMachineData().getProgressTexture(machine.getMachineTier());
-                ProgressWidget progressWidget = new GTProgressWidget(machine.getMachineType(), machine.getMachineTier())
-                        .syncHandler("progress")
-                        .pos(guiProperties.getMachineData().getProgressPos().x + 6, guiProperties.getMachineData().getProgressPos().y + 6);
-                modularPanel.child(progressWidget);
-                if (!direction.isCircular()) {
-                    progressWidget.texture(texture, direction.toRegularDirection());
-                } else {
-                    progressWidget.progress(CompositeProgress.circularLike4Slice(
-                            texture.getSubArea(0.0f, 0.0f, 1f, 0.5f),
-                            texture.getSubArea(0f, 0.5f,1f, 1f),
-                            direction.toCircularDirection()
-                    ));
+                if (guiProperties.getMachineData().hasProgressWidget()){
+                    syncManager.syncValue("progress", new DoubleSyncValue(() -> machine.recipeHandler.map(r -> guiProperties.getMachineData().getProgressPercentFunction().apply(r.getCurrentProgress(), r.getMaxProgress())).orElse(0f)));
+                    BarDir direction = guiProperties.getMachineData().getDir();
+                    UITexture texture = guiProperties.getMachineData().getProgressTexture(machine.getMachineTier());
+                    ProgressWidget progressWidget = new GTProgressWidget(machine.getMachineType(), machine.getMachineTier())
+                            .syncHandler("progress")
+                            .pos(guiProperties.getMachineData().getProgressPos().x + 6, guiProperties.getMachineData().getProgressPos().y + 6);
+                    modularPanel.child(progressWidget);
+                    if (!direction.isCircular()) {
+                        progressWidget.texture(texture, direction.toRegularDirection());
+                    } else {
+                        progressWidget.progress(CompositeProgress.circularLike4Slice(
+                                texture.getSubArea(0.0f, 0.0f, 1f, 0.5f),
+                                texture.getSubArea(0f, 0.5f,1f, 1f),
+                                direction.toCircularDirection()
+                        ));
+                    }
                 }
             }
         }));
