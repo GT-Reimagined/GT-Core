@@ -56,6 +56,7 @@ import org.gtreimagined.gtcore.loader.crafting.Pipes;
 import org.gtreimagined.gtcore.loader.crafting.RubberRecipes;
 import org.gtreimagined.gtcore.loader.crafting.Tools;
 import org.gtreimagined.gtcore.loader.crafting.VanillaRecipes;
+import org.gtreimagined.gtcore.mui.GTCoreThemes;
 import org.gtreimagined.gtcore.network.MessageCraftingSync;
 import org.gtreimagined.gtcore.network.MessageInventorySync;
 import org.gtreimagined.gtcore.network.MessageTriggerInventorySync;
@@ -130,6 +131,7 @@ public class GTCore extends GTMod {
     @OnlyIn(Dist.CLIENT)
     private void clientSetup(FMLClientSetupEvent event){
         ClientHandler.init();
+        GTCoreThemes.registerThemes();
     }
 
     private void onProvidersEvent(GTProvidersEvent event){

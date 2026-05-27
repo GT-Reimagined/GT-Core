@@ -34,6 +34,10 @@ public class GTCoreThemes {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onThemeReload(ReloadThemeEvent.Pre event) {
+        registerThemes();
+    }
+
+    public static void registerThemes(){
         IThemeApi.get().registerTheme(BRONZE_THEME);
         IThemeApi.get().registerTheme(STEEL_THEME);
         IThemeApi.get().registerTheme(PRIMITIVE_THEME);
