@@ -10,15 +10,13 @@ import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtlib.capability.IGuiHandler;
 import org.gtreimagined.gtlib.gui.SlotType;
 import org.gtreimagined.gtlib.gui.slot.AbstractSlot;
-import org.gtreimagined.gtlib.gui.slot.IClickableSlot;
 import org.jetbrains.annotations.NotNull;
 
-public class SlotUnlimited extends AbstractSlot<SlotUnlimited> implements IClickableSlot {
+public class SlotUnlimited extends AbstractSlot<SlotUnlimited> {
     public SlotUnlimited(SlotType<SlotUnlimited> type, IGuiHandler tile, IItemHandler stackHandler, int index) {
         super(type, tile, stackHandler, index);
     }
 
-    @Override
     public ItemStack clickSlot(int pDragType, ClickType pClickType, Player pPlayer, AbstractContainerMenu container) {
         ItemStack itemstack = ItemStack.EMPTY;
         Inventory playerinventory = pPlayer.getInventory();
