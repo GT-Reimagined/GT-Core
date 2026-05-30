@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
-import org.gtreimagined.gtlib.gui.container.ContainerMachine;
 
 import java.util.List;
 
@@ -123,16 +122,16 @@ public class BlockEntityChest extends BlockEntityMaterial<BlockEntityChest> impl
     }
 
     @Override
-    public void addOpenContainer(ContainerMachine<BlockEntityChest> c, Player player) {
-        super.addOpenContainer(c, player);
+    public void onContainerOpen(Player player) {
+        super.onContainerOpen(player);
         if (!remove && !player.isSpectator()) {
             this.manager.incrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
         }
     }
 
     @Override
-    public void onContainerClose(ContainerMachine<BlockEntityChest> c, Player player) {
-        super.onContainerClose(c, player);
+    public void onContainerClose(Player player) {
+        super.onContainerClose(player);
         if (!remove && !player.isSpectator()) {
             manager.decrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
         }
