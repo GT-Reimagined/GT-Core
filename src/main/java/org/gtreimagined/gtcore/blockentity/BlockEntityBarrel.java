@@ -1,6 +1,8 @@
 package org.gtreimagined.gtcore.blockentity;
 
 
+import brachy.modularui.factory.PosGuiData;
+import brachy.modularui.screen.ModularContainerMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -37,8 +39,8 @@ public class BlockEntityBarrel extends BlockEntityMaterial<BlockEntityBarrel> {
 
         @Override
         protected boolean isOwnContainer(Player player) {
-            return player.containerMenu instanceof ContainerMachine<?> handler &&
-                    handler.handler.handler instanceof BlockEntityBarrel chest && chest.getBlockPos().equals(BlockEntityBarrel.this.getBlockPos());
+            return player.containerMenu instanceof ModularContainerMenu containerMenu &&
+                    containerMenu.getGuiData() instanceof PosGuiData posGuiData && player.level().getBlockEntity(posGuiData.getBlockPos()) instanceof BlockEntityBarrel && posGuiData.getBlockPos().equals(BlockEntityBarrel.this.getBlockPos());
         }
     };
 
