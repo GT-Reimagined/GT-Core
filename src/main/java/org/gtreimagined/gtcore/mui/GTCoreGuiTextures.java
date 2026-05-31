@@ -14,6 +14,12 @@ public class GTCoreGuiTextures {
         public static final String BRONZE_FLUID_SLOT = GTCore.ID + ":bronze_fluid_slot";
         public static final String STEEL_FLUID_SLOT = GTCore.ID + ":steel_fluid_slot";
         public static final String PRIMITIVE_FLUID_SLOT = GTCore.ID + ":primitive_fluid_slot";
+        public static final String BRONZE_BUTTON = GTCore.ID + ":bronze_button";
+        public static final String STEEL_BUTTON = GTCore.ID + ":steel_button";
+        public static final String PRIMITIVE_BUTTON = GTCore.ID + ":primitive_button";
+        public static final String BRONZE_BUTTON_PRESSED = GTCore.ID + ":bronze_button_pressed";
+        public static final String STEEL_BUTTON_PRESSED = GTCore.ID + ":steel_button_pressed";
+        public static final String PRIMITIVE_BUTTON_PRESSED = GTCore.ID + ":primitive_button_pressed";
     }
 
     public static final UITexture TRASH_CAN = UITexture.builder().location(GTCore.ID, "textures/gui/icons/trash_can.png").imageSize(64, 68).build();
@@ -38,5 +44,11 @@ public class GTCoreGuiTextures {
     public static final UITexture TO_PLAYER_BUTTON = UITexture.builder().location(GTCore.ID, "textures/gui/button/to_player.png").defaultColorType().build();
     public static final UITexture BRONZE_MACHINE_STATE = UITexture.builder().location(GTCore.ID, "textures/gui/icons/bronze_machine_state.png").imageSize(36, 18).build();
     public static final UITexture STEEL_MACHINE_STATE = UITexture.builder().location(GTCore.ID, "textures/gui/icons/steel_machine_state.png").imageSize(36, 18).build();
+    public static final UITexture BRONZE_BUTTON = UITexture.builder().name(IDs.BRONZE_BUTTON).location(GTCore.ID, "textures/gui/button/bronze.png").build();
+    public static final UITexture STEEL_BUTTON = UITexture.builder().name(IDs.STEEL_BUTTON).location(GTCore.ID, "textures/gui/button/steel.png").build();
+    public static final UITexture PRIMITIVE_BUTTON = UITexture.builder().name(IDs.PRIMITIVE_BUTTON).location(GTCore.ID, "textures/gui/button/primitive.png").build();
+    public static final UITexture BRONZE_BUTTON_PRESSED = UITexture.builder().name(IDs.BRONZE_BUTTON).location(GTCore.ID, "textures/gui/button/bronze_pressed.png").build();
+    public static final UITexture STEEL_BUTTON_PRESSED = UITexture.builder().name(IDs.STEEL_BUTTON).location(GTCore.ID, "textures/gui/button/steel_pressed.png").build();
+    public static final UITexture PRIMITIVE_BUTTON_PRESSED = UITexture.builder().name(IDs.PRIMITIVE_BUTTON).location(GTCore.ID, "textures/gui/button/primitive_pressed.png").build();
 
 }
