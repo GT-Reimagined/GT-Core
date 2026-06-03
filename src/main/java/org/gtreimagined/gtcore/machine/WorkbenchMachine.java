@@ -104,14 +104,14 @@ public class WorkbenchMachine extends ChargingMachine{
                             return true;
                         })
                         .overlay(GTCoreGuiTextures.TO_INV_BUTTON)
-                        .pos(136, 46));
+                        .pos(135, 45));
                 modularPanel.child(new ButtonWidget<>()
                         .onMousePressed((context, mouseButton) -> {
                             syncManager.callSyncedAction("inventorySend", b -> b.writeBoolean(true));
                             return true;
                         })
                         .overlay(GTCoreGuiTextures.TO_PLAYER_BUTTON)
-                        .pos(154, 46));
+                        .pos(153, 45));
                 return;
             }
             syncManager.registerSlotGroup("storage", 9);
