@@ -20,6 +20,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistries.Keys;
@@ -106,6 +107,7 @@ public class GTCore extends GTMod {
         var eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::onProvidersEvent);
         eventBus.addListener(this::onCraftingEvent);
+        eventBus.addListener(this::constructionEvent);
         MinecraftForge.EVENT_BUS.addListener(this::onItemUse);
         MinecraftForge.EVENT_BUS.addListener(GTCommonEvents::onTooltipAdd);
         MinecraftForge.EVENT_BUS.addListener(this::onLoadersEvent);
@@ -126,6 +128,10 @@ public class GTCore extends GTMod {
             event.setCancellationResult(Items.HONEYCOMB.useOn(new UseOnContext(event.getEntity(), event.getHand(), event.getHitVec())));
             event.setCanceled(true);
         }
+    }
+
+    private void constructionEvent(FMLConstructModEvent event){
+        GTCoreThemes.registerThemes();
     }
 
     @OnlyIn(Dist.CLIENT)

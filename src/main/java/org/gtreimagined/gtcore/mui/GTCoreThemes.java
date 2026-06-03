@@ -1,20 +1,11 @@
 package org.gtreimagined.gtcore.mui;
 
-import brachy.modularui.ModularUI;
 import brachy.modularui.api.IThemeApi;
-import brachy.modularui.theme.ReloadThemeEvent;
 import brachy.modularui.theme.SelectableTheme;
 import brachy.modularui.theme.ThemeBuilder;
-import brachy.modularui.theme.WidgetThemeKey;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.mui.GTCoreGuiTextures.IDs;
 
-@EventBusSubscriber(modid = GTCore.ID, bus = Bus.FORGE)
 public class GTCoreThemes {
     public static final String BRONZE_THEME_ID = GTCore.ID + ":bronze";
     public static final String STEEL_THEME_ID = GTCore.ID + ":steel";
@@ -40,12 +31,6 @@ public class GTCoreThemes {
             .background(IThemeApi.BUTTON, IDs.PRIMITIVE_BUTTON)
             .background(IThemeApi.CLOSE_BUTTON, IDs.PRIMITIVE_BUTTON)
             .widgetTheme(IThemeApi.TOGGLE_BUTTON, new SelectableTheme.Builder<>().background(IDs.PRIMITIVE_BUTTON).selectedBackground(IDs.PRIMITIVE_BUTTON_PRESSED));
-
-    @OnlyIn(Dist.CLIENT)
-    @SubscribeEvent
-    public static void onThemeReload(ReloadThemeEvent.Pre event) {
-        registerThemes();
-    }
 
     public static void registerThemes(){
         IThemeApi.get().registerTheme(BRONZE_THEME);
