@@ -131,7 +131,6 @@ public class GTCore extends GTMod {
     @OnlyIn(Dist.CLIENT)
     private void clientSetup(FMLClientSetupEvent event){
         ClientHandler.init();
-        GTCoreThemes.registerThemes();
     }
 
     private void onProvidersEvent(GTProvidersEvent event){
