@@ -7,8 +7,13 @@ import mezz.jei.api.recipe.transfer.IRecipeTransferInfo;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.crafting.CraftingRecipe;
+import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.gui.slots.SlotCrafting;
+import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.slot.AbstractSlot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,9 +40,11 @@ public class GTCoreRecipeTransferInfo implements IRecipeTransferInfo<ModularCont
 
     @Override
     public List<Slot> getRecipeSlots(ModularContainerMenu containerWorkbench, CraftingRecipe recipe) {
-        List<Slot> slots = new ArrayList<>();
-        for (int i = 17; i < 26; i++) {
-            slots.add(containerWorkbench.getSlot(i));
+        List<Slot> slots = new ArrayList<>(Arrays.asList(null, null, null, null, null, null, null, null, null));
+        for (Slot slot : containerWorkbench.slots){
+            if (slot instanceof SlotCrafting abstractSlot){
+                slots.set(abstractSlot.getIndex(), slot);
+            }
         }
         return slots;
     }
@@ -45,12 +52,17 @@ public class GTCoreRecipeTransferInfo implements IRecipeTransferInfo<ModularCont
     @Override
     public List<Slot> getInventorySlots(ModularContainerMenu containerWorkbench, CraftingRecipe recipe) {
         List<Slot> slots = new ArrayList<>();
-        for (int i = 1; i < 17; i++) {
+        for (Slot slot : containerWorkbench.slots){
+            if (slot instanceof AbstractSlot<?> abstractSlot && (abstractSlot.type == SlotType.STORAGE || abstractSlot.type == SlotTypes.TOOLS || abstractSlot.type == SlotTypes.TOOL_CHARGE)){
+                slots.add(slot);
+            }
+        }
+        /*for (int i = 1; i < 17; i++) {
             slots.add(containerWorkbench.getSlot(i));
         }
         for (int i = 26; i < 70; i++) {
             slots.add(containerWorkbench.getSlot(i));
-        }
+        }*/
         return slots;
     }
 }
