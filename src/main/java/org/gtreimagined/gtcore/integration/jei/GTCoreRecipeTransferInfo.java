@@ -1,5 +1,6 @@
 package org.gtreimagined.gtcore.integration.jei;
 
+import brachy.modularui.ModularUIMenuTypes;
 import brachy.modularui.screen.ModularContainerMenu;
 import brachy.modularui.widgets.slot.ModularSlot;
 import mezz.jei.api.constants.RecipeTypes;
@@ -26,7 +27,7 @@ public class GTCoreRecipeTransferInfo implements IRecipeTransferInfo<ModularCont
 
     @Override
     public Optional<MenuType<ModularContainerMenu>> getMenuType() {
-        return Optional.empty();
+        return Optional.of(ModularUIMenuTypes.MODULAR_CONTAINER.get());
     }
 
     @Override
