@@ -1,6 +1,7 @@
 package org.gtreimagined.gtcore.integration.jei;
 
 import brachy.modularui.screen.ModularContainerMenu;
+import brachy.modularui.widgets.slot.ModularSlot;
 import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.transfer.IRecipeTransferInfo;
@@ -51,18 +52,25 @@ public class GTCoreRecipeTransferInfo implements IRecipeTransferInfo<ModularCont
 
     @Override
     public List<Slot> getInventorySlots(ModularContainerMenu containerWorkbench, CraftingRecipe recipe) {
+        List<Slot> toolSlots = new ArrayList<>();
+        List<Slot> storageSlots = new ArrayList<>();
+        List<Slot> playerSlots = new ArrayList<>();
         List<Slot> slots = new ArrayList<>();
         for (Slot slot : containerWorkbench.slots){
-            if (slot instanceof AbstractSlot<?> abstractSlot && (abstractSlot.type == SlotType.STORAGE || abstractSlot.type == SlotTypes.TOOLS || abstractSlot.type == SlotTypes.TOOL_CHARGE)){
-                slots.add(slot);
+            if (slot instanceof AbstractSlot<?> abstractSlot) {
+                if (abstractSlot.type == SlotTypes.TOOLS || abstractSlot.type == SlotTypes.TOOL_CHARGE) {
+                    toolSlots.add(slot);
+                }
+                if (abstractSlot.type == SlotType.STORAGE){
+                    storageSlots.add(slot);
+                }
+            } else if (slot instanceof ModularSlot modularSlot && modularSlot.getSlotGroupName() != null && modularSlot.getSlotGroupName().equals("player_inventory")){
+                playerSlots.add(slot);
             }
         }
-        /*for (int i = 1; i < 17; i++) {
-            slots.add(containerWorkbench.getSlot(i));
-        }
-        for (int i = 26; i < 70; i++) {
-            slots.add(containerWorkbench.getSlot(i));
-        }*/
+        slots.addAll(toolSlots);
+        slots.addAll(storageSlots);
+        slots.addAll(playerSlots);
         return slots;
     }
 }
