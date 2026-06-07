@@ -9,6 +9,7 @@ import mezz.jei.api.recipe.transfer.IRecipeTransferInfo;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.crafting.CraftingRecipe;
+import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.data.SlotTypes;
 import org.gtreimagined.gtcore.gui.slots.SlotCrafting;
 import org.gtreimagined.gtlib.gui.SlotType;
@@ -37,7 +38,7 @@ public class GTCoreRecipeTransferInfo implements IRecipeTransferInfo<ModularCont
 
     @Override
     public boolean canHandle(ModularContainerMenu containerWorkbench, CraftingRecipe recipe) {
-        return true;
+        return containerWorkbench.getScreen().getName().contains("workbench") && containerWorkbench.getScreen().getOwner().equals(GTCore.ID);
     }
 
     @Override
