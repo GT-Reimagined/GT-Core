@@ -62,7 +62,7 @@ public class WorkbenchMachine extends ChargingMachine{
                         .slotGroup("crafting")
                         .build().pos(81, 27));
                 SlotType<AbstractSlot<?>> toolSlot = charge ? SlotTypes.TOOL_CHARGE : SlotTypes.TOOLS;
-                Function<Integer, ModularSlot> slotSupplier = i -> toolSlot.getSlotSupplier().get(toolSlot, machine, machine.itemHandler.map(MachineItemHandler::getAll).orElse(Map.of()), i, new SlotData<>(toolSlot, 0, 0));
+                Function<Integer, ModularSlot> slotSupplier = i -> toolSlot.getSlotSupplier().get(toolSlot, machine, machine.itemHandler.map(MachineItemHandler::getAll).orElse(Map.of()), i, SlotData.<AbstractSlot<?>>builder().type(toolSlot).x(0).y(0).build());
                 modularPanel.child(SlotGroupWidget
                         .builder()
                         .matrix("IIIII")
