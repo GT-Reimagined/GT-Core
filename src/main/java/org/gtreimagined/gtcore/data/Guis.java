@@ -7,6 +7,7 @@ import org.gtreimagined.gtlib.gui.GuiProperties;
 import org.gtreimagined.gtlib.gui.SlotData;
 import org.gtreimagined.gtlib.gui.slot.ISlotProvider;
 import org.gtreimagined.gtlib.machine.IPanelFunction;
+import org.gtreimagined.gtlib.mui.GTGuiTextures;
 
 import static org.gtreimagined.gtlib.gui.SlotType.*;
 
@@ -31,7 +32,8 @@ public class Guis {
         GTCoreBlocks.WOOD_ITEM_BARREL.add(DISPLAY, 53, 34).add(SlotTypes.UNLIMITED, 71, 34);
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 3; x++) {
-                GTCoreBlocks.ENDER_GARBAGE_BIN.add("", new SlotData<>(STORAGE, 62 + (x * 18), 17 + (y * 18), GTCoreGuiTextures.BLANK_SLOT, null));
+                int finalX = x, finalY = y;
+                GTCoreBlocks.ENDER_GARBAGE_BIN.add(STORAGE, b -> b.x(62 + (finalX * 18)).y(17 + (finalY * 18)).baseTexture(GTGuiTextures.BLANK_SLOT).build());
             }
         }
         IPanelFunction oldFunction = GTCoreBlocks.ENDER_GARBAGE_BIN.getBackgroundFunction();;
