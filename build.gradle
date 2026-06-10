@@ -96,15 +96,11 @@ legacyForge {
 }
 
 dependencies {
-    implementation(project(":tesseract-forge"))
-    compileOnly(project(":tesseract-common"))
-    implementation(project(":GT-Lib"))
-
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation("org.jetbrains:annotations:26.0.1")
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
-    //modImplementation("org.gt-reimagined:gt-lib:${gtlib_version}-${project.minecraft_version}")
-    //modImplementation("org.gt-reimagined:tesseract-forge:${tesseract_version}-${project.minecraft_version}")
+    modImplementation("org.gt-reimagined:gt-lib:${gtlib_version}-${project.minecraft_version}")
+    modImplementation("org.gt-reimagined:tesseract-forge:${tesseract_version}-${project.minecraft_version}")
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}"
     modCompileOnly("me.shedaniel:RoughlyEnoughItems-forge:${project.rei_version}")
     modCompileOnly("curse.maven:terrafirmacraft-302973:${project.tfc_version}")
