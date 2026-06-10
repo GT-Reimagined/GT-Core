@@ -40,7 +40,7 @@ public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShel
             protected TrackedItemHandler<BlockEntityBookShelf> createTrackedHandler(SlotType<?> type, BlockEntityBookShelf tile) {
                 if (type == SlotType.STORAGE){
                     int count = tile.getMachineType().getCount(tile.getMachineTier(), type);
-                    return new TrackedItemHandler<>(tile, type, count, type.output, type.input, type.tester, 1);
+                    return new TrackedItemHandler<>(tile, type, count, type.isOutput(), type.isInput(), type.getTester(), 1);
                 }
                 return super.createTrackedHandler(type, tile);
             }
@@ -149,7 +149,7 @@ public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShel
     }
 
     @Override
-    public boolean canPlayerOpenGui(Player playerEntity) {
+    public boolean canPlayerOpenGui(Player playerEntity, Direction side) {
         return playerEntity.isCreative();
     }
 

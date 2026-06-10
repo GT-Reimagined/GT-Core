@@ -128,7 +128,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         boolean output = false;
         public DrumFluidHandler(BlockEntityDrum tile) {
             super(tile);
-            tanks.put(FluidDirection.INPUT, FluidTanks.create(tile, SlotType.FL_IN, b -> {
+            tanks.put(FluidTankType.INPUT, FluidTanks.create(tile, SlotType.FL_IN, b -> {
                 b.tank(((DrumMachine)tile.getMachineType()).maxCapacity);
                 return b;
             }));

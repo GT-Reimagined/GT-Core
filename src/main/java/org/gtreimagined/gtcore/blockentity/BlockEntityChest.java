@@ -1,7 +1,10 @@
 package org.gtreimagined.gtcore.blockentity;
 
 
+import brachy.modularui.factory.PosGuiData;
+import brachy.modularui.screen.ModularContainerMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,7 +19,6 @@ import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
-import org.gtreimagined.gtlib.gui.container.ContainerMachine;
 
 import java.util.List;
 
@@ -46,8 +48,8 @@ public class BlockEntityChest extends BlockEntityMaterial<BlockEntityChest> impl
 
         @Override
         protected boolean isOwnContainer(Player player) {
-            return player.containerMenu instanceof ContainerMachine<?> handler &&
-                    handler.handler.handler instanceof BlockEntityChest chest && chest.getBlockPos().equals(BlockEntityChest.this.getBlockPos());
+            return player.containerMenu instanceof ModularContainerMenu containerMenu &&
+                    containerMenu.getGuiData() instanceof PosGuiData posGuiData && player.level().getBlockEntity(posGuiData.getBlockPos()) instanceof BlockEntityChest && posGuiData.getBlockPos().equals(BlockEntityChest.this.getBlockPos());
         }
     };
 
@@ -79,8 +81,8 @@ public class BlockEntityChest extends BlockEntityMaterial<BlockEntityChest> impl
 
 
     @Override
-    public boolean canPlayerOpenGui(Player playerEntity) {
-        return super.canPlayerOpenGui(playerEntity) && !isChestBlockedAt(playerEntity.level(), this.getBlockPos());
+    public boolean canPlayerOpenGui(Player playerEntity, Direction side) {
+        return super.canPlayerOpenGui(playerEntity, side) && !isChestBlockedAt(playerEntity.level(), this.getBlockPos());
     }
 
     public static boolean isChestBlockedAt(LevelAccessor p_220108_0_, BlockPos p_220108_1_) {
@@ -120,16 +122,16 @@ public class BlockEntityChest extends BlockEntityMaterial<BlockEntityChest> impl
     }
 
     @Override
-    public void addOpenContainer(ContainerMachine<BlockEntityChest> c, Player player) {
-        super.addOpenContainer(c, player);
+    public void onContainerOpen(Player player) {
+        super.onContainerOpen(player);
         if (!remove && !player.isSpectator()) {
             this.manager.incrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
         }
     }
 
     @Override
-    public void onContainerClose(ContainerMachine<BlockEntityChest> c, Player player) {
-        super.onContainerClose(c, player);
+    public void onContainerClose(Player player) {
+        super.onContainerClose(player);
         if (!remove && !player.isSpectator()) {
             manager.decrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
         }

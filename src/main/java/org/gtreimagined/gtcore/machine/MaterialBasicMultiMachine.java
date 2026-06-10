@@ -18,7 +18,6 @@ public class MaterialBasicMultiMachine extends BasicMultiMachine<MaterialBasicMu
         setBlock(BlockMultiMachineMaterial::new);
         setTile(BlockEntityMaterialBasicMultiMachine::new);
         addFlags(COVERABLE);
-        this.setGUI(Data.BASIC_MENU_HANDLER);
         setNoOutputCover();
         setAllowsFrontIO();
     }

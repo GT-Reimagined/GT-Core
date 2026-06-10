@@ -5,11 +5,13 @@ import org.gradle.jvm.toolchain.JavaLanguageVersion
 plugins {
     id "maven-publish"
     id "idea"
-    id "net.neoforged.moddev.legacyforge" version "2.0.78"
+    id "io.freefair.lombok" version "8.10.2" apply false
+    id "net.neoforged.moddev.legacyforge" version "2.0.82" apply false
 }
 apply plugin: "maven-publish"
 apply plugin: "java"
 apply plugin: "idea"
+apply plugin: "net.neoforged.moddev.legacyforge"
 
 //Print out JVM information so that we know what version is running. Extreamly useful for people to know when helping you.
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
@@ -36,6 +38,32 @@ if (isCI) {
         println("Not in CI Release mode")
     }
     println("In CI mode")
+}
+
+allprojects {
+    apply plugin: "maven-publish"
+    apply plugin: "java"
+    apply plugin: "idea"
+    apply plugin: "io.freefair.lombok"
+    group = project.maven_group
+    version = "${project.mod_version}-${project.minecraft_version}"
+    java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+
+    apply from: 'https://raw.githubusercontent.com/GT-Reimagined/GradleScripts/main/repositories.gradle'
+
+    java {
+        withSourcesJar()
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        it.options.encoding = 'UTF-8'
+    }
+
+    if (isCI) {
+        version = version + "-" + gitHash()
+        println("In CI mode")
+    }
 }
 
 legacyForge {
@@ -78,6 +106,7 @@ dependencies {
     modCompileOnly("curse.maven:terrafirmacraft-302973:${project.tfc_version}")
     modImplementation("curse.maven:curios-309927:${project.curios_version}")
     modImplementation("com.teamresourceful.resourcefullib:resourcefullib-forge-${project.minecraft_version}:${project.resourcefullib_version}")
+    modImplementation("brachy.modularui:modularui-mc${project.minecraft_version}:${project.mui_version}")
     modImplementation(jarJar("dev.trinsdar:terraform-wood-api-v1:${project.terraform_version}"))
     //modRuntimeOnly("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
     modImplementation("maven.modrinth:carbon-config:${project.carbon_config_version}")
@@ -152,4 +181,12 @@ publishing {
 
 java {
     withSourcesJar()
+}
+
+// IDEA no longer automatically downloads sources/javadoc jars for dependencies, so we need to explicitly enable the behavior.
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
 }

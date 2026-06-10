@@ -2,16 +2,13 @@ package org.gtreimagined.gtcore.integration.rei;
 
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
-import me.shedaniel.rei.api.client.registry.transfer.TransferHandler;
 import me.shedaniel.rei.api.client.registry.transfer.TransferHandlerRegistry;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.entry.type.VanillaEntryTypes;
 import me.shedaniel.rei.forge.REIPluginClient;
 import me.shedaniel.rei.plugin.common.BuiltinPlugin;
-import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCraftingDisplay;
 import net.minecraft.world.item.ItemStack;
-import org.gtreimagined.gtcore.gui.ContainerWorkbench;
 import org.gtreimagined.gtcore.machine.WorkbenchMachine;
 import org.gtreimagined.gtlib.GTAPI;
 
@@ -38,13 +35,4 @@ public class GTCoreReiPlugin implements REIClientPlugin {
         //registry.register(new GTUtilityWorkbenchHandler());
     }
 
-    public static class GTUtilityWorkbenchHandler implements TransferHandler {
-
-        @Override
-        public Result handle(Context context) {
-            if(!(context.getDisplay() instanceof DefaultCraftingDisplay<?> display)) return Result.createNotApplicable();
-            if (!(context.getMenu() instanceof ContainerWorkbench<?> workbench)) return Result.createNotApplicable();
-            return Result.createSuccessful().blocksFurtherHandling();
-        }
-    }
 }

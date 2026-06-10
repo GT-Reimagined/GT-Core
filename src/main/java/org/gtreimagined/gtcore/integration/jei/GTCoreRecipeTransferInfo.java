@@ -1,26 +1,34 @@
 package org.gtreimagined.gtcore.integration.jei;
 
+import brachy.modularui.ModularUIMenuTypes;
+import brachy.modularui.screen.ModularContainerMenu;
+import brachy.modularui.widgets.slot.ModularSlot;
 import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.transfer.IRecipeTransferInfo;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.crafting.CraftingRecipe;
-import org.gtreimagined.gtcore.gui.ContainerWorkbench;
+import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.gui.slots.SlotCrafting;
+import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.slot.AbstractSlot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class GTCoreRecipeTransferInfo implements IRecipeTransferInfo<ContainerWorkbench, CraftingRecipe> {
+public class GTCoreRecipeTransferInfo implements IRecipeTransferInfo<ModularContainerMenu, CraftingRecipe> {
     @Override
-    public Class<ContainerWorkbench> getContainerClass() {
-        return ContainerWorkbench.class;
+    public Class<ModularContainerMenu> getContainerClass() {
+        return ModularContainerMenu.class;
     }
 
     @Override
-    public Optional<MenuType<ContainerWorkbench>> getMenuType() {
-        return Optional.empty();
+    public Optional<MenuType<ModularContainerMenu>> getMenuType() {
+        return Optional.of(ModularUIMenuTypes.MODULAR_CONTAINER.get());
     }
 
     @Override
@@ -29,28 +37,42 @@ public class GTCoreRecipeTransferInfo implements IRecipeTransferInfo<ContainerWo
     }
 
     @Override
-    public boolean canHandle(ContainerWorkbench containerWorkbench, CraftingRecipe recipe) {
-        return true;
+    public boolean canHandle(ModularContainerMenu containerWorkbench, CraftingRecipe recipe) {
+        return containerWorkbench.getScreen().getName().contains("workbench") && containerWorkbench.getScreen().getOwner().equals(GTCore.ID);
     }
 
     @Override
-    public List<Slot> getRecipeSlots(ContainerWorkbench containerWorkbench, CraftingRecipe recipe) {
-        List<Slot> slots = new ArrayList<>();
-        for (int i = 17; i < 26; i++) {
-            slots.add(containerWorkbench.getSlot(i));
+    public List<Slot> getRecipeSlots(ModularContainerMenu containerWorkbench, CraftingRecipe recipe) {
+        List<Slot> slots = new ArrayList<>(Arrays.asList(null, null, null, null, null, null, null, null, null));
+        for (Slot slot : containerWorkbench.slots){
+            if (slot instanceof SlotCrafting abstractSlot){
+                slots.set(abstractSlot.getIndex(), slot);
+            }
         }
         return slots;
     }
 
     @Override
-    public List<Slot> getInventorySlots(ContainerWorkbench containerWorkbench, CraftingRecipe recipe) {
+    public List<Slot> getInventorySlots(ModularContainerMenu containerWorkbench, CraftingRecipe recipe) {
+        List<Slot> toolSlots = new ArrayList<>();
+        List<Slot> storageSlots = new ArrayList<>();
+        List<Slot> playerSlots = new ArrayList<>();
         List<Slot> slots = new ArrayList<>();
-        for (int i = 1; i < 17; i++) {
-            slots.add(containerWorkbench.getSlot(i));
+        for (Slot slot : containerWorkbench.slots){
+            if (slot instanceof AbstractSlot<?> abstractSlot) {
+                if (abstractSlot.type == SlotTypes.TOOLS || abstractSlot.type == SlotTypes.TOOL_CHARGE) {
+                    toolSlots.add(slot);
+                }
+                if (abstractSlot.type == SlotType.STORAGE){
+                    storageSlots.add(slot);
+                }
+            } else if (slot instanceof ModularSlot modularSlot && modularSlot.getSlotGroupName() != null && modularSlot.getSlotGroupName().equals("player_inventory")){
+                playerSlots.add(slot);
+            }
         }
-        for (int i = 26; i < 70; i++) {
-            slots.add(containerWorkbench.getSlot(i));
-        }
+        slots.addAll(toolSlots);
+        slots.addAll(storageSlots);
+        slots.addAll(playerSlots);
         return slots;
     }
 }

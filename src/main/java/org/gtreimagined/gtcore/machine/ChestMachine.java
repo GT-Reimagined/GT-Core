@@ -22,8 +22,7 @@ public class ChestMachine extends MaterialMachine {
         this.setTiers(Tier.NONE);
         this.addFlags(ITEM, GUI);
         this.setRenderAsTesr().setNoOutputCover();
-        this.getGuiData().setPlayerYOffset(56).setPlayerXOffset(4);
-        this.getGuiData().setYSize(222).setXSize(184).setBackgroundTexture("chest_base");
+        this.getGuiProperties().setYSize(222).setXSize(184);
         this.setOverlayTextures((type, state, tier, i) -> new Texture[] {
                 new Texture(GTCore.ID, "model/material_chest_overlay_inventory"),
                 new Texture(GTCore.ID, "model/material_chest_overlay_inventory"),
@@ -48,6 +47,7 @@ public class ChestMachine extends MaterialMachine {
                 }
             }
         }
+        getGuiProperties().setHasGTIcon(false);
         GTAPI.register(ChestMachine.class, this);
     }
 }

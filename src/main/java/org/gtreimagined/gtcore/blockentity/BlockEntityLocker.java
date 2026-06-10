@@ -64,7 +64,7 @@ public class BlockEntityLocker extends BlockEntityMaterial<BlockEntityLocker> {
     }
 
     @Override
-    public boolean canPlayerOpenGui(Player player) {
+    public boolean canPlayerOpenGui(Player player, Direction side) {
         return player.isCreative();
     }
 

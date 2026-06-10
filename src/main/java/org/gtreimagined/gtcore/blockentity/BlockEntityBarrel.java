@@ -1,6 +1,8 @@
 package org.gtreimagined.gtcore.blockentity;
 
 
+import brachy.modularui.factory.PosGuiData;
+import brachy.modularui.screen.ModularContainerMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -10,7 +12,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
-import org.gtreimagined.gtlib.gui.container.ContainerMachine;
 import org.gtreimagined.gtlib.machine.MachineState;
 
 public class BlockEntityBarrel extends BlockEntityMaterial<BlockEntityBarrel> {
@@ -37,8 +38,8 @@ public class BlockEntityBarrel extends BlockEntityMaterial<BlockEntityBarrel> {
 
         @Override
         protected boolean isOwnContainer(Player player) {
-            return player.containerMenu instanceof ContainerMachine<?> handler &&
-                    handler.handler.handler instanceof BlockEntityBarrel chest && chest.getBlockPos().equals(BlockEntityBarrel.this.getBlockPos());
+            return player.containerMenu instanceof ModularContainerMenu containerMenu &&
+                    containerMenu.getGuiData() instanceof PosGuiData posGuiData && player.level().getBlockEntity(posGuiData.getBlockPos()) instanceof BlockEntityBarrel && posGuiData.getBlockPos().equals(BlockEntityBarrel.this.getBlockPos());
         }
     };
 
@@ -55,8 +56,8 @@ public class BlockEntityBarrel extends BlockEntityMaterial<BlockEntityBarrel> {
         world.playSound((Player) null, d0, d1, d2, soundIn, SoundSource.BLOCKS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F);
     }
     @Override
-    public void addOpenContainer(ContainerMachine<BlockEntityBarrel> c, Player player) {
-        super.addOpenContainer(c, player);
+    public void onContainerOpen(Player player) {
+        super.onContainerOpen(player);
         if (!remove && !player.isSpectator()) {
             if (manager.getOpenerCount() == 0){
                 this.setMachineState(MachineState.ACTIVE);
@@ -66,8 +67,8 @@ public class BlockEntityBarrel extends BlockEntityMaterial<BlockEntityBarrel> {
     }
 
     @Override
-    public void onContainerClose(ContainerMachine<BlockEntityBarrel> c, Player player) {
-        super.onContainerClose(c, player);
+    public void onContainerClose(Player player) {
+        super.onContainerClose(player);
         if (!remove && !player.isSpectator()) {
             manager.decrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
             if (manager.getOpenerCount() == 0){
