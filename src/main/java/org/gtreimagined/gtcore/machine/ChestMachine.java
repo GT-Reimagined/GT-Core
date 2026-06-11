@@ -22,7 +22,7 @@ public class ChestMachine extends MaterialMachine {
         this.setTiers(Tier.NONE);
         this.addFlags(ITEM, GUI);
         this.setRenderAsTesr().setNoOutputCover();
-        this.getGuiProperties().setYSize(222).setXSize(184);
+        this.getGuiProperties().setYSize(222).setXSize(184).setHasGTIcon(false);
         this.setOverlayTextures((type, state, tier, i) -> new Texture[] {
                 new Texture(GTCore.ID, "model/material_chest_overlay_inventory"),
                 new Texture(GTCore.ID, "model/material_chest_overlay_inventory"),

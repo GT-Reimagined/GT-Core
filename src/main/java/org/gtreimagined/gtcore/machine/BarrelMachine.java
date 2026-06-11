@@ -19,7 +19,7 @@ public class BarrelMachine extends MaterialMachine{
         this.setTiers(Tier.NONE);
         this.addFlags(ITEM, GUI);
         this.setRenderAsTesr().setNoOutputCover().setVerticalFacingAllowed(true);
-        this.getGuiProperties().setYSize(222).setXSize(184);
+        this.getGuiProperties().setYSize(222).setXSize(184).setHasGTIcon(false);
         this.setOverlayTextures((type, state, tier, i) -> new Texture[] {
                 new Texture(GTCore.ID, "block/machine/overlay/item_barrel/side"),
                 new Texture(GTCore.ID, "block/machine/overlay/item_barrel/side"),
