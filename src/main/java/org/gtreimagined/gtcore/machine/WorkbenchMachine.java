@@ -124,7 +124,7 @@ public class WorkbenchMachine extends ChargingMachine{
                     .slotGroup("storage")
                     .build().pos(7, 7));
         }));
-        this.getGuiProperties().setHasGTIcon(false);
+        this.getGuiProperties().setHasGTIcon(false).setTitleDrawingAllowed(false);
         this.removeFlags(COVERABLE);
         GTAPI.register(WorkbenchMachine.class, this);
     }
