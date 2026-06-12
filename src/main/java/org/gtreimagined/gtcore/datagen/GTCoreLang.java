@@ -35,6 +35,7 @@ public class GTCoreLang {
         @Override
         protected void english(String domain, String locale) {
             super.english(domain, locale);
+            add("death.attack.mortar", "%1$s was ground to death.");
             add("machine.drum.fluid", "Contains %s L of %s");
             add("machine.drum.output", "Currently set to auto output");
             add("machine.drum.capacity", "Capacity: %sL(MB)");

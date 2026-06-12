@@ -23,6 +23,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.fluids.FluidStack;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.data.GTCoreDamageTypes;
 import org.gtreimagined.gtcore.data.GTCoreRecipeMaps;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.block.BlockBasic;
@@ -100,7 +101,11 @@ public class BlockMortar extends BlockBasic implements IColorHandler {
                 }
                 stack.shrink(recipe.getInputItems().get(0).getItems()[0].getCount());
                 level.playSound(null, pos, SoundEvents.STONE_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
-                player.causeFoodExhaustion(1f);
+                if (player.getFoodData().getFoodLevel() == 0){
+                    player.hurt(player.level().damageSources().source(GTCoreDamageTypes.MORTAR), 1f);
+                } else {
+                    player.causeFoodExhaustion(1f);
+                }
             }
             return InteractionResult.sidedSuccess(level.isClientSide());
         }
