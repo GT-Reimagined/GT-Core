@@ -126,7 +126,7 @@ public class RedstoneWireBakedModel extends GTBakedModel<PipeBakedModel> {
             int[] newVertices = new int[oldVertices.length];
             System.arraycopy(oldVertices, 0, newVertices, 0, oldVertices.length);
             BakedQuad newQuad = new BakedQuad(newVertices, q.getTintIndex(), q.getDirection(), q.getSprite(), q.isShade(), q.hasAmbientOcclusion());
-            QuadTransformers.applyingLightmap(15, 15).processInPlace(q);
+            QuadTransformers.applyingLightmap(15, 15).processInPlace(newQuad);
             list.add(newQuad);
         }
         return list;
