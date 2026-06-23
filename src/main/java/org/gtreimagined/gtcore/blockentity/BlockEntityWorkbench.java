@@ -31,13 +31,13 @@ public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkben
     public static class WorkbenchItemHandler extends MachineItemHandler<BlockEntityWorkbench> {
         public WorkbenchItemHandler(BlockEntityWorkbench tile) {
             super(tile);
-            inventories.put(SlotType.STORAGE, new TrackedItemHandler<>(tile, SlotType.STORAGE, 52, true, true, SlotType.STORAGE.getTester()));
-            inventories.put(SlotTypes.CRAFTING, new TrackedItemHandler<>(tile, SlotTypes.CRAFTING, 9, true, true, SlotTypes.CRAFTING.getTester()));
+            inventories.put(SlotType.STORAGE, new TrackedItemHandler<>(tile, SlotType.STORAGE, 52, false, false, SlotType.STORAGE.getTester()));
+            inventories.put(SlotTypes.CRAFTING, new TrackedItemHandler<>(tile, SlotTypes.CRAFTING, 9, false, false, SlotTypes.CRAFTING.getTester()));
             SlotType<?> type1 = tile.getMachineType().has(EU) ? SlotTypes.TOOL_CHARGE : SlotTypes.TOOLS;
-            inventories.put(type1, new TrackedItemHandler<>(tile, type1, 5, type1.isOutput(), type1.isInput(), type1.getTester()));
+            inventories.put(type1, new TrackedItemHandler<>(tile, type1, 5, false, false, type1.getTester()));
             SlotType<?>[] types = new SlotType<?>[]{SlotTypes.CRAFTING_RESULT, SlotTypes.BLUEPRINT, SlotTypes.EXPORT, SlotTypes.PARK};
             for (SlotType<?> type : types) {
-                inventories.put(type, new TrackedItemHandler<>(tile, type, 1, type.isOutput(), type.isInput(), type.getTester()));
+                inventories.put(type, new TrackedItemHandler<>(tile, type, 1, type == SlotTypes.EXPORT, false, type.getTester()));
             }
         }
 
@@ -45,14 +45,5 @@ public class BlockEntityWorkbench extends BlockEntityMaterial<BlockEntityWorkben
         public LazyOptional<IItemHandler> forSide(Direction side) {
             return LazyOptional.of(() -> new SidedCombinedInvWrapper(side, tile.coverHandler.map(c -> c).orElse(null), this::allowsInput, this::allowsOutput, this.inventories.get(SlotTypes.EXPORT)));
         }
-    }
-
-    public static class WorkbenchSidedCombinedInvWrapper extends SidedCombinedInvWrapper {
-
-        public WorkbenchSidedCombinedInvWrapper(Direction side, CoverHandler<?> coverHandler, IItemHandlerModifiable... itemHandler) {
-            super(side, coverHandler, itemHandler);
-        }
-
-
     }
 }

@@ -24,14 +24,14 @@ public class SlotTypes {
         return true;
     }).overlay(GTCoreGuiTextures.ELECTRIC_TOOL_SLOT_OVERLAY).build();
     public static SlotType<SlotCrafting> CRAFTING = SlotType.<SlotCrafting>builder().id("crafting").slotSupplier((type, gui, item, i, d) -> new SlotCrafting(type, gui, item.getOrDefault(type, new EmptyHandler()), i))
-            .output(false).build();
+            .allowExternalOutput(false).build();
     public static SlotType<AbstractSlot<?>> PARK = SlotType.<AbstractSlot<?>>builder().id("park")
             .slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i))
-            .output(false).slotGroup(false).overlay(GTCoreGuiTextures.PARK_SLOT_OVERLAY).build();
+            .allowExternalInput(false).allowExternalOutput(false).slotGroup(false).overlay(GTCoreGuiTextures.PARK_SLOT_OVERLAY).build();
     public static SlotType<SlotBlueprint> BLUEPRINT = SlotType.<SlotBlueprint>builder().id("blueprint")
             .slotSupplier((type, gui, item, i, d) -> new SlotBlueprint(type, gui, item.getOrDefault(type, new EmptyHandler()), i))
             .tester((t, i) -> i.getItem() == GTCoreItems.Blueprint || i.getItem() == GTCoreItems.EmptyBlueprint)
-            .output(false).overlay(GTCoreGuiTextures.BLUEPRINT_SLOT_OVERLAY).build();
+            .allowExternalOutput(false).overlay(GTCoreGuiTextures.BLUEPRINT_SLOT_OVERLAY).build();
     public static SlotType<AbstractSlot<?>> EXPORT = SlotType.<AbstractSlot<?>>builder().id("export")
             .slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i))
             .slotGroup(false).overlay(GTCoreGuiTextures.EXPORT_SLOT_OVERLAY).build();
@@ -40,7 +40,7 @@ public class SlotTypes {
             return new SlotCraftingOutput(machine.itemHandler.map(m -> m).orElse(null), slots.getOrDefault(type, new EmptyHandler()), (IItemHandlerModifiable) slots.getOrDefault(CRAFTING, new EmptyHandler()), index);
         }
         return null;
-    }).input(false).overlay(GTCoreGuiTextures.CRAFTING_OUTPUT_SLOT_OVERLAY).build();
+    }).allowExternalInput(false).overlay(GTCoreGuiTextures.CRAFTING_OUTPUT_SLOT_OVERLAY).build();
 
     public static SlotType<SlotUnlimited> UNLIMITED = SlotType.<SlotUnlimited>builder().id("unlimited")
             .slotSupplier((type, gui, item, i, d) -> new SlotUnlimited(type, gui, item.getOrDefault(type, new EmptyHandler()), i))
