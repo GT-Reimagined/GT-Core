@@ -16,9 +16,11 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.MapColor;
 import org.gtreimagined.gtcore.blockentity.BlockEntityRedstoneWire;
+import org.gtreimagined.gtcore.client.BakedModels;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.blockentity.pipe.BlockEntityPipe;
 import org.gtreimagined.gtlib.data.GTTools;
+import org.gtreimagined.gtlib.datagen.builder.GTBlockModelBuilder;
 import org.gtreimagined.gtlib.pipe.BlockPipe;
 import org.gtreimagined.gtlib.pipe.PipeSize;
 import org.gtreimagined.gtlib.texture.Texture;
@@ -33,7 +35,7 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
     public static final IntegerProperty LIGHT = IntegerProperty.create("light", 0, 15);
     protected final StateDefinition<Block, BlockState> stateContainer;
     public BlockRedstoneWire(T type, PipeSize size) {
-        super(type.getType(), type, size, 2, Properties.of().mapColor(MapColor.COLOR_RED).strength(1.0f, 3.0f).requiresCorrectToolForDrops().emissiveRendering(((blockState, blockGetter, blockPos) -> isEmissive(size, blockState, blockGetter, blockPos))).lightLevel(BlockRedstoneWire::getLightEmission));
+        super(type.getType(), type, size, 2, Properties.of().mapColor(MapColor.COLOR_RED).strength(1.0f, 3.0f).requiresCorrectToolForDrops().lightLevel(BlockRedstoneWire::getLightEmission));
         String prefix = size == PipeSize.TINY ? "cable" : "wire";
         this.side = new Texture(Ref.ID, "block/pipe/" + prefix + "_side");
         this.faces = new Texture[]{
@@ -67,10 +69,6 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
         if (type.emitsLight && size == PipeSize.VTINY) {
             builder.add(LIGHT);
         }
-    }
-
-    private static boolean isEmissive(PipeSize size, BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-        return size == PipeSize.VTINY && blockGetter.getBlockEntity(blockPos) instanceof BlockEntityRedstoneWire<?> wire && wire.getRedstoneValue() > 0;
     }
 
     public static int getLightEmission(BlockState state) {
@@ -156,5 +154,10 @@ public class BlockRedstoneWire<T extends RedstoneWire<T>> extends BlockPipe<T> {
     @Override
     public boolean isSignalSource(BlockState state) {
         return true;
+    }
+
+    @Override
+    public GTBlockModelBuilder getPipeConfig(GTBlockModelBuilder builder) {
+        return super.getPipeConfig(builder).loader(BakedModels.LOADER_REDSTONE_WIRE);
     }
 }
