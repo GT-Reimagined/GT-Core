@@ -32,7 +32,7 @@ public class GTCoreMaterials {
     public static Material Magnesium = GTAPI.register(Material.class, new Material(GTCore.ID, "magnesium", 0xffc8c8, METALLIC, Mg));
     public static Material Aluminium = GTAPI.register(Material.class, new Material(GTCore.ID, "aluminium", 0x80c8f0, DULL, Al));
     public static Material Silicon = GTAPI.register(Material.class, new Material(GTCore.ID, "silicon", 0x3c3c50, METALLIC, Si));
-    public static Material Phosphor = GTAPI.register(Material.class, new Material(GTCore.ID, "phosphor", 0xffff00, DULL, P));
+    public static Material Phosphorus = GTAPI.register(Material.class, new Material(GTCore.ID, "phosphorus", 0xffff00, DULL, P));
     public static Material Sulfur = GTAPI.register(Material.class, new Material(GTCore.ID, "sulfur", 0xc8c800, DULL, S));
     public static Material Chlorine = GTAPI.register(Material.class, new Material(GTCore.ID, "chlorine", 0x00ffff, NONE, Cl));
     public static Material Argon = GTAPI.register(Material.class, new Material(GTCore.ID, "argon", 0xff00f0, NONE, Ar));
