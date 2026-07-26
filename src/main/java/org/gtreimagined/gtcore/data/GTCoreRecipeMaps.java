@@ -2,7 +2,7 @@ package org.gtreimagined.gtcore.data;
 
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtlib.integration.xei.renderer.InfoRenderers;
+import org.gtreimagined.gtlib.integration.recipeviewer.renderer.InfoRenderers;
 import org.gtreimagined.gtlib.recipe.map.RecipeBuilder;
 import org.gtreimagined.gtlib.recipe.map.RecipeMap;
 

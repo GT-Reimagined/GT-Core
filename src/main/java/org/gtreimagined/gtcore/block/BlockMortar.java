@@ -29,7 +29,7 @@ import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.block.BlockBasic;
 import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider;
 import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
-import org.gtreimagined.gtlib.integration.xei.GTLibXEIPlugin;
+import org.gtreimagined.gtlib.integration.recipeviewer.GTLibRecipeViewerPlugin;
 import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.material.Material;
 import org.gtreimagined.gtlib.recipe.IRecipe;
@@ -85,7 +85,7 @@ public class BlockMortar extends BlockBasic implements IColorHandler {
         if (hit.getDirection() == Direction.UP){
             if (x > 0.125 && x < 0.25 && z > 0.125 && z < 0.25){
                 if (level.isClientSide()) {
-                    GTLibXEIPlugin.showCategories(GTCoreRecipeMaps.MORTAR.getLoc());
+                    GTLibRecipeViewerPlugin.showCategories(GTCoreRecipeMaps.MORTAR.getLoc());
                 }
                 return InteractionResult.sidedSuccess(level.isClientSide());
             }

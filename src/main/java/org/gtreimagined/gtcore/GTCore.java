@@ -81,7 +81,7 @@ import org.gtreimagined.gtlib.event.GTCraftingEvent;
 import org.gtreimagined.gtlib.event.GTLoaderEvent;
 import org.gtreimagined.gtlib.event.GTProvidersEvent;
 import org.gtreimagined.gtlib.event.MaterialEvent;
-import org.gtreimagined.gtlib.integration.xei.GTLibXEIPlugin;
+import org.gtreimagined.gtlib.integration.recipeviewer.GTLibRecipeViewerPlugin;
 import org.gtreimagined.gtlib.network.GTLibNetwork;
 import org.gtreimagined.gtlib.registration.RegistrationEvent;
 import org.gtreimagined.gtlib.tool.IGTTool;
@@ -263,10 +263,10 @@ public class GTCore extends GTMod {
                 WoodType.register(GTCoreBlocks.RUBBER_WOOD_TYPE);
                 CommonHandler.setup();
                 GTAPI.all(BlockMortar.class, b -> {
-                    GTLibXEIPlugin.registerCategoryWorkstation(GTCoreRecipeMaps.MORTAR, b.getLoc());
+                    GTLibRecipeViewerPlugin.registerCategoryWorkstation(GTCoreRecipeMaps.MORTAR, b.getLoc());
                 });
                 BookRegistration.registerBooks();
-                GTLibXEIPlugin.addItemsToHide(l -> {
+                GTLibRecipeViewerPlugin.addItemsToHide(l -> {
                     l.add(GTAPI.get(IGTTool.class, "electric_wrench_alt_lv", GTCore.ID).getItem());
                     l.add(GTAPI.get(IGTTool.class, "electric_wrench_alt_mv", GTCore.ID).getItem());
                     l.add(GTAPI.get(IGTTool.class, "electric_wrench_alt_hv", GTCore.ID).getItem());
