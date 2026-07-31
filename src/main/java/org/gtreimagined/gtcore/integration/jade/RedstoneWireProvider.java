@@ -22,7 +22,7 @@ public class RedstoneWireProvider implements IBlockComponentProvider, IServerDat
                 long mRedstone = accessor.isServerConnected() ? accessor.getServerData().getLong("mRedstone") : wire.mRedstone;
                 int redstone = CodeUtils.bind4(CodeUtils.divup(mRedstone, BlockEntityRedstoneWire.MAX_RANGE));
                 if (redstone > 0){
-                    iTooltip.add(Utils.translatable("tooltip.waila.power", redstone));
+                    iTooltip.add(Utils.translatable("tooltip.jade.power", redstone));
                 }
             }
         }
