@@ -136,6 +136,12 @@ public class BlockEntityLargeTank extends BlockEntityMaterialBasicMultiMachine<B
                 }
                 return inserted;
             }
+            if (!tile.tankMachine.isMagicProof() && fluid.getFluid().is(GTLibTags.MAGIC)){
+                if (action.execute()) {
+                    tile.getLevel().setBlock(tile.getBlockPos(), Blocks.AIR.defaultBlockState(), 3);
+                }
+                return Math.min(16, fluid.getAmount());
+            }
             if (!tile.tankMachine.isAcidProof() && fluid.getFluid().is(GTLibTags.ACID)){
                 if (action.execute()) {
                     tile.getLevel().setBlock(tile.getBlockPos(), Blocks.AIR.defaultBlockState(), 3);

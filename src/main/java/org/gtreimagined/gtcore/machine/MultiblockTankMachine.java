@@ -1,6 +1,8 @@
 package org.gtreimagined.gtcore.machine;
 
 import com.gtnewhorizon.structurelib.structure.StructureUtility;
+import lombok.Getter;
+import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.block.Block;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityLargeTank;
@@ -16,12 +18,13 @@ import org.gtreimagined.gtlib.util.Utils;
 import java.util.function.Supplier;
 
 public class MultiblockTankMachine extends MaterialBasicMultiMachine {
-    final int capacity;
-    final boolean small;
-    final Supplier<Block> casing;
-    boolean acidProof;
-    boolean gasProof;
-    int maxHeat = Integer.MAX_VALUE;
+    @Getter final int capacity;
+    @Getter final boolean small;
+    @Getter final Supplier<Block> casing;
+    @Getter boolean acidProof;
+    @Getter boolean gasProof;
+    @Getter boolean magicProof;
+    @Getter int maxHeat = Integer.MAX_VALUE;
     public MultiblockTankMachine(String domain, Material material, boolean small, int capacity, Supplier<Block> casing) {
         super(domain, (small ? "small" : "large") + "_" + material.getId() + "_tank_main_valve", material);
         setTiers(Tier.NONE);
@@ -56,25 +59,9 @@ public class MultiblockTankMachine extends MaterialBasicMultiMachine {
         GTAPI.register(MultiblockTankMachine.class, this);
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public boolean isSmall() {
-        return small;
-    }
-
-    public Supplier<Block> getCasing() {
-        return casing;
-    }
-
     public MultiblockTankMachine acidProof(){
         acidProof = true;
         return this;
-    }
-
-    public boolean isAcidProof() {
-        return acidProof;
     }
 
     public MultiblockTankMachine gasProof(){
@@ -82,16 +69,13 @@ public class MultiblockTankMachine extends MaterialBasicMultiMachine {
         return this;
     }
 
-    public boolean isGasProof() {
-        return gasProof;
+    public MultiblockTankMachine magicProof(){
+        magicProof = true;
+        return this;
     }
 
     public MultiblockTankMachine maxHeat(int maxHeat) {
         this.maxHeat = maxHeat;
         return this;
-    }
-
-    public int getMaxHeat() {
-        return maxHeat;
     }
 }
