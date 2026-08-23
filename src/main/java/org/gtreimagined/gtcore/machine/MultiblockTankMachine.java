@@ -43,6 +43,15 @@ public class MultiblockTankMachine extends MaterialBasicMultiMachine {
             tooltip.add(Utils.translatable("tooltip.gtcore.large_tank.0", machine.getName()));
             tooltip.add(Utils.translatable("tooltip.gtcore." + (small ? "small": "large") + "_tank.1", casing.get().getName()));
             tooltip.add(Utils.translatable("machine.drum.capacity", capacity));
+            if (gasProof){
+                tooltip.add(Utils.translatable("gtlib.tooltip.gas_proof").withStyle(ChatFormatting.GOLD));
+            }
+            if (acidProof){
+                tooltip.add(Utils.translatable("gtlib.tooltip.acid_proof").withStyle(ChatFormatting.GOLD));
+            }
+            if (magicProof){
+                tooltip.add(Utils.translatable("gtlib.tooltip.magic_proof").withStyle(ChatFormatting.GOLD));
+            }
         });
         addFlags(MachineFlag.FLUID);
         setTile((type1, pos, state1) -> new BlockEntityLargeTank(this, pos, state1));
