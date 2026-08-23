@@ -35,13 +35,13 @@ public class DrumMachine extends MaterialMachine{
         addTooltipInfo((machine, stack, world, tooltip, flag) -> {
             tooltip.add(Utils.translatable("machine.drum.capacity", maxCapacity).withStyle(ChatFormatting.AQUA));
             if (gasProof){
-                tooltip.add(Utils.translatable("gtlib.tooltip.gas_proof"));
+                tooltip.add(Utils.translatable("gtlib.tooltip.gas_proof").withStyle(ChatFormatting.GOLD));
             }
             if (acidProof){
-                tooltip.add(Utils.translatable("gtlib.tooltip.acid_proof"));
+                tooltip.add(Utils.translatable("gtlib.tooltip.acid_proof").withStyle(ChatFormatting.GOLD));
             }
             if (magicProof){
-                tooltip.add(Utils.translatable("gtlib.tooltip.magic_proof"));
+                tooltip.add(Utils.translatable("gtlib.tooltip.magic_proof").withStyle(ChatFormatting.GOLD));
             }
             CompoundTag nbt = stack.getTag();
             FluidStack fluid = nbt != null && nbt.contains("Fluid") ? FluidUtils.fromTag(nbt.getCompound("Fluid")) : stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).map(fi -> fi.getFluidInTank(0)).orElse(FluidStack.EMPTY);
