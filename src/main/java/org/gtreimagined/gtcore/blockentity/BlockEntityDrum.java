@@ -3,6 +3,7 @@ package org.gtreimagined.gtcore.blockentity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -17,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.common.Tags.Fluids;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
@@ -195,6 +197,14 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
                 if (fluid.getAmount() >= 160) {
                     int toFill = fluid.getAmount() / 160;
                     return fill(GTLibMaterials.Water.getLiquid(toFill), action);
+                }
+                return 0;
+            }
+            if (tile.getMachineType() instanceof DrumMachine drumMachine && !drumMachine.isAcidProof() && fluid.getFluid().is(Fluids.GASEOUS)){
+                int inserted = super.fill(fluid, FluidAction.SIMULATE);
+                if (inserted > 0) {
+                    if (action.execute()) tile.getLevel().playSound(null, tile.getBlockPos(), SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0f, 1.0f);
+                    return inserted;
                 }
                 return 0;
             }

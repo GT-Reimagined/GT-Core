@@ -1,5 +1,6 @@
 package org.gtreimagined.gtcore.machine;
 
+import lombok.Getter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -19,9 +20,10 @@ import org.gtreimagined.gtlib.util.Utils;
 
 
 public class DrumMachine extends MaterialMachine{
-    public final int maxCapacity;
-    private boolean acidProof = false;
-    private boolean magicProof = false;
+    @Getter public final int maxCapacity;
+    @Getter private boolean acidProof = false;
+    @Getter private boolean magicProof = false;
+    @Getter private boolean gasProof = true;
     public DrumMachine(String domain, Material material, int maxCapacity) {
         super(domain, material.getId() + "_drum", material);
         GTAPI.register(DrumMachine.class, this);
@@ -32,6 +34,9 @@ public class DrumMachine extends MaterialMachine{
         setItemBlock(ItemBlockDrum::new);
         addTooltipInfo((machine, stack, world, tooltip, flag) -> {
             tooltip.add(Utils.translatable("machine.drum.capacity", maxCapacity).withStyle(ChatFormatting.AQUA));
+            if (gasProof){
+                tooltip.add(Utils.translatable("gtlib.tooltip.gas_proof"));
+            }
             if (acidProof){
                 tooltip.add(Utils.translatable("gtlib.tooltip.acid_proof"));
             }
@@ -75,11 +80,8 @@ public class DrumMachine extends MaterialMachine{
         return this;
     }
 
-    public boolean isAcidProof() {
-        return acidProof;
-    }
-
-    public boolean isMagicProof() {
-        return magicProof;
+    public DrumMachine nonGasProof(){
+        this.gasProof = false;
+        return this;
     }
 }

@@ -1,5 +1,6 @@
 package org.gtreimagined.gtcore.item;
 
+import net.minecraftforge.common.Tags.Fluids;
 import net.minecraftforge.fluids.FluidStack;
 import org.gtreimagined.gtcore.machine.DrumMachine;
 import org.gtreimagined.gtlib.block.GTItemBlock;
@@ -31,6 +32,7 @@ public class ItemBlockDrum extends GTItemBlock implements IFluidItem {
         return (f) -> {
             if (machine != null && !machine.isAcidProof() && f.getFluid().is(GTLibTags.ACID)) return false;
             if (machine != null && !machine.isMagicProof() && f.getFluid().is(GTLibTags.MAGIC)) return false;
+            if (machine != null && !machine.isGasProof() && f.getFluid().is(Fluids.GASEOUS)) return false;
             return true;
         };
     }
