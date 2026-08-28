@@ -9,6 +9,7 @@ import org.gtreimagined.gtcore.blockentity.BlockEntityPlasticBin;
 import org.gtreimagined.gtlib.capability.IGuiHandler;
 import org.gtreimagined.gtlib.capability.item.TrackedItemHandler;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.machine.MachineState;
 import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.NotNull;
@@ -38,11 +39,11 @@ public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedIt
     public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
         if (getTile() instanceof BlockEntityMassStorage barrel && barrel.itemHandler.isPresent()) {
             if (barrel.getMachineState() == MachineState.ACTIVE) return stack;
-            var handler = barrel.itemHandler.get().getHandler(SlotType.DISPLAY);
+            var handler = barrel.itemHandler.get().getHandler(SlotTypes.DISPLAY);
             if (barrel.keepFilter && !handler.getStackInSlot(0).isEmpty() && !Utils.equals(stack, handler.getStackInSlot(0))) {
                 return stack;
             } else if (barrel.keepFilter && handler.getStackInSlot(0).isEmpty() && !simulate) {
-                barrel.itemHandler.ifPresent(i -> i.getHandler(SlotType.DISPLAY).setStackInSlot(0, Utils.ca(1, stack)));
+                barrel.itemHandler.ifPresent(i -> i.getHandler(SlotTypes.DISPLAY).setStackInSlot(0, Utils.ca(1, stack)));
             }
             if (barrel.isOutputOverflow()){
                 ItemStack leftover = super.insertItem(slot, stack.copy(), simulate);
@@ -70,9 +71,9 @@ public class InfiniteSlotTrackedHandler<T extends IGuiHandler> extends TrackedIt
                     if (!simulate) {
                         this.stacks.set(slot, ItemStack.EMPTY);
                         if (getTile() instanceof BlockEntityMassStorage barrel && barrel.itemHandler.isPresent() && !barrel.keepFilter){
-                            ItemStack display = barrel.itemHandler.get().getHandler(SlotType.DISPLAY).getStackInSlot(0);
+                            ItemStack display = barrel.itemHandler.get().getHandler(SlotTypes.DISPLAY).getStackInSlot(0);
                             if (!display.isEmpty()){
-                                barrel.itemHandler.get().getHandler(SlotType.DISPLAY).setStackInSlot(0, ItemStack.EMPTY);
+                                barrel.itemHandler.get().getHandler(SlotTypes.DISPLAY).setStackInSlot(0, ItemStack.EMPTY);
                             }
                         }
                         this.onContentsChanged(slot);

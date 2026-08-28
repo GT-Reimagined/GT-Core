@@ -13,7 +13,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import net.minecraftforge.items.wrapper.PlayerMainInvWrapper;
 import org.gtreimagined.gtcore.blockentity.BlockEntityWorkbench;
-import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.data.GTCoreSlotTypes;
 import org.gtreimagined.gtcore.gui.slots.SlotBlueprint;
 import org.gtreimagined.gtcore.gui.slots.SlotCrafting;
 import org.gtreimagined.gtcore.gui.slots.SlotCraftingOutput;
@@ -30,7 +30,7 @@ import org.gtreimagined.gtlib.mui.drawable.GTDrawableStack;
 import java.util.Map;
 import java.util.function.Function;
 
-import static org.gtreimagined.gtlib.gui.SlotType.STORAGE;
+import static org.gtreimagined.gtlib.gui.SlotTypes.STORAGE;
 import static org.gtreimagined.gtlib.machine.MachineFlag.*;
 
 
@@ -57,44 +57,44 @@ public class WorkbenchMachine extends ChargingMachine{
                         .builder()
                         .matrix("III", "III", "III")
                         .key('I', i -> new ItemSlot()
-                                .slot(new SlotCrafting(SlotTypes.CRAFTING, machine, machine.itemHandler.map(item ->
-                                        item.getAll().get(SlotTypes.CRAFTING)).orElse(new EmptyHandler()), i)))
+                                .slot(new SlotCrafting(GTCoreSlotTypes.CRAFTING, machine, machine.itemHandler.map(item ->
+                                        item.getAll().get(GTCoreSlotTypes.CRAFTING)).orElse(new EmptyHandler()), i)))
                         .slotGroup("crafting")
                         .build().pos(81, 27));
-                SlotType<AbstractSlot<?>> toolSlot = charge ? SlotTypes.TOOL_CHARGE : SlotTypes.TOOLS;
-                Function<Integer, ModularSlot> slotSupplier = i -> toolSlot.getSlotSupplier().get(toolSlot, machine, machine.itemHandler.map(MachineItemHandler::getAll).orElse(Map.of()), i, SlotData.<AbstractSlot<?>>builder().type(toolSlot).x(0).y(0).build());
+                SlotType<AbstractSlot<?>> toolSlot = charge ? GTCoreSlotTypes.TOOL_CHARGE : GTCoreSlotTypes.TOOLS;
+                Function<Integer, ModularSlot> slotSupplier = i -> toolSlot.slotSupplier().get(toolSlot, machine, machine.itemHandler.map(MachineItemHandler::getAll).orElse(Map.of()), i, SlotData.<AbstractSlot<?>>create(b -> b.type(toolSlot).x(0).y(0)));
                 modularPanel.child(SlotGroupWidget
                         .builder()
                         .matrix("IIIII")
                         .key('I', i -> new ItemSlot()
-                                .slot(slotSupplier.apply(i)).background(new GTDrawableStack(toolSlot.getTexture() == GTGuiTextures.ITEM_SLOT ? null :  toolSlot.getTexture(), toolSlot.getOverlay())))
+                                .slot(slotSupplier.apply(i)).background(new GTDrawableStack(toolSlot.background() == GTGuiTextures.ITEM_SLOT ? null :  toolSlot.background(), toolSlot.overlay())))
                         .slotGroup("tools")
                         .build().pos(81, 7));
                 SlotCraftingOutput output = new SlotCraftingOutput(machine.itemHandler.map(m -> m).orElse(null),
-                        machine.itemHandler.map(item -> item.getAll().get(SlotTypes.CRAFTING_RESULT)).orElse(new EmptyHandler()),
-                        machine.itemHandler.map(item -> (IItemHandlerModifiable)item.getAll().get(SlotTypes.CRAFTING)).orElse(new EmptyHandler()), 0);
+                        machine.itemHandler.map(item -> item.getAll().get(GTCoreSlotTypes.CRAFTING_RESULT)).orElse(new EmptyHandler()),
+                        machine.itemHandler.map(item -> (IItemHandlerModifiable)item.getAll().get(GTCoreSlotTypes.CRAFTING)).orElse(new EmptyHandler()), 0);
                 craftingSlotGroup.addSlotChangeListener(output::updateCraftResult);
-                modularPanel.child(new ItemSlot().slot(output).pos(135, 63).background(new GTDrawableStack(null, SlotTypes.CRAFTING_RESULT.getOverlay())));
+                modularPanel.child(new ItemSlot().slot(output).pos(135, 63).background(new GTDrawableStack(null, GTCoreSlotTypes.CRAFTING_RESULT.overlay())));
                 modularPanel.child(new ItemSlot()
                         .pos(135, 27)
-                        .slot(new SlotBlueprint(SlotTypes.BLUEPRINT, machine, machine.itemHandler.map(item -> item.getAll().get(SlotTypes.BLUEPRINT)).orElse(new EmptyHandler()), 0)
+                        .slot(new SlotBlueprint(GTCoreSlotTypes.BLUEPRINT, machine, machine.itemHandler.map(item -> item.getAll().get(GTCoreSlotTypes.BLUEPRINT)).orElse(new EmptyHandler()), 0)
                                 .slotGroup(SlotGroup.singleton("blueprint", 99)))
-                        .background(new GTDrawableStack(null, SlotTypes.BLUEPRINT.getOverlay())));
+                        .background(new GTDrawableStack(null, GTCoreSlotTypes.BLUEPRINT.overlay())));
                 modularPanel.child(new ItemSlot()
                         .pos(153, 27)
-                        .slot(new AbstractSlot<>(SlotTypes.EXPORT, machine, machine.itemHandler.map(item -> item.getAll().get(SlotTypes.EXPORT)).orElse(new EmptyHandler()), 0))
-                        .background(new GTDrawableStack(null, SlotTypes.EXPORT.getOverlay())));
+                        .slot(new AbstractSlot<>(GTCoreSlotTypes.EXPORT, machine, machine.itemHandler.map(item -> item.getAll().get(GTCoreSlotTypes.EXPORT)).orElse(new EmptyHandler()), 0))
+                        .background(new GTDrawableStack(null, GTCoreSlotTypes.EXPORT.overlay())));
                 modularPanel.child(new ItemSlot()
                         .pos(153, 63)
-                        .slot(new AbstractSlot<>(SlotTypes.PARK, machine, machine.itemHandler.map(item -> item.getAll().get(SlotTypes.PARK)).orElse(new EmptyHandler()), 0))
-                        .background(new GTDrawableStack(null, SlotTypes.PARK.getOverlay())));
+                        .slot(new AbstractSlot<>(GTCoreSlotTypes.PARK, machine, machine.itemHandler.map(item -> item.getAll().get(GTCoreSlotTypes.PARK)).orElse(new EmptyHandler()), 0))
+                        .background(new GTDrawableStack(null, GTCoreSlotTypes.PARK.overlay())));
                 syncManager.registerSyncedAction("inventorySend", packet -> {
                     boolean toPlayer = packet.readBoolean();
                     for (int i = 0; i < 9; i++) {
                         int finalI = i;
                         IItemHandler inventory = toPlayer ? new PlayerMainInvWrapper(syncManager.getPlayer().getInventory()) : machine.itemHandler.map(item -> item.getAll().get(STORAGE)).orElse(new EmptyHandler());
-                        ItemStack leftover = ItemHandlerHelper.insertItem(inventory, machine.itemHandler.map(item -> item.getHandler(SlotTypes.CRAFTING).getStackInSlot(finalI)).orElse(ItemStack.EMPTY), false);
-                        machine.itemHandler.ifPresent(item -> item.getHandler(SlotTypes.CRAFTING).setStackInSlot(finalI, leftover.copy()));
+                        ItemStack leftover = ItemHandlerHelper.insertItem(inventory, machine.itemHandler.map(item -> item.getHandler(GTCoreSlotTypes.CRAFTING).getStackInSlot(finalI)).orElse(ItemStack.EMPTY), false);
+                        machine.itemHandler.ifPresent(item -> item.getHandler(GTCoreSlotTypes.CRAFTING).setStackInSlot(finalI, leftover.copy()));
                         output.updateCraftResult(null);
                     }
                 });

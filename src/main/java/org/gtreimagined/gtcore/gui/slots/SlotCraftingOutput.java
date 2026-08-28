@@ -10,6 +10,7 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import org.gtreimagined.gtlib.capability.item.ITrackedHandler;
 import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -56,9 +57,9 @@ public class SlotCraftingOutput extends ModularCraftingSlot {
     }
 
     private ItemStack extractFromTable(ItemStack itemStack){
-        for (int j = 0; j < projectTable.getHandler(SlotType.STORAGE).getSlots(); j++) {
-            if (ItemStack.isSameItemSameTags(projectTable.getHandler(SlotType.STORAGE).getStackInSlot(j), itemStack)) {
-                projectTable.getHandler(SlotType.STORAGE).extractFromInput(j, 1, false);
+        for (int j = 0; j < projectTable.getHandler(SlotTypes.STORAGE).getSlots(); j++) {
+            if (ItemStack.isSameItemSameTags(projectTable.getHandler(SlotTypes.STORAGE).getStackInSlot(j), itemStack)) {
+                projectTable.getHandler(SlotTypes.STORAGE).extractFromInput(j, 1, false);
                 itemStack.setCount(itemStack.getCount() + 1);
                 break;
             }

@@ -10,9 +10,10 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import org.gtreimagined.gtcore.GTCore;
-import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.data.GTCoreSlotTypes;
 import org.gtreimagined.gtcore.gui.slots.SlotCrafting;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.gui.slot.AbstractSlot;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class GTCoreRecipeTransferInfo implements IRecipeTransferInfo<ModularCont
         List<Slot> slots = new ArrayList<>(Arrays.asList(null, null, null, null, null, null, null, null, null));
         for (Slot slot : containerWorkbench.slots){
             if (slot instanceof SlotCrafting abstractSlot){
-                slots.set(abstractSlot.getIndex(), slot);
+                slots.set(abstractSlot.getSuperIndex(), slot);
             }
         }
         return slots;
@@ -60,10 +61,10 @@ public class GTCoreRecipeTransferInfo implements IRecipeTransferInfo<ModularCont
         List<Slot> slots = new ArrayList<>();
         for (Slot slot : containerWorkbench.slots){
             if (slot instanceof AbstractSlot<?> abstractSlot) {
-                if (abstractSlot.type == SlotTypes.TOOLS || abstractSlot.type == SlotTypes.TOOL_CHARGE) {
+                if (abstractSlot.getType() == GTCoreSlotTypes.TOOLS || abstractSlot.getType() == GTCoreSlotTypes.TOOL_CHARGE) {
                     toolSlots.add(slot);
                 }
-                if (abstractSlot.type == SlotType.STORAGE){
+                if (abstractSlot.getType() == SlotTypes.STORAGE){
                     storageSlots.add(slot);
                 }
             } else if (slot instanceof ModularSlot modularSlot && modularSlot.getSlotGroupName() != null && modularSlot.getSlotGroupName().equals("player_inventory")){

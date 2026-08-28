@@ -16,6 +16,7 @@ import org.gtreimagined.gtlib.capability.item.SidedCombinedInvWrapper;
 import org.gtreimagined.gtlib.capability.machine.MachineFluidHandler;
 import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.machine.types.Machine;
 import org.jetbrains.annotations.NotNull;
 
@@ -46,7 +47,7 @@ public class BlockEntityTrashCan extends BlockEntityMachine<BlockEntityTrashCan>
         super.onContainerClose(player);
         if (this.playersInGui.isEmpty()){
             this.itemHandler.ifPresent(i -> {
-                i.getHandler(SlotType.STORAGE).clearContent();
+                i.getHandler(SlotTypes.STORAGE).clearContent();
             });
         }
     }

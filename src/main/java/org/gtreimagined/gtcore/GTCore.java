@@ -39,7 +39,7 @@ import org.gtreimagined.gtcore.data.GTCoreMaterialEvents;
 import org.gtreimagined.gtcore.data.GTCoreMaterials;
 import org.gtreimagined.gtcore.data.GTCoreRecipeMaps;
 import org.gtreimagined.gtcore.data.GTCoreTools;
-import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.data.GTCoreSlotTypes;
 import org.gtreimagined.gtcore.datagen.GTCoreBlockLootProvider;
 import org.gtreimagined.gtcore.datagen.GTCoreBlockTagProvider;
 import org.gtreimagined.gtcore.datagen.GTCoreFluidTagProvider;
@@ -238,7 +238,7 @@ public class GTCore extends GTMod {
     public void onRegistrationEvent(RegistrationEvent event, Dist side) {
         switch (event) {
             case DATA_INIT -> {
-                SlotTypes.init();
+                GTCoreSlotTypes.init();
                 GTCoreData.init();
                 GTCoreRecipeMaps.init();
                 GTCoreCovers.init();

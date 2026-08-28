@@ -21,6 +21,7 @@ import org.gtreimagined.gtcore.machine.HopperItemHandler;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
 import org.gtreimagined.gtlib.data.GTTools;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.tool.GTToolType;
 import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.Nullable;
@@ -60,16 +61,16 @@ public class BlockEntityGTHopper extends BlockEntityMaterial<BlockEntityGTHopper
         if (aboveState.isAir() && level.getGameTime() % 10 == 0){
             List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, new AABB(above));
             for (ItemEntity item : items){
-                if (addItem(this.itemHandler.get().getHandler(SlotType.STORAGE), item)){
+                if (addItem(this.itemHandler.get().getHandler(SlotTypes.STORAGE), item)){
                     return;
                 }
             }
         }
-        if (this.itemHandler.map(i -> !i.getHandler(SlotType.STORAGE).isEmpty()).orElse(false)) {
+        if (this.itemHandler.map(i -> !i.getHandler(SlotTypes.STORAGE).isEmpty()).orElse(false)) {
             BlockEntity neighbor = getCachedBlockEntity(this.getFacing());
             if (neighbor != null) {
                 neighbor.getCapability(ForgeCapabilities.ITEM_HANDLER, this.getFacing().getOpposite()).ifPresent(adjHandler -> {
-                    this.itemHandler.ifPresent(h -> Utils.transferItems(h.getHandler(SlotType.STORAGE), adjHandler, true));
+                    this.itemHandler.ifPresent(h -> Utils.transferItems(h.getHandler(SlotTypes.STORAGE), adjHandler, true));
                 });
             }
         }
@@ -77,7 +78,7 @@ public class BlockEntityGTHopper extends BlockEntityMaterial<BlockEntityGTHopper
         if (aboveBE != null) {
             this.itemHandler.ifPresent(to -> {
                 aboveBE.getCapability(ForgeCapabilities.ITEM_HANDLER, Direction.DOWN).ifPresent(from -> {
-                    Utils.transferItems(from, to.getHandler(SlotType.STORAGE), true);
+                    Utils.transferItems(from, to.getHandler(SlotTypes.STORAGE), true);
                 });
             });
         }

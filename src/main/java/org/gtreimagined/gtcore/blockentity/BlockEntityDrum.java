@@ -31,6 +31,7 @@ import org.gtreimagined.gtlib.capability.machine.MachineFluidHandler;
 import org.gtreimagined.gtlib.data.GTLibMaterials;
 import org.gtreimagined.gtlib.data.GTLibTags;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.tool.GTToolType;
 import org.gtreimagined.gtlib.util.FluidUtils;
 import org.gtreimagined.gtlib.util.Utils;
@@ -130,7 +131,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
         boolean output = false;
         public DrumFluidHandler(BlockEntityDrum tile) {
             super(tile);
-            tanks.put(FluidTankType.INPUT, FluidTanks.create(tile, SlotType.FL_IN, b -> {
+            tanks.put(FluidTankType.INPUT, FluidTanks.create(tile, SlotTypes.FL_IN, b -> {
                 b.tank(((DrumMachine)tile.getMachineType()).maxCapacity);
                 return b;
             }));

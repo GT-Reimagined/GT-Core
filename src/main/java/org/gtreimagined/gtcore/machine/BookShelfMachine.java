@@ -14,6 +14,7 @@ import org.gtreimagined.gtcore.data.GTCoreBlocks;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.data.GTTools;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.material.Material;
 import org.gtreimagined.gtlib.texture.Texture;
@@ -39,7 +40,7 @@ public class BookShelfMachine extends MaterialMachine {
         });
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 7; x++) {
-                add(SlotType.STORAGE, 26 + (18 * x), 8 + (18 * y));
+                add(SlotTypes.STORAGE, 26 + (18 * x), 8 + (18 * y));
             }
         }
         setCustomShape((s, w, p, c) -> s.getValue(BlockStateProperties.HORIZONTAL_FACING).getAxis() == Axis.Z ? GTCoreBlocks.BOOKSHELF_Z_SHAPE : GTCoreBlocks.BOOKSHELF_X_SHAPE);

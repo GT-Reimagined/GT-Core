@@ -4,6 +4,7 @@ import org.gtreimagined.gtcore.block.BlockGTHopper;
 import org.gtreimagined.gtcore.blockentity.BlockEntityGTHopper;
 import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.machine.MachineFlag;
 import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.material.Material;
@@ -74,7 +75,7 @@ public class HopperMachine extends MaterialMachine{
         for (int y = 0; y < rows; y++) {
             for (int x = 0; x < columns; x++) {
                 if (i == slots) break outer;
-                add(SlotType.STORAGE, startX + (18 * x), startY + (18 * y));
+                add(SlotTypes.STORAGE, startX + (18 * x), startY + (18 * y));
                 i++;
             }
         }

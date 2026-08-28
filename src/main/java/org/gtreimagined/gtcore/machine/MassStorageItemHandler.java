@@ -5,18 +5,19 @@ import net.minecraft.core.Direction;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
-import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.data.GTCoreSlotTypes;
 import org.gtreimagined.gtlib.capability.item.FakeTrackedItemHandler;
 import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.machine.MachineState;
 
 public class MassStorageItemHandler extends MachineItemHandler<BlockEntityMassStorage> {
 
     public MassStorageItemHandler(BlockEntityMassStorage tile) {
         super(tile);
-        inventories.put(SlotType.DISPLAY, new FakeTrackedItemHandler<>(tile, SlotType.DISPLAY, 1, false, false, SlotType.DISPLAY.getTester()));
-        inventories.put(SlotTypes.UNLIMITED, new InfiniteSlotTrackedHandler<>(tile, SlotTypes.UNLIMITED, 1, SlotTypes.UNLIMITED.allowExternalOutput(), SlotTypes.UNLIMITED.allowExternalInput(), SlotTypes.UNLIMITED.getTester(), ((MassStorageMachine)tile.getMachineType()).getCapacity()));
+        inventories.put(SlotTypes.DISPLAY, new FakeTrackedItemHandler<>(tile, SlotTypes.DISPLAY, 1, false, false, SlotTypes.DISPLAY.tester()));
+        inventories.put(GTCoreSlotTypes.UNLIMITED, new InfiniteSlotTrackedHandler<>(tile, GTCoreSlotTypes.UNLIMITED, 1, GTCoreSlotTypes.UNLIMITED.allowExternalOutput(), GTCoreSlotTypes.UNLIMITED.allowExternalInput(), GTCoreSlotTypes.UNLIMITED.tester(), ((MassStorageMachine)tile.getMachineType()).getCapacity()));
     }
 
     /*public void drawInfo(MatrixStack stack, FontRenderer renderer, int left, int top) {

@@ -4,8 +4,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
-import org.gtreimagined.gtcore.data.SlotTypes;
-import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtcore.data.GTCoreSlotTypes;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.util.Utils;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IBlockComponentProvider;
@@ -24,8 +24,8 @@ public class MassStorageProvider implements IBlockComponentProvider {
     @Override
     public void appendTooltip(ITooltip iTooltip, BlockAccessor blockAccessor, IPluginConfig iPluginConfig) {
         if (blockAccessor.getBlockEntity() instanceof BlockEntityMassStorage massStorage){
-            var handler = massStorage.itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
-            var displayHandler = massStorage.itemHandler.map(i -> i.getHandler(SlotType.DISPLAY)).orElse(null);
+            var handler = massStorage.itemHandler.map(i -> i.getHandler(GTCoreSlotTypes.UNLIMITED)).orElse(null);
+            var displayHandler = massStorage.itemHandler.map(i -> i.getHandler(SlotTypes.DISPLAY)).orElse(null);
             if (handler != null && displayHandler != null) {
                 ItemStack stack = handler.getStackInSlot(0);
                 boolean displayItem = false;

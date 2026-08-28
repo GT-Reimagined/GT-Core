@@ -9,7 +9,7 @@ import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.material.Material;
 import org.gtreimagined.gtlib.texture.Texture;
 
-import static org.gtreimagined.gtlib.gui.SlotType.STORAGE;
+import static org.gtreimagined.gtlib.gui.SlotTypes.STORAGE;
 import static org.gtreimagined.gtlib.machine.MachineFlag.*;
 
 

@@ -23,6 +23,7 @@ import org.gtreimagined.gtlib.client.RenderHelper;
 import org.gtreimagined.gtlib.client.SimpleModelState;
 import org.gtreimagined.gtlib.client.baked.GTBakedModel;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.machine.MachineState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -56,7 +57,7 @@ public class IconBakedModel extends GTBakedModel<IconBakedModel> {
                 offset = 0;
             }
             int amount = massStorage.getItemAmount();
-            ItemStack display = massStorage.itemHandler.map(i -> i.getHandler(SlotType.DISPLAY).getStackInSlot(0)).orElse(ItemStack.EMPTY);
+            ItemStack display = massStorage.itemHandler.map(i -> i.getHandler(SlotTypes.DISPLAY).getStackInSlot(0)).orElse(ItemStack.EMPTY);
             if (amount > 0 || !display.isEmpty()) {
                 String number = amount == massStorage.getMaxLimit() ? "100%" : Integer.toString(amount);
                 for (int i = 0; i < number.length(); i++) {

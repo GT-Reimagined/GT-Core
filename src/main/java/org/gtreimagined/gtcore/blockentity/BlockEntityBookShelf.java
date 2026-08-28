@@ -24,6 +24,7 @@ import org.gtreimagined.gtlib.capability.machine.MachineCoverHandler;
 import org.gtreimagined.gtlib.capability.machine.MachineItemHandler;
 import org.gtreimagined.gtlib.cover.ICover;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.machine.types.Machine;
 import org.gtreimagined.gtlib.tool.GTToolType;
 import org.gtreimagined.gtlib.util.Utils;
@@ -38,9 +39,9 @@ public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShel
         this.itemHandler.set(() -> new MachineItemHandler<>(this){
             @Override
             protected TrackedItemHandler<BlockEntityBookShelf> createTrackedHandler(SlotType<?> type, BlockEntityBookShelf tile) {
-                if (type == SlotType.STORAGE){
+                if (type == SlotTypes.STORAGE){
                     int count = tile.getMachineType().getCount(tile.getMachineTier(), type);
-                    return new TrackedItemHandler<>(tile, type, count, type.allowExternalOutput(), type.allowExternalInput(), type.getTester(), 1);
+                    return new TrackedItemHandler<>(tile, type, count, type.allowExternalOutput(), type.allowExternalInput(), type.tester(), 1);
                 }
                 return super.createTrackedHandler(type, tile);
             }
@@ -58,7 +59,7 @@ public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShel
     public InteractionResult onInteractServer(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, @Nullable GTToolType type) {
         Direction face = hit.getDirection();
         Vec3 vec = hit.getLocation();
-        var handler = itemHandler.map(i -> i.getHandler(SlotType.STORAGE)).orElse(null);
+        var handler = itemHandler.map(i -> i.getHandler(SlotTypes.STORAGE)).orElse(null);
         if ((face == this.getFacing() || face == this.getFacing().getOpposite()) && handler != null) {
             double[] coords = getFacingCoordsClicked(face, vec.x()-hit.getBlockPos().getX(), vec.y()-hit.getBlockPos().getY(), vec.z() - hit.getBlockPos().getZ());
             if (coords[0] >= PX_P[1] && coords[0] <= PX_N[1] && coords[1] >= PX_P[1] && coords[1] <= PX_N[1]) {
@@ -161,7 +162,7 @@ public class BlockEntityBookShelf extends BlockEntityMachine<BlockEntityBookShel
     public int getEnchantmentPowerBonus(){
         return itemHandler.map(i -> {
             int total = 0;
-            IItemHandler handler = i.getHandler(SlotType.STORAGE);
+            IItemHandler handler = i.getHandler(SlotTypes.STORAGE);
             for (int j = 0; j < handler.getSlots(); j++) {
                 if (handler.getStackInSlot(j).is(GTCoreTags.BOOKS_ENCHANTED)){
                     total +=2;

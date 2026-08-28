@@ -13,8 +13,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
-import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.data.GTCoreSlotTypes;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.machine.MachineState;
 import org.gtreimagined.gtlib.util.CodeUtils;
 import org.joml.Matrix3f;
@@ -40,8 +41,8 @@ public class MassStorageRenderer<T extends BlockEntityMassStorage> implements Bl
         if (level == null || Minecraft.getInstance().player != null && !tile.getBlockPos().closerThan(Minecraft.getInstance().player.getOnPos(), 32)) {
             return;
         }
-        var display = tile.itemHandler.map(i -> i.getHandler(SlotType.DISPLAY)).orElse(null);
-        var storage = tile.itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
+        var display = tile.itemHandler.map(i -> i.getHandler(SlotTypes.DISPLAY)).orElse(null);
+        var storage = tile.itemHandler.map(i -> i.getHandler(GTCoreSlotTypes.UNLIMITED)).orElse(null);
         if (display != null && storage != null) {
             ItemStack stack = display.getStackInSlot(0);
             if (stack.isEmpty()) stack = storage.getStackInSlot(0);

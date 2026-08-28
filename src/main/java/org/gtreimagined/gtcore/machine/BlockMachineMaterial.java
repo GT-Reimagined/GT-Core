@@ -17,7 +17,7 @@ import net.minecraft.world.level.material.MapColor;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityBookShelf;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
-import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.data.GTCoreSlotTypes;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.datagen.builder.GTBlockModelBuilder;
 import org.gtreimagined.gtlib.datagen.builder.GTItemModelBuilder;
@@ -30,7 +30,6 @@ import org.gtreimagined.gtlib.machine.types.Machine;
 import org.gtreimagined.gtlib.material.Material;
 import org.gtreimagined.gtlib.material.MaterialTags;
 import org.gtreimagined.gtlib.texture.Texture;
-import org.gtreimagined.gtlib.util.Utils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -60,7 +59,7 @@ public class BlockMachineMaterial extends BlockMachine {
         if (i == 2 && world != null && pos != null) {
             BlockEntity be = world.getBlockEntity(pos);
             if (be instanceof BlockEntityMassStorage massStorage){
-                var storage = massStorage.itemHandler.map(h -> h.getHandler(SlotTypes.UNLIMITED)).orElse(null);
+                var storage = massStorage.itemHandler.map(h -> h.getHandler(GTCoreSlotTypes.UNLIMITED)).orElse(null);
                 if (storage != null){
                     int max = massStorage.getMaxLimit();
                     int count = storage.getStackInSlot(0).getCount();

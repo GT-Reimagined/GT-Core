@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.data.GTCoreSlotTypes;
 import org.gtreimagined.gtcore.machine.MassStorageMachine;
 import org.gtreimagined.gtlib.data.GTTools;
 import org.gtreimagined.gtlib.tool.GTToolType;
@@ -45,7 +45,7 @@ public class BlockEntityPlasticBin extends BlockEntityMassStorage {
             player.displayClientMessage(Utils.literal("Max capacity set to:  " + (maxLimit / 64) + " stacks"),false);
             this.sidedSync(true);
             Utils.damageStack(player.getItemInHand(hand), hand, player);
-            var handler = itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
+            var handler = itemHandler.map(i -> i.getHandler(GTCoreSlotTypes.UNLIMITED)).orElse(null);
             int amountToExtract = handler.getStackInSlot(0).getCount() - maxLimit;
             if (amountToExtract > 0) {
                 ItemStack stored = handler.getStackInSlot(0);

@@ -19,8 +19,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
-import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.data.GTCoreSlotTypes;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.integration.top.TheOneProbePlugin;
 import org.gtreimagined.gtlib.util.Utils;
 
@@ -40,8 +41,8 @@ public class MassStorageProvider implements IProbeInfoProvider {
         BlockEntity blockEntity = level.getBlockEntity(iProbeHitData.getPos());
         if (blockEntity instanceof BlockEntityMassStorage massStorage){
             var handler = massStorage.itemHandler.map(i -> {
-                var h = i.getHandler(SlotTypes.UNLIMITED);
-                if (h.getStackInSlot(0).isEmpty()) return i.getHandler(SlotType.DISPLAY);
+                var h = i.getHandler(GTCoreSlotTypes.UNLIMITED);
+                if (h.getStackInSlot(0).isEmpty()) return i.getHandler(SlotTypes.DISPLAY);
                 return h;
             }).orElse(null);
             if (handler != null){

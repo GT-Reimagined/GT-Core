@@ -26,6 +26,7 @@ import org.gtreimagined.gtlib.client.SimpleModelState;
 import org.gtreimagined.gtlib.client.baked.GTBakedModel;
 import org.gtreimagined.gtlib.client.quad.RetexturedBakedQuad;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
@@ -57,7 +58,7 @@ public class BookShelfBakedModel extends GTBakedModel<BookShelfBakedModel> {
         int end = direction == Direction.SOUTH ? 14 : 28;
         for (int i = start; i < end; i++) {
             int finalI = i;
-            ItemStack book = bookShelf.itemHandler.map(itemHandler -> itemHandler.getHandler(SlotType.STORAGE).getStackInSlot(finalI)).orElse(ItemStack.EMPTY);
+            ItemStack book = bookShelf.itemHandler.map(itemHandler -> itemHandler.getHandler(SlotTypes.STORAGE).getStackInSlot(finalI)).orElse(ItemStack.EMPTY);
             if (book.isEmpty() || !BookSpriteMaps.getSpriteMap().containsKey(book.getItem())) continue;
             Pair<TextureAtlasSprite, TextureAtlasSprite> spritePair = BookSpriteMaps.getSpriteMap().get(book.getItem());
             if (spritePair == null) continue;

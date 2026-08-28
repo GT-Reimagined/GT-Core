@@ -78,7 +78,7 @@ public class SlotUnlimited extends AbstractSlot<SlotUnlimited> {
                     return ItemStack.EMPTY;
                 }
 
-                for(ItemStack itemstack8 = container.quickMoveStack(pPlayer, this.index); !itemstack8.isEmpty() && this.getItem().is(itemstack8.getItem()); itemstack8 = container.quickMoveStack(pPlayer, this.index)) {
+                for(ItemStack itemstack8 = container.quickMoveStack(pPlayer, this.getIndex()); !itemstack8.isEmpty() && this.getItem().is(itemstack8.getItem()); itemstack8 = container.quickMoveStack(pPlayer, this.getIndex())) {
                     itemstack = itemstack8.copy();
                 }
             } else {

@@ -5,8 +5,8 @@ import org.gtreimagined.gtlib.GTAPI;
 import org.gtreimagined.gtlib.machine.MachineFlag;
 import org.gtreimagined.gtlib.material.Material;
 
-import static org.gtreimagined.gtlib.gui.SlotType.ENERGY;
-import static org.gtreimagined.gtlib.gui.SlotType.STORAGE;
+import static org.gtreimagined.gtlib.gui.SlotTypes.ENERGY;
+import static org.gtreimagined.gtlib.gui.SlotTypes.STORAGE;
 
 
 public class LockerMachine extends ChargingMachine{

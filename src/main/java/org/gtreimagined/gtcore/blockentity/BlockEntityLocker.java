@@ -17,6 +17,7 @@ import org.gtreimagined.gtcore.machine.MaterialMachine;
 import org.gtreimagined.gtlib.capability.machine.MachineCoverHandler;
 import org.gtreimagined.gtlib.cover.ICover;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.tool.GTToolType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -39,7 +40,7 @@ public class BlockEntityLocker extends BlockEntityMaterial<BlockEntityLocker> {
             this.itemHandler.ifPresent(h -> {
                 for (int i = 0; i < 4; i++){
                     ItemStack armorStack = player.getItemBySlot(getSlot(i));
-                    SlotType<?> slotType = this.type.getId().contains("charging") ? SlotType.ENERGY : SlotType.STORAGE;
+                    SlotType<?> slotType = this.type.getId().contains("charging") ? SlotTypes.ENERGY : SlotTypes.STORAGE;
                     ItemStack inventoryStack = h.getHandler(slotType).getStackInSlot(i);
                     if (!armorStack.isEmpty() && !inventoryStack.isEmpty()){
                         ItemStack copy = armorStack.copy();

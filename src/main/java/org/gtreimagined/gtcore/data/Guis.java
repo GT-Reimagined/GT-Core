@@ -1,15 +1,13 @@
 package org.gtreimagined.gtcore.data;
 
-import net.minecraft.resources.ResourceLocation;
+import brachy.modularui.api.drawable.IDrawable;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.mui.GTCoreGuiTextures;
 import org.gtreimagined.gtlib.gui.GuiProperties;
-import org.gtreimagined.gtlib.gui.SlotData;
 import org.gtreimagined.gtlib.gui.slot.ISlotProvider;
 import org.gtreimagined.gtlib.machine.IPanelFunction;
-import org.gtreimagined.gtlib.mui.GTGuiTextures;
 
-import static org.gtreimagined.gtlib.gui.SlotType.*;
+import static org.gtreimagined.gtlib.gui.SlotTypes.*;
 
 
 public class Guis {
@@ -29,11 +27,11 @@ public class Guis {
             .add(FL_OUT, 107, 61).add(FL_OUT, 125, 61).add(FL_OUT, 143, 61));
 
     public static void init(){
-        GTCoreBlocks.WOOD_ITEM_BARREL.add(DISPLAY, 53, 34).add(SlotTypes.UNLIMITED, 71, 34);
+        GTCoreBlocks.WOOD_ITEM_BARREL.add(DISPLAY, 53, 34).add(GTCoreSlotTypes.UNLIMITED, 71, 34);
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 3; x++) {
                 int finalX = x, finalY = y;
-                GTCoreBlocks.ENDER_GARBAGE_BIN.add(STORAGE, b -> b.x(62 + (finalX * 18)).y(17 + (finalY * 18)).baseTexture(GTGuiTextures.BLANK_SLOT).build());
+                GTCoreBlocks.ENDER_GARBAGE_BIN.add(STORAGE, b -> b.x(62 + (finalX * 18)).y(17 + (finalY * 18)).background(IDrawable.EMPTY));
             }
         }
         IPanelFunction oldFunction = GTCoreBlocks.ENDER_GARBAGE_BIN.getBackgroundFunction();;

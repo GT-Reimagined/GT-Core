@@ -32,6 +32,7 @@ import org.gtreimagined.gtcore.blockentity.BlockEntityChest;
 import org.gtreimagined.gtcore.machine.BlockMachineMaterial;
 import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.machine.types.Machine;
 
@@ -86,7 +87,7 @@ public class BlockMaterialChest extends BlockMachineMaterial implements SimpleWa
     public int getAnalogOutputSignal(BlockState pBlockState, Level pLevel, BlockPos pPos) {
         BlockEntity tile = pLevel.getBlockEntity(pPos);
         if (tile instanceof BlockEntityChest chest){
-            IItemHandler container = chest.itemHandler.map(i -> i.getHandler(SlotType.STORAGE)).orElse(null);
+            IItemHandler container = chest.itemHandler.map(i -> i.getHandler(SlotTypes.STORAGE)).orElse(null);
             if (container != null){
                 return getRedstoneSignalFromContainer(container);
             }

@@ -19,7 +19,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
-import org.gtreimagined.gtcore.data.SlotTypes;
+import org.gtreimagined.gtcore.data.GTCoreSlotTypes;
 import org.gtreimagined.gtcore.item.ItemTape;
 import org.gtreimagined.gtcore.machine.MassStorageItemHandler;
 import org.gtreimagined.gtcore.machine.MassStorageMachine;
@@ -28,6 +28,7 @@ import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.capability.item.TrackedItemHandler;
 import org.gtreimagined.gtlib.data.GTTools;
 import org.gtreimagined.gtlib.gui.SlotType;
+import org.gtreimagined.gtlib.gui.SlotTypes;
 import org.gtreimagined.gtlib.machine.MachineState;
 import org.gtreimagined.gtlib.machine.event.IMachineEvent;
 import org.gtreimagined.gtlib.network.GTLibNetwork;
@@ -57,7 +58,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     }
 
     public int getItemAmount(){
-        return itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED).getStackInSlot(0).getCount()).orElse(0);
+        return itemHandler.map(i -> i.getHandler(GTCoreSlotTypes.UNLIMITED).getStackInSlot(0).getCount()).orElse(0);
     }
 
     @Override
@@ -91,7 +92,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
     public void dropInventory(BlockState state, LootParams.Builder builder, List<ItemStack> drops) {
         if (getMachineState() != MachineState.ACTIVE) {
             itemHandler.ifPresent(t -> {
-                ItemStack held = t.getHandler(SlotTypes.UNLIMITED).getStackInSlot(0);
+                ItemStack held = t.getHandler(GTCoreSlotTypes.UNLIMITED).getStackInSlot(0);
                 int amountToExtract = held.getCount();
                 if (amountToExtract > 0){
                     if (amountToExtract > held.getMaxStackSize()){
@@ -141,7 +142,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
         }
         if (this.getMachineState() == MachineState.ACTIVE) return super.onInteractServer(state, world, pos, player, hand, hit, type);
         Vec3 vec = hit.getLocation();
-        var handler = itemHandler.map(i -> i.getHandler(SlotTypes.UNLIMITED)).orElse(null);
+        var handler = itemHandler.map(i -> i.getHandler(GTCoreSlotTypes.UNLIMITED)).orElse(null);
         ItemStack stack = player.getItemInHand(hand);
         if (stack.getItem() instanceof ItemTape tape && stack.isDamageableItem()) {
             int count = handler.getStackInSlot(0).getCount();
@@ -177,7 +178,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
             //TODO: translation component
             player.displayClientMessage(Utils.literal("Filter " + (keepFilter ? "Stays" : "Resets") + " when empty"),false);
             Utils.damageStack(player.getItemInHand(hand), hand, player);
-            if (!keepFilter) itemHandler.ifPresent(i -> i.getHandler(SlotType.DISPLAY).setStackInSlot(0, ItemStack.EMPTY));
+            if (!keepFilter) itemHandler.ifPresent(i -> i.getHandler(SlotTypes.DISPLAY).setStackInSlot(0, ItemStack.EMPTY));
             return InteractionResult.SUCCESS;
         }
         if (hit.getDirection().getAxis().isHorizontal() && hit.getDirection() == this.getFacing() && handler != null){
@@ -210,11 +211,11 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
             } else if (x > 0.25 && x < 0.75){
                 if (y > 0.125 && y < 0.625){
                     ItemStack stored = handler.getStackInSlot(0);
-                    ItemStack displayed = itemHandler.map(i -> i.getHandler(SlotType.DISPLAY).getStackInSlot(0)).orElse(ItemStack.EMPTY);
+                    ItemStack displayed = itemHandler.map(i -> i.getHandler(SlotTypes.DISPLAY).getStackInSlot(0)).orElse(ItemStack.EMPTY);
                     if (type == GTTools.SOFT_HAMMER){
                         amountToExtract = stored.getCount();
                         Utils.damageStack(stack, hand, player);
-                        itemHandler.get().getHandler(SlotType.DISPLAY).setStackInSlot(0, ItemStack.EMPTY);
+                        itemHandler.get().getHandler(SlotTypes.DISPLAY).setStackInSlot(0, ItemStack.EMPTY);
                     } else {
                         if (!stack.isEmpty()){
                             ItemStack leftover = handler.insertItem(0, stack.copy(), true);
@@ -343,7 +344,7 @@ public class BlockEntityMassStorage extends BlockEntityMaterial<BlockEntityMassS
             });
         } else if (!simulate){
             adjTile.getCapability(ForgeCapabilities.ITEM_HANDLER, outputDir.getOpposite()).ifPresent(adjHandler -> {
-                this.itemHandler.ifPresent(h -> Utils.transferItems(h.getHandler(SlotTypes.UNLIMITED), adjHandler,true));
+                this.itemHandler.ifPresent(h -> Utils.transferItems(h.getHandler(GTCoreSlotTypes.UNLIMITED), adjHandler,true));
             });
         }
     }

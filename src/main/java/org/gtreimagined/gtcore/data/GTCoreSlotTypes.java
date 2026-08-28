@@ -14,7 +14,7 @@ import org.gtreimagined.gtlib.gui.slot.AbstractSlot;
 import org.gtreimagined.gtlib.tool.IGTTool;
 import org.gtreimagined.tesseract.TesseractCapUtils;
 
-public class SlotTypes {
+public class GTCoreSlotTypes {
     public static SlotType<AbstractSlot<?>> TOOLS = SlotType.<AbstractSlot<?>>builder().id("tools").slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type, gui, item.getOrDefault(type, new EmptyHandler()), i))
             .tester((t, i) -> i.getItem() instanceof IGTTool || i.getItem().canBeDepleted()).build();
     public static SlotType<AbstractSlot<?>> TOOL_CHARGE = SlotType.<AbstractSlot<?>>builder().id("tool_charge").slotSupplier((type, gui, item, i, d) -> new AbstractSlot<>(type,gui, item.getOrDefault(type, new EmptyHandler()), i)).tester((t, i) -> {

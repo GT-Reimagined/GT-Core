@@ -9,4 +9,8 @@ public class SlotCrafting extends AbstractSlot<SlotCrafting> {
     public SlotCrafting(SlotType<SlotCrafting> type, IGuiHandler handler, IItemHandler itemHandler, int index) {
         super(type, handler, itemHandler, index);
     }
+
+    public int getSuperIndex(){
+        return super.getIndex();
+    }
 }
