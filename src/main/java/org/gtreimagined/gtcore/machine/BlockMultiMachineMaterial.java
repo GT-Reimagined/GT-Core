@@ -9,6 +9,7 @@ import org.gtreimagined.gtlib.machine.BlockMultiMachine;
 import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.machine.types.Machine;
 import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.material.MaterialColorChanger;
 import org.gtreimagined.gtlib.registration.IColorHandler;
 import org.jetbrains.annotations.Nullable;
 
@@ -30,11 +31,11 @@ public class BlockMultiMachineMaterial extends BlockMultiMachine implements ICol
 
     @Override
     public int getBlockColor(BlockState state, @Nullable BlockGetter world, @Nullable BlockPos pos, int i) {
-        return i == 0 ? material.getRGB() : -1;
+        return i == 0 ? MaterialColorChanger.getMaterialRgb(material) : -1;
     }
 
     @Override
     public int getItemColor(ItemStack stack, @Nullable Block block, int i) {
-        return i == 0 ? material.getRGB() : -1;
+        return i == 0 ? MaterialColorChanger.getMaterialRgb(material) : -1;
     }
 }

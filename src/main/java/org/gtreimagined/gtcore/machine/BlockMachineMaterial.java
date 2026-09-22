@@ -28,6 +28,7 @@ import org.gtreimagined.gtlib.machine.MachineState;
 import org.gtreimagined.gtlib.machine.Tier;
 import org.gtreimagined.gtlib.machine.types.Machine;
 import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.material.MaterialColorChanger;
 import org.gtreimagined.gtlib.material.MaterialTags;
 import org.gtreimagined.gtlib.texture.Texture;
 import org.jetbrains.annotations.Nullable;
@@ -68,12 +69,12 @@ public class BlockMachineMaterial extends BlockMachine {
                 }
             }
         }
-        return i == 0 ? material.getRGB() : -1;
+        return i == 0 ? MaterialColorChanger.getMaterialRgb(material) : -1;
     }
 
     @Override
     public int getItemColor(ItemStack stack, @Nullable Block block, int i) {
-        return i == 0 ? material.getRGB() : -1;
+        return i == 0 ? MaterialColorChanger.getMaterialRgb(material) : -1;
     }
 
     public void onItemModelBuild(ItemLike item, GTItemModelProvider prov) {

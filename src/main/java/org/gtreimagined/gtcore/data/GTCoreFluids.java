@@ -28,7 +28,7 @@ public class GTCoreFluids {
     }
 
     private static IClientFluidTypeExtensions prepareClientExtensions(String name){
-        return GTClientFluidTypeExtension.builder().stillTexture(new ResourceLocation(GTCore.ID, "block/fluid/" + name)).flowingTexture(new ResourceLocation(GTCore.ID, "block/fluid/" + name)).overlayTexture(OVERLAY_TEXTURE).build();
+        return GTClientFluidTypeExtension.create(b -> b.stillTexture(new ResourceLocation(GTCore.ID, "block/fluid/" + name)).flowingTexture(new ResourceLocation(GTCore.ID, "block/fluid/" + name)).overlayTexture(OVERLAY_TEXTURE));
     }
 
     private static Block.Properties prepareLavaProperties() {
