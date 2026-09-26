@@ -129,6 +129,5 @@
 			"color": 0,
 			"children": [9]
 		}
-	],
-	"loader": "gtlib:cover"
+	]
 }
