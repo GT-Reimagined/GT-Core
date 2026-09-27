@@ -93,7 +93,7 @@ public class WorkbenchMachine extends ChargingMachine{
                     for (int i = 0; i < 9; i++) {
                         int finalI = i;
                         IItemHandler inventory = toPlayer ? new PlayerMainInvWrapper(syncManager.getPlayer().getInventory()) : machine.itemHandler.map(item -> item.getAll().get(STORAGE)).orElse(new EmptyHandler());
-                        ItemStack leftover = ItemHandlerHelper.insertItem(inventory, machine.itemHandler.map(item -> item.getHandler(GTCoreSlotTypes.CRAFTING).getStackInSlot(finalI)).orElse(ItemStack.EMPTY), false);
+                        ItemStack leftover = ItemHandlerHelper.insertItemStacked(inventory, machine.itemHandler.map(item -> item.getHandler(GTCoreSlotTypes.CRAFTING).getStackInSlot(finalI)).orElse(ItemStack.EMPTY), false);
                         machine.itemHandler.ifPresent(item -> item.getHandler(GTCoreSlotTypes.CRAFTING).setStackInSlot(finalI, leftover.copy()));
                         output.updateCraftResult(null);
                     }
