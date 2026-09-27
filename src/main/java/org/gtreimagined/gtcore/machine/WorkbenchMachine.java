@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.wrapper.CombinedInvWrapper;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import net.minecraftforge.items.wrapper.PlayerMainInvWrapper;
 import org.gtreimagined.gtcore.blockentity.BlockEntityWorkbench;
@@ -92,7 +93,9 @@ public class WorkbenchMachine extends ChargingMachine{
                     boolean toPlayer = packet.readBoolean();
                     for (int i = 0; i < 9; i++) {
                         int finalI = i;
-                        IItemHandler inventory = toPlayer ? new PlayerMainInvWrapper(syncManager.getPlayer().getInventory()) : machine.itemHandler.map(item -> item.getAll().get(STORAGE)).orElse(new EmptyHandler());
+                        IItemHandler inventory = toPlayer ? new PlayerMainInvWrapper(syncManager.getPlayer().getInventory()) : machine.itemHandler.map(item -> {
+                            return (IItemHandler) new CombinedInvWrapper(item.getHandler(charge ? GTCoreSlotTypes.TOOL_CHARGE : GTCoreSlotTypes.TOOLS), item.getHandler(STORAGE));
+                        }).orElse(EmptyHandler.INSTANCE);
                         ItemStack leftover = ItemHandlerHelper.insertItemStacked(inventory, machine.itemHandler.map(item -> item.getHandler(GTCoreSlotTypes.CRAFTING).getStackInSlot(finalI)).orElse(ItemStack.EMPTY), false);
                         machine.itemHandler.ifPresent(item -> item.getHandler(GTCoreSlotTypes.CRAFTING).setStackInSlot(finalI, leftover.copy()));
                         output.updateCraftResult(null);
