@@ -45,6 +45,7 @@ public class GTCoreItemTagProvider extends GTItemTagProvider {
         processSubtags();
         this.copy(TagUtils.getBlockTag(new ResourceLocation(GTCore.ID, "rubber_logs")), GTCoreTags.RUBBER_LOGS);
         this.tag(ItemTags.LEAVES).add(GTCoreBlocks.RUBBER_LEAVES.asItem());
+        this.tag(ItemTags.SAPLINGS).add(GTCoreBlocks.RUBBER_SAPLING.asItem());
         this.tag(ItemTags.PLANKS).add(GTCoreBlocks.RUBBER_PLANKS.asItem(), PLATE.get(GTLibMaterials.Wood));
         this.tag(ItemTags.SLABS).add(GTCoreBlocks.RUBBER_SLAB.asItem());
         this.tag(ItemTags.STAIRS).add(GTCoreBlocks.RUBBER_STAIRS.asItem());
