@@ -165,6 +165,7 @@ private fun loadWood(consumer: Consumer<FinishedRecipe>, provider: GTRecipeProvi
         modWoods["terrestria"] = listOf("cypress", "hemlock", "japanese_maple", "rainbow_eucalyptus", "redwood",
             "rubber", "sakura", "willow", "yucca_palm")
     }
+    if (GTAPI.isModLoaded("twilightforest")) modWoods["twilightforest"] = listOf("twilight_oak", "canopy", "mangrove", "mining")
     if (GTAPI.isModLoaded("undergarden")) modWoods["undergarden"] = listOf("smogstem", "wigglewood", "grongle")
     if (GTAPI.isModLoaded("botania")) modWoods["botania"] = listOf("livingwood", "dreamwood")
     if (GTAPI.isModLoaded("traverse")) modWoods["traverse"] = listOf("fir")
@@ -188,9 +189,21 @@ private fun loadWood(consumer: Consumer<FinishedRecipe>, provider: GTRecipeProvi
         for (wood in w) {
             val suffix = customSuffixes.getOrDefault(wood, "logs")
             val planks = ResourceLocation(domain, wood + "_planks")
-            addWoodRecipe(consumer, provider, domain, planks.path, TagUtils.getItemTag(ResourceLocation(domain, wood + "_" + suffix)), RegistryUtils.getItemFromID(planks))
+            val id = "${if (domain == "twilightforest") "wood/" else ""}${planks.path}"
+            addWoodRecipe(consumer, provider, domain, id, TagUtils.getItemTag(ResourceLocation(domain, wood + "_" + suffix)), RegistryUtils.getItemFromID(planks))
             val slab = ResourceLocation(domain, wood + "_slab")
             provider.addItemRecipe(consumer, domain, slab.path + "_to_" + planks.path, "slabs", RegistryUtils.getItemFromID(planks), ImmutableMap.of('S', RegistryUtils.getItemFromID(slab)), "S", "S")
+        }
+    }
+    if (GTAPI.isModLoaded("twilightforest")) {
+        val tf = "twilightforest"
+        val logs = arrayOf("timewood", "darkwood", "sortwood", "transwood")
+        val planks = arrayOf("time", "dark", "sorting", "transformation")
+        for (i in 0..logs.size) {
+            val plank = ResourceLocation(tf, "${planks[i]}_planks")
+            addWoodRecipe(consumer, provider, tf, "wood/${plank.path}", TagUtils.getItemTag(ResourceLocation(tf, "${logs[i]}_logs")), RegistryUtils.getItemFromID(plank))
+            val slab = ResourceLocation(tf, "${planks[i]}_slab")
+            provider.addItemRecipe(consumer, tf, slab.path + "_to_" + plank.path, "slabs", RegistryUtils.getItemFromID(plank), ImmutableMap.of('S', RegistryUtils.getItemFromID(slab)), "S", "S")
         }
     }
 
