@@ -35,7 +35,7 @@ public class RubberRecipes {
         }
         Item lumber = GTAPI.isModLoaded("tfc") ? GTAPI.get(Item.class, "rubber_lumber", GTCore.ID) : GTCoreBlocks.RUBBER_PLANKS.asItem();
         if (!GTAPI.isModLoaded("tfc")){
-            addWoodRecipe(consumer, provider, GTCore.ID, GTCoreTags.RUBBER_LOGS, GTCoreBlocks.RUBBER_PLANKS.asItem());
+            addWoodRecipe(consumer, provider, GTCore.ID, "rubber_planks", GTCoreTags.RUBBER_LOGS, GTCoreBlocks.RUBBER_PLANKS.asItem());
             provider.addStackRecipe(consumer, "rubber_wood", new ItemStack(GTCoreBlocks.RUBBER_HANGING_SIGN, 6),
                     of('W', lumber, 'C', Items.CHAIN), "C C", "WWW", "WWW");
         } else if (GTAPI.isModLoaded("tfc")){

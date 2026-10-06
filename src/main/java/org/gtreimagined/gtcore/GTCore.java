@@ -220,7 +220,7 @@ public class GTCore extends GTMod {
         event.addLoader(MaterialRecipes::loadMaterialRecipes);
         event.addLoader(Pipes::loadRecipes);
         event.addLoader(Tools::init);
-        event.addLoader(VanillaRecipes::loadRecipes);
+        event.addLoader(VanillaRecipes::loadVanillaRecipes);
         event.addLoader(MiscRecipes::loadRecipes);
     }
 
