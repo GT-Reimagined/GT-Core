@@ -24,7 +24,6 @@ public class LimitedOutputTrackedHandler<T extends IGuiHandler & ILimitedOutputT
         int stackLimit = getTile().getStackLimit();
         if (!getTile().hasStackLimit()) return super.extractItem(slot, amount, simulate);
         if (amount < stackLimit) return ItemStack.EMPTY;
-        amount = stackLimit;
-        return super.extractItem(slot, amount, simulate);
+        return super.extractItem(slot, stackLimit, simulate);
     }
 }
