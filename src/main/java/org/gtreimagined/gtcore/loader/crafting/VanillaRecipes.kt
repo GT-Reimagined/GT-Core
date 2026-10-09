@@ -199,9 +199,9 @@ private fun loadWood(consumer: Consumer<FinishedRecipe>, provider: GTRecipeProvi
         val tf = "twilightforest"
         val logs = arrayOf("timewood", "darkwood", "sortwood", "transwood")
         val planks = arrayOf("time", "dark", "sorting", "transformation")
-        for (i in 0..logs.size) {
+        for ((i, log) in logs.withIndex()) {
             val plank = ResourceLocation(tf, "${planks[i]}_planks")
-            addWoodRecipe(consumer, provider, tf, "wood/${plank.path}", TagUtils.getItemTag(ResourceLocation(tf, "${logs[i]}_logs")), RegistryUtils.getItemFromID(plank))
+            addWoodRecipe(consumer, provider, tf, "wood/${plank.path}", TagUtils.getItemTag(ResourceLocation(tf, "${log}_logs")), RegistryUtils.getItemFromID(plank))
             val slab = ResourceLocation(tf, "${planks[i]}_slab")
             provider.addItemRecipe(consumer, tf, slab.path + "_to_" + plank.path, "slabs", RegistryUtils.getItemFromID(plank), ImmutableMap.of('S', RegistryUtils.getItemFromID(slab)), "S", "S")
         }
