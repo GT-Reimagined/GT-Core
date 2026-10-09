@@ -128,7 +128,7 @@ private fun loadOverrides(consumer: Consumer<FinishedRecipe>, provider: GTRecipe
 fun addWoodRecipe(consumer: Consumer<FinishedRecipe>, provider: GTRecipeProvider, domain: String, id: String, log: TagKey<Item>, plank: Item) {
     val amount1 = if (GTCoreConfig.HARDER_WOOD.get()) 2 else 4
     val amount2 = if (GTCoreConfig.HARDER_WOOD.get()) 4 else 6
-    provider.shapeless(consumer, domain, "", "planks", ItemStack(plank, amount1), log)
+    provider.shapeless(consumer, domain, id, "planks", ItemStack(plank, amount1), log)
     provider.addStackRecipe(consumer, domain, "${id}_$amount2", "planks", ItemStack(plank, amount2),
         ImmutableMap.of('S', GTTools.SAW.getTag(), 'P', log), "S", "P")
 }
