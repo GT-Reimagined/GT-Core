@@ -212,7 +212,7 @@ private fun loadWood(consumer: Consumer<FinishedRecipe>, provider: GTRecipeProvi
         "granite", "andesite", "polished_andesite", "diorite", "blackstone", "polished_blackstone", "purpur", "quartz", "brick",
         "stone_brick", "nether_brick", "prismarine_brick", "mossy_stone_brick", "end_stone_brick", "red_nether_brick", "polished_blackstone_brick")
     for (stone in stones) {
-        val suffix = if (stone == "purpur" || stone == "quartz") "block" else if (stone.contains("brick")) "s" else ""
+        val suffix = if (stone == "purpur" || stone == "quartz") "_block" else if (stone.contains("brick")) "s" else ""
         val full = RegistryUtils.getItemFromID(ResourceLocation("$stone$suffix"))
         val slab = RegistryUtils.getItemFromID(ResourceLocation("${stone}_slab"))
         val pattern: Array<String> =
