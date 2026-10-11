@@ -201,7 +201,7 @@ public class BlockEntityDrum extends BlockEntityMaterial<BlockEntityDrum> {
                 }
                 return 0;
             }
-            if (tile.getMachineType() instanceof DrumMachine drumMachine && !drumMachine.isAcidProof() && fluid.getFluid().is(Fluids.GASEOUS)){
+            if (tile.getMachineType() instanceof DrumMachine drumMachine && !drumMachine.isGasProof() && fluid.getFluid().is(Fluids.GASEOUS)){
                 int inserted = super.fill(fluid, FluidAction.SIMULATE);
                 if (inserted > 0) {
                     if (action.execute()) tile.getLevel().playSound(null, tile.getBlockPos(), SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0f, 1.0f);
