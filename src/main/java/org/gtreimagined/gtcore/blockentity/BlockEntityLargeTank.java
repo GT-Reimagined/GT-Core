@@ -77,7 +77,7 @@ public class BlockEntityLargeTank extends BlockEntityMaterialBasicMultiMachine<B
     public static class LargeTankFluidHandler extends MachineFluidHandler<BlockEntityLargeTank> {
 
         public LargeTankFluidHandler(BlockEntityLargeTank tile, int capacity, int inputCount, int outputCount) {
-            super(tile, capacity, inputCount, outputCount);
+            super(tile, capacity, inputCount, outputCount, 0);
         }
 
         @Nullable

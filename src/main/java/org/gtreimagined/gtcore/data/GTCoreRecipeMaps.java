@@ -9,7 +9,7 @@ import org.gtreimagined.gtlib.recipe.map.RecipeMap;
 public class GTCoreRecipeMaps {
     public static final RecipeMap<RecipeBuilder> MORTAR = new RecipeMap<>(GTCore.ID, "mortar", new RecipeBuilder());
     public static void init() {
-        MORTAR.setIcon(() -> GTCoreBlocks.IRON_MORTAR).setGuiData(Guis.SIMPLE_DISPLAY);
+        MORTAR.iconSupplier(() -> GTCoreBlocks.IRON_MORTAR).guiProperties(Guis.SIMPLE_DISPLAY);
         if (FMLEnvironment.dist.isClient()){
             MORTAR.setInfoRenderer(InfoRenderers.EMPTY_RENDERER);
         }
