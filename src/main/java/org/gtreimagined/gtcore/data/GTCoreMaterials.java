@@ -180,6 +180,7 @@ public class GTCoreMaterials {
     public static Material Lapotronium = GTAPI.register(Material.class, new Material(GTCore.ID, "lapotronium", 0x6464c8, NONE));
     public static Material Fireclay = GTAPI.register(Material.class, new Material(GTCore.ID, "fireclay", 0xada09b, ROUGH));
     public static Material Beeswax = GTAPI.register(Material.class, new Material(GTCore.ID, "beeswax", 0xfadc6e, TextureSets.FOOD));
+    public static Material TreatedWood = GTAPI.register(Material.class, new Material(GTCore.ID, "treated_wood", 0x502800, WOOD));
 
 
     /**

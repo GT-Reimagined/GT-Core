@@ -30,6 +30,7 @@ public class GTCoreMaterialEvents {
     public static void onMaterialEvent(MaterialEvent<?> event){
         replacements();
         vanillaMaterials(event);
+        event.setMaterial(TreatedWood).flags(WOOD);
         event.setMaterial(GTCoreMaterials.Rubber).asSolid(295, PLATE, RING);
         event.setMaterial(GTCoreMaterials.Plastic).flags(RUBBERTOOLS);
         event.setMaterial(GTCoreMaterials.Beeswax).asDust();
