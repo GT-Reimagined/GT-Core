@@ -159,7 +159,8 @@ public class GTCoreBlocks {
     public static BookShelfMachine MANGROVE_BOOKSHELF = new BookShelfMachine("mangrove", new Texture("block/mangrove_planks"), () -> Blocks.MANGROVE_PLANKS);
     public static BookShelfMachine CRIMSON_BOOKSHELF = new BookShelfMachine("crimson", new Texture("block/crimson_planks"), () -> Blocks.CRIMSON_PLANKS);
     public static BookShelfMachine WARPED_BOOKSHELF = new BookShelfMachine("warped", new Texture("block/warped_planks"), () -> Blocks.WARPED_PLANKS);
-    public static BookShelfMachine RUBBER_BOOKSHELF = new BookShelfMachine("rubber", new Texture(GTCore.ID, "block/tree/rubber_planks"), () -> GTCoreBlocks.RUBBER_PLANKS);
+    public static BookShelfMachine RUBBER_BOOKSHELF = new BookShelfMachine("rubber", new Texture(GTCore.ID, "block/wood/rubber_planks"), () -> GTCoreBlocks.RUBBER_PLANKS);
+    public static BookShelfMachine TREATED_BOOKSHELF = new BookShelfMachine("treated", new Texture(GTCore.ID, "block/wood/treated_planks"), () -> GTCoreBlocks.TREATED_PLANKS);
 
     public static Boolean isntSolid(BlockState state, BlockGetter reader, BlockPos pos) {
         return false;
