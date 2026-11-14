@@ -27,7 +27,7 @@ import static org.gtreimagined.gtcore.loader.crafting.VanillaRecipes.addWoodReci
 import static org.gtreimagined.gtlib.data.GTMaterialTypes.DUST;
 import static org.gtreimagined.gtlib.data.GTTools.SAW;
 
-public class RubberRecipes {
+public class WoodRecipes {
 
     public static void addRecipes(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider){
         if (!GTAPI.isModLoaded("gt5r") && !GTAPI.isModLoaded("gt4r")) {

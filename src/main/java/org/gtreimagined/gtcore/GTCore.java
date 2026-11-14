@@ -54,7 +54,7 @@ import org.gtreimagined.gtcore.loader.crafting.MachineRecipes;
 import org.gtreimagined.gtcore.loader.crafting.MaterialRecipes;
 import org.gtreimagined.gtcore.loader.crafting.MiscRecipes;
 import org.gtreimagined.gtcore.loader.crafting.Pipes;
-import org.gtreimagined.gtcore.loader.crafting.RubberRecipes;
+import org.gtreimagined.gtcore.loader.crafting.WoodRecipes;
 import org.gtreimagined.gtcore.loader.crafting.Tools;
 import org.gtreimagined.gtcore.loader.crafting.VanillaRecipes;
 import org.gtreimagined.gtcore.mui.GTCoreThemes;
@@ -216,7 +216,7 @@ public class GTCore extends GTMod {
 
     private void onCraftingEvent(GTCraftingEvent event){
         event.addLoader(MachineRecipes::initRecipes);
-        event.addLoader(RubberRecipes::addRecipes);
+        event.addLoader(WoodRecipes::addRecipes);
         event.addLoader(MaterialRecipes::loadMaterialRecipes);
         event.addLoader(Pipes::loadRecipes);
         event.addLoader(Tools::init);
