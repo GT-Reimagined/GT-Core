@@ -32,6 +32,7 @@ import org.gtreimagined.gtcore.machine.LockerMachine;
 import org.gtreimagined.gtcore.machine.MassStorageMachine;
 import org.gtreimagined.gtcore.machine.MaterialMachine;
 import org.gtreimagined.gtcore.machine.WorkbenchMachine;
+import org.gtreimagined.gtcore.tree.block.BlockGTPlanks;
 import org.gtreimagined.gtcore.tree.block.BlockRubberButton;
 import org.gtreimagined.gtcore.tree.block.BlockRubberDoor;
 import org.gtreimagined.gtcore.tree.block.BlockRubberFence;
@@ -42,8 +43,8 @@ import org.gtreimagined.gtcore.tree.block.BlockRubberLog;
 import org.gtreimagined.gtcore.tree.block.BlockRubberPressurePlate;
 import org.gtreimagined.gtcore.tree.block.BlockRubberSapling;
 import org.gtreimagined.gtcore.tree.block.BlockRubberSign;
-import org.gtreimagined.gtcore.tree.block.BlockRubberSlab;
-import org.gtreimagined.gtcore.tree.block.BlockRubberStairs;
+import org.gtreimagined.gtcore.tree.block.BlockGTWoodSlab;
+import org.gtreimagined.gtcore.tree.block.BlockGTWoodStairs;
 import org.gtreimagined.gtcore.tree.block.BlockRubberTrapDoor;
 import org.gtreimagined.gtcore.tree.block.BlockRubberWallHangingSign;
 import org.gtreimagined.gtcore.tree.block.BlockRubberWallSign;
@@ -93,12 +94,7 @@ public class GTCoreBlocks {
     public static final BlockRubberLog STRIPPED_RUBBER_LOG = new BlockRubberLog(GTCore.ID, "stripped_rubber_log");
     public static final BlockRubberWood RUBBER_WOOD = new BlockRubberWood(GTCore.ID, "rubber_wood");
     public static final BlockRubberWood STRIPPED_RUBBER_WOOD = new BlockRubberWood(GTCore.ID, "stripped_rubber_wood");
-    public static final BlockBasic RUBBER_PLANKS = new BlockBasic(GTCore.ID, "rubber_planks", BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)){
-        @Override
-        public Texture[] getTextures() {
-            return new Texture[]{new Texture(domain, "block/tree/rubber_planks")};
-        }
-    };
+    public static final BlockBasic RUBBER_PLANKS = new BlockGTPlanks("rubber");
 
     public static final BlockRubberSign RUBBER_SIGN = new BlockRubberSign();
     public static final BlockRubberWallSign RUBBER_WALL_SIGN = new BlockRubberWallSign();
@@ -110,11 +106,15 @@ public class GTCoreBlocks {
     public static final BlockRubberDoor RUBBER_DOOR = new BlockRubberDoor();
     public static final BlockRubberTrapDoor RUBBER_TRAPDOOR = new BlockRubberTrapDoor();
 
-    public static final BlockRubberSlab RUBBER_SLAB = new BlockRubberSlab();
-    public static final BlockRubberStairs RUBBER_STAIRS = new BlockRubberStairs();
+    public static final BlockGTWoodSlab RUBBER_SLAB = new BlockGTWoodSlab("rubber");
+    public static final BlockGTWoodStairs RUBBER_STAIRS = new BlockGTWoodStairs(RUBBER_PLANKS, "rubber");
 
     public static final BlockRubberFence RUBBER_FENCE = new BlockRubberFence();
     public static final BlockRubberFenceGate RUBBER_FENCE_GATE = new BlockRubberFenceGate();
+
+    public static final BlockBasic TREATED_PLANKS = new BlockGTPlanks("treated");
+    public static final BlockGTWoodSlab TREATED_SLAB = new BlockGTWoodSlab("treated");
+    public static final BlockGTWoodStairs TREATED_STAIRS = new BlockGTWoodStairs(TREATED_PLANKS, "treated");
 
     public static final BlockSapBag SAP_BAG = new BlockSapBag();
     public static final BlockMortar IRON_MORTAR = new BlockMortar(GTCoreMaterials.Iron);

@@ -12,7 +12,7 @@ import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider
 import org.gtreimagined.gtlib.registration.IGTObject
 import org.gtreimagined.gtlib.registration.IModelProvider
 
-class BlockGTWoodSlab : SlabBlock(
+class BlockGTWoodSlab(val type: String) : SlabBlock(
     Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0f, 3.0f).sound(SoundType.WOOD)),
     IGTObject, IModelProvider {
     init {
@@ -24,14 +24,14 @@ class BlockGTWoodSlab : SlabBlock(
     }
 
     override fun getId(): String {
-        return "rubber_slab"
+        return "${type}_slab"
     }
 
-    override fun onBlockModelBuild(block: Block?, prov: GTBlockStateProvider) {
+    override fun onBlockModelBuild(block: Block, prov: GTBlockStateProvider) {
         prov.slabBlock(
             this,
-            ResourceLocation(GTCore.ID, "block/rubber_planks"),
-            ResourceLocation(GTCore.ID, "block/wood/rubber_planks")
+            ResourceLocation(GTCore.ID, "block/${type}_planks"),
+            ResourceLocation(GTCore.ID, "block/wood/${type}_planks")
         )
     }
 }

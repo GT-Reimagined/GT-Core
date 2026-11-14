@@ -10,8 +10,8 @@ import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider
 import org.gtreimagined.gtlib.registration.IGTObject
 import org.gtreimagined.gtlib.registration.IModelProvider
 
-class BlockGTWoodStairs :
-    StairBlock(GTCoreBlocks.RUBBER_PLANKS.defaultBlockState(), Properties.copy(GTCoreBlocks.RUBBER_PLANKS)), IGTObject,
+class BlockGTWoodStairs(planks: Block, val type: String) :
+    StairBlock(planks.defaultBlockState(), Properties.copy(planks)), IGTObject,
     IModelProvider {
     init {
         register<BlockGTWoodStairs>( this)
@@ -22,10 +22,10 @@ class BlockGTWoodStairs :
     }
 
     override fun getId(): String {
-        return "rubber_stairs"
+        return "${type}_stairs"
     }
 
-    override fun onBlockModelBuild(block: Block?, prov: GTBlockStateProvider) {
-        prov.stairsBlock(this, ResourceLocation(GTCore.ID, "block/wood/rubber_planks"))
+    override fun onBlockModelBuild(block: Block, prov: GTBlockStateProvider) {
+        prov.stairsBlock(this, ResourceLocation(GTCore.ID, "block/wood/${type}_planks"))
     }
 }
