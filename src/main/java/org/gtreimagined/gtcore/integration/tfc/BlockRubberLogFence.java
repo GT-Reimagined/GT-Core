@@ -19,11 +19,11 @@ public class BlockRubberLogFence extends BlockRubberFence {
 
     @Override
     public void onItemModelBuild(ItemLike item, GTItemModelProvider prov) {
-        prov.getBuilder(item).parent(new ResourceLocation("tfc", "block/log_fence_inventory")).texture("planks", new Texture(GTCore.ID, "block/tree/rubber_planks")).texture("log", new Texture(GTCore.ID, "block/tree/rubber_log"));
+        prov.getBuilder(item).parent(new ResourceLocation("tfc", "block/log_fence_inventory")).texture("planks", new Texture(GTCore.ID, "block/wood/rubber_planks")).texture("log", new Texture(GTCore.ID, "block/wood/rubber_log"));
     }
 
     @Override
     public void onBlockModelBuild(Block block, GTBlockStateProvider prov) {
-        prov.fourWayBlock(this, prov.models().fencePost(getId() + "_post", new ResourceLocation(GTCore.ID, "block/tree/rubber_log")), prov.models().fenceSide(getId() + "_side", new ResourceLocation(GTCore.ID, "block/tree/rubber_planks")));
+        prov.fourWayBlock(this, prov.models().fencePost(getId() + "_post", new ResourceLocation(GTCore.ID, "block/wood/rubber_log")), prov.models().fenceSide(getId() + "_side", new ResourceLocation(GTCore.ID, "block/wood/rubber_planks")));
     }
 }

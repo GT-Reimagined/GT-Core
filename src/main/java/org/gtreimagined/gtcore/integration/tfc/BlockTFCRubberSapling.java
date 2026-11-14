@@ -37,7 +37,7 @@ public class BlockTFCRubberSapling extends TFCSaplingBlock implements IGTObject,
 
     @Override
     public Texture[] getTextures() {
-        return new Texture[] { new Texture(getDomain(), "block/tree/" + getId()) };
+        return new Texture[] { new Texture(getDomain(), "block/wood/" + getId()) };
     }
 
     @Override

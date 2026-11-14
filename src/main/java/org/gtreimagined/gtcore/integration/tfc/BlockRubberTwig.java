@@ -32,7 +32,7 @@ public class BlockRubberTwig extends GroundcoverBlock implements IModelProvider,
 
     @Override
     public void onBlockModelBuild(Block block, GTBlockStateProvider prov) {
-        prov.state(block, prov.getBuilder(block).model("tfc:block/groundcover/twig", ImmutableMap.of("side", new Texture(GTCore.ID,"block/tree/rubber_log"), "top", new Texture(GTCore.ID,"block/tree/rubber_log_end"))));
+        prov.state(block, prov.getBuilder(block).model("tfc:block/groundcover/twig", ImmutableMap.of("side", new Texture(GTCore.ID,"block/wood/rubber_log"), "top", new Texture(GTCore.ID,"block/wood/rubber_log_end"))));
     }
 
     @Override

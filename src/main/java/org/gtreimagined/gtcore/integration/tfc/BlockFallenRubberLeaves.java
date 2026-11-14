@@ -38,7 +38,7 @@ public class BlockFallenRubberLeaves extends FallenLeavesBlock implements IGTObj
 
     @Override
     public void onBlockModelBuild(Block block, GTBlockStateProvider prov) {
-        prov.state(block, prov.getBuilder(block).model("tfc:block/groundcover/fallen_leaves", ImmutableMap.of("all", new Texture(GTCore.ID,"block/tree/rubber_leaves"))));
+        prov.state(block, prov.getBuilder(block).model("tfc:block/groundcover/fallen_leaves", ImmutableMap.of("all", new Texture(GTCore.ID,"block/wood/rubber_leaves"))));
     }
 
     @Override

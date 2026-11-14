@@ -41,6 +41,6 @@ public class BlockTFCRubberLoaves extends TFCLeavesBlock implements IGTObject, I
 
     @Override
     public Texture[] getTextures() {
-        return new Texture[] { new Texture(domain, "block/tree/" + id) };
+        return new Texture[] { new Texture(domain, "block/wood/" + id) };
     }
 }
