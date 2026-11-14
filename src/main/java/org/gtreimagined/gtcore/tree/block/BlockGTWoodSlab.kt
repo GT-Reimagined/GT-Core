@@ -12,11 +12,11 @@ import org.gtreimagined.gtlib.datagen.providers.GTBlockStateProvider
 import org.gtreimagined.gtlib.registration.IGTObject
 import org.gtreimagined.gtlib.registration.IModelProvider
 
-class BlockRubberSlab : SlabBlock(
+class BlockGTWoodSlab : SlabBlock(
     Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0f, 3.0f).sound(SoundType.WOOD)),
     IGTObject, IModelProvider {
     init {
-        register<BlockRubberSlab>( this)
+        register<BlockGTWoodSlab>( this)
     }
 
     override fun getDomain(): String {
