@@ -123,6 +123,7 @@ public class GTCoreBlocks {
     public static final BlockEntityType<?> SAP_BAG_BLOCK_ENTITY = BlockEntityType.Builder.of(BlockEntitySapBag::new, SAP_BAG).build(null);
 
     public static MaterialMachine WOOD_ITEM_BARREL;
+    public static MaterialMachine TREATED_WOOD_ITEM_BARREL;
     public static MaterialMachine PLASTIC_STORAGE_BOX;
 
     @Nullable
@@ -192,6 +193,7 @@ public class GTCoreBlocks {
 
     public static void initItemBarrels(){
         WOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, GTLibMaterials.Wood, "item_storage", 5000).addFlags(MachineFlag.GUI).setToolTag(GTTools.AXE.getToolType());
+        TREATED_WOOD_ITEM_BARREL = new MassStorageMachine(GTCore.ID, TreatedWood, "item_storage", 10000).addFlags(MachineFlag.GUI).setToolTag(GTTools.AXE.getToolType());
         PLASTIC_STORAGE_BOX = new MassStorageMachine(GTCore.ID, Plastic, "storage_box", 128).setTile((type, pos, state) -> new BlockEntityPlasticBin((MassStorageMachine) type, pos, state)).addTooltipInfo((blockMachine, itemStack, blockGetter, list, tooltipFlag) -> {
             list.remove(1);
             list.add(1, Utils.translatable("machine.mass_storage.capacity", "Variable"));
