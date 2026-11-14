@@ -56,8 +56,8 @@ public class GTCoreBlockTagProvider extends GTBlockTagProvider {
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(GTCoreBlocks.RUBBER_LEAVES);
         this.tag(BlockTags.SAPLINGS).add(GTCoreBlocks.RUBBER_SAPLING);
         this.tag(BlockTags.PLANKS).add(GTCoreBlocks.RUBBER_PLANKS);
-        this.tag(BlockTags.WOODEN_SLABS).add(GTCoreBlocks.RUBBER_SLAB);
-        this.tag(BlockTags.WOODEN_STAIRS).add(GTCoreBlocks.RUBBER_STAIRS);
+        this.tag(BlockTags.WOODEN_SLABS).add(GTCoreBlocks.RUBBER_SLAB, TREATED_SLAB);
+        this.tag(BlockTags.WOODEN_STAIRS).add(GTCoreBlocks.RUBBER_STAIRS, TREATED_STAIRS);
         this.tag(BlockTags.WOODEN_FENCES).add(GTCoreBlocks.RUBBER_FENCE);
         this.tag(BlockTags.FENCE_GATES).add(GTCoreBlocks.RUBBER_FENCE_GATE);
         this.tag(BlockTags.WOODEN_DOORS).add(GTCoreBlocks.RUBBER_DOOR);
@@ -68,6 +68,9 @@ public class GTCoreBlockTagProvider extends GTBlockTagProvider {
         this.tag(BlockTags.WALL_SIGNS).add(GTCoreBlocks.RUBBER_WALL_SIGN);
         this.tag(TagUtils.getBlockTag(new ResourceLocation(GTCore.ID, "rubber_logs"))).add(GTCoreBlocks.RUBBER_LOG, GTCoreBlocks.STRIPPED_RUBBER_LOG, GTCoreBlocks.RUBBER_WOOD, GTCoreBlocks.STRIPPED_RUBBER_WOOD);
         this.tag(BlockTags.LOGS_THAT_BURN).addTag(TagUtils.getBlockTag(new ResourceLocation(GTCore.ID, "rubber_logs")));
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(TREATED_PLANKS);
+        this.tag(TagUtils.getForgelikeBlockTag("treated_wood")).add(TREATED_PLANKS);
+        this.tag(TagUtils.getForgelikeBlockTag("treated_wood_slab")).add(TREATED_SLAB);
         if (GTAPI.isModLoaded("tfc")){
             this.tag(BlockTags.WOODEN_FENCES).add(GTAPI.get(Block.class, "rubber_log_fence", GTCore.ID));
             this.tag(TagUtils.getBlockTag(new ResourceLocation("tfc", "twigs"))).add(GTAPI.get(Block.class, "rubber_twig", GTCore.ID));

@@ -47,8 +47,8 @@ public class GTCoreItemTagProvider extends GTItemTagProvider {
         this.tag(ItemTags.LEAVES).add(GTCoreBlocks.RUBBER_LEAVES.asItem());
         this.tag(ItemTags.SAPLINGS).add(GTCoreBlocks.RUBBER_SAPLING.asItem());
         this.tag(ItemTags.PLANKS).add(GTCoreBlocks.RUBBER_PLANKS.asItem(), PLATE.get(GTLibMaterials.Wood));
-        this.tag(ItemTags.SLABS).add(GTCoreBlocks.RUBBER_SLAB.asItem());
-        this.tag(ItemTags.STAIRS).add(GTCoreBlocks.RUBBER_STAIRS.asItem());
+        this.tag(ItemTags.SLABS).add(GTCoreBlocks.RUBBER_SLAB.asItem(), GTCoreBlocks.TREATED_SLAB.asItem());
+        this.tag(ItemTags.STAIRS).add(GTCoreBlocks.RUBBER_STAIRS.asItem(), GTCoreBlocks.TREATED_PLANKS.asItem());
         this.tag(ItemTags.SIGNS).add(GTCoreBlocks.RUBBER_SIGN.asItem());
         this.tag(ItemTags.WOODEN_BUTTONS).add(GTCoreBlocks.RUBBER_BUTTON.asItem());
         this.tag(ItemTags.WOODEN_DOORS).add(GTCoreBlocks.RUBBER_DOOR.asItem());
@@ -57,6 +57,8 @@ public class GTCoreItemTagProvider extends GTItemTagProvider {
         this.tag(ItemTags.WOODEN_SLABS).add(GTCoreBlocks.RUBBER_SLAB.asItem());
         this.tag(ItemTags.WOODEN_STAIRS).add(GTCoreBlocks.RUBBER_STAIRS.asItem());
         this.tag(ItemTags.WOODEN_TRAPDOORS).add(GTCoreBlocks.RUBBER_TRAPDOOR.asItem());
+        this.tag(TagUtils.getForgelikeItemTag("treated_wood")).add(GTCoreBlocks.TREATED_PLANKS.asItem());
+        this.tag(TagUtils.getForgelikeItemTag("treated_wood_slab")).add(GTCoreBlocks.TREATED_SLAB.asItem());
         this.tag(Tags.Items.SLIMEBALLS).add(StickyResin);
         this.tag(INGOTS_MIXED_METAL).add(MixedMetalIngot);
         this.tag(BOOKS_NORMAL).add(Items.BOOK, Items.WRITABLE_BOOK, Items.WRITTEN_BOOK);
