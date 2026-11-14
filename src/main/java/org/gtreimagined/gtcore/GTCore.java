@@ -216,7 +216,7 @@ public class GTCore extends GTMod {
 
     private void onCraftingEvent(GTCraftingEvent event){
         event.addLoader(MachineRecipes::initRecipes);
-        event.addLoader(WoodRecipes::addRecipes);
+        event.addLoader(WoodRecipes::addWoodRecipes);
         event.addLoader(MaterialRecipes::loadMaterialRecipes);
         event.addLoader(Pipes::loadRecipes);
         event.addLoader(Tools::init);
