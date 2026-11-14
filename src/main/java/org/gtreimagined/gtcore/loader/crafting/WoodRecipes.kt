@@ -80,4 +80,9 @@ fun addWoodRecipes(consumer: Consumer<FinishedRecipe>, provider: GTRecipeProvide
         ImmutableMap.of('L', Tags.Items.LEATHER, 'S', GTTools.SAW.getTag(), 's', Items.STICK), "sss", "LSL", "LLL")
     provider.addStackRecipe(consumer, GTCore.ID, "torch", "torches", ItemStack(Items.TORCH, 4),
         ImmutableMap.of('S', GTCoreItems.StickyResin, 'R', Items.STICK), "S", "R")
+
+    provider.addStackRecipe(consumer, GTCore.ID, "", "rubber_wood", ItemStack(GTCoreBlocks.TREATED_SLAB, 6),
+        ImmutableMap.of('R', GTCoreBlocks.TREATED_PLANKS), "RRR")
+    provider.addStackRecipe(consumer, GTCore.ID, "", "rubber_wood", ItemStack(GTCoreBlocks.TREATED_STAIRS, 4),
+        ImmutableMap.of('R', GTCoreBlocks.TREATED_PLANKS), "R  ", "RR ", "RRR")
 }

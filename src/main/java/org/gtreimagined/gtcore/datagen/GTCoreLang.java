@@ -68,6 +68,9 @@ public class GTCoreLang {
             add(GTCoreBlocks.RUBBER_STAIRS, "Rubberwood Stairs");
             add(GTCoreBlocks.RUBBER_FENCE, "Rubberwood Fence");
             add(GTCoreBlocks.RUBBER_FENCE_GATE, "Rubberwood Fence Gate");
+            add(GTCoreBlocks.TREATED_PLANKS, "Treated Wood Planks");
+            add(GTCoreBlocks.TREATED_SLAB, "Treated Wood Slab");
+            add(GTCoreBlocks.TREATED_STAIRS, "Treated Wood Stairs");
             add(GTCoreItems.RubberBoat, "Rubberwood Boat");
             add(GTCoreItems.RubberChestBoat, "Rubberwood Boat with Chest");
             add(GTCoreBlocks.SAP_BAG, "Sap Bag");
