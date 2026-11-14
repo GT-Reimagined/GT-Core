@@ -38,6 +38,6 @@ public class BlockRubberTrapDoor extends TrapDoorBlock implements IGTObject, IMo
 
     @Override
     public void onBlockModelBuild(Block block, GTBlockStateProvider prov) {
-        prov.trapdoorBlock(this, new ResourceLocation(GTCore.ID, "block/tree/rubber_trapdoor"), true);
+        prov.trapdoorBlock(this, new ResourceLocation(GTCore.ID, "block/wood/rubber_trapdoor"), true);
     }
 }

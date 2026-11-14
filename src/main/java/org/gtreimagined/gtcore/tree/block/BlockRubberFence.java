@@ -33,11 +33,11 @@ public class BlockRubberFence extends FenceBlock implements IGTObject, IModelPro
 
     @Override
     public void onItemModelBuild(ItemLike item, GTItemModelProvider prov) {
-        prov.getBuilder(item).parent(new ResourceLocation("minecraft", "block/fence_inventory")).texture("texture", new Texture(GTCore.ID, "block/tree/rubber_planks"));
+        prov.getBuilder(item).parent(new ResourceLocation("minecraft", "block/fence_inventory")).texture("texture", new Texture(GTCore.ID, "block/wood/rubber_planks"));
     }
 
     @Override
     public void onBlockModelBuild(Block block, GTBlockStateProvider prov) {
-        prov.fenceBlock(this, new ResourceLocation(GTCore.ID, "block/tree/rubber_planks"));
+        prov.fenceBlock(this, new ResourceLocation(GTCore.ID, "block/wood/rubber_planks"));
     }
 }

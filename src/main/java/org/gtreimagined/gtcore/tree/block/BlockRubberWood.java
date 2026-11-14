@@ -46,7 +46,7 @@ public class BlockRubberWood extends RotatedPillarBlock implements IModelProvide
 
     @Override
     public Texture[] getTextures() {
-        return new Texture[]{new Texture(domain,"block/tree/" + getId().replace("wood", "log"))};
+        return new Texture[]{new Texture(domain,"block/wood/" + getId().replace("wood", "log"))};
     }
 
     @Override

@@ -28,6 +28,6 @@ public class BlockRubberLeaves extends LeavesBlock implements IGTObject, IModelP
 
     @Override
     public Texture[] getTextures() {
-        return new Texture[] { new Texture(getDomain(), "block/tree/" + getId()) };
+        return new Texture[] { new Texture(getDomain(), "block/wood/" + getId()) };
     }
 }

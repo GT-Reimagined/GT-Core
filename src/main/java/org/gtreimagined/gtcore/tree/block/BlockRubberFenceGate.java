@@ -28,6 +28,6 @@ public class BlockRubberFenceGate extends FenceGateBlock implements IGTObject, I
 
     @Override
     public void onBlockModelBuild(Block block, GTBlockStateProvider prov) {
-        prov.fenceGateBlock(this, new ResourceLocation(GTCore.ID, "block/tree/rubber_planks"));
+        prov.fenceGateBlock(this, new ResourceLocation(GTCore.ID, "block/wood/rubber_planks"));
     }
 }

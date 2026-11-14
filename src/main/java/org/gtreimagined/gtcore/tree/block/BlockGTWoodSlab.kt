@@ -31,7 +31,7 @@ class BlockGTWoodSlab : SlabBlock(
         prov.slabBlock(
             this,
             ResourceLocation(GTCore.ID, "block/rubber_planks"),
-            ResourceLocation(GTCore.ID, "block/tree/rubber_planks")
+            ResourceLocation(GTCore.ID, "block/wood/rubber_planks")
         )
     }
 }

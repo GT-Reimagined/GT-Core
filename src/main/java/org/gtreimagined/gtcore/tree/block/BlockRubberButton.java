@@ -32,11 +32,11 @@ public class BlockRubberButton extends ButtonBlock implements IGTObject, IModelP
 
     @Override
     public void onItemModelBuild(ItemLike item, GTItemModelProvider prov) {
-        prov.getBuilder(item).parent(new ResourceLocation("block/button_inventory")).texture("texture", new ResourceLocation(GTCore.ID, "block/tree/rubber_planks"));
+        prov.getBuilder(item).parent(new ResourceLocation("block/button_inventory")).texture("texture", new ResourceLocation(GTCore.ID, "block/wood/rubber_planks"));
     }
 
     @Override
     public void onBlockModelBuild(Block block, GTBlockStateProvider prov) {
-        prov.buttonBlock(this, new ResourceLocation(GTCore.ID, "block/tree/rubber_planks"));
+        prov.buttonBlock(this, new ResourceLocation(GTCore.ID, "block/wood/rubber_planks"));
     }
 }

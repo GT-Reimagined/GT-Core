@@ -26,6 +26,6 @@ class BlockGTWoodStairs :
     }
 
     override fun onBlockModelBuild(block: Block?, prov: GTBlockStateProvider) {
-        prov.stairsBlock(this, ResourceLocation(GTCore.ID, "block/tree/rubber_planks"))
+        prov.stairsBlock(this, ResourceLocation(GTCore.ID, "block/wood/rubber_planks"))
     }
 }

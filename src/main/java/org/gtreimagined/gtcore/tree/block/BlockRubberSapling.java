@@ -47,7 +47,7 @@ public class BlockRubberSapling extends SaplingBlock implements IGTObject, IMode
 
     @Override
     public Texture[] getTextures() {
-        return new Texture[] { new Texture(getDomain(), "block/tree/" + getId()) };
+        return new Texture[] { new Texture(getDomain(), "block/wood/" + getId()) };
     }
 
     @Override

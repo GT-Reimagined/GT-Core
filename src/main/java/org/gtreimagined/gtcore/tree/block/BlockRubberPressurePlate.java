@@ -31,6 +31,6 @@ public class BlockRubberPressurePlate extends PressurePlateBlock implements IGTO
 
     @Override
     public void onBlockModelBuild(Block block, GTBlockStateProvider prov) {
-        prov.pressurePlateBlock(this, new ResourceLocation(GTCore.ID, "block/tree/rubber_planks"));
+        prov.pressurePlateBlock(this, new ResourceLocation(GTCore.ID, "block/wood/rubber_planks"));
     }
 }
