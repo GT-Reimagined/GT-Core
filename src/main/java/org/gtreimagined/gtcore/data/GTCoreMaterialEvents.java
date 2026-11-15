@@ -185,7 +185,7 @@ public class GTCoreMaterialEvents {
         //.addTools(3.0F, 10, 500, NETHERITE.getLevel(), of(Enchantments.FIRE_ASPECT, 3)).addArmor(new int[]{0, 1, 1, 0}, 0.5F, 0.1F, 20);
         event.setMaterial(GTCoreMaterials.NetherizedDiamond).asGemBasic(false)
                 .tool().toolDamage(4).toolSpeed(12).toolDurability(2560).toolQuality(NETHERITE.getLevel()).toolEnchantments(of(Enchantments.FIRE_ASPECT, 3, Enchantments.SHARPNESS, 4)).build()
-                .addArmor(new int[]{1, 1, 2, 1}, 3.0F, 0.1F, 37, of(Enchantments.ALL_DAMAGE_PROTECTION, 4));
+                .addArmor(new int[]{3, 8, 6, 3}, 3.0F, 0.1F, 37, of(Enchantments.ALL_DAMAGE_PROTECTION, 4));
         event.setMaterial(GTCoreMaterials.NetheriteScrap).asDust(GTMaterialTypes.CRUSHED_ORE, GTMaterialTypes.RAW_ORE);
 
     }
