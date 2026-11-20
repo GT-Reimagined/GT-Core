@@ -23,6 +23,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.fluids.FluidStack;
 import org.gtreimagined.gtcore.GTCore;
+import org.gtreimagined.gtcore.data.GTCoreColors;
 import org.gtreimagined.gtcore.data.GTCoreDamageTypes;
 import org.gtreimagined.gtcore.data.GTCoreRecipeMaps;
 import org.gtreimagined.gtlib.GTAPI;
@@ -38,7 +39,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class BlockMortar extends BlockBasic implements IColorHandler {
     final Material material;
-    static final int CERAMIC_COLOR = 0xDC8246;
     static final VoxelShape BOTTOM_SHAPE = Shapes.box(0.125, 0.0, 0.125, 0.875, 0.0625, 0.875);
     static final VoxelShape NORTH_SHAPE = Shapes.box(0.25, 0.0, 0.125, 0.75, 0.375, 0.25);
     static final VoxelShape SOUTH_SHAPE = Shapes.box(0.25, 0.0, 0.75, 0.75, 0.375, 0.875);
@@ -54,12 +54,12 @@ public class BlockMortar extends BlockBasic implements IColorHandler {
 
     @Override
     public int getBlockColor(BlockState state, @Nullable BlockGetter world, @Nullable BlockPos pos, int i) {
-        return i == 0 ? CERAMIC_COLOR : i == 1 ? material.getRGB() : i == 2 ? 0xffff00 : -1;
+        return i == 0 ? GTCoreColors.CERAMIC : i == 1 ? material.getRGB() : i == 2 ? GTCoreColors.NEI : -1;
     }
 
     @Override
     public int getItemColor(ItemStack stack, @Nullable Block block, int i) {
-        return i == 0 ? CERAMIC_COLOR : i == 1 ? material.getRGB() : i == 2 ? 0xffff00 : -1;
+        return i == 0 ? GTCoreColors.CERAMIC : i == 1 ? material.getRGB() : i == 2 ? GTCoreColors.NEI : -1;
     }
 
     @Override

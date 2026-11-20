@@ -17,6 +17,7 @@ import net.minecraft.world.level.material.MapColor;
 import org.gtreimagined.gtcore.GTCore;
 import org.gtreimagined.gtcore.blockentity.BlockEntityBookShelf;
 import org.gtreimagined.gtcore.blockentity.BlockEntityMassStorage;
+import org.gtreimagined.gtcore.data.GTCoreColors;
 import org.gtreimagined.gtcore.data.GTCoreSlotTypes;
 import org.gtreimagined.gtlib.Ref;
 import org.gtreimagined.gtlib.data.GTLibMaterials;
@@ -58,7 +59,7 @@ public class BlockMachineMaterial extends BlockMachine {
 
     @Override
     public int getBlockColor(BlockState state, @Nullable BlockGetter world, @Nullable BlockPos pos, int i) {
-        if (i == 0 && material == GTLibMaterials.Wood && type instanceof MassStorageMachine) return 0x664f2f;
+        if (i == 0 && material == GTLibMaterials.Wood && type instanceof MassStorageMachine) return GTCoreColors.ANY_WOOD;
         if (i == 2 && world != null && pos != null) {
             BlockEntity be = world.getBlockEntity(pos);
             if (be instanceof BlockEntityMassStorage massStorage){
@@ -76,7 +77,7 @@ public class BlockMachineMaterial extends BlockMachine {
 
     @Override
     public int getItemColor(ItemStack stack, @Nullable Block block, int i) {
-        if (i == 0 && material == GTLibMaterials.Wood && type instanceof MassStorageMachine) return 0x664f2f;
+        if (i == 0 && material == GTLibMaterials.Wood && type instanceof MassStorageMachine) return GTCoreColors.ANY_WOOD;
         return i == 0 ? MaterialColorChanger.getMaterialRgb(material) : -1;
     }
 
