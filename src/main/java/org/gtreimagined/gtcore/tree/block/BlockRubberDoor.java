@@ -39,6 +39,6 @@ public class BlockRubberDoor extends DoorBlock implements IGTObject, IModelProvi
 
     @Override
     public void onBlockModelBuild(Block block, GTBlockStateProvider prov) {
-        prov.doorBlock(this, new ResourceLocation(GTCore.ID, "block/wood/rubber_door_bottom"), new ResourceLocation(GTCore.ID, "block/woo/rubber_door_top"));
+        prov.doorBlock(this, new ResourceLocation(GTCore.ID, "block/wood/rubber_door_bottom"), new ResourceLocation(GTCore.ID, "block/wood/rubber_door_top"));
     }
 }

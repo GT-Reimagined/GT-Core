@@ -1,7 +1,7 @@
  {
   "parent": "tfc:block/groundcover/twig",
   "textures": {
-    "side": "gtcore:block/tree/rubber_log",
-    "top": "gtcore:block/tree/rubber_log_end"
+    "side": "gtcore:block/wood/rubber_log",
+    "top": "gtcore:block/wood/rubber_log_end"
   }
 }

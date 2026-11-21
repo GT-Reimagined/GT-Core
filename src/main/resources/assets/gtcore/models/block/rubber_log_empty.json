@@ -1,12 +1,12 @@
 {
 	"parent": "gtlib:block/preset/simple",
 	"textures": {
-		"down": "gtcore:block/tree/rubber_log_end",
-		"up": "gtcore:block/tree/rubber_log_end",
-		"north": "gtcore:block/tree/rubber_log_empty",
-		"south": "gtcore:block/tree/rubber_log",
-		"west": "gtcore:block/tree/rubber_log",
-		"east": "gtcore:block/tree/rubber_log",
-		"particle": "gtcore:block/tree/rubber_log"
+		"down": "gtcore:block/wood/rubber_log_end",
+		"up": "gtcore:block/wood/rubber_log_end",
+		"north": "gtcore:block/wood/rubber_log_empty",
+		"south": "gtcore:block/wood/rubber_log",
+		"west": "gtcore:block/wood/rubber_log",
+		"east": "gtcore:block/wood/rubber_log",
+		"particle": "gtcore:block/wood/rubber_log"
 	}
 }
